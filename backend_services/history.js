@@ -61,7 +61,7 @@ return historyIconBackground;
 }
 
 
-function createHistoryInfo(name, date) {
+function createHistoryInfo(name, date,status,details) {
     const historyInfo = document.createElement('div');
     historyInfo.className = 'historyinfo';
   
@@ -75,6 +75,9 @@ function createHistoryInfo(name, date) {
   
     const historyDetailsBtn = document.createElement('button');
     historyDetailsBtn.className = 'historydetailsbtn';
+    historyDetailsBtn.setAttribute("onclick",`showDetails("${name}","${date}","${status}","${details}")`);
+    historyDetailsBtn.setAttribute("data-toggle","modal");
+    historyDetailsBtn.setAttribute("data-target","#historyDetail");
     historyDetailsBtn.innerHTML = 'Details';
   
     historyInfo.appendChild(historyTitle);
@@ -92,7 +95,7 @@ function createHistoryList(historyData) {
 
         const historyIconBackground = createHistoryIconBackground(status);
 
-        const historyInfo = createHistoryInfo(name, date);
+        const historyInfo = createHistoryInfo(name, date,status,details);
 
         const historyStatus = document.createElement('div');
         
@@ -141,6 +144,16 @@ function createSearchResults(q) {
     }
     return currentTitles.join('') !== historyNameList;
   }
+
+  function showDetails(title, date, status, details){
+    
+    const modalHeader = document.getElementById("modalTitle");
+    modalHeader.innerText = title;
+
+    const modalBody = document.getElementById("modalDetails");
+    modalBody.innerText = details;
+  }
+
 
 
 
