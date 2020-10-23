@@ -29,7 +29,28 @@
         <hr>
 
         <div class="card bg-light">
-            <form class="card-body" novalidate="" action="" method="post" id="bootstrapForm">
+            <div class="modal" id="myModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Task Submitted</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Your task has been submitted for our Heroes to accept!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <form class="card-body" novalidate="" action="" id="bootstrapForm">
 
                 <div class="form-group">
                     <label class="h4 form-control-label" for="input1">Category of Task<abbr class="text-danger" title="This is required">*</abbr></label>
@@ -49,26 +70,26 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="h4 form-control-label" for="input5">Meet Me At<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="text" class="form-control" name="i5" id="input5" placeholder="Address" required>
+                    <label class="h4 form-control-label" for="input3">Meet Me At<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <input type="text" class="form-control" name="i3" id="input3" placeholder="Address" required>
                     <div class="invalid-feedback">Please enter a task description. This field is required</div>
                 </div>
 
                 <div class="form-group">
-                    <label class="h4 form-control-label" for="input6">Time<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="time" class="form-control time-picker" name="i6" id="input6" placeholder="" required>
+                    <label class="h4 form-control-label" for="input4">Time<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <input type="time" class="form-control time-picker" name="i4" id="input4" placeholder="" required>
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                 </div>
 
                 <div class="form-group">
-                    <label class="h4 form-control-label" for="input3">Phone No.<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="tel" placeholder="8008 1234" pattern="[0-9]{4} [0-9]{4}" class="form-control" name="i3" id="input3" required>
+                    <label class="h4 form-control-label" for="input5">Phone No.<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <input type="tel" placeholder="8008 1234" pattern="[0-9]{4} [0-9]{4}" class="form-control" name="i5" id="input5" required>
                     <div class="invalid-feedback">Please enter a phone # like 8008 1234. This field is required.</div>
                 </div>
 
                 <div class="form-group">
-                    <label class="h4 form-control-label" for="input4">Notes to Hero<abbr class="text-danger"></abbr></label>
-                    <input type="text" class="form-control" name="i4" id="input4" placeholder="Any Special Requests?">
+                    <label class="h4 form-control-label" for="input6">Notes to Hero<abbr class="text-danger"></abbr></label>
+                    <input type="text" class="form-control" name="i6" id="input6" placeholder="Any Special Requests?">
                 </div>
 
 
@@ -89,29 +110,60 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script>
         $("#bootstrapForm").submit(function(event) {
-
-            // make selected form variable
             var vForm = $(this);
+            var dataString = $(this).serialize();
+            vForm.addClass('was-validated');
 
-            /*
-            If not valid prevent form submit
-            https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/checkValidity
-            */
             if (vForm[0].checkValidity() === false) {
                 event.preventDefault()
                 event.stopPropagation()
             } else {
+                //alert("test");
+                $("#myModal").modal()
+                return false;
 
-                // Replace alert with ajax submit here...
-                alert("your form is valid and ready to send");
+                // $.ajax({
+                //     type: "POST",
+                //     url: "process.php",
+                //     data: dataString,
+                //     success: function() {
+                //         // Display message back to the user here
+                //         $("#myModal").modal()
+                //         return false;
+                //     }
+                // });
+
 
             }
-
-            // Add bootstrap 4 was-validated classes to trigger validation messages
-            vForm.addClass('was-validated');
-
-
         });
+
+
+
+
+        // $("#bootstrapForm").submit(function(event) {
+
+        //     // make selected form variable
+        //     var vForm = $(this);
+
+        //     /*
+        //     If not valid prevent form submit
+        //     https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/checkValidity
+        //     */
+        //     if (vForm[0].checkValidity() === false) {
+        //         event.preventDefault()
+        //         event.stopPropagation()
+        //     } else {
+        //         $("#myModal").modal()
+
+
+        //         // Replace alert with ajax submit here...
+        //         alert("your form is valid and ready to send");
+
+        //     }
+
+        //     // Add bootstrap 4 was-validated classes to trigger validation messages
+        //     vForm.addClass('was-validated');
+        // });
     </script>
 
 </body>
