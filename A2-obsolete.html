@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <style>
+        .form-valid {
+            opacity: 0.5;
+        }
+        
+        .form-control-label abbr {
+            text-decoration: none;
+            font-weight: normal;
+        }
+    </style>
+
+    <div class="container my-5">
+
+        <h3>Book a Hero!</h3>
+        <hr>
+
+        <div class="card bg-light">
+            <div class="modal" id="myModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Task Submitted</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Your task has been submitted for our Heroes to accept!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <form class="card-body" novalidate="" action="" id="bootstrapForm">
+
+                <div class="form-group">
+                    <label class="h4 form-control-label" for="input1">Category of Task<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <select class="form-control" name="i1" id="input1" required>
+                        <option value="food">Food</option>
+                        <option value="homeservice">Home Services</option>
+                        <option value="items">Items</option>
+                        <option value="vehiclehelp">Vehicle Help</option>
+                        <option value="misc">Miscellaneous</option>
+                        </select>
+                    <!--<div class="valid-feedback">Valid</div>-->
+                    <div class="invalid-feedback">Please enter your company name. This field is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="h4 form-control-label" for="input2">Description<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <input type="text" class="form-control" name="i2" id="input2" placeholder="Description" required>
+                    <div class="invalid-feedback">Please enter a task description. This field is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="h4 form-control-label" for="input3">Meet Me At<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <input type="text" class="form-control" name="i3" id="input3" placeholder="Address" required>
+                    <div class="invalid-feedback">Please enter a task description. This field is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="h4 form-control-label" for="input4">Time<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <input type="time" class="form-control time-picker" name="i4" id="input4" placeholder="" required>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </div>
+
+                <div class="form-group">
+                    <label class="h4 form-control-label" for="input5">Phone No.<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <input type="tel" placeholder="8008 1234" pattern="[0-9]{4} [0-9]{4}" class="form-control" name="i5" id="input5" required>
+                    <div class="invalid-feedback">Please enter a phone # like 8008 1234. This field is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="h4 form-control-label" for="input6">Notes to Hero<abbr class="text-danger"></abbr></label>
+                    <input type="text" class="form-control" name="i6" id="input6" placeholder="Any Special Requests?">
+                </div>
+
+
+                <div>
+                    <button type="submit" class="btn btn-secondary">Send Form</button>
+                </div>
+
+            </form>
+
+
+        </div>
+        <!-- /.card -->
+
+    </div>
+    <!-- /.container -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script>
+        $("#bootstrapForm").submit(function(event) {
+            var vForm = $(this);
+            var dataString = $(this).serialize();
+            vForm.addClass('was-validated');
+
+            if (vForm[0].checkValidity() === false) {
+                event.preventDefault()
+                event.stopPropagation()
+            } else {
+                //alert("test");
+                $("#myModal").modal()
+                return false;
+
+                // $.ajax({
+                //     type: "POST",
+                //     url: "process.php",
+                //     data: dataString,
+                //     success: function() {
+                //         // Display message back to the user here
+                //         $("#myModal").modal()
+                //         return false;
+                //     }
+                // });
+
+
+            }
+        });
+
+
+
+
+        // $("#bootstrapForm").submit(function(event) {
+
+        //     // make selected form variable
+        //     var vForm = $(this);
+
+        //     /*
+        //     If not valid prevent form submit
+        //     https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/checkValidity
+        //     */
+        //     if (vForm[0].checkValidity() === false) {
+        //         event.preventDefault()
+        //         event.stopPropagation()
+        //     } else {
+        //         $("#myModal").modal()
+
+
+        //         // Replace alert with ajax submit here...
+        //         alert("your form is valid and ready to send");
+
+        //     }
+
+        //     // Add bootstrap 4 was-validated classes to trigger validation messages
+        //     vForm.addClass('was-validated');
+        // });
+    </script>
+
+</body>
+
+
+</html>
