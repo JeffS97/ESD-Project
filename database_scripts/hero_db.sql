@@ -13,7 +13,7 @@ create table user
     age int,
     email varchar(50) NOT NULL,
     password varchar(50) NOT NULL,
-    PRIMARY KEY (username)
+    PRIMARY KEY (email)
 );
 
 
@@ -50,8 +50,6 @@ create table chat
 /*insert into gigcategories values ("");
 */
 
-insert into gigcategories values ("Food");
-insert into gigcategories values ("Car wash");
 
 
 

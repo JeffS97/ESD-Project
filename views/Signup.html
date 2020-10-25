@@ -7,7 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <head>
     <style>
         * {
@@ -15,10 +15,9 @@
             padding: 0;
         }
         
-        body {
-            background: url(http://eskipaper.com/images/mountain-landscape-2.jpg);
-            font-family: 'PT Sans';
-        }
+      body{
+          background-color: wheat   ;
+      }
         
         button:hover {
             cursor: pointer;
@@ -88,7 +87,7 @@
         .form-container {
             position: absolute;
             width: 375px;
-            height: 350px;
+            height: 400px;
             background-color: white;
             top: -25px;
             left: 10px;
@@ -127,7 +126,7 @@
             font-size: 18px;
             border: 0;
             border-radius: 3px;
-            background-color: #FC7D5F;
+            background-color: royalblue;
             color: #fafafa;
             -webkit-transition: .4s all;
             transition: .4s all;
@@ -196,19 +195,31 @@
         </div>
         <div class="form-container">
             <div class="sign-up">
+                <form method="post" action="../process_register.php" >
                 <h2 class="form-header">SIGN UP</h2>
-                <input type="text" id="user" placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="text" id="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
-                <input type="password" id="pass" placeholder="Password"><i class="fa fa-lock"></i></input>
-                <button class="form-btn">SIGN UP</button>
-            </div>
-            <div class="login hide">
-                <h2 class="form-header">LOGIN</h2>
-                <input type="text" id="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
-                <input type="password" id="pass" placeholder="Password"><i class="fa fa-lock"></i></input>
-                <button class="form-btn">LOGIN</button>
-                <a class="forgot" href="#">Forgot password</a>
 
+             
+                <input type="text" name="fullname" placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
+                <input type="text" name="username" placeholder="Username"><i class="fa fa-envelope-o"></i></input>
+                <input type="text" name="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                <input type="password" name="password" placeholder="Password"><i class="fa fa-lock"></i></input>
+                <button type="submit" class="form-btn " style="margin-left: 20%;"  >SIGN UP</button>
+            </form>
+            </div>
+            <div class="my-5">
+            <div class="login hide ">
+                <form method="post"   action="../process_login.php" >
+                <h2 class="form-header">LOGIN</h2>  
+                <input type="text" name="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                <input type="password" name="password" placeholder="Password"><i class="fa fa-lock"></i></input>
+              
+                <div class="g-recaptcha" style="margin-top: 10px;" data-sitekey="6LcvOtsZAAAAAPiHd4MP6LealQ4myJuvWzb_4GpM"></div>
+                 <br/>
+              
+                <button class="form-btn" style="margin-left: 20%;">LOGIN</button>
+                </form>
+              
+            </div>
             </div>
         </div>
     </div>
