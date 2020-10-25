@@ -20,13 +20,16 @@
     if($user != null){
         # Get stored hashed password
         $hashed = $user->getPassword();
+       
         # Check if entered password matches stored hashed password
         $success = password_verify($password,$hashed); 
+        var_dump(password_hash($password,PASSWORD_DEFAULT));
+        var_dump($hashed);
         if($success){
             # Create a session entry for successful login
             $_SESSION["email"] = $email;
             # Redirect to welcome.php
-            header("Location: ../../Homepage.html");
+            header("Location: ./resources/templates/navbarversion3.html");
             exit;
         }
     }
@@ -37,7 +40,7 @@
         $_SESSION["error"] = "Failed Login";
         # Redirect to login.php, while passing username information 
         # at the back of the URL, e.g., header("Location: login.php?...");
-        header("Location: ./resources/templates/navbarversion3.html");
+       header("Location: ./views/Signup.html");
         exit; 
     }
 ?>
