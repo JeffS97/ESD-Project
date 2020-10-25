@@ -1,7 +1,42 @@
 <!DOCTYPE html>
 
 <head>
+    <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <!--CSS Template-->
+    <link rel= "stylesheet" href="css template.html">
+
+    <!--Cambria-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <!--Raleway font stylesheet-->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
+    <style>
+        .logo{
+            font-family: cambria;}
+        .nav{
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Stay on top */
+            top: 0; /* Stay at the top */
+        }
+        body{
+            font-family:'Montserrat', sans-serif;
+            font-size: 23px;
+        }
+        .nav-item{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        @media screen and (max-width: 575px) {
+            .carousel{
+                width: 100%;
+                display: block;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 
     <style>
         .carousel-inner img {
@@ -54,127 +89,81 @@
             font-weight: bold;
             font-size: 25px;
         }
+
+        
     </style>
 
 </head>
 
 <body>
 
-    <div class="jumbotron jumbotron-fluid">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
+        <div class = 'container'>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> Project Hero</span>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav" style="margin: auto;">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Profile
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">History</a>
+                      <a class="dropdown-item" href="#">Settings</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Log Out</a>
+                    </div>
+                  </li>
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
+                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
+                <button type="button" class="btn btn-outline-danger" style="margin: 10px;">Log In</button>
+                <button type="button" class="btn btn-outline-primary" style="margin: 10px;">Sign Up</button>
+              </div>
+          </nav>
+        </div>
+
+    <div class="jumbotron jumbotron-fluid" style = "background-color: #F7F5F5;">
         <div class="container">
             <h1 class="display-4">Hire a Hero is a quick way to get instant help for everyday chores.</h1>
             <p class="lead"></p>
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="row my-5">
-            <div class="col text-center">
-                <button type="button hover-btn" class="btn btn-block btn-lg btn-primary">Hire a Hero</button>
-            </div>
-            <div class="col text-center">
-                <button type="button hover-btn" class="btn btn-block btn-lg btn-primary">Become a Hero</button>
-            </div>
-        </div>
-    </div>
-
-
-
     <p class="lead mx-3">Services on offer</p>
 
-    <div class="container my-4 ">
-
-        <div class="row ">
-            <div class="col-lg-4 col-md-6 col-sm-12 my-2 ">
-
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="https://www.visitsingapore.com/editorials/did-you-know-foodies/_jcr_content.renderimage.carousel.rect.835.470.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Food pick-up</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 my-2">
-
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="https://static01.nyt.com/images/2020/03/20/opinion/20Land/20Land-articleLarge.jpg?quality=75&auto=webp&disable=upscale" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Cleaning</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 my-2">
-
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="https://res.cloudinary.com/value-penguin/image/upload/q_auto,f_auto/shutterstock_133259828_1_uvnwio.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Grocery</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12 my-2">
-
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="https://res.cloudinary.com/value-penguin/image/upload/q_auto,f_auto/shutterstock_133259828_1_uvnwio.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Grocery</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12 my-2">
-
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="https://res.cloudinary.com/value-penguin/image/upload/q_auto,f_auto/shutterstock_133259828_1_uvnwio.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Grocery</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12 my-2">
-
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img class="card-img-top" src="https://res.cloudinary.com/value-penguin/image/upload/q_auto,f_auto/shutterstock_133259828_1_uvnwio.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Grocery</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-            </div>
-
+    <div class = "container">
+        <div class = "row" id = "servicesHere">
         </div>
-
-
-
     </div>
 
-    </div>
-    </div>
+    <p class="lead mx-3">Job Listings</p>
 
+    <div class = "container">
+        <div class = "row" id = "jobListingsHere">
+        </div>
+    </div>
 
     <p class="lead mx-3">Testimonials</p>
 
 
-    <div class="container mx-auto">
+
+
+    <div class="container mx-auto" style = "background-color: #dd884f;">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -200,10 +189,55 @@
 
 
     <script>
-        function checkLogin() {
-            document.getElementById("signedInOrNot").innerHTML = "My Profile";
+
+        // function getData() {
+        //     var request=newXMLHttpRequest(); 
+        //     request.onreadystatechange=function() {
+        //         if(this.readyState==4&&this.status==200){ 
+        //             loadCards(this.responseText);
+        //             } 
+        //         }; 
+        //     request.open("GET","getData.php",true); 
+        //     request.send();
+        // }
+
+        
+        window.onload = function loadServices(){
+
+            for (i=0; i<6; i ++){
+                document.getElementById("servicesHere").innerHTML+= `<div class="col-lg-4 col-md-6 col-sm-12 my-2">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img class="card-img-top" src="https://res.cloudinary.com/value-penguin/image/upload/q_auto,f_auto/shutterstock_133259828_1_uvnwio.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Grocery</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                </div>`;
+            }
+
+            loadJobListings();
+
         }
-        document.getElementById("signedInOrNot").addEventListener("click", checkLogin)
+
+        function loadJobListings() { 
+
+            for (i=0; i<6; i ++){
+                document.getElementById("jobListingsHere").innerHTML+= `<div class="col-lg-4 col-md-6 col-sm-12 my-2">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img class="card-img-top" src="https://res.cloudinary.com/value-penguin/image/upload/q_auto,f_auto/shutterstock_133259828_1_uvnwio.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Grocery</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                </div>`;
+            }
+
+        }
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
