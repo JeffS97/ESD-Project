@@ -1,4 +1,5 @@
 <!doctype html>
+<?php     session_start();?>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -119,7 +120,18 @@
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
                   <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                 </form> -->
+                <?php
+            
+              
+              if(isset($_SESSION["email"])){
+             ?>
+           <button type='button'  class='btn btn-warning' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
+              <?php }else{?>
+
+      
+            
                 <button type="button"  class="btn btn-warning" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
+              <?php }?>
                 <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                 <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
               </div>
