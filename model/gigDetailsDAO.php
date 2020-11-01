@@ -50,7 +50,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "SELECT * FROM `gigDetails` WHERE gigStatus=`:status` ORDER BY `gigId` ";
+            $sql = "select * from gigDetails where gigStatus=:status order by gigId ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':status', $status, PDO::PARAM_STR);
@@ -71,7 +71,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "SELECT * FROM `gigDetails` WHERE gigbooker=`:book` AND gigStatus='current' ";
+            $sql = "select * from gigDetails where gigbooker=:book and gigStatus=current ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':book', $book, PDO::PARAM_STR);
