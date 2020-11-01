@@ -50,7 +50,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "SELECT * FROM `gigDetails` WHERE status=`:status` ORDER BY `gigId` ";
+            $sql = "SELECT * FROM `gigDetails` WHERE gigStatus=`:status` ORDER BY `gigId` ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':status', $status, PDO::PARAM_STR);
@@ -59,7 +59,7 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
             }
 
             $stmt = null;

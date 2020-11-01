@@ -13,17 +13,18 @@
         private $accepteraddress;
 
 
-        public function __construct( $gigbooker, $gigaccepter,$categoryName,$gigName,$gigPrice,$gigStartDate,$gigEndDate,$gigStatus,$bookeraddress,$accepteraddress){
-            $this->gigbooker = $gigbooker;
-            $this->gigaccepter = $gigaccepter;
-            $this->categoryName = $categoryName;
-            $this->gigName = $gigName;
-            $this->gigPrice = $gigPrice;
-            $this->gigStartDate = $gigStartDate;
-            $this->gigStartDate = $gigEndDate;
-            $this->gigStatus = $gigStatus;
-            $this->bookeraddress = $bookeraddress;
-            $this->accepteraddress = $accepteraddress;
+        public function __construct($id, $booker, $accepter,$category,$Name,$Price,$StartDate,$EndDate,$Status,$bookeradd,$accepteradd){
+            $this->gigId=$id;
+            $this->gigbooker = $booker;
+            $this->gigaccepter = $accepter;
+            $this->categoryName = $category;
+            $this->gigName = $Name;
+            $this->gigPrice = $Price;
+            $this->gigStartDate = $StartDate;
+            $this->gigEndDate = $EndDate;
+            $this->gigStatus = $Status;
+            $this->bookeraddress = $bookeradd;
+            $this->accepteraddress = $accepteradd;
         }
 
         public function getID() {

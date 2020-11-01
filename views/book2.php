@@ -147,7 +147,7 @@ width: 100%;
   padding-top: 20px;
 }
 .clearfix {
-  list-style-type: upper-roman;
+  list-style-type: none;
 
         margin-bottom: 18px;
         margin-right: 20px;
@@ -310,17 +310,9 @@ card design
     	<span class="empty">Current Bookings</span>       
     </div>
     <div class="bookings">
-      <ul class="shopping-cart-items">
-        <hr>
-        <li class="clearfix">
-          <img class="bookimg" src="./plumb.jpg" alt="item1" />
-          <span class="item-name">House plumbing</span>
-          <span class="item-price">$20</span>
-          <br>
-        
-          <span class="item-quantity">Time: 12 pm</span>
-        </li>
-        <hr>
+      <ul class="shopping-cart-items" id="current">
+       
+       
       </ul>
     </div>
         </div>
@@ -333,37 +325,10 @@ card design
       <h1 class="mt-3">Browse Opportunities</h1>
       <div class="results">3 Tasks Available</div>
         <div class=" grid-container mt-5 ">
-          <div class="row ">
-            <div class="col-12  col-md-6 col-lg-4 ">
-              <div class=" services card expand">
-                <img class="card-img-top" src="./plumb.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <button class="button">View</button>
-                </div>
-              </div>
-            </div>
-            <div class=" col-12  col-md-6 col-lg-4">
-              <div class=" services card expand">
-                <img class="card-img-top" src="./plumb.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title ">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <button class="button">View</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-12  col-md-6 col-lg-4">
-              <div class=" services card expand">
-                <img class="card-img-top" src="./plumb.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <button class="button">View</button>
-                </div>
-              </div>
-            </div>
+          <div class="row " id="bookings">
+            
+            
+           
              
            
           
@@ -416,3 +381,4 @@ $('.carousel .carousel-item').each(function(){
 });
 
 </script>
+<script src="./book2.js"></script>

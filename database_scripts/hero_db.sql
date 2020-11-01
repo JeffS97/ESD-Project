@@ -30,7 +30,7 @@ create table gigDetails
     gigEndDate date,
     gigStatus varchar(20) NOT NULL ,
     bookeraddress varchar(100)NOT NULL  ,
-    accepteraddress varchar(100)  
+    accepteraddress varchar(100)  ,
 
     PRIMARY KEY (gigId),
     FOREIGN KEY fk1 (gigbooker) REFERENCES user(email),
@@ -52,6 +52,11 @@ create table chat
 
 /*insert into gigcategories values ("");
 */
+
+
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan','cleaning' ,'House Clean', 20,'2020-11-20','current','yishun 81');
+
 
 
 

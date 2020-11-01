@@ -20,7 +20,7 @@ create table user
 
 create table gigDetails
 (
-	gigId int NOT NULL,
+	gigId int  NOT NULL AUTO_INCREMENT,
     gigbooker varchar(50) NOT NULL,
     gigaccepter varchar(50),
 	categoryName varchar(50) NOT NULL,
@@ -50,10 +50,10 @@ create table chat
 /*insert into gigcategories values ("");
 */
 
-insert into gigcategories values ("Food");
-insert into gigcategories values ("Car wash");
 
 
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan','cleaning' ,'House Clean', 20,'2020-11-20','current','yishun 81');
 
 
 
