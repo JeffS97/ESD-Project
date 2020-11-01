@@ -1,5 +1,5 @@
 
-/*
+
 const historyData = [
     {
       name: 'Help me buy coffee',
@@ -20,39 +20,9 @@ const historyData = [
       details: 'Testing3'
     },
   ];
-  console.log(historyData);*/
-  
-  const user = 'glenda';
-  var historyData;
-
-  const request = new XMLHttpRequest();
-
-  request.onreadystatechange = function(){
-      if(this.readyState ==4 && this.status==200){
-         historyData  = JSON.parse(this.responseText).userhistory ;
-          //console.log(historyData);
-          createHistoryList(historyData);
-           
-        /*
-        for (let i = 0; i<results.length;i++){
-          let name= results[i].gigName;
-           let date= results[i].gigStartDate;
-           let status= results[i].gigStatus;
-           let details= results[i].bookeraddress;
-           historyData.push({name, date, status,details});
-           
-        }*/
-        //console.log(historyData);
-
-      }
-  }
-  
-  request.open("GET","../Main/getUserHistory.php",true);
-  request.send();
-
-  console.log(historyData);
 
 const historyList = document.querySelector('.history-list');
+createHistoryList(historyData);
 const searchInputBox = document.querySelector('.search__input-box');
 searchInputBox.addEventListener('keyup', createSearchResults);
 
@@ -118,35 +88,29 @@ function createHistoryInfo(name, date,status,details) {
 
 function createHistoryList(historyData) {
     historyList.innerHTML = '';
-
     for (let i = 0; i < historyData.length; i++) {
-       
-        console.log(historyData[i]);
-        const { gigName, gigStartDate, gigStatus, bookeraddress } = historyData[i];
-        
+        const { name, date, status, details } = historyData[i];
         const history = document.createElement('div');
         history.className = 'history';
 
-        const historyIconBackground = createHistoryIconBackground(gigStatus);
+        const historyIconBackground = createHistoryIconBackground(status);
 
-        const historyInfo = createHistoryInfo(gigName, gigStartDate, gigStatus, bookeraddress);
+        const historyInfo = createHistoryInfo(name, date,status,details);
 
         const historyStatus = document.createElement('div');
         
-        if (gigStatus == "Active") {
+        if (status == "Active") {
             historyStatus.className = 'historystatus badge badge-pill badge-success';
         } else {
             historyStatus.className = 'historystatus badge badge-pill badge-secondary';
         }
-        historyStatus.innerHTML = gigStatus;
+        historyStatus.innerHTML = status;
 
 
         history.appendChild(historyIconBackground);
         history.appendChild(historyInfo);
         history.appendChild(historyStatus);
         historyList.appendChild(history);
-
-
     }
 }
 
@@ -154,7 +118,7 @@ function createSearchResults(q) {
     const input = q.target.value.toLowerCase().replace(/\s/g, '');
 
     const results = historyData.filter((history) => {
-      const historyName = history.gigName
+      const historyName = history.name
         .toLowerCase()
         .replace(/\s/g, '')
         .slice(0, input.length);
