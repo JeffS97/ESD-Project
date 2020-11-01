@@ -43,5 +43,77 @@
             $pdo = null;
             return $user;
         }
+
+        # Update user email
+        # Return null if update was unsuccessful 
+
+        public function updateEmail($email){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "UPDATE user email
+                    SET email=:email";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email",$email);
+            $status = $stmt->execute();
+
+            $stmt = null;
+            $pdo = null;
+            return $status;
+        }
+
+        # Update user password
+        # Return null if update was unsuccessful 
+
+        public function updatePassword($password){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "UPDATE user password
+                    SET password=:password";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":password",$password);
+            $status = $stmt->execute();
+
+            $stmt = null;
+            $pdo = null;
+            return $status;
+        }
+
+        # Update user fullname
+        # Return null if update was unsuccessful 
+
+        public function updateFullname($fullname){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "UPDATE user fullname
+                    SET fullname=:fullname";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":fullname",$fullname);
+            $status = $stmt->execute();
+
+            $stmt = null;
+            $pdo = null;
+            return $status;
+        }
+
+        # Update user username
+        # Return null if update was unsuccessful 
+
+        public function updateUsername($username){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "UPDATE user username
+                    SET username=:username";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":username",$username);
+            $status = $stmt->execute();
+
+            $stmt = null;
+            $pdo = null;
+            return $status;
+        }
     }
 ?>
