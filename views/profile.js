@@ -1,7 +1,6 @@
 
 
 
-
  let url="../Main/getEarnings.php";
  var request = new XMLHttpRequest();
  request.onreadystatechange = function() {
