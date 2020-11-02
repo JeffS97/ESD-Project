@@ -17,28 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
-        .logo{
-            font-family: cambria;}
-        .nav{
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Stay on top */
-            top: 0; /* Stay at the top */
-        }
-        body{
-            font-family:'Montserrat', sans-serif;
-            font-size: 23px;
-        }
-        .nav-item{
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        @media screen and (max-width: 575px) {
-            .carousel{
-                width: 100%;
-                display: block;
-                margin-bottom: 20px;
-            }
-        }
+        
         
         .carousel-inner img {
             margin: auto;
@@ -133,6 +112,8 @@
 
 <body>
 
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -164,10 +145,7 @@
                         </div>
                       </li>
                     </ul>
-                    <!-- <form class="form-inline my-2 my-lg-0">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
-                      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                    </form> -->
+                    
                     <button type="button" class="btn btn-outline-danger" style="margin: 10px;">Log In</button>
                     <button type="button" class="btn btn-outline-primary" style="margin: 10px;">Sign Up</button>
                   </div>
@@ -175,10 +153,65 @@
             </div>
     </section>
 
+    <div></div>
+
+    <section id="hire-a-hero" class = "animate__animated animate__fadeInLeft my-5">
+        <div class="container">
+        <ul class="nav justify-content-center nav-tabs" role="tablist">
+            <li class="nav-item"><a aria-controls="hire-hero" aria-selected="false" class="nav-link" data-toggle="tab" href="#hire-hero" id="tab-hire-hero" role="tab">Hire A Hero</a></li>
+            <li class="nav-item"><a aria-controls="become-hero" aria-selected="false" class="nav-link" data-toggle="tab" href="#become-hero" id="tab-become-hero" role="tab">Become A Hero</a></li>
+            <li class="nav-item"><a aria-controls="contact-blu" aria-selected="true" class="nav-link active" data-toggle="tab" href="#contact-blu" id="tab-contact-blu" role="tab">About us</a></li>
+        </ul>
+        
+        <div class="tab-content">
+        <div aria-labelledby="tab-hire-hero" class="tab-pane show" id="hire-hero" role="tabpanel">
+        <div class="row justify-content-center">
+        <div class="col my-auto">
+        <h3>Hire a Hero</h3>
+        
+        <p>Sending a parcel to a friend? Simply make a booking to drop off your parcel, and we will deliver it on your behalf to another bluPort in Singapore.</p>
+        <a class="btn btn-site outline has-arrow" href="/services/sendparcel">Learn more</a></div>
+        
+        <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/help.jpg" class = "img-fluid"></div>
+        </div>
+        </div>
+        <!-- end tab-pane-->
+        
+        <div aria-labelledby="tab-become-hero" class="tab-pane" id="become-hero" role="tabpanel">
+        <div class="row justify-content-center">
+        <div class="col my-auto">
 
         
+        <h3>Become a Hero</h3>
+        
+        <p>Need something? Request for a parcel from your friend and collect it from your preferred bluPort, at your convenience.</p>
+        <a class="btn btn-site outline has-arrow" href="/services/requestparcel">Learn more</a></div>
+        
+        <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/plumber.jpg" class = "img-fluid"></div>
+        </div>
+        </div>
+        <!-- end tab-pane-->
+        
+        <div aria-labelledby="tab-about-us" class="tab-pane active" id="contact-blu" role="tabpanel">
+        <div class="row justify-content-center">
+        <div class="col my-auto">
+        <h3>About us</h3>
+        
+        <p>Not every hero wears a cape.</p>
+        <p>Welcome to Hire a Hero, a platform designed to help everyday individuals find help for their daily tasks and enable everyday individuals to find temporary jobs on the go.</p>
+        <a class="btn btn-site outline has-arrow" href="/services/checkout">Learn more</a></div>
+        
+        <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/hero.jpg" class = "img-fluid"></div>
+        </div>
+        </div>
+        <!-- end tab-pane-->
+        </div>
+        </div>
+        </section>
+        <!-- end section -->
+        
 
-    <section id = "services" class = "animate__animated animate__fadeInDown">
+    <section id = "services" class = "animate__animated animate__fadeInDown animate__delay-1s">
         <p class="lead mx-3">Services on Offer</p>
         <div class="container-fluid" id="moving" >
             <div class="container text-center mb-5 ">
@@ -187,9 +220,9 @@
                       <div class="carousel-inner w-100" role="listbox" >
                           <div class="carousel-item active">
                               <div class="col-md-4">
-                                  <div class="card card-body w-75 bg-light">
+                                  <div class="card card-body bg-light">
                                       <img class="img-fluid"  src="./resources/images/carwash.jpg">
-                                    Car Wash
+                                    <p class="my-2">Car Wash</p>
                                   </div>
                               </div>
                           </div>
@@ -197,7 +230,7 @@
                               <div class="col-md-4">
                                   <div class="card card-body bg-light">
                                   <a href="#">    <img class="img-fluid" src="./resources/images/delivery.jpg"></a>
-                                  Delivery
+                                  <p class="my-2">Delivery</p>
                                   </div>
                               </div>
                           </div>
@@ -205,7 +238,7 @@
                               <div class="col-md-4 " >
                                   <div class="card card-body bg-light ">
                                       <img class="img-fluid "  src="./resources/images/clean.jpg">
-                                      Home Services
+                                      <p class="my-2">Home Services</p>
                                   </div>
                               </div>
                           </div>
@@ -224,8 +257,8 @@
           </div>
     </section>
 
-    <section id = "gigsNearYou" class ="animate__animated animate__fadeInDown animate__delay-1s">
-        <p class="lead mx-3">Gigs Near You</p>
+    <section id = "freelancers" class ="animate__animated animate__fadeInDown animate__delay-2s">
+        <p class="lead mx-3">Freelancers Near You</p>
         <div class="container-fluid" id="moving" >
             <div class="container text-center mb-5 ">
             <div class="row mx-auto " >
