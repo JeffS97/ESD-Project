@@ -51,21 +51,6 @@
       <canvas id="canvas"></canvas>
     </div>
 
-<script>
-    var userDetails
-    const request = new XMLHttpRequest();
-
-    request.onreadystatechange = function(){
-        if(this.readyState ==4 && this.status==200){
-          userDetails  = JSON.parse(this.responseText) ;
-        }
-    }
-
-    request.open("GET","../Main/getUserDetails.php",true);
-    request.send();
-
-    console.log(userDetails);
-</script>
 
 <script src="profile.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
