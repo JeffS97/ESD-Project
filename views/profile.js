@@ -1,6 +1,23 @@
 
+window.onload = userDetails();
+window.onload=chart();
+function userDetails(){
+  var userDetails
+    const request = new XMLHttpRequest();
 
+    request.onreadystatechange = function(){
+        if(this.readyState ==4 && this.status==200){
+          userDetails  = JSON.parse(this.responseText) ;
+        }
 
+    request.open("GET","../Main/getUserDetails.php",true);
+    request.send();
+
+    console.log(userDetails);
+}
+
+}
+function chart(){
  let url="../Main/getEarnings.php";
  var request = new XMLHttpRequest();
  request.onreadystatechange = function() {
@@ -37,3 +54,4 @@
     barChartDemo.addData([dData()], "dD " + index);
     index++;
   }, 3000); */
+}
