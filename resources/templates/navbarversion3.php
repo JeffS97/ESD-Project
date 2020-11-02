@@ -45,7 +45,7 @@
                 margin-bottom: 20px;
             }
         }
-        .btn-warning {
+        .btn-primary {
           font-size: 20px;
           color: white;
           letter-spacing: 1px;
@@ -125,12 +125,12 @@
               
               if(isset($_SESSION["email"])){
              ?>
-           <button type='button'  class='btn btn-warning' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
+           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
               <?php }else{?>
 
       
             
-                <button type="button"  class="btn btn-warning" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
+                <button type="button"  class="btn btn-primary" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
               <?php }?>
                 <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                 <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
@@ -171,12 +171,15 @@
           <h1 style="font-size:74px; font-family: 'Inter', sans-serif; margin-bottom: 0;">HIRE A HERO</h1>
           <h5 style="font-size: 25px; font-family: 'Montserrat', sans-serif; padding-top: 0;">Get instant help for everyday chores!</h5>
           <label class="sr-only" for="inlineFormInputGroup">Username</label>
-          <div class="input-group col-sm-4" style="margin: 0; padding: 0; margin-top: 20px; font-family: 'Open Sans', sans-serif;">
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search Services">
-            <div class="input-group-prepend">
-              <button class="btn" style="background-color: #34558b; color: white;">Search</button>
+          <form action="../../Main/searchbar.php" method="POST" id="searchbar">
+            <div class="input-group col-sm-4" style="margin: 0; padding: 0; margin-top: 20px; font-family: 'Open Sans', sans-serif;">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search Gigs" name ='searchterm'>
+                <div class="input-group-prepend">
+                  <button class="btn" type="submit" form="searchbar" value="Submit" style="background-color: #34558b; color: white;">Search</button>
+                </div>
             </div>
-          </div>
+          </form>
+          
           
         </div>
         

@@ -89,6 +89,29 @@
             return $result;
         }
 
+        public function getGigs($search) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            $sql = 'select * from gigDetails where lower(gigName) like CONCAT("%",:search,"%")';
+            //$sql = "SELECT * FROM gigDetails WHERE gigName = ':search' ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+
+            $result = [];
+            while($row = $stmt->fetch()){
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
+            }
+            
+
+            $stmt = null;
+            $pdo = null;
+
+            return $result;
+        }
+
         public function getUserGigsHistory($user) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
