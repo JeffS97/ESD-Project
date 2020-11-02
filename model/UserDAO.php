@@ -47,14 +47,16 @@
         # Update user email
         # Return null if update was unsuccessful 
 
-        public function updateEmail($email){
+        public function updateEmail($email, $newemail){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
             $sql = "UPDATE user email
-                    SET email=:email";
+                    SET email=:newemail;
+                    WHERE email=:email";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":email",$email);
+            $stmt->bindParam(":newemail",$newemail);
             $status = $stmt->execute();
 
             $stmt = null;
@@ -105,7 +107,7 @@
         # Update user username
         # Return null if update was unsuccessful 
 
-        public function updateUsername($username){
+        public function updateUsername($email, $username){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
