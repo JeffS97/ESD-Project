@@ -22,7 +22,8 @@
     $description = $_POST["i2"];
     $gigName = $_POST["i7"];
     $price = (int)$_POST["i3"];
-    $start = "2020-11-20";
+    $start = urldecode($_POST["i5"]);
+    $start = str_replace('T'," ", $start);
     $status = "Active";
     $bookeradd = $_POST["i4"];
 
@@ -33,12 +34,12 @@
     $status = $dao->createBooking($email,$category,$gigName,$price,$start,$status,$bookeradd);
     if($status){
         # Send success message in the session
-        $_SESSION["success"] = "Task added successfully";
+        $_SESSION["task_success"] = "Success";
 
         # Redirect to login.php
         # Provide information of the newly registered user 
         # at the back of the URL
-        header("location: ../resources/templates/navbarversion3.php");
+        header("location: Book task.php");
         exit;
     }
     else{
