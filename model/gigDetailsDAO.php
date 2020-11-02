@@ -5,15 +5,15 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
 
-            $sql = "INSERT INTO `gigDetails` (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES (:booker,:accepter ,:category, :gig,:price,:taskstart,:gigstatus,:bookeradd)";
+            $sql = "INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES (:booker, :category, :gig,:price,:taskstart,:gigstatus,:bookeradd)";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':booker', $booker, PDO::PARAM_STR);
            
             $stmt->bindParam(':gig', $name, PDO::PARAM_STR);
             $stmt->bindParam(':price', $price, PDO::PARAM_INT);
-            $stmt->bindParam(':taskstart', $start, PDO::PARAM_DATE);
+            $stmt->bindParam(':taskstart', $start, PDO::PARAM_STR);
           
             $stmt->bindParam(':category', $category, PDO::PARAM_STR);
             $stmt->bindParam(':gigstatus', $status, PDO::PARAM_STR);
@@ -21,12 +21,12 @@
 
             $isOk = $stmt->execute();
 
-            $lastID = $pdo->lastInsertId();
+            # $lastID = $pdo->lastInsertId();
         
             $stmt = null;
             $pdo = null;
         
-            return $lastID;
+            return $isOk;
         }
 
        /* public function addLike($id) {
