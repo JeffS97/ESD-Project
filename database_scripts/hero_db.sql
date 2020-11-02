@@ -25,7 +25,8 @@ create table gigDetails
     gigaccepter varchar(100),
 	categoryName varchar(50) NOT NULL,
     gigName varchar(50) NOT NULL,
-    gigPrice int NOT NULL ,
+    gigPrice int NOT NULL ,	
+    gigDescription varchar(9999) NOT NULL,
     gigStartDate date NOT NULL ,
     gigEndDate date,
     gigStatus varchar(20) NOT NULL ,
@@ -52,6 +53,9 @@ create table chat
 
 /*insert into gigcategories values ("");
 */
+
+INSERT INTO user (`username`,`fullname`, `email`,`password` )
+VALUES ('admin','admin','admin@gmail.com','$2y$10$7aSS0yScusjM8HoOHcqSluVMui0mNH5IS7Jqx/fYWUliZR/4c5m7m');
 
 
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
