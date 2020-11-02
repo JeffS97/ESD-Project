@@ -6,11 +6,15 @@ function getPost(){
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var posts=JSON.parse(this.response);
+            var img="";
            for(var node of posts.gig){
-        console.log(node);
+               console.log(node)
+            if(node.gigCategory=="cleaning"){
+                img="../resources/images/plumb.jpg";
+            }
             document.getElementById('bookings').innerHTML+=`<div class="col-12  col-md-6 col-lg-4 ">
             <div class=" services card expand">
-              <img class="card-img-top" src="./plumb.jpg" alt="Card image cap">
+              <img class="card-img-top" src="${img}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">${node.gigName} -Booked by  ${node.gigbooker}</h5>
                 <h6>${node.bookeraddress}</h6>
@@ -28,14 +32,30 @@ function getPost(){
     request.send();
 }
 
+var url="../Main/getBookings.php";
+var request = new XMLHttpRequest();
+request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var result=JSON.parse(this.response);
+        var img="";
+        for(var node of result.gig){
+          console.log(node)
+           if(node.gigCategory=="cleaning"){
+               img="../resources/images/plumb.jpg";
+           }
+            document.getElementById("current").innerHTML+= ` <li class="clearfix">
+            <img class="bookimg" src="${img}" alt="item" />
+            <span class="item-name">${node.gigName}</span>
+            <span class="item-price">$${node.gigPrice}</span>
+       
+            <span class="item-quantity d-block">Date: ${node.gigStartDate}</span>
+            </li>
+            <hr>`;
+           
+        }
+    }
+}
+request.open('GET', url, true);
+request.send();
 
 
-document.getElementById("current").innerHTML= ` <li class="clearfix">
-<img class="bookimg" src="./plumb.jpg" alt="item" />
-<span class="item-name">House plumbing</span>
-<span class="item-price">$20</span>
-<br>
-
-<span class="item-quantity">Time: 12 pm</span>
-</li>
-<hr>`;

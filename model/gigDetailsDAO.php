@@ -71,7 +71,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "select * from gigDetails where gigbooker=:book and gigStatus=current ";
+            $sql = "select * from gigDetails where gigbooker=:book and gigStatus='current' ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':book', $book, PDO::PARAM_STR);
@@ -80,7 +80,28 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
+            }
+
+            $stmt = null;
+            $pdo = null;
+
+            return $result;
+        }
+        public function getEarnings($user) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            
+            $sql = "select gigEndDate,gigPrice from gigDetails where gigaccepter=:book and gigStatus='completed' ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':book', $user, PDO::PARAM_STR);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+
+            $result =[];
+            while($row = $stmt->fetch()){
+                $result[] = [$row["gigPrice"], $row["gigEndDate"]];
             }
 
             $stmt = null;
@@ -89,6 +110,7 @@
             return $result;
         }
 /*
+
         public function getHigherThanID($id, $limit){
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();

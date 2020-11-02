@@ -1,14 +1,17 @@
 <?php
-    spl_autoload_register(function($class){
-        require_once "../model/$class.php";
-    });
+    spl_autoload_register(
+        function($class){
+            require_once "../model/$class.php";
+        }
+    );
+    session_start();
 
-
-  
-
+    
     $dao = new gigDetailsDAO();
-
-    $gigArray = $dao->getAllPosts('current');
+    $email=$_SESSION["email"];
+  
+   
+    $gigArray = $dao->getUserBooking($email);
 
     $result = array("gig" => array() );
 
