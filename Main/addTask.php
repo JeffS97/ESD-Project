@@ -39,7 +39,7 @@
         # Redirect to login.php
         # Provide information of the newly registered user 
         # at the back of the URL
-        header("location: Book task.php");
+        header("location: ../views/Book task.php");
         exit;
     }
     else{
