@@ -27,35 +27,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans&display=swap" rel="stylesheet">
 
     <style>
-        .logo {
-            font-family: cambria;
+        .logo{
+          font-family: 'Open Sans', sans-serif;
+          font-weight: bolder;
+        } 
+        .nav{
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Stay on top */
+            top: 0; /* Stay at the top */
         }
-        
-        .nav {
-            position: fixed;
-            /* Stay in place */
-            z-index: 1;
-            /* Stay on top */
-            top: 0;
-            /* Stay at the top */
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
+        body{
+            font-family:'Montserrat', sans-serif;
             font-size: 23px;
         }
-        
-        .nav-item {
+        .nav-item{
             padding-left: 20px;
             padding-right: 20px;
         }
-        
         @media screen and (max-width: 575px) {
-            .carousel {
+            .carousel{
                 width: 100%;
                 display: block;
                 margin-bottom: 20px;
             }
+        }
+        .btn-primary {
+          font-size: 20px;
+          color: white;
+          letter-spacing: 1px;
+          line-height: 15px;
+          border: 2px solid #34558b;
+          border-radius: 30px;
+          padding: 15px;
+          background-color:#34558b;
+        }
+        .container-fluid{
+          width: 100%;
+          height: 100%;
+          color: #909090;
+          
         }
         
         .form-valid {
@@ -76,17 +86,11 @@
         .form-group{
             text-align:left;
         }
-
     </style>
 
     <title>Project Hero</title>
   </head>
   <body>
-    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
         <div class = 'container' style="padding: 0;">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,7 +111,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="#">Browse</a>
-                      <a class="dropdown-item" href="#">Post</a>
+                      <a class="dropdown-item" href="Book task.php">Post</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -119,7 +123,22 @@
                       <a class="dropdown-item" href="#">My Tasks</a>
                     </div>
                   </li>
+                  <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Profile
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">History</a>
+                      <a class="dropdown-item" href="#">Settings</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#" hidden>Log Out</a>
+                    </div>
+                  </li> -->
                 </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
+                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
                 <?php
             
               
