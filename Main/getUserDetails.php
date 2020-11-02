@@ -3,5 +3,7 @@
 
     $dao = new UserDAO();
 
+    $user = $dao->retrieve($email);
+
     
 ?>
