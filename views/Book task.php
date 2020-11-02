@@ -125,12 +125,12 @@
               
               if(isset($_SESSION["email"])){
              ?>
-           <button type='button'  class='btn btn-warning' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
+           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
               <?php }else{?>
 
       
             
-                <button type="button"  class="btn btn-warning" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
+                <button type="button"  class="btn btn-primary" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
               <?php }?>
                 <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                 <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
@@ -167,7 +167,7 @@
         <div class="w-75 mx-auto card img-fluid">
             <!-- <img class="card-img-top" src="plumb.jpg" alt="Card image" style="height:100%;">
             <div class="card-img-overlay"> -->
-            <form class="card-body" novalidate="" method="POST" action="process_task.php" id="bootstrapForm">
+            <form class="card-body" novalidate="" method="POST" action="../Main/addTask.php" id="bootstrapForm">
 
                 <div class="form-group">
                     <label class="h4 form-control-label" for="input1">Category of Task<abbr class="text-danger" title="This is required">*</abbr></label>
