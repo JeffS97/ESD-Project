@@ -3,6 +3,8 @@
 
 <head>
     <!-- Required meta tags -->
+    <?php
+    session_start();?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -237,6 +239,12 @@
     </div>
 
     <script>
+        <?php if (isset($_SESSION['task_success'])) { 
+            unset($_SESSION['task_success']);?>
+            
+            $('#myModal').modal();
+        <?php } ?>
+
         $("#bootstrapForm").submit(function(event) {
             var vForm = $(this);
             var dataString = $(this).serialize();
@@ -246,8 +254,7 @@
                 event.preventDefault()
                 event.stopPropagation()
             } else {
-                alert(dataString);
-                $("#myModal").modal()
+                // $("#myModal").modal()
 
                 // $.ajax({
                 //     type: "POST",
@@ -264,36 +271,6 @@
             }
         });
     </script>
-
-
-    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" style="height: 600px; overflow:auto;">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" alt="First slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="https://media2.s-nbcnews.com/j/newscms/2017_41/2187641/171012-better-stock-house-cleaner-ew-531p_524663bd13e994184485cf04bf4a26e0.fit-2000w.jpg" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="https://zone-thebestsingapore-bhxtb9xxzrrdpzhqr.netdna-ssl.com/wp-content/uploads/2019/01/top-recommended-handyman-service-singapore.jpg" alt="Third slide">
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div> -->
-
-
 </body>
 
 </html>
