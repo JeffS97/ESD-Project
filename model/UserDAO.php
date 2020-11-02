@@ -65,14 +65,16 @@
         # Update user password
         # Return null if update was unsuccessful 
 
-        public function updatePassword($password){
+        public function updatePassword($email, $password){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
             $sql = "UPDATE user password
-                    SET password=:password";
+                    SET password=:password
+                    WHERE email=:email";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":password",$password);
+            $stmt->bindParam(":email", $email);
             $status = $stmt->execute();
 
             $stmt = null;
@@ -83,13 +85,15 @@
         # Update user fullname
         # Return null if update was unsuccessful 
 
-        public function updateFullname($fullname){
+        public function updateFullname($email, $fullname){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
             $sql = "UPDATE user fullname
-                    SET fullname=:fullname";
+                    SET fullname=:fullname
+                    WHERE email=:email";
             $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email",$email);
             $stmt->bindParam(":fullname",$fullname);
             $status = $stmt->execute();
 
@@ -106,9 +110,11 @@
             $pdo = $conn_manager->getConnection();
             
             $sql = "UPDATE user username
-                    SET username=:username";
+                    SET username=:username
+                    WHERE email=:email";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":username",$username);
+            $stmt->bindParam(":email", $email);
             $status = $stmt->execute();
 
             $stmt = null;
