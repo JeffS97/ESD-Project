@@ -5,15 +5,15 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
 
-            $sql = "INSERT INTO `gigDetails` (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES (:booker,:accepter ,:category, :gig,:price,:taskstart,:gigstatus,:bookeradd)";
+            $sql = "INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES (:booker, :category, :gig,:price,:taskstart,:gigstatus,:bookeradd)";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':booker', $booker, PDO::PARAM_STR);
            
             $stmt->bindParam(':gig', $name, PDO::PARAM_STR);
             $stmt->bindParam(':price', $price, PDO::PARAM_INT);
-            $stmt->bindParam(':taskstart', $start, PDO::PARAM_DATE);
+            $stmt->bindParam(':taskstart', $start, PDO::PARAM_STR);
           
             $stmt->bindParam(':category', $category, PDO::PARAM_STR);
             $stmt->bindParam(':gigstatus', $status, PDO::PARAM_STR);
@@ -21,12 +21,12 @@
 
             $isOk = $stmt->execute();
 
-            $lastID = $pdo->lastInsertId();
+            # $lastID = $pdo->lastInsertId();
         
             $stmt = null;
             $pdo = null;
         
-            return $lastID;
+            return $isOk;
         }
 
        /* public function addLike($id) {
@@ -71,7 +71,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "select * from gigDetails where gigbooker=:book and gigStatus=current ";
+            $sql = "select * from gigDetails where gigbooker=:book and gigStatus='current' ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':book', $book, PDO::PARAM_STR);
@@ -80,7 +80,28 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
+            }
+
+            $stmt = null;
+            $pdo = null;
+
+            return $result;
+        }
+        public function getEarnings($user) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            
+            $sql = "select gigEndDate,gigPrice from gigDetails where gigaccepter=:book and gigStatus='completed' ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':book', $user, PDO::PARAM_STR);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+
+            $result =[];
+            while($row = $stmt->fetch()){
+                $result[] = [$row["gigPrice"], $row["gigEndDate"]];
             }
 
             $stmt = null;
@@ -134,6 +155,7 @@
             return $result;
         }
 /*
+
         public function getHigherThanID($id, $limit){
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();

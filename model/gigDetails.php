@@ -26,6 +26,7 @@
             $this->bookeraddress = $bookeradd;
             $this->accepteraddress = $accepteradd;
         }
+        
 
         public function getID() {
             return $this->gigId;

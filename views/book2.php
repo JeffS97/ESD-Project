@@ -156,8 +156,9 @@ width: 100%;
       float: left;
       margin-right: 12px;
       height: 80px;
+      margin-top:15px;
       width: 80px;
-      border-radius: 50%;
+    
     }
     
     .item-name {

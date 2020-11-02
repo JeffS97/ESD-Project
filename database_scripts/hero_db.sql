@@ -25,9 +25,10 @@ create table gigDetails
     gigaccepter varchar(100),
 	categoryName varchar(50) NOT NULL,
     gigName varchar(50) NOT NULL,
-    gigPrice int NOT NULL ,
-    gigStartDate date NOT NULL ,
-    gigEndDate date,
+    gigPrice int NOT NULL ,	
+    gigDescription varchar(9999) NOT NULL,
+    gigStartDate datetime NOT NULL ,
+    gigEndDate datetime,
     gigStatus varchar(20) NOT NULL ,
     bookeraddress varchar(100)NOT NULL  ,
     accepteraddress varchar(100)  ,
@@ -45,30 +46,22 @@ create table chat
     recipient varchar(50),
 	msgDateTime	datetime,
 	PRIMARY KEY (chatid),
-    FOREIGN KEY fk1 (sender) REFERENCES user(username),
-    FOREIGN KEY fk2 (recipient) REFERENCES user(username)
+    FOREIGN KEY fk1 (sender) REFERENCES user(email),
+    FOREIGN KEY fk2 (recipient) REFERENCES user(email)
 );
 
 
 /*insert into gigcategories values ("");
 */
 
+INSERT INTO user (`username`,`fullname`, `email`,`password` )
+VALUES ('admin','admin','admin@gmail.com','$2y$10$7aSS0yScusjM8HoOHcqSluVMui0mNH5IS7Jqx/fYWUliZR/4c5m7m');
+
+INSERT INTO user (`username`,`fullname`, `email`,`password` )
+VALUES ('rohan','rohan','rohan','$2y$10$7aSS0yScusjM8HoOHcqSluVMui0mNH5IS7Jqx/fYWUliZR/4c5m7m');
 
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
             ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan','cleaning' ,'House Clean', 20,'2020-11-20','Active','yishun 81');
-
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda','food' ,'Takeaway food', 10,'2020-11-21','Active','yishun 71');
-            
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda','cleaning' ,'House Clean', 20,'2020-11-20','Active','yishun 61');
-
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda','food' ,'Takeaway food', 10,'2020-11-19','Completed','yishun 61');
-
-
-
-
 
 
 
