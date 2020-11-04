@@ -18,7 +18,10 @@
           font-family: 'Open Sans', sans-serif;
           font-weight: bolder;
         } 
-      
+      body{
+        font-family:'Montserrat', sans-serif;
+        
+      }
      
         .nav-item{
             padding-left: 20px;
@@ -119,6 +122,7 @@
                       <a href="Profile.html" class="nav-link active">Profile</a>
                       <a href="Account.html" class="nav-link">Account</a>
                       <a href="History.html" class="nav-link">History</a>
+                      
                     </nav>
                   </div>
             </div>
@@ -149,10 +153,17 @@
                       </div>
                       
                     </div>
-
+                    <a href="#chart" style="margin-bottom: 20px;" class="btn btn-danger" data-toggle="collapse">View Personal Earnings</a>
+  
+  <div class="bg-light collapse " style="width: 70%;margin-left:30px;"  id="chart">
+    <span style="font-size: 30px;color: black;
+    font-weight: 700;" id="total"></span>
+    <canvas id="myChart" ></canvas></div>
+  </div>
                     <div class = "row">
 
                         <div class = "col-md-3 mb-3">
+                          
                             Rating as a Hero
                         </div>
 
@@ -226,13 +237,7 @@
 
 
         </div>
-        <a href="#chart" style="margin-left: 35%;margin-bottom: 20px;" class="btn btn-danger" data-toggle="collapse">View Personal Earnings</a>
-  
-        <div class="bg-light collapse " style="width: 70%;margin-left: 35%;"  id="chart">
-          <span style="font-size: 30px;color: limegreen;
-          font-weight: 700;" id="total"></span>
-          <canvas id="myChart" ></canvas></div>
-        </div>
+        
  
   </div>
     
