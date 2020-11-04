@@ -8,12 +8,13 @@
         private $gigPrice;
         private $gigStartDate;
         private $gigEndDate;
+        private $gigDescription;
         private $gigStatus;
         private $bookeraddress;
         private $accepteraddress;
 
 
-        public function __construct($id, $booker, $accepter,$category,$Name,$Price,$StartDate,$EndDate,$Status,$bookeradd,$accepteradd){
+        public function __construct($id, $booker, $accepter,$category,$Name,$Price,$StartDate,$EndDate,$description,$Status,$bookeradd,$accepteradd){
             $this->gigId=$id;
             $this->gigbooker = $booker;
             $this->gigaccepter = $accepter;
@@ -22,6 +23,7 @@
             $this->gigPrice = $Price;
             $this->gigStartDate = $StartDate;
             $this->gigEndDate = $EndDate;
+            $this->gigDescription=$description;
             $this->gigStatus = $Status;
             $this->bookeraddress = $bookeradd;
             $this->accepteraddress = $accepteradd;
@@ -57,6 +59,10 @@
         }
         public function getGigEndDate() {
             return $this->gigEndDate;
+        }
+        
+        public function getDescription() {
+            return $this->gigDescription;
         }
         
         public function getBookeraddress() {
