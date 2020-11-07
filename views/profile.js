@@ -7,13 +7,14 @@ function userDetails(){
 
     request.onreadystatechange = function(){
         if(this.readyState ==4 && this.status==200){
-          userDetails  = JSON.parse(this.responseText) ;
+          userDetails  = this.responseText;
+          document.getElementById("info").innerHTML = userDetails;
         }
 
     request.open("GET","../Main/getUserDetails.php",true);
     request.send();
 
-    console.log(userDetails);
+    
 }
 
 }

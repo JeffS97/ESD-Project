@@ -39,6 +39,7 @@
                   <h6 class="card-header"> Public Profile </h6>
                   <div class="card-body">
 
+                  <div id = "info"></div>
                     
                   </div>
                 </div>
