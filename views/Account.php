@@ -1,3 +1,18 @@
+<?php 
+
+$passwordEntered = false;
+
+require_once '../model/common.php';
+
+$email = "admin@gmail.com"; # to change to session email later
+
+$dao = new UserDAO();
+$user = $dao->retrieve($email);
+$hashedPass = $user->getPassword();
+
+?>
+
+
 <!DOCTYPE html>
 
 <head>
@@ -11,11 +26,53 @@
 <!--Axios-->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+<!--Awesome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+        .checked {
+            color: orange;
+            }
+            .graph{
+              width: 50%;
+              margin-left: 40%;
+              margin-top: 5%;
+
+
+            }
+            .logo{
+          font-family: 'Open Sans', sans-serif;
+          font-weight: bolder;
+        } 
+      body{
+        font-family:'Montserrat', sans-serif;
+        
+      }
+     
+        .nav-item{
+            padding-left: 20px;
+            padding-right: 20px;
+            font-family:'Montserrat', sans-serif;
+            font-size: 23px;
+        }
+        .btn-primary {
+          font-size: 20px;
+          color: white;
+          letter-spacing: 1px;
+          line-height: 15px;
+          border: 2px solid #34558b;
+          border-radius: 30px;
+          padding: 15px;
+          margin-top: 20px;
+          background-color:#34558b;
+        }
+    </style>
+
 </head>
 
 <body>
 
-    <div class = "container"style="background-color: blue;" id="app">
+    <div class = "container" id="app">
 
         <div class = "row">
 
@@ -38,7 +95,7 @@
                     <div>{{currentPass}}</div>
 
                     <div class="card-body">
-                        <form method="post" @submit="validateForm" action = "updatePass.php" enctype="multipart/form-data" >
+                        <form method="post" @submit="validateForm" action = "Account.php" enctype="multipart/form-data" >
                           <div class="form-group">
                             <label for="newPass">New Password</label>
                             <input type="password" class="form-control" id="newPass" value="" v-model="newPass"></div>
@@ -49,10 +106,19 @@
                             <p class = "text-danger" v-if="submitAttempt">{{passConfirmError}}</p>
                           <hr>
                           <div class="form-actions">
-                            <div class = "btn-toolbar justify-content-between"><input type="password" class="form-control col-md-9" id="currentPassEntered"  v-model = "currentPassEntered" placeholder="Enter Current Password">
+                            <div class = "btn-toolbar justify-content-between"><input type="password" class="form-control col-md-9" name="currentPassEntered"  v-model = "currentPassEntered" placeholder="Enter Current Password">
                               <button type="submit" class="btn btn-primary">Update Account</button></div>
                           </div>
+                          <p></p>
                           <p class = "text-danger" v-if="submitAttempt">{{currentPassError}}</p>
+                          <?php
+                          if (isset($_POST["currentPassEntered"])){
+                            $_SESSION["currentPassEntered"] = $_POST["currentPassEntered"];
+                            if (!password_verify($_SESSION["currentPassEntered"], $hashedPass)){
+                                echo "<p class = 'text-danger'>Does not match!</p>";
+                            }
+                            };
+                          ?>
                         </form>
                       </div>
 
@@ -76,7 +142,7 @@
             newPassConfirm: "",
             currentPassEntered: "",
             submitAttempt: false,
-            currentPass: "hello"
+            currentPass: "",
         },
         computed: {
             passError: function(){
@@ -105,7 +171,7 @@
                 else{
                     return '';
                 }
-            }
+            },
 
         },
         methods: {
@@ -115,17 +181,17 @@
                     this.submitAttempt = true;
                 }
             },
-            getPassword: function() {
-                    axios.get('../Main/getUserDetails.php')
-                    .then(response => {
-                        this.currentPass = response.data.password;
-                    })
-                    .catch(error => console.log('Could not retrieve password...'));
-            }
+            // getPassword: function() {
+            //         axios.get('../Main/getUserDetails.php')
+            //         .then(response => {
+            //             this.currentPass = response.data.password;
+            //         })
+            //         .catch(error => console.log('Could not retrieve password...'));
+            // }
         },
-        mounted: function(){
-            this.getPassword();
-        }
+        // mounted: function(){
+        //     this.getPassword();
+        // }
     });
 
     </script>
