@@ -324,7 +324,7 @@ card design
           <button class="btn btn-danger btn-list float-right ">   <i class="fa fa-bars "></i> </button>
           
       <h1 class="mt-3">Browse Opportunities</h1>
-      <div class="results">3 Tasks Available</div>
+      <div class="results" id="number"></div>
         <div class=" grid-container mt-5 ">
           <div class="row " id="bookings">
             
@@ -341,8 +341,6 @@ card design
    </div>
   </div>
 </div>
-  </body>
-</html>
 <script>
  
 
@@ -383,3 +381,6 @@ $('.carousel .carousel-item').each(function(){
 
 </script>
 <script src="./book2.js"></script>
+  </body>
+  
+</html>

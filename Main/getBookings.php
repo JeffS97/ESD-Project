@@ -25,6 +25,7 @@
             "gigPrice" => $gig->getGigPrice(),
             "gigStartDate" => $gig->getGigStartDate(),
             "gigEndDate" => $gig->getGigEndDate(),
+            "gigDescription" => $gig->getDescription(),
             "gigStatus" => $gig->getGigStatus(),
             "bookeraddress" => $gig->getBookeraddress(),
             "accepteraddress" => $gig->getAccepteraddress()

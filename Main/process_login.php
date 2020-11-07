@@ -2,7 +2,7 @@
     # Autoload and start session
     spl_autoload_register(
         function($class){
-            require_once "model/$class.php";
+            require_once "../model/$class.php";
         }
     );
     session_start();
@@ -29,7 +29,7 @@
             # Create a session entry for successful login
             $_SESSION["email"] = $email;
             # Redirect to welcome.php
-            header("Location: ./resources/templates/navbarversion3.php");
+            header("Location: ../resources/templates/navbarversion3.php");
             exit;
         }
     }
@@ -40,7 +40,7 @@
         $_SESSION["error"] = "Failed Login";
         # Redirect to login.php, while passing username information 
         # at the back of the URL, e.g., header("Location: login.php?...");
-       header("Location: ./views/Signup.html");
+       header("Location: ../views/Signup.html");
         exit; 
     }
 ?>

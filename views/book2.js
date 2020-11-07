@@ -1,14 +1,19 @@
 window.onload=getPost();
 
 function getPost(){
+
     let url="../Main/getPost.php";
+   
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var posts=JSON.parse(this.response);
             var img="";
+            var number=0;
+         
            for(var node of posts.gig){
-               console.log(node)
+          
+            
             if(node.gigCategory=="cleaning"){
                 img="../resources/images/plumb.jpg";
             }
@@ -25,11 +30,18 @@ function getPost(){
             </div>
             </div>
             `;
+            number++;
            }
+          
+         
+           
         }
+      
+        document.getElementById("number").innerText=number+" Tasks Available";
     }
     request.open('GET', url, true);
     request.send();
+   
 }
 
 var url="../Main/getBookings.php";
@@ -38,8 +50,9 @@ request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var result=JSON.parse(this.response);
         var img="";
+        var number=0;
         for(var node of result.gig){
-          console.log(node)
+        number++;
            if(node.gigCategory=="cleaning"){
                img="../resources/images/plumb.jpg";
            }
@@ -54,6 +67,7 @@ request.onreadystatechange = function() {
            
         }
     }
+    document.getElementById("number").innerHTML=number +" Task Available";
 }
 request.open('GET', url, true);
 request.send();

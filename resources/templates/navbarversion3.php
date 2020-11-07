@@ -91,8 +91,8 @@
                       Task
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Browse</a>
-                      <a class="dropdown-item" href="#">Post</a>
+                      <a class="dropdown-item" href="../../views/book2.php">Browse</a>
+                      <a class="dropdown-item" href="../../views/Book task.html">Post</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">

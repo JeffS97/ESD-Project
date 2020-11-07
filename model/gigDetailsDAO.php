@@ -1,12 +1,12 @@
 <?php
     class gigDetailsDAO{
 
-        public function createBooking($booker, $category,$name,$price,$start,$status,$bookeradd) {
+        public function createBooking($booker, $category,$name,$price,$start,$description,$status,$bookeradd) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
 
             $sql = "INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES (:booker, :category, :gig,:price,:taskstart,:gigstatus,:bookeradd)";
+            ,`gigStartDate`,`gigDescription`,`gigStatus`,`bookeraddress`) VALUES (:booker, :category, :gig,:price,:taskstart,:descriptions,:gigstatus,:bookeradd)";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':booker', $booker, PDO::PARAM_STR);
@@ -14,6 +14,7 @@
             $stmt->bindParam(':gig', $name, PDO::PARAM_STR);
             $stmt->bindParam(':price', $price, PDO::PARAM_INT);
             $stmt->bindParam(':taskstart', $start, PDO::PARAM_STR);
+            $stmt->bindParam(':descriptions', $description, PDO::PARAM_STR);
           
             $stmt->bindParam(':category', $category, PDO::PARAM_STR);
             $stmt->bindParam(':gigstatus', $status, PDO::PARAM_STR);
@@ -59,7 +60,7 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
             }
 
             $stmt = null;
@@ -71,7 +72,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "select * from gigDetails where gigbooker=:book and gigStatus='current' ";
+            $sql = "select * from gigDetails where gigbooker=:book and gigStatus='active' ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':book', $book, PDO::PARAM_STR);
@@ -80,7 +81,7 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
             }
 
             $stmt = null;
@@ -92,7 +93,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "select gigEndDate,gigPrice from gigDetails where gigaccepter=:book and gigStatus='completed' ";
+            $sql = "select gigEndDate,gigPrice from gigDetails where gigaccepter=:book and gigStatus='Completed' ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':book', $user, PDO::PARAM_STR);
