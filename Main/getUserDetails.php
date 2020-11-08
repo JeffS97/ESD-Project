@@ -1,5 +1,5 @@
 <?php
-    require_once "common.php";
+    require_once "../model/common.php";
 
     $email = $_SESSION["email"];
 
