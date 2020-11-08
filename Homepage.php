@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <head>
@@ -15,6 +16,12 @@
 
     <!--Animate CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- Vue JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!--Axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <style>
         
@@ -260,14 +267,15 @@
 
 <hr/>
 
-    <section id = "freelancers" class ="animate__animated animate__fadeIn animate__delay-2s">
+    <div id = "app" class ="animate__animated animate__fadeIn animate__delay-2s">
+        <span>{{test}}</span>
         <p class="lead mx-3">Freelancers Near You</p>
         <div class="container-fluid" id="moving" >
             <div class="container text-center mb-5 ">
             <div class="row mx-auto " >
                 <div id="recipeCarousel"  class="carousel slide mx-auto" data-ride="carousel">
                     <div class="carousel-inner w-100" role="listbox" >
-                        <div class="carousel-item active">
+                        <!-- <div class="carousel-item active">
                             <div class="col-md-4">
                                 <div class="card card-body bg-light">
                                     <img class="img-fluid"  src="https://static01.nyt.com/images/2020/03/03/well/physed-foods/physed-foods-mediumSquareAt3X.jpg">
@@ -290,7 +298,7 @@
                                     Home Services
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     
                     </div>
                     <a class="carousel-control-prev " href="#recipeCarousel" role="button" data-slide="prev">
@@ -304,7 +312,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
    
 
@@ -367,6 +375,25 @@
 
 
 
+    </script>
+
+    <script>
+        const vm = new Vue ({
+            el: "#app",
+            data: {
+                test: "hello",
+                gigsNearYou: null
+            },
+            methods: {
+                getGigDetails: function(){
+                    axios.get('Main/getPost.php')
+                    .then(response => {
+                        this.gigsNearYou = response.data;
+                    })
+                    .catch(error => console.log('Could not retrieve gig details...'));
+                }
+            }
+        })
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

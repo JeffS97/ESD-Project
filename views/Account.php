@@ -168,7 +168,7 @@ $hashedPass = $user->getPassword();
                             <p class = "text-danger" v-if="submitAttempt">{{passError}}</p>
                           <div class="form-group">
                             <label for="newPassConfirm">Confirm New Password</label>
-                            <input type="password" class="form-control" id="newPassConfirm" value="" v-model="newPassConfirm"></div>
+                            <input type="password" class="form-control" id="newPassConfirm" value="" name="newPassConfirm" v-model="newPassConfirm"></div>
                             <p class = "text-danger" v-if="submitAttempt">{{passConfirmError}}</p>
                           <hr>
                           <div class="form-actions">
@@ -180,8 +180,13 @@ $hashedPass = $user->getPassword();
                           <?php
                           if (isset($_POST["currentPassEntered"])){
                             $_SESSION["currentPassEntered"] = $_POST["currentPassEntered"];
+                            $_SESSION["newPassConfirm"] = $_POST["newPassConfirm"];
                             if (!password_verify($_SESSION["currentPassEntered"], $hashedPass)){
                                 echo "<p class = 'text-danger'>Your entered password does not match your current password!</p>";
+                            }
+                            else{
+                              $newPassHashed = password_hash($_SESSION["newPassConfirm"], PASSWORD_DEFAULT);
+                              $dao->updatePassword($email, $newPassHashed);
                             }
                             };
                           ?>
