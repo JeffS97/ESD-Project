@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 require_once "../model/protect.php";
-session_start();
+
 ?>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -162,19 +162,20 @@ session_start();
                         
                         </div>
                     </div>
+                   
                     <a href="#chart" style="margin-bottom: 20px;" class="btn btn-info" data-toggle="collapse">View Personal Earnings</a>
                 <div class="bg-light collapse " style="width: 70%;margin-left:30px;"  id="chart">
     <span style="font-size: 30px;color: black;
     font-weight: 700;" id="total"></span>
     <canvas id="myChart" ></canvas></div>
                 </div>
-                
             </div>
             
             
 
         </div>
     </div>
+    
 <script>
 
 const vm = new Vue({

@@ -51,14 +51,15 @@ session_start();?>
         .btn-info {
           font-size: 20px;
           color: white;
+          margin-left:85%;
           letter-spacing: 1px;
           line-height: 15px;
           border: 2px solid ;
           border-radius: 30px;
           padding: 15px;
-          position: absolute;
-          float: right;
-          right: 150px; 
+          position: sticky;
+         
+       
 
         }
         .container-fluid{
@@ -116,7 +117,7 @@ session_start();?>
               
               if(isset($_SESSION["email"])){
              ?>
-            <li class="nav-item dropdown collapse">
+            <li class="nav-item dropdown ">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Profile
               </a>
@@ -125,15 +126,17 @@ session_start();?>
                 <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
               </div>
             </li> 
-            </ul>
-           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
-
-              <?php }else{?>
-
-                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
-              <?php }?>
-                <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
-                <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
+            <li>
+            <button type='button'  class='btn btn-info' ><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
+</li>
+<?php }else{?>
+<li>
+  <button type="button"  class="btn btn-info" ><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button> </li>
+<?php }?>
+  <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+  <li><span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
+  </li>  </ul>
+         
               </div>
 <<<<<<< Updated upstream
           </div>
