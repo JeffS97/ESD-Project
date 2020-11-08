@@ -40,7 +40,7 @@ create table gigDetails
 
 create table chat
 (
-    chatid varchar(20),
+    chatid int NOT NULL AUTO_INCREMENT,
     sender varchar(50),
     message text,
     recipient varchar(50),
@@ -57,17 +57,17 @@ create table chat
 INSERT INTO user (`username`,`fullname`, `email`,`password` )
 VALUES ('admin','admin','admin@gmail.com','$2y$10$7aSS0yScusjM8HoOHcqSluVMui0mNH5IS7Jqx/fYWUliZR/4c5m7m');
 
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan','cleaning' ,'House Clean', 20,2020-11-20,'Active','yishun 81');
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan','cleaning' ,'House Clean', 20,'Please help me clean my house at Yishun','2020-11-20 08:00:00','Active','yishun 81');
 
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda','food' ,'Takeaway food', 10,'2020-11-21','Active','yishun 71');
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda','food' ,'Takeaway food', 10,'Please help me dabao to my house at Yishun','2020-11-21 08:00:00','Active','yishun 71');
             
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda','cleaning' ,'House Clean', 20,'2020-11-20','Active','yishun 61');
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda','cleaning' ,'House Clean', 20,'Please help me clean my house at Yishun','2020-11-20 08:00:00','Active','yishun 61');
 
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan','cleaning' ,'House Clean', 20,'2020-11-20','Active','yishun 81');
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan','cleaning' ,'House Clean', 20,'Please help me dabao to my house at Yishun','2020-11-20 08:00:00','Active','yishun 81');
 
 
 

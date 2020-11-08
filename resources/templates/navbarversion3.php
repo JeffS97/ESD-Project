@@ -135,9 +135,14 @@ session_start();?>
                 <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                 <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
               </div>
+<<<<<<< Updated upstream
           </div>
       </nav>
         
+=======
+            </div>
+          </nav>
+>>>>>>> Stashed changes
 
 
     <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
