@@ -81,7 +81,7 @@ $hashedPass = $user->getPassword();
           <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav" style="margin: auto;">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="../Homepage.html">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact Us</a>
@@ -172,8 +172,8 @@ $hashedPass = $user->getPassword();
                             <p class = "text-danger" v-if="submitAttempt">{{passConfirmError}}</p>
                           <hr>
                           <div class="form-actions">
-                            <div class = "btn-toolbar justify-content-between"><input type="password" class="form-control col-md-9" name="currentPassEntered"  v-model = "currentPassEntered" placeholder="Enter Current Password">
-                              <button type="submit" class="btn btn-primary">Update Account</button></div>
+                            <div class = "btn-toolbar justify-content-around"><input type="password" class="form-control col-md-8" name="currentPassEntered"  v-model = "currentPassEntered" placeholder="Enter Current Password">
+                              <button type="submit" class="btn btn-primary col-md-3" style = "padding:10px; margin-top: 0px; font-size: 15px;">Update Account</button></div>
                           </div>
                           <p></p>
                           <p class = "text-danger" v-if="submitAttempt">{{currentPassError}}</p>
@@ -181,7 +181,7 @@ $hashedPass = $user->getPassword();
                           if (isset($_POST["currentPassEntered"])){
                             $_SESSION["currentPassEntered"] = $_POST["currentPassEntered"];
                             if (!password_verify($_SESSION["currentPassEntered"], $hashedPass)){
-                                echo "<p class = 'text-danger'>Does not match!</p>";
+                                echo "<p class = 'text-danger'>Your entered password does not match your current password!</p>";
                             }
                             };
                           ?>
