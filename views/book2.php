@@ -15,8 +15,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
     <style>
-        .logo{
-            font-family: cambria;}
+       .logo{
+          font-family: 'Open Sans', sans-serif;
+          font-weight: bolder;
+        } 
         .nav{
             position: fixed; /* Stay in place */
             z-index: 1; /* Stay on top */
@@ -26,6 +28,15 @@
         body{
             font-family:'Montserrat', sans-serif;
             font-size: 23px;
+        }
+        .btn-info {
+          font-size: 20px;
+          color: white;
+          letter-spacing: 1px;
+          line-height: 15px;
+          border: 2px solid ;
+          border-radius: 30px;
+          padding: 15px;
         }
         .nav-item{
             padding-left: 20px;
@@ -218,43 +229,74 @@ card design
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+     
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
-        <div class = 'container'>
+        <div class = 'container' style="padding: 0;">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> Project Hero</span>
+              <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> PROJECT HERO</span>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav" style="margin: auto;">
                   <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../../Homepage.php">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
+                    <a class="nav-link" href="contact.php">Contact Us</a>
                   </li>
                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Task
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="../../views/book2.php">Browse</a>
+                      <a class="dropdown-item" href="../../views/Booktask.php">Post</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Listings
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="userRequest.php">My Requests</a>
+                      <a class="dropdown-item" href="userTasks.php">My Tasks</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown collapse">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Profile
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">History</a>
-                      <a class="dropdown-item" href="#">Settings</a>
+                      <a class="dropdown-item" href="../../views/History.php">History</a>
+                      <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Log Out</a>
+                      <a class="dropdown-item" href="logout.php" hidden>Log Out</a>
                     </div>
-                  </li>
+                  </li> 
                 </ul>
                 <!-- <form class="form-inline my-2 my-lg-0">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
                   <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                 </form> -->
-                <button type="button" class="btn btn-outline-danger" style="margin: 10px;">Log In</button>
-                <button type="button" class="btn btn-outline-primary" style="margin: 10px;">Sign Up</button>
+                <?php
+            
+              
+              if(isset($_SESSION["email"])){
+             ?>
+           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button>
+              <?php }else{?>
+
+                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
+              <?php }?>
+                <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+                <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
               </div>
-     
+          </nav>
         </div>
-      </nav>
-     
       
     
 <hr>
@@ -267,8 +309,16 @@ card design
                 <div class="carousel-item active">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                            <img class="img-fluid" style="height: 200px;" src="../resources/images/plumb.jpg">
+                            <img class="img-fluid" style="height: 200px;" src="../resources/images/plumber.jpg">
                           Home Services
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-4">
+                        <div class="card card-body bg-light">
+                        <a href="#">    <img class="img-fluid" style="height: 200px;" src="../resources/images/delivery.jpg"></a>
+                        Delivery
                         </div>
                     </div>
                 </div>

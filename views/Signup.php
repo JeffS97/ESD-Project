@@ -265,7 +265,7 @@ function fbLogin() {
     FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
-            location.replace("book2.php")
+            
             getFbUserData();
            
         } else {
@@ -279,7 +279,7 @@ function getFbUserData(){
     
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
     function (response) {
-        sessionStorage.setItem("email", "Smith");
+       
         document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
         document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
         document.getElementById('status').innerHTML = '<p>Thanks for logging in, ' + response.first_name + '!</p>';
