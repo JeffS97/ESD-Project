@@ -4,7 +4,7 @@ $passwordEntered = false;
 
 require_once '../model/common.php';
 
-$email = "admin@gmail.com"; # to change to session email later
+$email = $_SESSION["email"]; 
 
 $dao = new UserDAO();
 $user = $dao->retrieve($email);

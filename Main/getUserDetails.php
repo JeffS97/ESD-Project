@@ -1,7 +1,7 @@
 <?php
     require_once "common.php";
 
-    $email = "admin@gmail.com";
+    $email = $_SESSION["email"];
 
     $dao = new UserDAO();
 
