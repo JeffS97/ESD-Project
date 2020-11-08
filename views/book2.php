@@ -251,7 +251,7 @@ card design
                 <button type="button" class="btn btn-outline-danger" style="margin: 10px;">Log In</button>
                 <button type="button" class="btn btn-outline-primary" style="margin: 10px;">Sign Up</button>
               </div>
-        
+     
         </div>
       </nav>
      

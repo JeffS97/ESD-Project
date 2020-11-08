@@ -159,8 +159,16 @@
                         
                         </div>
                     </div>
+                    <a href="#chart" style="margin-bottom: 20px;" class="btn btn-info" data-toggle="collapse">View Personal Earnings</a>
+                <div class="bg-light collapse " style="width: 70%;margin-left:30px;"  id="chart">
+    <span style="font-size: 30px;color: black;
+    font-weight: 700;" id="total"></span>
+    <canvas id="myChart" ></canvas></div>
                 </div>
+                
             </div>
+            
+            
 
         </div>
     </div>
@@ -196,6 +204,8 @@ const vm = new Vue({
 
 <!--Chart-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js" ></script>
+<script src="profile.js"></script>
+
 
 </body>
 </html>
