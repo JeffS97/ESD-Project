@@ -1,5 +1,6 @@
+
 <?php
-    # Autoload
+    // # Autoload
     spl_autoload_register(
         function($class){
             //require_once "../../model/$class.php";
@@ -7,6 +8,8 @@
             require_once "../model/$class.php";
         }
     );
+
+    //require_once "../model/common.php";
 
     session_start();
 
@@ -28,12 +31,13 @@
                 "gigPrice" => $gig->getGigPrice(),
                 "gigStartDate" => $gig->getGigStartDate(),
                 "gigEndDate" => $gig->getGigEndDate(),
-                "bookeraddress" => $gig->getBookeraddress()
+                "bookeraddress" => $gig->getBookeraddress(),
 
             
             );
         }
 
-    echo json_encode($result);
+        $result = json_encode($result);
+        echo ($result); 
+        return ($result);
 }
-?>
