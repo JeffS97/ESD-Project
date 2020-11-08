@@ -45,15 +45,14 @@
                 margin-bottom: 20px;
             }
         }
-        .btn-primary {
+        .btn-info {
           font-size: 20px;
           color: white;
           letter-spacing: 1px;
           line-height: 15px;
-          border: 2px solid #34558b;
+          border: 2px solid ;
           border-radius: 30px;
           padding: 15px;
-          background-color:#34558b;
         }
         .container-fluid{
           width: 100%;
@@ -81,10 +80,10 @@
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav" style="margin: auto;">
                   <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../../Homepage.php">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
+                    <a class="nav-link" href="contact.php">Contact Us</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -92,7 +91,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="../../views/book2.php">Browse</a>
-                      <a class="dropdown-item" href="../../views/Book task.html">Post</a>
+                      <a class="dropdown-item" href="../../views/Booktask.php">Post</a>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -100,21 +99,21 @@
                       Listings
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">My Requests</a>
-                      <a class="dropdown-item" href="#">My Tasks</a>
+                      <a class="dropdown-item" href="userRequest.php">My Requests</a>
+                      <a class="dropdown-item" href="userTasks.php">My Tasks</a>
                     </div>
                   </li>
-                  <!-- <li class="nav-item dropdown">
+                  <li class="nav-item dropdown collapse">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Profile
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">History</a>
-                      <a class="dropdown-item" href="#">Settings</a>
+                      <a class="dropdown-item" href="../../views/History.php">History</a>
+                      <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#" hidden>Log Out</a>
+                      <a class="dropdown-item" href="logout.php" hidden>Log Out</a>
                     </div>
-                  </li> -->
+                  </li> 
                 </ul>
                 <!-- <form class="form-inline my-2 my-lg-0">
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
@@ -128,9 +127,7 @@
            <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
               <?php }else{?>
 
-      
-            
-                <button type="button"  class="btn btn-primary" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
+                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
               <?php }?>
                 <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                 <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
@@ -175,7 +172,7 @@
             <div class="input-group col-sm-4" style="margin: 0; padding: 0; margin-top: 20px; font-family: 'Open Sans', sans-serif;">
               <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search Gigs" name ='searchterm'>
                 <div class="input-group-prepend">
-                  <button class="btn" type="submit" form="searchbar" value="Submit" style="background-color: #34558b; color: white;">Search</button>
+                  <button class="btn btn-info" type="submit" form="searchbar" value="Submit" style="color: white;">Search</button>
                 </div>
             </div>
           </form>
