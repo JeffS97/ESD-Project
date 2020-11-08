@@ -1,5 +1,7 @@
 <!doctype html>
-<?php     session_start();?>
+<?php  
+
+session_start();?>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -103,8 +105,8 @@
                       <a class="dropdown-item" href="userTasks.php">My Tasks</a>
                     </div>
                   </li>
-                  <li class="nav-item dropdown collapse">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                       Profile
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -124,10 +126,10 @@
               
               if(isset($_SESSION["email"])){
              ?>
-           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button>
+           <button type='button'  class='btn btn-info' style='margin:10px;'><a href='../../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button>
               <?php }else{?>
 
-                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
+                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
               <?php }?>
                 <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                 <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
