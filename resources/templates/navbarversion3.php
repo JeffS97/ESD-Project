@@ -125,7 +125,7 @@
               
               if(isset($_SESSION["email"])){
              ?>
-           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
+           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button>
               <?php }else{?>
 
       
