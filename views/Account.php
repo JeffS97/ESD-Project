@@ -3,6 +3,7 @@
 $passwordEntered = false;
 
 require_once '../model/common.php';
+require_once "../model/protect.php";
 
 $email = $_SESSION["email"]; 
 
@@ -146,8 +147,8 @@ $hashedPass = $user->getPassword();
                 <div class="card card-fluid">
                     <h6 class="card-header"> Your Details </h6>
                     <nav class="nav flex-column nav-tabs">
-                      <a href="Profile.php" class="nav-link">Profile</a>
-                      <a href="Account.php" class="nav-link active">Change Password</a>
+                      <a href="Profile.php" class="nav-link">Display Profile</a>
+                      <a href="Account.php" class="nav-link active">Edit Account Details</a>
                       <a href="History.php" class="nav-link">History</a>
                     </nav>
                   </div>

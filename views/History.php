@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <?php
-//require_once "../model/protect.php";
-//session_start();
-
+require_once "../model/protect.php";
+session_start();
 ?>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -97,9 +96,9 @@
                 <div class="card card-fluid">
                     <h6 class="card-header"> Your Details </h6>
                     <nav class="nav flex-column nav-tabs">
-                      <a href="Profile v2.php" class="nav-link">Profile</a>
-                      <a href="Account.php" class="nav-link">Account</a>
-                      <a href="History.php" class="nav-link active">History</a>
+                      <a href="Profile.html" class="nav-link">Profile</a>
+                      <a href="Account.html" class="nav-link">Account</a>
+                      <a href="History.html" class="nav-link active">History</a>
                     </nav>
                   </div>
             </div>
