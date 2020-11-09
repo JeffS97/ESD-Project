@@ -56,9 +56,10 @@ session_start();?>
           border: 2px solid ;
           border-radius: 30px;
           padding: 15px;
-          position: absolute;
-          float: right;
-          right: 150px; 
+          position: sticky;
+          
+          right: 50px;
+          
 
         }
         .container-fluid{
@@ -125,16 +126,17 @@ session_start();?>
                 <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
               </div>
             </li> 
-            </ul>
-           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
+            
+           <button type='button'  class='btn btn-info' style='margin:10px;'><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
 
               <?php }else{?>
 
-                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
+                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.php" style=";color: white;text-decoration: none;">Join Us</a></button>
               <?php }?>
                 <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                 <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
               </div>
+              </ul>
           </div>
       </nav>
         
