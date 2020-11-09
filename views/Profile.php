@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-require_once "../model/common.php";
 require_once "../model/protect.php";
 ?>
 <head>
