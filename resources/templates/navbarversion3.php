@@ -31,6 +31,7 @@ session_start();?>
             position: fixed; /* Stay in place */
             z-index: 1; /* Stay on top */
             top: 0; /* Stay at the top */
+         
         }
         body{
             font-family:'Montserrat', sans-serif;
@@ -92,12 +93,12 @@ session_start();?>
                   <!-- <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact Us</a>
                   </li> -->
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <li class="nav-item dropdown"  >
+                    <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Task
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../../views/book2.php">Browse</a>
+                    <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item"   href="../../views/book2.php">Browse</a>
                       <a class="dropdown-item" href="../../views/Booktask.php">Post</a>
                     </div>
                   </li>
