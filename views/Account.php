@@ -3,6 +3,7 @@
 $passwordEntered = false;
 
 require_once '../model/common.php';
+require_once "../model/protect.php";
 
 $email = $_SESSION["email"]; 
 
