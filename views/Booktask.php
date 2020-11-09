@@ -250,6 +250,8 @@
                     <input type="tel" placeholder="8008 1234" pattern="[0-9]{4} [0-9]{4}" class="form-control" name="i6" id="input6" required>
                     <div class="invalid-feedback">Please enter a phone # like 8008 1234. This field is required.</div>
                 </div>
+                <label>Select Image File:</label>
+    <input type="file" name="image">
                 <div>
                     <button type="submit" class="btn" id="submit-btn">Submit Request</button>
                 </div>

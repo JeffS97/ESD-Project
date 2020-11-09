@@ -185,12 +185,12 @@
         <div class="background">
             <div class="left">
                 <h2 class="back-header">Dont have an account yet?</h2>
-                <p class="back-p">Well doggonit you should sign up today!</p>
+                <p class="back-p">Sign up today and become a hero</p>
                 <button class="back-btn signup-but">SIGN UP</button>
             </div>
             <div class="right">
                 <h2 class="back-header">Do you already have an account?</h2>
-                <p class="back-p">Well doggonit let's get you logged in!</p>
+                <p class="back-p">Well  let's get you logged in!</p>
                 <button class="back-btn login-but">LOGIN</button>
             </div>
         </div>
