@@ -23,23 +23,8 @@
     <!--Axios-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <!--Montserrat-->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" type="text/css" href="../WAD-2-Project/resources/templates/css template.css" />
-
-    <!--Open Sans Regular-->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
-    <!--Inter-->
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans&display=swap" rel="stylesheet">
-
     <style>
-
-        .logo{
-          font-family: 'Open Sans', sans-serif;
-          font-weight: bolder;
-        } 
+        
         
         .carousel-inner img {
             margin: auto;
@@ -47,7 +32,6 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            font-size: 23px;
         }
         
         h1 {
@@ -248,10 +232,7 @@
                   <button class="btn btn-primary bg-info" type="submit" form="searchbar" value="Submit" style="color: white;">Search</button>
                 </div>
             </div>
-          </form>
-        </div>
-          
-    </div>
+    </section>
 
     <section id="hire-a-hero" class = "animate__animated animate__fadeInLeft my-5">
         <div class="container">

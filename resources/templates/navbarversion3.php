@@ -51,15 +51,14 @@ session_start();?>
         .btn-info {
           font-size: 20px;
           color: white;
-          margin-left:85%;
           letter-spacing: 1px;
           line-height: 15px;
           border: 2px solid ;
           border-radius: 30px;
           padding: 15px;
-          position: sticky;
-         
-       
+          position: absolute;
+          float: right;
+          right: 150px; 
 
         }
         .container-fluid{
@@ -117,7 +116,7 @@ session_start();?>
               
               if(isset($_SESSION["email"])){
              ?>
-            <li class="nav-item dropdown ">
+            <li class="nav-item dropdown collapse">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Profile
               </a>
@@ -147,9 +146,7 @@ session_start();?>
 
           </div>
       </nav>
-
-            </div>
-          </nav>
+        
 
 
     <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
