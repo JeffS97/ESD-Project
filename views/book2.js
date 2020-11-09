@@ -5,11 +5,12 @@ function getPost(){
     let url="../Main/getPost.php";
    
     var request = new XMLHttpRequest();
+    var number=0;
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var posts=JSON.parse(this.response);
             var img="";
-            var number=0;
+          
          
            for(var node of posts.gig){
           
@@ -25,23 +26,27 @@ function getPost(){
                 <h6>${node.bookeraddress}</h6>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<br>
                 Date of Task-${node.gigStartDate}</p>
-                <button class="button">View</button>
+                 <button class="button" onclick="window.location.href='./Singletask.php?id='+${node.gigId}" >View</button>
               </div>
             </div>
             </div>
             `;
+         
             number++;
+           
            }
           
-         
+           document.getElementById("number").innerHTML=number+" Tasks Available";
+           console.log(number)
            
         }
       
-        document.getElementById("number").innerText=number+" Tasks Available";
+       
     }
+    
     request.open('GET', url, true);
     request.send();
-   
+    
 }
 
 var url="../Main/getBookings.php";
@@ -50,9 +55,9 @@ request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var result=JSON.parse(this.response);
         var img="";
-        var number=0;
+       
         for(var node of result.gig){
-        number++;
+      
            if(node.gigCategory=="cleaning"){
                img="../resources/images/plumb.jpg";
            }
@@ -67,7 +72,7 @@ request.onreadystatechange = function() {
            
         }
     }
-    document.getElementById("number").innerHTML=number +" Task Available";
+   
 }
 request.open('GET', url, true);
 request.send();

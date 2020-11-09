@@ -35,7 +35,7 @@
           font-weight: bolder;
         } 
         .nav{
-            position: fixed; /* Stay in place */
+             /* Stay in place */
             z-index: 1; /* Stay on top */
             top: 0; /* Stay at the top */
         }
@@ -89,13 +89,17 @@
         .form-group{
             text-align:left;
         }
+
+        .dropdown-item{
+          z-index: 2;
+        }
     </style>
 
     <title>Project Hero</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
-        <div class = 'container' style="padding: 0;">
+        <div class = 'container' style="padding: 0; z-index: 2">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -250,6 +254,8 @@
                     <input type="tel" placeholder="8008 1234" pattern="[0-9]{4} [0-9]{4}" class="form-control" name="i6" id="input6" required>
                     <div class="invalid-feedback">Please enter a phone # like 8008 1234. This field is required.</div>
                 </div>
+                <label>Select Image File:</label>
+    <input type="file" name="image">
                 <div>
                     <button type="submit" class="btn" id="submit-btn">Submit Request</button>
                 </div>

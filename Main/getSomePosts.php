@@ -8,7 +8,7 @@
 
     $dao = new gigDetailsDAO();
 
-    $gigArray = $dao->getSomePosts('active');
+    $gigArray = $dao->getAllPosts('active');
 
     $result = array("gig" => array() );
 
