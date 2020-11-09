@@ -33,6 +33,7 @@ function getPost(){
             `;
          
             number++;
+           
            }
           
            document.getElementById("number").innerHTML=number+" Tasks Available";
@@ -54,9 +55,9 @@ request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var result=JSON.parse(this.response);
         var img="";
-        var number=0;
+       
         for(var node of result.gig){
-        number++;
+      
            if(node.gigCategory=="cleaning"){
                img="../resources/images/plumb.jpg";
            }
@@ -71,7 +72,7 @@ request.onreadystatechange = function() {
            
         }
     }
-    document.getElementById("number").innerHTML=number +" Task Available";
+   
 }
 request.open('GET', url, true);
 request.send();
