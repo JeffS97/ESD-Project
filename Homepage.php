@@ -23,8 +23,23 @@
     <!--Axios-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+    <!--Montserrat-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="../WAD-2-Project/resources/templates/css template.css" />
+
+    <!--Open Sans Regular-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--Inter-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans&display=swap" rel="stylesheet">
+
     <style>
-        
+
+        .logo{
+          font-family: 'Open Sans', sans-serif;
+          font-weight: bolder;
+        } 
         
         .carousel-inner img {
             margin: auto;
@@ -32,6 +47,7 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
+            font-size: 23px;
         }
         
         h1 {
@@ -113,6 +129,37 @@
             font-size: 14px;
         }
 
+        .btn-info {
+          font-size: 20px;
+          color: white;
+          letter-spacing: 1px;
+          line-height: 15px;
+          border: 2px solid ;
+          border-radius: 30px;
+          padding: 15px;
+          margin-left:85%;
+          position:sticky;
+          width:150px;
+          
+        }
+        .container-fluid{
+          width: 100%;
+          height: 100%;
+          color: #595757;
+          
+        }
+
+        .nav{
+            position: sticky; /* Stay in place */
+            
+            z-index: 1; /* Stay on top */
+            top: 0; /* Stay at the top */
+        }
+        .nav-item{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
     </style>
 
 </head>
@@ -125,40 +172,86 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <section id = "navbar">
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
-            <div class = 'container'>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> Project Hero</span>
-                  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                    <ul class="navbar-nav" style="margin: auto;">
-                      <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Profile
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">History</a>
-                          <a class="dropdown-item" href="#">Settings</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Log Out</a>
-                        </div>
-                      </li>
-                    </ul>
+    
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
+        <div class = 'container' style="padding: 0;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> PROJECT HERO</span>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav" style="margin: auto;">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="../../Homepage.php">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a class="nav-link" href="contact.php">Contact Us</a>
+                  </li> -->
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Task
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="../../views/book2.php">Browse</a>
+                      <a class="dropdown-item" href="../../views/Booktask.php">Post</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Listings
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="userRequest.php">My Requests</a>
+                      <a class="dropdown-item" href="userTasks.php">My Tasks</a>
+                    </div>
+                  </li>     
+                  
+                <?php
+            
+              
+              if(isset($_SESSION["email"])){
+             ?>
+            <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="../../views/History.php">History</a>
+                <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
+              </div>
+            </li> 
+            <li>
+            <button type='button'  class='btn btn-info' ><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
+            </li>
+            <?php }else{?>
+            <li>
+            <button type="button"  class="btn btn-info" ><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button> </li>
+            <?php }?>
+            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+            <li><span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
+            </li>  </ul>
                     
-                    <button type="button" class="btn btn-outline-danger" style="margin: 10px;">Log In</button>
-                    <button type="button" class="btn btn-outline-primary" style="margin: 10px;">Sign Up</button>
-                  </div>
-              </nav>
+                        </div>
+                    </div>
+                </nav>
+    
+    
+    <div class = 'container-fluid' style="background-image: url(https://www.mcjanitorialsystems.com/wp-content/uploads/2015/02/Asian-cleaner-clean-the-floor.jpg);  background-size:cover; background-position: center; background-attachment: sticky; padding-top: 200px; padding-bottom: 200px; padding-left: 130px;">
+        <div class="jumbotron">
+          <h1 style="font-size:74px; font-family: 'Inter', sans-serif; margin-bottom: 0;">HIRE A HERO</h1>
+          <h5 style="font-size: 25px; font-family: 'Montserrat', sans-serif; padding-top: 0;">Get instant help for everyday chores!</h5>
+          <label class="sr-only" for="inlineFormInputGroup">Username</label>
+          <form action="../../Main/searchbar.php" method="POST" id="searchbar">
+            <div class="input-group col-sm-4" style="margin: 0; padding: 0; margin-top: 20px; font-family: 'Open Sans', sans-serif;">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search Gigs" name ='searchterm'>
+                <div class="input-group-prepend">
+                  <button class="btn btn-primary bg-info" type="submit" form="searchbar" value="Submit" style="color: white;">Search</button>
+                </div>
             </div>
-    </section>
+          </form>
+        </div>
+          
+    </div>
 
     <section id="hire-a-hero" class = "animate__animated animate__fadeInLeft my-5">
         <div class="container">
