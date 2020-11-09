@@ -3,9 +3,6 @@
 <head>
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    
-    <!--CSS Template-->
-    <link rel= "stylesheet" href="css template.html">
 
     <!--Cambria-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -157,6 +154,7 @@
         .nav-item{
             padding-left: 20px;
             padding-right: 20px;
+            z-index: 2;
         }
 
     </style>
@@ -164,8 +162,6 @@
 </head>
 
 <body>
-
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -182,7 +178,7 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav" style="margin: auto;">
                     <li class="nav-item active">
-                        <a class="nav-link" href="../../Homepage.php">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="Homepage.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     
                     <li class="nav-item dropdown">
@@ -224,10 +220,10 @@
                 
                 if(isset($_SESSION["email"])){
                 ?>
-            <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
+            <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
                 <?php }else{?>
 
-                    <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
+                    <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
                 <?php }?>
                     <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
@@ -236,7 +232,7 @@
             </div>
         
         
-        <div class = 'container-fluid animate__animated animate__fadeIn animate__delay-1s' style="background-image: url(https://www.mcjanitorialsystems.com/wp-content/uploads/2015/02/Asian-cleaner-clean-the-floor.jpg);  background-size:cover; background-position: center; background-attachment: sticky; padding-top: 200px; padding-bottom: 200px; padding-left: 130px;">
+        <div class = 'container-fluid animate__animated animate__fadeIn animate__delay-1s' style="z-index: -1; background-image: url(https://www.mcjanitorialsystems.com/wp-content/uploads/2015/02/Asian-cleaner-clean-the-floor.jpg);  background-size:cover; background-position: center; background-attachment: sticky; padding-top: 200px; padding-bottom: 200px; padding-left: 130px;">
             <div class="jumbotron">
             <h1 style="font-size:74px; font-family: 'Inter', sans-serif; margin-bottom: 0;">HIRE A HERO</h1>
             <h5 style="font-size: 25px; font-family: 'Montserrat', sans-serif; padding-top: 0;">Get instant help for everyday chores!</h5>
@@ -363,15 +359,32 @@
 
 <hr/>
 
-    <div id = "app">
-        <span>{{test}}</span>
-        <p class="lead mx-3">Freelancers Near You</p>
-        <div class="container-fluid" id="moving" >
+    <div>
+        <p class="lead mx-3">Active Gigs in Singapore</p>
+
+        <div class = "container">
+
+        <div id = "app" class = "d-flex justify-content-center">
+            <gig-post
+            v-for="gig in gigs"
+            :key = "gig.gigName"
+            :gigname="gig.gigName"
+            :categoryname="gig.gigCategory"
+            :gigdescription="gig.gigDescription"
+            :gigbooker="gig.gigbooker"
+            :location="gig.bookeraddress">
+            </gig-post>
+        </div>
+
+        </div>
+
+
+        <!-- <div class="container-fluid" id="moving" >
             <div class="container text-center mb-5 ">
             <div class="row mx-auto " >
                 <div id="recipeCarousel"  class="carousel slide mx-auto" data-ride="carousel">
                     <div class="carousel-inner w-100" role="listbox" >
-                        <!-- <div class="carousel-item active">
+                        <div class="carousel-item active">
                             <div class="col-md-4">
                                 <div class="card card-body bg-light">
                                     <img class="img-fluid"  src="https://static01.nyt.com/images/2020/03/03/well/physed-foods/physed-foods-mediumSquareAt3X.jpg">
@@ -394,7 +407,14 @@
                                     Home Services
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
+
+                        <gig-post
+                            v-for="gig in gigs"
+                            :gigname="gig.gigName"
+                            :categoryname="gig.gigCategory"
+                            :gigdescription="gig.gigDescription">
+                        </gig-post>
                     
                     </div>
                     <a class="carousel-control-prev " href="#recipeCarousel" role="button" data-slide="prev">
@@ -407,7 +427,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
    
@@ -419,7 +439,7 @@
     </section>
 
 
-    <script>
+    <script type="application/javascript">
 
             $(document).ready(function() {
                 $('#myCarousel').carousel({
@@ -469,27 +489,44 @@
             }
         });
 
-
-
     </script>
 
-    <script>
+    <script type="application/javascript">
+
+        Vue.component ('gig-post', {
+            props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location'],
+            template: 
+            `<div class="col-md-4">
+                <div class="card card-body" style="width: 18rem;">
+                    <h5 class="card-title">{{ gigname }}</h5>
+                    <br>
+                    <h6 class="card-subtitle mb-2 text-muted"> Requested by: {{ gigbooker }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"> Category Type: {{ categoryname }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"> Location: {{ location }}</h6>
+                    <br>
+                    <p class="card-text">{{ gigdescription }}</p>
+                </div>
+            </div>`
+        });
+
         const vm = new Vue ({
             el: "#app",
             data: {
-                test: "hello",
-                gigsNearYou: null
+                gigs: [],
             },
             methods: {
                 getGigDetails: function(){
-                    axios.get('Main/getPost.php')
+                    axios.get('main/getSomePosts.php')
                     .then(response => {
-                        this.gigsNearYou = response.data;
+                        this.gigs = response.data.gig;
                     })
                     .catch(error => console.log('Could not retrieve gig details...'));
-                }
+                },
+            },
+            mounted: function(){
+                this.getGigDetails();
             }
-        })
+        });
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

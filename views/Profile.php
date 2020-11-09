@@ -131,7 +131,6 @@ require_once "../model/protect.php";
 
     <div class = "container" id = "app">
 
-
         <div class = "row">
 
             <div class = "col-lg-4 my-3">

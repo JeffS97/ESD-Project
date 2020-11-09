@@ -35,7 +35,7 @@
           font-weight: bolder;
         } 
         .nav{
-            position: fixed; /* Stay in place */
+             /* Stay in place */
             z-index: 1; /* Stay on top */
             top: 0; /* Stay at the top */
         }
@@ -89,13 +89,17 @@
         .form-group{
             text-align:left;
         }
+
+        .dropdown-item{
+          z-index: 2;
+        }
     </style>
 
     <title>Project Hero</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
-        <div class = 'container' style="padding: 0;">
+        <div class = 'container' style="padding: 0; z-index: 2">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
