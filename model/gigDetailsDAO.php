@@ -69,11 +69,11 @@
             return $result;
         }
 
-        public function getSomePosts($status) {
+        public function getSomePosts($postLimit) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "SELECT * from  gigDetails LIMIT 6";
+            $sql = "SELECT * from  gigDetails";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':status', $status, PDO::PARAM_STR);

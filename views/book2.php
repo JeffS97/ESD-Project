@@ -1,10 +1,6 @@
 <!doctype html>
-<?php
-session_start();
-?>
 <html lang="en">
   <head>
- 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +13,7 @@ session_start();
 
     <!--Raleway font stylesheet-->
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-   
+
     <style>
        .logo{
           font-family: 'Open Sans', sans-serif;
@@ -291,10 +287,10 @@ card design
               
               if(isset($_SESSION["email"])){
              ?>
-           <button type='button'  class='btn btn-info' style='margin:10px;'><a href='../../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button>
+           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button>
               <?php }else{?>
 
-                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="./Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
+                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
               <?php }?>
                 <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                 <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
@@ -307,13 +303,13 @@ card design
 <div class="container-fluid" id="moving" >
   <div class="container text-center mb-5 ">
     <h2 class="font-weight-light">Services</h2>
-    <div class="row  " >
+    <div class="row mx-auto " >
         <div id="recipeCarousel"  class="carousel slide mx-auto" data-ride="carousel">
             <div class="carousel-inner w-100" role="listbox" >
                 <div class="carousel-item active">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                            <img class="img-fluid" style="height: 270px;" src="../resources/images/plumber.jpg">
+                            <img class="img-fluid" style="height: 200px;" src="../resources/images/plumber.jpg">
                           Home Services
                         </div>
                     </div>
@@ -321,7 +317,7 @@ card design
                 <div class="carousel-item">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                        <a href="#">    <img class="img-fluid" style="height: 270px;" src="../resources/images/delivery.jpg"></a>
+                        <a href="#">    <img class="img-fluid" style="height: 200px;" src="../resources/images/delivery.jpg"></a>
                         Delivery
                         </div>
                     </div>
@@ -329,7 +325,7 @@ card design
                 <div class="carousel-item">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                        <a href="#">    <img class="img-fluid" style="height: 270px;" src="../resources/images/food.jpg"></a>
+                        <a href="#">    <img class="img-fluid" style="height: 200px;" src="../resources/images/food.jpg"></a>
                         Delivery
                         </div>
                     </div>
@@ -337,7 +333,7 @@ card design
                 <div class="carousel-item ">
                     <div class="col-md-4 " >
                         <div class="card card-body bg-light ">
-                            <img class="img-fluid " style="height: 270px;" src="../resources/images/clean.jpg">
+                            <img class="img-fluid " style="height: 200px;" src="../resources/images/clean.jpg">
                             Home Services
                         </div>
                     </div>
