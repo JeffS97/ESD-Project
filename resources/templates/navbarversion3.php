@@ -56,10 +56,10 @@ session_start();?>
           border: 2px solid ;
           border-radius: 30px;
           padding: 15px;
-          position: absolute;
-          float: right;
-          right: 150px; 
-
+          margin-left:85%;
+          position:sticky;
+          width:150px;
+          
         }
         .container-fluid{
           width: 100%;
@@ -125,8 +125,6 @@ session_start();?>
                 <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
               </div>
             </li> 
-
-            
 
             <li>
                         <button type='button'  class='btn btn-info' ><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
