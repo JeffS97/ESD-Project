@@ -287,7 +287,7 @@ card design
               
               if(isset($_SESSION["email"])){
              ?>
-           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button>
+           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button>
               <?php }else{?>
 
                 <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>

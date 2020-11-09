@@ -5,8 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     
     <!--CSS Template-->
-    <link rel= "stylesheet" href="css template.html">
-
+   
     <!--Cambria-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
@@ -145,23 +144,23 @@
           width: 100%;
           height: 100%;
           color: white;
+         
           
         }
 
-        .nav{
+        .dropdown-menu{
             /* Stay in place */
             
-            z-index: 1; /* Stay on top */
-            top: 0; /* Stay at the top */
+            z-index: 1000; /* Stay on top */
+           
+            /* Stay at the top */
         }
         .nav-item{
             padding-left: 20px;
             padding-right: 20px;
         }
 
-        .nav .dropdown-menu > li:hover > ul {
-        z-index: 9999;
-        }
+        
 
     </style>
 
@@ -228,10 +227,10 @@
                                     <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
                 </div>
-            </nav>
+           
             </div>
         
-        
+            </nav>
         <div class = 'container-fluid animate__animated animate__fadeIn animate__delay-1s' style="background-image: url(https://www.kut.org/sites/kut/files/styles/x_large/public/202005/el_paso_food_bank_coronavirus_pandemic_ek_tt_26.jpg);  background-size:cover; background-position: center; background-attachment: sticky; padding-top: 200px; padding-bottom: 200px; padding-left: 130px;">
             <div class="jumbotron">
             <h1 style="font-size:74px; font-family: 'Inter', sans-serif; margin-bottom: 0;">HIRE A HERO</h1>

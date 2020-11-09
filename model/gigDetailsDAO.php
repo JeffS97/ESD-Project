@@ -46,6 +46,27 @@
 
             return $isOk;
         }*/
+        public function viewBooking($id) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            
+            $sql = "select * from gigDetails where gigId=:id  ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+
+            $result = [];
+            while($row = $stmt->fetch()){
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
+            }
+
+            $stmt = null;
+            $pdo = null;
+
+            return $result;
+        }
 
         public function getAllPosts($status) {
             $conn = new ConnectionManager();

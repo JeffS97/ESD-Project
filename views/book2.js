@@ -25,7 +25,7 @@ function getPost(){
                 <h6>${node.bookeraddress}</h6>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<br>
                 Date of Task-${node.gigStartDate}</p>
-                <button class="button">View</button>
+                <button class="button" onclick="window.location.href='../Main/process_task.php?id='+${node.gigId}">View</button>
               </div>
             </div>
             </div>
@@ -33,11 +33,11 @@ function getPost(){
             number++;
            }
           
-         
+           document.getElementById("number").innerText=number+" Tasks Available";
            
         }
       
-        document.getElementById("number").innerText=number+" Tasks Available";
+       
     }
     request.open('GET', url, true);
     request.send();
@@ -67,7 +67,7 @@ request.onreadystatechange = function() {
            
         }
     }
-    document.getElementById("number").innerHTML=number +" Task Available";
+   
 }
 request.open('GET', url, true);
 request.send();
