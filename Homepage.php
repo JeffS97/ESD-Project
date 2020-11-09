@@ -362,14 +362,20 @@
     <div>
         <p class="lead mx-3">Active Gigs in Singapore</p>
 
-        <div id = "app">
+        <div class = "container">
+
+        <div id = "app" class = "d-flex justify-content-center">
             <gig-post
             v-for="gig in gigs"
             :key = "gig.gigName"
             :gigname="gig.gigName"
             :categoryname="gig.gigCategory"
-            :gigdescription="gig.gigDescription">
+            :gigdescription="gig.gigDescription"
+            :gigbooker="gig.gigbooker"
+            :location="gig.bookeraddress">
             </gig-post>
+        </div>
+
         </div>
 
 
@@ -406,7 +412,7 @@
                         <gig-post
                             v-for="gig in gigs"
                             :gigname="gig.gigName"
-                            :categoryname="gig.categoryName"
+                            :categoryname="gig.gigCategory"
                             :gigdescription="gig.gigDescription">
                         </gig-post>
                     
@@ -486,13 +492,18 @@
     </script>
 
     <script type="application/javascript">
+
         Vue.component ('gig-post', {
-            props: ['gigname', 'categoryname', 'gigdescription'],
+            props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location'],
             template: 
             `<div class="col-md-4">
                 <div class="card card-body" style="width: 18rem;">
                     <h5 class="card-title">{{ gigname }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ categoryname }}</h6>
+                    <br>
+                    <h6 class="card-subtitle mb-2 text-muted"> Requested by: {{ gigbooker }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"> Category Type: {{ categoryname }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"> Location: {{ location }}</h6>
+                    <br>
                     <p class="card-text">{{ gigdescription }}</p>
                 </div>
             </div>`
@@ -510,7 +521,7 @@
                         this.gigs = response.data.gig;
                     })
                     .catch(error => console.log('Could not retrieve gig details...'));
-                }
+                },
             },
             mounted: function(){
                 this.getGigDetails();
