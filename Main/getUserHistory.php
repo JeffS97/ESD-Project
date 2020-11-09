@@ -4,7 +4,7 @@
     $dao = new gigDetailsDAO();
 
     // to replace 'glenda' as user session variable.
-    $historyArray = $dao->getUserGigsHistory($_SESSION['email']);
+    $historyArray = $dao->getUserGigsHistory('glenda');
 
     $result = array("userhistory" => array() );
 

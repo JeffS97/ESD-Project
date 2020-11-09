@@ -178,28 +178,6 @@
 
             return $result;
         }
-
-        public function addChat($sender, $receiver, $datetime, $msg) {
-            $conn = new ConnectionManager();
-            $pdo = $conn->getConnection();
-            
-            $sql = "SELECT * FROM gigDetails WHERE gigbooker=:user ORDER BY gigStartDate DESC ";
-
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':user', $user, PDO::PARAM_STR);
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $stmt->execute();
-
-            $result = [];
-            while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
-            }
-
-            $stmt = null;
-            $pdo = null;
-
-            return $result;
-        }
 /*
 
         public function getHigherThanID($id, $limit){
