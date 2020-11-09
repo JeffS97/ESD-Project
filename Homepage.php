@@ -137,22 +137,15 @@
           border: 2px solid ;
           border-radius: 30px;
           padding: 15px;
-<<<<<<< Updated upstream
           margin-left:85%;
           position:sticky;
           width:150px;
           
-=======
->>>>>>> Stashed changes
         }
         .container-fluid{
           width: 100%;
           height: 100%;
-<<<<<<< Updated upstream
           color: #595757;
-=======
-          color: #909090;
->>>>>>> Stashed changes
           
         }
 
@@ -191,15 +184,7 @@
                   <li class="nav-item active">
                     <a class="nav-link" href="../../Homepage.php">Home <span class="sr-only">(current)</span></a>
                   </li>
-<<<<<<< Updated upstream
-                  <!-- <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact Us</a>
-                  </li> -->
-=======
-                  <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact Us</a>
-                  </li>
->>>>>>> Stashed changes
+                  
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Task
@@ -217,10 +202,6 @@
                       <a class="dropdown-item" href="userRequest.php">My Requests</a>
                       <a class="dropdown-item" href="userTasks.php">My Tasks</a>
                     </div>
-<<<<<<< Updated upstream
-                  </li>     
-                  
-=======
                   </li>
                   <li class="nav-item dropdown collapse">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -238,37 +219,11 @@
                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
                   <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                 </form> -->
->>>>>>> Stashed changes
                 <?php
             
               
               if(isset($_SESSION["email"])){
              ?>
-<<<<<<< Updated upstream
-            <li class="nav-item dropdown ">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Profile
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="../../views/History.php">History</a>
-                <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
-              </div>
-            </li> 
-            <li>
-            <button type='button'  class='btn btn-info' ><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
-            </li>
-            <?php }else{?>
-            <li>
-            <button type="button"  class="btn btn-info" ><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button> </li>
-            <?php }?>
-            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
-            <li><span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
-            </li>  </ul>
-                    
-                        </div>
-                    </div>
-                </nav>
-=======
            <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
               <?php }else{?>
 
@@ -279,7 +234,6 @@
               </div>
           </nav>
         </div>
->>>>>>> Stashed changes
     
     
     <div class = 'container-fluid' style="background-image: url(https://www.mcjanitorialsystems.com/wp-content/uploads/2015/02/Asian-cleaner-clean-the-floor.jpg);  background-size:cover; background-position: center; background-attachment: sticky; padding-top: 200px; padding-bottom: 200px; padding-left: 130px;">
@@ -291,11 +245,7 @@
             <div class="input-group col-sm-4" style="margin: 0; padding: 0; margin-top: 20px; font-family: 'Open Sans', sans-serif;">
               <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search Gigs" name ='searchterm'>
                 <div class="input-group-prepend">
-<<<<<<< Updated upstream
                   <button class="btn btn-primary bg-info" type="submit" form="searchbar" value="Submit" style="color: white;">Search</button>
-=======
-                  <button class="btn btn-info" type="submit" form="searchbar" value="Submit" style="color: white;">Search</button>
->>>>>>> Stashed changes
                 </div>
             </div>
           </form>

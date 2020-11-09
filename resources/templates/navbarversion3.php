@@ -128,27 +128,20 @@ session_start();?>
             </li> 
 
             
-           <button type='button'  class='btn btn-info' style='margin:10px;'><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
-
-              <?php }else{?>
-
-                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.php" style=";color: white;text-decoration: none;">Join Us</a></button>
-              <?php }?>
-                <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
-                <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
-              </div>
-              </ul>
 
             <li>
-            <button type='button'  class='btn btn-info' ><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
-</li>
-<?php }else{?>
-<li>
-  <button type="button"  class="btn btn-info" ><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button> </li>
-<?php }?>
-  <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
-  <li><span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
-  </li>  </ul>
+                        <button type='button'  class='btn btn-info' ><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
+            </li>
+            <?php }else{?>
+            <li>
+              <button type="button"  class="btn btn-info" ><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button> </li>
+            <?php }?>
+              <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+              <li><span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
+              </li>  </ul>
+                    
+              </div>
+
          
               </div>
 
