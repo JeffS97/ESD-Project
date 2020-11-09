@@ -138,8 +138,8 @@ require_once "../model/protect.php";
                 <div class="card card-fluid">
                     <h6 class="card-header"> Your Details </h6>
                     <nav class="nav flex-column nav-tabs">
-                      <a href="Profile.php" class="nav-link active">Display Profile</a>
-                      <a href="Account.php" class="nav-link">Edit Account Details</a>
+                      <a href="Profile.php" class="nav-link active">Profile</a>
+                      <a href="Account.php" class="nav-link">Account</a>
                       <a href="History.php" class="nav-link">History</a>
                       
                     </nav>
