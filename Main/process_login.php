@@ -29,7 +29,7 @@
             # Create a session entry for successful login
             $_SESSION["email"] = $email;
             # Redirect to welcome.php
-            header("Location: ../Homepage.php");
+            header("Location: ../Homepages.php");
             exit;
         }
     }
