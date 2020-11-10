@@ -96,9 +96,9 @@ require_once "../model/protect.php";
                 <div class="card card-fluid">
                     <h6 class="card-header"> Your Details </h6>
                     <nav class="nav flex-column nav-tabs">
-                      <a href="Profile.html" class="nav-link">Profile</a>
-                      <a href="Account.html" class="nav-link">Account</a>
-                      <a href="History.html" class="nav-link active">History</a>
+                      <a href="Profile.php" class="nav-link">Profile</a>
+                      <a href="Account.php" class="nav-link">Account</a>
+                      <a href="History.php" class="nav-link active">History</a>
                     </nav>
                   </div>
             </div>
