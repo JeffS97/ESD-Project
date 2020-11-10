@@ -73,7 +73,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "SELECT * from  gigDetails LIMIT 6";
+            $sql = "SELECT * from  gigDetails WHERE gigStatus=:status LIMIT 6";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':status', $status, PDO::PARAM_STR);
