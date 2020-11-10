@@ -145,7 +145,7 @@ session_start();?>
         .container-fluid{
           width: 100%;
           height: 100%;
-          
+          color: white;
          
           
         }
