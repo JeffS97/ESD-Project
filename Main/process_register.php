@@ -31,7 +31,7 @@
         # Redirect to login.php
         # Provide information of the newly registered user 
         # at the back of the URL
-        header("location: ../resources/templates/navbarversion3.php");
+        header("location: ../Homepage.php");
         exit;
     }
     else{

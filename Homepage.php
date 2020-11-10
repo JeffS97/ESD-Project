@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<?php  
 
+session_start();?>
 <head>
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -176,7 +178,8 @@
     
     <div class = "animate__animated animate__fadeInDown">
 
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
+       
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
             <div class = 'container' style="padding: 0;">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -193,10 +196,15 @@
                         Task
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../../views/book2.php">Browse</a>
-                        <a class="dropdown-item" href="../../views/Booktask.php">Post</a>
+                        <a class="dropdown-item" href="./views/book2.php">Browse</a>
+                        <a class="dropdown-item" href="./views/Booktask.php">Post</a>
                         </div>
                     </li>
+                    <?php
+            
+              
+              if(isset($_SESSION["email"])){
+             ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Listings
@@ -206,7 +214,7 @@
                         <a class="dropdown-item" href="userTasks.php">My Tasks</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown collapse">
+                    <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Profile
                         </a>
@@ -214,20 +222,24 @@
                         <a class="dropdown-item" href="../../views/History.php">History</a>
                         <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="logout.php" hidden>Log Out</a>
+                        
                         </div>
                     </li> 
-                    </ul>
+                  <li>  <button type='button'  class='btn btn-info'  ><a href='./Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                    <?php }else{?>
+                        
+                   
                     <!-- <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form> -->
                     
-                    <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
-                                    <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+                <button type="button"  class="btn btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
+                    <?php }?>  
+                           <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
                 </div>
-           
+             </ul>  
             </div>
         
             </nav>
@@ -358,7 +370,24 @@
 
 <hr/>
 
-    <div id = "app">
+    <section id = "activeGigsNearYou">
+    <p class="lead mx-3">Active Gigs in Singapore</p>
+        <div class = "container">
+        <div id = "app" class = "d-flex justify-content-center">
+            <gig-post
+            v-for="gig in gigs"
+            :key = "gig.gigName"
+            :gigname="gig.gigName"
+            :categoryname="gig.gigCategory"
+            :gigdescription="gig.gigDescription"
+            :gigbooker="gig.gigbooker"
+            :location="gig.bookeraddress">
+            </gig-post>
+        </div>
+        </div>
+    </section>
+
+    <!-- <div id = "app">
         <span>{{test}}</span>
         <p class="lead mx-3">Freelancers Near You</p>
         <div class="container-fluid" id="moving" >
@@ -366,7 +395,7 @@
             <div class="row mx-auto " >
                 <div id="recipeCarousel"  class="carousel slide mx-auto" data-ride="carousel">
                     <div class="carousel-inner w-100" role="listbox" >
-                        <!-- <div class="carousel-item active">
+                        <div class="carousel-item active">
                             <div class="col-md-4">
                                 <div class="card card-body bg-light">
                                     <img class="img-fluid"  src="https://static01.nyt.com/images/2020/03/03/well/physed-foods/physed-foods-mediumSquareAt3X.jpg">
@@ -389,7 +418,7 @@
                                     Home Services
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     
                     </div>
                     <a class="carousel-control-prev " href="#recipeCarousel" role="button" data-slide="prev">
@@ -403,7 +432,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
    
 
@@ -468,24 +497,43 @@
 
     </script>
 
-    <script>
-        const vm = new Vue ({
-            el: "#app",
-            data: {
-                test: "hello",
-                gigsNearYou: null
-            },
-            methods: {
-                getGigDetails: function(){
-                    axios.get('Main/getPost.php')
-                    .then(response => {
-                        this.gigsNearYou = response.data;
-                    })
-                    .catch(error => console.log('Could not retrieve gig details...'));
-                }
-            }
-        })
-    </script>
+<script type="application/javascript">
+
+Vue.component ('gig-post', {
+    props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location'],
+    template: 
+    `<div class="col-md-4">
+        <div class="card card-body" style="width: 18rem;">
+            <h5 class="card-title">{{ gigname }}</h5>
+            <br>
+            <h6 class="card-subtitle mb-2 text-muted"> Requested by: {{ gigbooker }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted"> Category Type: {{ categoryname }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted"> Location: {{ location }}</h6>
+            <br>
+            <p class="card-text">{{ gigdescription }}</p>
+        </div>
+    </div>`
+});
+
+const vm = new Vue ({
+    el: "#app",
+    data: {
+        gigs: [],
+    },
+    methods: {
+        getGigDetails: function(){
+            axios.get('main/getSomePosts.php')
+            .then(response => {
+                this.gigs = response.data.gig;
+            })
+            .catch(error => console.log('Could not retrieve gig details...'));
+        },
+    },
+    mounted: function(){
+        this.getGigDetails();
+    }
+});
+</script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

@@ -181,7 +181,13 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="../resources/images/helping.jpg" width="40%">
+            </div>
+        <div class="col-lg-8">
+    <div class="wrapper" style="float:left;">
         <div class="background">
             <div class="left">
                 <h2 class="back-header">Dont have an account yet?</h2>
@@ -223,6 +229,7 @@
               
             </div>
             </div>
+           
             <div id="status"></div>	
 <!-- Facebook login or logout button -->
 <a href="javascript:void(0);" onclick="fbLogin();" id="fbLink"><img style="width:200px" src="facebook.png 
@@ -231,6 +238,9 @@
 <!-- Display user's profile info -->
 <div class="ac-data" id="userData"></div>
         </div>
+    </div>
+    </div>
+    </div>
     </div>
     <script>
         window.fbAsyncInit = function() {

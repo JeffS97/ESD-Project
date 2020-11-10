@@ -31,7 +31,6 @@ session_start();?>
             position: fixed; /* Stay in place */
             z-index: 1; /* Stay on top */
             top: 0; /* Stay at the top */
-         
         }
         body{
             font-family:'Montserrat', sans-serif;
@@ -50,17 +49,10 @@ session_start();?>
             }
         }
         .btn-info {
-          font-size: 20px;
-          color: white;
-          letter-spacing: 1px;
-          line-height: 15px;
-          border: 2px solid ;
-          border-radius: 30px;
-          padding: 15px;
-          margin-left:85%;
-          position:sticky;
-          width:150px;
-          
+           
+         
+       
+
         }
         .container-fluid{
           width: 100%;
@@ -93,12 +85,12 @@ session_start();?>
                   <!-- <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact Us</a>
                   </li> -->
-                  <li class="nav-item dropdown"  >
-                    <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Task
                     </a>
-                    <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"   href="../../views/book2.php">Browse</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="../../views/book2.php">Browse</a>
                       <a class="dropdown-item" href="../../views/Booktask.php">Post</a>
                     </div>
                   </li>
@@ -117,7 +109,7 @@ session_start();?>
               
               if(isset($_SESSION["email"])){
              ?>
-            <li class="nav-item dropdown collapse">
+            <li class="nav-item dropdown ">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Profile
               </a>
@@ -126,23 +118,18 @@ session_start();?>
                 <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
               </div>
             </li> 
-
             <li>
-                        <button type='button'  class='btn btn-info' ><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
-            </li>
-            <?php }else{?>
-            <li>
-              <button type="button"  class="btn btn-info" ><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button> </li>
-            <?php }?>
-              <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
-              <li><span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
-              </li>  </ul>
-                    
-              </div>
-
+            <button type='button'  class='btn btn-info' ><a href='../../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button>
+</li>
+<?php }else{?>
+<li>
+  <button type="button"  class="btn btn-info" ><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button> </li>
+<?php }?>
+  <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+  <li><span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
+  </li>  </ul>
          
               </div>
-
           </div>
       </nav>
         
