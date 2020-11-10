@@ -17,13 +17,20 @@ function getPost(){
             if(node.gigCategory=="cleaning"){
                 img="../resources/images/plumb.jpg";
             }
+            var num=node.gigbooker.search('@');
+            if(num!=-1){
+            name=node.gigbooker.slice(0,num);
+            }
+            else{
+                name=node.gigbooker;
+            }
             document.getElementById('bookings').innerHTML+=`<div class="col-12  col-md-6 col-lg-4 ">
             <div class=" services card expand">
               <img class="card-img-top" src="${img}" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">${node.gigName} -Booked by  ${node.gigbooker}</h5>
+                <h5 class="card-title">${node.gigName} -Booked by  ${name}</h5>
                 <h6>${node.bookeraddress}</h6>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<br>
+                <p class="card-text">${node.gigDescription}<br>
                 Date of Task-${node.gigStartDate}</p>
                 <button class="button" onclick="window.location.href='../Main/process_task.php?id='+${node.gigId}">View</button>
               </div>
