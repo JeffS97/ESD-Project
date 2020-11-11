@@ -377,6 +377,13 @@ card design
        
       </ul>
     </div>
+    <span class="empty">Current Tasks</span>  
+    <div class="bookings">
+      <ul class="shopping-cart-items" id="tasks" >
+       
+       
+      </ul>
+    </div>
         </div>
         <div class="col-md-9">
        

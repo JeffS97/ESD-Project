@@ -197,10 +197,10 @@
                 <div class="form-group">
                     <label class="h4 form-control-label" for="input1">Category of Task<abbr class="text-danger" title="This is required">*</abbr></label>
                     <select class="form-control" name="i1" id="input1" required>
-                        <option value="food">Shopping</option>
-                        <option value="homeservice">Food</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="food">Food</option>
                         <option value="vehiclehelp">Vehicle Help</option>
-                        <option value="vehiclehelp">Home Services</option>
+                        <option value="home">Home Services</option>
                         <option value="misc">Miscellaneous</option>
                             </select>
                     <!--<div class="valid-feedback">Valid</div>-->
