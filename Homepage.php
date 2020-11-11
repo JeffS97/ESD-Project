@@ -129,7 +129,7 @@ session_start();?>
             font-size: 14px;
         }
 
-        .btn-info {
+        .btn-info-nav {
           font-size: 20px;
           color: white;
           letter-spacing: 1px;
@@ -140,6 +140,17 @@ session_start();?>
           margin-left:85%;
           position:sticky;
           width:150px;
+          
+        }
+
+        .btn-info {
+          font-size: 20px;
+          color: white;
+          letter-spacing: 1px;
+          line-height: 22px;
+          border: 2px solid ;
+          border-radius: 30px;
+          padding: 15px;
           
         }
         .container-fluid{
@@ -159,7 +170,6 @@ session_start();?>
             padding-left: 20px;
             padding-right: 20px;
         }
-
         
 
     </style>
@@ -223,7 +233,7 @@ session_start();?>
                         
                         </div>
                     </li> 
-                  <li>  <button type='button'  class='btn btn-info'  ><a href='./Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li>  <button type='button'  class='btn btn-info-nav btn-info'  ><a href='./Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    
@@ -232,7 +242,7 @@ session_start();?>
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form> -->
                     
-                <button type="button"  class="btn btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
+                <button type="button"  class="btn btn-info-nav btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
                     <?php }?>  
                            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
@@ -250,7 +260,7 @@ session_start();?>
                 <div class="input-group col-sm-4" style="margin: 0; padding: 0; margin-top: 20px; font-family: 'Open Sans', sans-serif;">
                 <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search Gigs" name ='searchterm'>
                     <div class="input-group-prepend">
-                    <button class="btn btn-primary bg-info" type="submit" form="searchbar" value="Submit" style="color: white;">Search</button>
+                    <button class="btn btn-primary bg-info btn-outline-info" type="submit" form="searchbar" value="Submit" style="color: white;">Search</button>
                     </div>
                 </div>
             </form>
@@ -264,9 +274,9 @@ session_start();?>
     <section id="hire-a-hero" class = "animate__animated animate__fadeInLeft animate__delay-1s my-5">
         <div class="container">
         <ul class="nav justify-content-center nav-tabs" role="tablist">
-            <li class="nav-item"><a aria-controls="hire-hero" aria-selected="false" class="nav-link" data-toggle="tab" href="#hire-hero" id="tab-hire-hero" role="tab">Hire A Hero</a></li>
-            <li class="nav-item"><a aria-controls="become-hero" aria-selected="false" class="nav-link" data-toggle="tab" href="#become-hero" id="tab-become-hero" role="tab">Become A Hero</a></li>
-            <li class="nav-item"><a aria-controls="contact-blu" aria-selected="true" class="nav-link active" data-toggle="tab" href="#contact-blu" id="tab-contact-blu" role="tab">About us</a></li>
+            <li class="nav-item"><a aria-controls="hire-hero" aria-selected="false" class="nav-link text-info" data-toggle="tab" href="#hire-hero" id="tab-hire-hero" role="tab">Hire A Hero</a></li>
+            <li class="nav-item"><a aria-controls="become-hero" aria-selected="false" class="nav-link text-info" data-toggle="tab" href="#become-hero" id="tab-become-hero" role="tab">Become A Hero</a></li>
+            <li class="nav-item"><a aria-controls="contact-blu" aria-selected="true" class="nav-link active text-info" data-toggle="tab" href="#contact-blu" id="tab-contact-blu" role="tab">About us</a></li>
         </ul>
         
         <div class="tab-content">
@@ -277,7 +287,7 @@ session_start();?>
         
         <p>Need a small task to be done?</p>
         <p>Worry not! Hire a Hero now and we will quickly assign a freelancer to you.</p>
-        <a href="views/Booktask.php">Find help now!</a></div>
+        <a href="views/Booktask.php" class = "btn btn-info">Find help now!</a></div>
         
         <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/help.jpg" class = "img-fluid"></div>
         </div>
@@ -294,7 +304,7 @@ session_start();?>
         <p>In need of work?</p>
         <p>Look no further. </p>
         <p>Become a Hero and you will have access to many fast jobs. Be rewarded for your hard work.</p>
-        <a href="views/book2.php">Get a job right now!</a></div>
+        <a href="views/book2.php" class = "btn btn-info">Get a job right now!</a></div>
         
         <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/plumber.jpg" class = "img-fluid"></div>
         </div>
@@ -308,7 +318,7 @@ session_start();?>
         
         <p>Not every hero wears a cape.</p>
         <p>Welcome to Hire a Hero, a platform designed to help everyday individuals <b>find help for their daily tasks</b> and enable others to <b>find temporary jobs on the go.</b></p>
-        <a href = "views/Signup.php">Join us today!</a>
+        <a href = "views/Signup.php" class = "btn btn-info">Join us today!</a>
         </div>
         
         <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/hero.jpg" class = "img-fluid"></div>
@@ -372,7 +382,7 @@ session_start();?>
     <section id = "activeGigsNearYou">
     <p class="lead mx-3">Active Gigs in Singapore</p>
         <div class = "container" id = "app">
-        <div class = "row justify-content-md-center">
+        <div class = "card-columns">
             <gig-post
             v-for="gig in gigs"
             :key = "gig.gigName"
@@ -383,7 +393,9 @@ session_start();?>
             :location="gig.bookeraddress">
             </gig-post>
         </div>
+        <div class = "row justify-content-center" style="margin-top: 15px;"> <a href="views/Booktask.php" class = "btn btn-info">...book your own gig!</a>
         </div>
+
     </section>
 
     <!-- <div id = "app">
@@ -502,7 +514,7 @@ Vue.component ('gig-post', {
     props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location'],
     template: 
     `<div class="col-md-4 col-lg-4 col-sm-4">
-        <div class="card card-body" style="width: 18rem;">
+        <div class="card card-body" style="width: 22rem;">
             <h5 class="card-title">{{ gigname }}</h5>
             <br>
             <h6 class="card-subtitle mb-2 text-muted"> Requested by: {{ gigbooker }}</h6>
