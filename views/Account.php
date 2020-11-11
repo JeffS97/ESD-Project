@@ -171,25 +171,23 @@ $hashedPass = $user->getPassword();
 
                     <h6 class = "card-header"> Change Password</h6>
 
-                    <div>{{currentPass}}</div>
-
                     <div class="card-body">
                         <form method="post" @submit="validateForm" action = "Account.php" enctype="multipart/form-data" >
                           <div class="form-group">
                             <label for="newPass">New Password</label>
                             <input type="password" class="form-control" id="newPass" value="" v-model="newPass"></div>
-                            <p class = "text-danger" v-if="submitAttempt">{{passError}}</p>
+                            <p class = "text-danger" v-if="submitAttemptPass">{{passError}}</p>
                           <div class="form-group">
                             <label for="newPassConfirm">Confirm New Password</label>
                             <input type="password" class="form-control" id="newPassConfirm" value="" name="newPassConfirm" v-model="newPassConfirm"></div>
-                            <p class = "text-danger" v-if="submitAttempt">{{passConfirmError}}</p>
+                            <p class = "text-danger" v-if="submitAttemptPass">{{passConfirmError}}</p>
                           <hr>
                           <div class="form-actions">
                             <div class = "btn-toolbar justify-content-around"><input type="password" class="form-control col-md-8" name="currentPassEntered"  v-model = "currentPassEntered" placeholder="Enter Current Password">
                               <button type="submit" class="btn btn-warning col-md-3" style = "padding:10px; margin-top: 0px; font-size: 15px;">Update Account</button></div>
                           </div>
                           <p></p>
-                          <p class = "text-danger" v-if="submitAttempt">{{currentPassError}}</p>
+                          <p class = "text-danger" v-if="submitAttemptPass">{{currentPassError}}</p>
                           <?php
                           if (isset($_POST["currentPassEntered"])){
                             $_SESSION["currentPassEntered"] = $_POST["currentPassEntered"];
@@ -209,7 +207,31 @@ $hashedPass = $user->getPassword();
                 </div>
             </div>
 
+
+            <div class = "offset-lg-4 col-lg-8 my-3">
+                <div class = "card card-fluid">
+
+                    <h6 class = "card-header"> Change Profile Picture</h6>
+
+                    <div class="card-body">
+                        <form method="post" @submit="validateForm" action = "Account.php" enctype="multipart/form-data" >
+                          <div class="form-group">
+                            <label for="newPass">Upload/Change Profile Picture</label>
+                            <input type="file" class="form-control" id="file" value="" v-model="file"></div>
+                            <p class = "text-danger" v-if="submitAttemptProfile">{{profileError}}</p>
+                            <div class="form-actions">
+                            <div class = "btn-toolbar justify-content-around"><input type="password" class="form-control col-md-8" name="currentPassEntered"  v-model = "currentPassEntered" placeholder="Enter Current Password">
+                              <button type="submit" class="btn btn-warning col-md-3" style = "padding:10px; margin-top: 0px; font-size: 15px;">Update Account</button></div>
+                          </div>
+                        </form>
+                      </div>
+
+                </div>
+            </div>
+
         </div>
+
+        
 
     </div>
 
@@ -225,8 +247,10 @@ $hashedPass = $user->getPassword();
             newPass: "",
             newPassConfirm: "",
             currentPassEntered: "",
-            submitAttempt: false,
+            submitAttemptPass: false,
+            submitAttemptProfile: false,
             currentPass: "",
+            file: ""
         },
         computed: {
             passError: function(){
@@ -256,13 +280,24 @@ $hashedPass = $user->getPassword();
                     return '';
                 }
             },
-
+            profileError: function(){
+              if(this.file.length === 0){
+                return "You need to select a file!";
+              }
+              else{
+                return '';
+              }
+            }
         },
         methods: {
             validateForm: function(){
                 if(this.passError || this.passConfirmError || this.currentPassError){
                     event.preventDefault();
-                    this.submitAttempt = true;
+                    this.submitAttemptPass = true;
+                }
+                else if(this.profileError){
+                  event.preventDefault();
+                  this.submitAttemptProfile = true;
                 }
             },
             // getPassword: function() {
