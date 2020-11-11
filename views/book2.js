@@ -99,8 +99,9 @@ request.onreadystatechange = function() {
             <img class="bookimg" src="${img}" alt="item" />
             <span class="item-name">${node.gigName}</span>
             <span class="item-price">$${node.gigPrice}</span>
-       
+          
             <span class="item-quantity d-block">Date: ${node.gigStartDate}</span>
+            <a href="../Main/process_register.php?id=${node.gigId}" style="margin-left:45%;"> <span class="badge badge-success ">View Status</span></a>
             </li>
             <hr>`;
            
@@ -146,6 +147,7 @@ request.onreadystatechange = function() {
             <span class="item-price">$${node.gigPrice}</span>
        
             <span class="item-quantity d-block">Date: ${node.gigStartDate}</span>
+            <a href="#" style="margin-left:45%;"> <span class="badge badge-success ">View Status</span></a>
             </li>
             <hr>`;
            

@@ -315,8 +315,8 @@ session_start();
     </form>
     <form action="./acceptbooking.php" method="POST">
         <div class="form-group">
-        <input type="text" value="" class="form-control" id="field" >
-
+        <input type="text" value="" name="field" class="form-control" id="field" >
+<input type="hidden" value="<?php echo  $gigArray[0]->getId() ?>" name="id">
         </div>
         <input type="submit" onclick="validates()"  class="btn btn-block btn-warning statusBtn"  value="Accept Booking"></input>
     </form>

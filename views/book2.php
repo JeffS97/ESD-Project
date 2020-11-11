@@ -367,12 +367,13 @@ card design
    <div class="container">
     <div class="row">
         <div class="col-md-3 mt-5" style="border-right:1px solid gray;">
+      
           <h3>YOUR LIST</h3>
-    <div id="cart">
+    <div id="cart" >
     	<span class="empty">Current Bookings</span>       
     </div>
-    <div class="bookings">
-      <ul class="shopping-cart-items" id="current" >
+    <div class="bookings" >
+      <ul class="shopping-cart-items" id="current"  >
        
        
       </ul>
@@ -384,6 +385,7 @@ card design
        
       </ul>
     </div>
+       
         </div>
         <div class="col-md-9">
        

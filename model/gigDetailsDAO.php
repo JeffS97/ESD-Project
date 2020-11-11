@@ -136,7 +136,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "select * from gigDetails where gigaccepter=:task and gigStatus='Active' ";
+            $sql = "select * from gigDetails where gigaccepter=:task and gigStatus='Processing' ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':task', $task, PDO::PARAM_STR);
@@ -239,6 +239,27 @@
             $pdo = null;
 
             return $result;
+        }
+        public function UpdateBooking($time,$accepteradd,$accepter,$id) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            
+            $sql = "UPDATE gigDetails SET gigEndDate=:datenow ,accepteraddress=:accepteradd ,gigaccepter=:accepter,gigStatus='Processing' where gigId=:id ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':datenow', $time, PDO::PARAM_STR);
+            $stmt->bindParam(':accepteradd', $accepteradd, PDO::PARAM_STR);
+            $stmt->bindParam(':accepter', $accepter, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+          
+            $isOk = $stmt->execute();
+
+            # $lastID = $pdo->lastInsertId();
+        
+            $stmt = null;
+            $pdo = null;
+        
+            return $isOk;
         }
 
         public function addChat($sender, $receiver, $datetime, $msg) {

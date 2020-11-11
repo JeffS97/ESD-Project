@@ -10,8 +10,8 @@
     $dao = new gigDetailsDAO();
     $email=$_SESSION["email"];
   
-   
-    $gigArray = $dao->getUserTask($email);
+
+    $gigArray = $dao->getUserTask($email,date('Y-m-d'));
 
     $result = array("gig" => array() );
 
