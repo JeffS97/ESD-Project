@@ -145,8 +145,6 @@ session_start();?>
         .container-fluid{
           width: 100%;
           height: 100%;
-          color: white;
-         
           
         }
 
@@ -279,7 +277,7 @@ session_start();?>
         
         <p>Need a small task to be done?</p>
         <p>Worry not! Hire a Hero now and we will quickly assign a freelancer to you.</p>
-        <a class="btn btn-site outline has-arrow" href="">Learn more</a></div>
+        <a href="views/Booktask.php">Find help now!</a></div>
         
         <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/help.jpg" class = "img-fluid"></div>
         </div>
@@ -296,7 +294,7 @@ session_start();?>
         <p>In need of work?</p>
         <p>Look no further. </p>
         <p>Become a Hero and you will have access to many fast jobs. Be rewarded for your hard work.</p>
-        <a class="btn btn-site outline has-arrow" href="">Learn more</a></div>
+        <a href="views/book2.php">Get a job right now!</a></div>
         
         <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/plumber.jpg" class = "img-fluid"></div>
         </div>
@@ -305,11 +303,12 @@ session_start();?>
         
         <div aria-labelledby="tab-about-us" class="tab-pane active" id="contact-blu" role="tabpanel">
         <div class="row justify-content-center">
-        <div class="col my-auto animate__animated animate__fadeIn">
+        <div class="col-sm-6 col-md-5 my-auto animate__animated animate__fadeIn">
         <h3>About us</h3>
         
         <p>Not every hero wears a cape.</p>
-        <p>Welcome to Hire a Hero, a platform designed to help everyday individuals <b>find help for their daily tasks</b> and enable everyday individuals to <b>find temporary jobs on the go.</b></p>
+        <p>Welcome to Hire a Hero, a platform designed to help everyday individuals <b>find help for their daily tasks</b> and enable others to <b>find temporary jobs on the go.</b></p>
+        <a href = "views/Signup.php">Join us today!</a>
         </div>
         
         <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/hero.jpg" class = "img-fluid"></div>
@@ -372,8 +371,8 @@ session_start();?>
 
     <section id = "activeGigsNearYou">
     <p class="lead mx-3">Active Gigs in Singapore</p>
-        <div class = "container">
-        <div id = "app" class = "d-flex justify-content-center">
+        <div class = "container" id = "app">
+        <div class = "row justify-content-md-center">
             <gig-post
             v-for="gig in gigs"
             :key = "gig.gigName"
@@ -502,7 +501,7 @@ session_start();?>
 Vue.component ('gig-post', {
     props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location'],
     template: 
-    `<div class="col-md-4">
+    `<div class="col-md-4 col-lg-4 col-sm-4">
         <div class="card card-body" style="width: 18rem;">
             <h5 class="card-title">{{ gigname }}</h5>
             <br>
