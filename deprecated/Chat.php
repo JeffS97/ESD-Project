@@ -165,19 +165,6 @@
                 chatbox.appendChild(p);
                 chatbox.appendChild(br);
 
-                const request = new XMLHttpRequest();
-                request.onreadystatechange = function() {
-                    if(this.readyState == 4 && this.status == 200) {
-                        //console.log(this.responseText);
-                        //JSON.parse(this.responseText);
-                      
-                    }
-                };
-                //console.log(jsonObj);
-                request.open("POST", "addChat.php", true);
-                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                //request.send("query=" + jsonObj);
-
                 
 
                 document.getElementById("message").value = '';

@@ -19,7 +19,7 @@
             "gigPrice" => $gig->getGigPrice(),
             "gigStartDate" => $gig->getGigStartDate(),
             "gigEndDate" => $gig->getGigEndDate(),
-            "gigDescription" => $gig->getDescription(),
+            "gigDescription" => substr($gig->getDescription(), 0, 101)."...",
             "gigStatus" => $gig->getGigStatus(),
             "bookeraddress" => $gig->getBookeraddress(),
             "accepteraddress" => $gig->getAccepteraddress()
