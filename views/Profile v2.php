@@ -2,6 +2,8 @@
 <?php
 require_once "../model/protect.php";
 $email = $_SESSION["email"];
+$imagePath = "../resources/profileImages/$email.jpg";
+$noImagePath = "../resources/profileImages/default.jpg";
 
 ?>
 <head>
@@ -159,7 +161,11 @@ $email = $_SESSION["email"];
 
                         <div class = "row">
                         <div class = "col-lg-2 d-flex align-items-center">
-                          <?php echo "<img src='../resources/profileImages/$email' width='100px' height='100px'>" ?>
+                          <?php if(file_exists($imagePath)){
+                            echo "<img src='$imagePath' width='100px' height='100px' style='border-radius: 50%;'>";
+                          }else{
+                            echo "<img src='$noImagePath' width='100px' height='100px' style='border-radius: 50%;'>";
+                          } ?>
                         </div>
                           <div class = "col-lg-8">
                           <div>
