@@ -66,78 +66,91 @@ $hashedPass = $user->getPassword();
           margin-top: 20px;
           background-color:#34558b;
         }
+        .btn-info {
+          font-size: 20px;
+          color: white;
+          letter-spacing: 1px;
+          line-height: 15px;
+          border: 2px solid ;
+          border-radius: 30px;
+          padding: 15px;
+          margin-left:85%;
+          position:sticky;
+          width:150px;
+          
+        }
     </style>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
-    <div class = 'container' style="padding: 0;">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> PROJECT HERO</span>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav" style="margin: auto;">
-              <li class="nav-item active">
-                <a class="nav-link" href="../Homepage.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Task
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="../views/book2.php">Browse</a>
-                  <a class="dropdown-item" href="./Booktask.php">Post</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Listings
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">My Requests</a>
-                  <a class="dropdown-item" href="#">My Tasks</a>
-                </div>
-              </li>
-              <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Profile
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">History</a>
-                  <a class="dropdown-item" href="#">Settings</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#" hidden>Log Out</a>
-                </div>
-              </li> -->
-            </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
-              <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
-            <?php
-        
-          
-          if(isset($_SESSION["email"])){
-         ?>
-       <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
-          <?php }else{?>
-
-  
-        
-            <button type="button"  class="btn btn-primary" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
-          <?php }?>
-            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
-            <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
-          </div>
-      </nav>
     </div>
-
+    
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
+            <div class = 'container' style="padding: 0;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> PROJECT HERO</span>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav" style="margin: auto;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../Homepage.php">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Task
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./book2.php">Browse</a>
+                        <a class="dropdown-item" href="./Booktask.php">Post</a>
+                        </div>
+                    </li>
+                    <?php
+            
+              
+              if(isset($_SESSION["email"])){
+             ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Listings
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="userRequest.php">My Requests</a>
+                        <a class="dropdown-item" href="userTasks.php">My Tasks</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./History.php">History</a>
+                        <a class="dropdown-item" href="./Profile v2.php">Settings</a>
+                        <div class="dropdown-divider"></div>
+                        
+                        </div>
+                    </li> 
+                  <li>  <button type='button'  class='btn btn-info'  ><a href='./Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                    <?php }else{?>
+                        
+                   
+                    <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    </form> -->
+                    
+                <button type="button"  class="btn btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
+                    <?php }?>  
+                           <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+                    <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
+                </div>
+             </ul>  
+            </div>
+        
+            </nav>
     <div class = "container" id="app">
 
         <div class = "row">
@@ -146,9 +159,9 @@ $hashedPass = $user->getPassword();
                 <div class="card card-fluid">
                     <h6 class="card-header"> Your Details </h6>
                     <nav class="nav flex-column nav-tabs">
-                      <a href="Profile.php" class="nav-link">Display Profile</a>
-                      <a href="Account.php" class="nav-link active">Edit Account Details</a>
-                      <a href="History.php" class="nav-link">History</a>
+                      <a href="./Profile v2.php" class="nav-link">Display Profile</a>
+                      <a href="./Account.php" class="nav-link active">Edit Account Details</a>
+                      <a href="./History.php" class="nav-link">History</a>
                     </nav>
                   </div>
             </div>
@@ -173,7 +186,7 @@ $hashedPass = $user->getPassword();
                           <hr>
                           <div class="form-actions">
                             <div class = "btn-toolbar justify-content-around"><input type="password" class="form-control col-md-8" name="currentPassEntered"  v-model = "currentPassEntered" placeholder="Enter Current Password">
-                              <button type="submit" class="btn btn-primary col-md-3" style = "padding:10px; margin-top: 0px; font-size: 15px;">Update Account</button></div>
+                              <button type="submit" class="btn btn-warning col-md-3" style = "padding:10px; margin-top: 0px; font-size: 15px;">Update Account</button></div>
                           </div>
                           <p></p>
                           <p class = "text-danger" v-if="submitAttempt">{{currentPassError}}</p>

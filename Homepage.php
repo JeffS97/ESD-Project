@@ -228,8 +228,8 @@ session_start();?>
                         Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../../views/History.php">History</a>
-                        <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
+                        <a class="dropdown-item" href="./views/History.php">History</a>
+                        <a class="dropdown-item" href="./views/Profile v2.php">Settings</a>
                         <div class="dropdown-divider"></div>
                         
                         </div>

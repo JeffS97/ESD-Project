@@ -24,13 +24,20 @@ function getPost(){
             else{
                 name=node.gigbooker;
             }
-            document.getElementById('bookings').innerHTML+=`<div class="col-12  col-md-6 col-lg-4 ">
-            <div class=" services card expand">
+            var description="";
+            if(node.gigDescription.length>30){
+                 description=node.gigDescription.slice(0,29)+"...";
+            }
+            else{
+                description=node.gigDescription;
+            }
+            document.getElementById('bookings').innerHTML+=`<div class="col-12   col-md-6 col-lg-4 ">
+            <div class=" services  card expand ">
               <img class="card-img-top" src="${img}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">${node.gigName} -Booked by  ${name}</h5>
                 <h6>${node.bookeraddress}</h6>
-                <p class="card-text">${node.gigDescription}<br>
+                <p class="card-text">${description}<br>
                 Date of Task-${node.gigStartDate}</p>
                 <button class="button" onclick="window.location.href='../Main/process_task.php?id='+${node.gigId}">View</button>
               </div>
