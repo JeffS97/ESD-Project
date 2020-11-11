@@ -115,7 +115,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "select * from gigDetails where gigbooker=:book and gigStatus='Active' ";
+            $sql = "select * from gigDetails where gigbooker=:book and (gigStatus='Active' or gigStatus='Processing' )";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':book', $book, PDO::PARAM_STR);
@@ -250,6 +250,26 @@
             $stmt->bindParam(':datenow', $time, PDO::PARAM_STR);
             $stmt->bindParam(':accepteradd', $accepteradd, PDO::PARAM_STR);
             $stmt->bindParam(':accepter', $accepter, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+          
+            $isOk = $stmt->execute();
+
+            # $lastID = $pdo->lastInsertId();
+        
+            $stmt = null;
+            $pdo = null;
+        
+            return $isOk;
+        }
+        public function Complete($date,$id) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            
+            $sql = "UPDATE gigDetails SET gigEndDate=:datenow , gigStatus='Completed' where gigId=:id ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':datenow', $date, PDO::PARAM_STR);
+           
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
           
             $isOk = $stmt->execute();

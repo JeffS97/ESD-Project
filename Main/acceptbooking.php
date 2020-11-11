@@ -16,5 +16,10 @@ if($gig==1){
     alert('You Have Accepted the Booking !');
     window.location.href='../views/book2.php';
     </script>";
+}else{
+    echo "<script>
+    alert('Could not accept Task !');
+    window.location.href='../views/book2.php';
+    </script>";
 }
 ?>

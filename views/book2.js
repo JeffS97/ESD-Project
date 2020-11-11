@@ -147,7 +147,7 @@ request.onreadystatechange = function() {
             <span class="item-price">$${node.gigPrice}</span>
        
             <span class="item-quantity d-block">Date: ${node.gigStartDate}</span>
-            <a href="#" style="margin-left:45%;"> <span class="badge badge-success ">View Status</span></a>
+            <a href="../Main/process_update.php?id=${node.gigId}" style="margin-left:45%;"> <span class="badge badge-success ">Mark as Complete</span></a>
             </li>
             <hr>`;
            

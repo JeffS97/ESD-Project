@@ -11,7 +11,7 @@
     $email=$_SESSION["email"];
   
 
-    $gigArray = $dao->getUserTask($email,date('Y-m-d'));
+    $gigArray = $dao->getUserTask($email,date('Y-m-d H:i:s'));
 
     $result = array("gig" => array() );
 
