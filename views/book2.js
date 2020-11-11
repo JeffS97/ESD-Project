@@ -20,9 +20,17 @@ function getPost($val){
            for(var node of posts.gig){
               
               
-            if(node.gigCategory=="cleaning"){
+            if(node.gigCategory=="home"){
                 img="../resources/images/plumb.jpg";
             }
+            else if(node.gigCategory=="food"){
+                img="../resources/images/food.jpg";
+            }
+            else if(node.gigCategory=="vehiclehelp"){
+             img="../resources/images/carwash.jpg";
+         }else if(node.gigCategory=="misc"){
+             img="../resources/images/help.jpg";
+         }
             var num=node.gigbooker.search('@');
             if(num!=-1){
             name=node.gigbooker.slice(0,num);
@@ -72,11 +80,21 @@ request.onreadystatechange = function() {
         var result=JSON.parse(this.response);
         var img="";
         var number=0;
+        if(!result.gig.length==0){
         for(var node of result.gig){
+       
         number++;
-           if(node.gigCategory=="cleaning"){
+           if(node.gigCategory=="home"){
                img="../resources/images/plumb.jpg";
            }
+           else if(node.gigCategory=="food"){
+               img="../resources/images/food.jpg";
+           }
+           else if(node.gigCategory=="vehiclehelp"){
+            img="../resources/images/carwash.jpg";
+        }else if(node.gigCategory=="misc"){
+            img="../resources/images/help.jpg";
+        }
             document.getElementById("current").innerHTML+= ` <li class="clearfix">
             <img class="bookimg" src="${img}" alt="item" />
             <span class="item-name">${node.gigName}</span>
@@ -87,10 +105,59 @@ request.onreadystatechange = function() {
             <hr>`;
            
         }
+       
+    }
+    else{
+        document.getElementById("current").innerHTML+="<i>Empty..</i>";
+        }
     }
    
 }
 request.open('GET', url, true);
 request.send();
 
+
+//Task
+var url2="../Main/getTasks.php";
+var request = new XMLHttpRequest();
+request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var result=JSON.parse(this.response);
+        var img="";
+        var number=0;
+        if(!result.gig.length==0){
+        for(var node of result.gig){
+       
+        number++;
+        if(node.gigCategory=="home"){
+            img="../resources/images/plumb.jpg";
+        }
+        else if(node.gigCategory=="food"){
+            img="../resources/images/food.jpg";
+        }
+        else if(node.gigCategory=="vehiclehelp"){
+         img="../resources/images/carwash.jpg";
+     }else if(node.gigCategory=="misc"){
+         img="../resources/images/help.jpg";
+     }
+            document.getElementById("tasks").innerHTML+= ` <li class="clearfix">
+            <img class="bookimg" src="${img}" alt="item" />
+            <span class="item-name">${node.gigName}</span>
+            <span class="item-price">$${node.gigPrice}</span>
+       
+            <span class="item-quantity d-block">Date: ${node.gigStartDate}</span>
+            </li>
+            <hr>`;
+           
+        }
+       
+    }
+    else{
+        document.getElementById("tasks").innerHTML+="<i>Empty..</i>";
+        }
+    }
+   
+}
+request.open('GET', url2, true);
+request.send();
 
