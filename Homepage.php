@@ -153,6 +153,7 @@ session_start();?>
           padding: 15px;
           
         }
+        
         .container-fluid{
           width: 100%;
           height: 100%;
@@ -329,9 +330,9 @@ session_start();?>
         </div>
         </section>
 
-    <hr/>
 
-    <section id = "services">
+    <section id = "services" style = "background-image: linear-gradient(#f9de7a, #FFFFFF); background-size: 100%;">
+    <hr/>
         <p class="lead mx-3">Services on Offer</p>
         <div class="container-fluid" id="moving" >
             <div class="container text-center mb-5 ">
@@ -377,9 +378,8 @@ session_start();?>
           </div>
     </section>
 
-<hr/>
-
-    <section id = "activeGigsNearYou">
+    <section id = "activeGigsNearYou" style = "background-image: linear-gradient(#5bc0de, #FFFFFF); background-size: 100%;">
+    <hr/>
     <p class="lead mx-3">Active Gigs in Singapore</p>
         <div class = "container" id = "app">
         <div class = "card-columns">
