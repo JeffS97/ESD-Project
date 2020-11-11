@@ -138,7 +138,7 @@ $hashedPass = $user->getPassword();
                         
                         </div>
                     </li> 
-                  <li>  <button type='button'  class='btn btn-info'  ><a href='./Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li>  <button type='button'  class='btn btn-info'  ><a href='../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    
