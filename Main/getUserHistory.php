@@ -1,10 +1,10 @@
 <?php
     require_once "common.php";
-
+session_start();
     $dao = new gigDetailsDAO();
-
+ $email=$_SESSION["email"];
     // to replace 'glenda' as user session variable.
-    $historyArray = $dao->getUserGigsHistory('glenda');
+    $historyArray = $dao->getUserGigsHistory($email);
 
     $result = array("userhistory" => array() );
 

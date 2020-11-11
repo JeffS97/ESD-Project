@@ -33,7 +33,7 @@ function getPost(){
             }
             document.getElementById('bookings').innerHTML+=`<div class="col-12   col-md-6 col-lg-4 ">
             <div class=" services  card expand ">
-              <img class="card-img-top" src="${img}" alt="Card image cap">
+              <img class="card-img-top img-fluid" src="${img}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">${node.gigName} -Booked by  ${name}</h5>
                 <h6>${node.bookeraddress}</h6>

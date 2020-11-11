@@ -234,7 +234,7 @@ session_start();?>
                         
                         </div>
                     </li> 
-                  <li>  <button type='button'  class='btn btn-info-nav btn-info'  ><a href='./Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li>  <button type='button'  class='btn btn-info-nav btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    
@@ -243,7 +243,7 @@ session_start();?>
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form> -->
                     
-                <button type="button"  class="btn btn-info-nav btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
+                <button type="button"  class="btn btn-info-nav btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Login</a></button>
                     <?php }?>  
                            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>

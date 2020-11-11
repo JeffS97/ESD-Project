@@ -36,7 +36,7 @@ function chart(){
       document.getElementById("total").innerHTML="Total Earnings: $"+total;
       var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
-  type: 'bar',
+  type: 'line',
   data: {
       labels: date,
       datasets: [{

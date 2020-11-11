@@ -30,24 +30,25 @@ session_start();
         }
         body{
             font-family:'Montserrat', sans-serif;
-            font-size: 23px;
+           
         }
+        
         .btn-info {
           font-size: 20px;
           color: white;
           letter-spacing: 1px;
-          line-height: 15px;
+          line-height: 22px;
           border: 2px solid ;
+          margin-left:13em;
           border-radius: 30px;
+          width:100px;  
           padding: 15px;
-          margin-left:85%;
-          position:sticky;
-          width:150px;
           
         }
         .nav-item{
             padding-left: 20px;
             padding-right: 20px;
+            font-size: 23px;
         }
         @media screen and (max-width: 575px) {
             .carousel{
@@ -232,7 +233,10 @@ card design
   </head>
   <body>
     
-   
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
      
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -278,8 +282,8 @@ card design
                         Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../views/History.php">History</a>
-                        <a class="dropdown-item" href="../views/Profile v2.php">Settings</a>
+                        <a class="dropdown-item" href="./History.php">History</a>
+                        <a class="dropdown-item" href="./Profile v2.php">Settings</a>
                         <div class="dropdown-divider"></div>
                         
                         </div>
@@ -293,7 +297,7 @@ card design
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form> -->
                     
-                <button type="button"  class="btn btn-info" ><a href="./Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
+                <button type="button"  class="btn btn-info" ><a href="./Signup.php" style="color: white;text-decoration: none;">Login</a></button>
                     <?php }?>  
                            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
@@ -310,7 +314,7 @@ card design
   <div class="container text-center mb-5 ">
     <h2 class="font-weight-light">Services</h2>
     <div class="row mx-auto " >
-        <div id="recipeCarousel"  class="carousel slide mx-auto" data-ride="carousel">
+        <div id="recipeCarousel"  class="carousel slide mx-auto animate__animated animate__fadeIn" data-ride="carousel">
             <div class="carousel-inner w-100" role="listbox" >
                 <div class="carousel-item active">
                     <div class="col-md-4">

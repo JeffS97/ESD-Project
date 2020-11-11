@@ -113,7 +113,7 @@ require_once "../model/protect.php";
                         
                         </div>
                     </li> 
-                  <li>  <button type='button'  class='btn btn-info up'  ><a href='./Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li>  <button type='button'  class='btn btn-info up'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    

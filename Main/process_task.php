@@ -255,6 +255,9 @@ session_start();
     <p class="card-text float-left" ><?php echo  $gigArray[0]->getDescription()?></p>
     
   </div>
+  <div id="error">
+        
+        </div>
 </div>
 
 </div>
@@ -295,7 +298,7 @@ session_start();
   <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1iSJyi8nOzkGwMWsmrEDQstq6b22-XoI&callback=initMap">
     </script>  
-
+ 
 <div class="jumbotron" style="width:120%;">          
    
     <form>
@@ -317,6 +320,7 @@ session_start();
         </div>
         <input type="submit" onclick="validates()"  class="btn btn-block btn-warning statusBtn"  value="Accept Booking"></input>
     </form>
+   
 </div>
 </div>
 
@@ -324,10 +328,13 @@ session_start();
 </div>
 <script>
      function validates(){
-    if(document.getElementById('field').value=" "){
-        alert("Cannot Accept until your current location is entered!");
+    if(document.getElementById('field').value==""){
+        document.getElementById("error").innerHTML=`<div class="alert alert-danger" role="alert">
+  Enter Your Current Location
+</div>`;
         event.preventDefault();
     }
+    
 }
     // Ajax call
     function getLoc(action) {
