@@ -542,6 +542,7 @@ const vm = new Vue ({
     },
     mounted: function(){
         this.getGigDetails();
+        setInterval(this.getGigDetails(), 3000);
     }
 });
 </script>
