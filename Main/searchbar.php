@@ -13,31 +13,34 @@
 
     session_start();
 
-    if(isset($_POST["searchterm"])){
+    if(isset($_GET["searchterm"])){
         
-        $searchterm = $_POST["searchterm"];
+        $searchterm = $_GET["searchterm"];
         $searchterm = strtolower($searchterm);
         $dao = new gigDetailsDAO();
 
-        $gigArray = $dao->getGigs($searchterm);
+        $gigArray = $dao->getSearch($searchterm);
 
         $result = array("gig" => array() );
 
         foreach ($gigArray as $gig) {
             $result["gig"][] = array(
+                "gigId" => $gig->getID(),
                 "gigbooker" => $gig->getGigBooker(),
-                "categoryname" => $gig -> getCategoryName(), 
+                "gigaccepter" => $gig->getGigAccepter(),
+                "gigCategory" => $gig->getCategoryName(),
                 "gigName" => $gig->getGigName(),
                 "gigPrice" => $gig->getGigPrice(),
                 "gigStartDate" => $gig->getGigStartDate(),
                 "gigEndDate" => $gig->getGigEndDate(),
+                "gigDescription" => $gig->getDescription(),
+                "gigStatus" => $gig->getGigStatus(),
                 "bookeraddress" => $gig->getBookeraddress(),
-
-            
+                "accepteraddress" => $gig->getAccepteraddress()
+    
+              
             );
         }
-
-        $result = json_encode($result);
-        echo ($result); 
-        return ($result);
+        echo json_encode($result);
+       
 }

@@ -198,6 +198,27 @@
 
             return $result;
         }
+        public function getSearch($search) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            
+            $sql = "SELECT  * FROM gigDetails WHERE (gigName LIKE CONCAT('%',:search,'%') OR categoryName=:search) and gigStatus='Active' ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+
+            $result = [];
+            while($row = $stmt->fetch()){
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["bookeraddress"],$row["accepteraddress"],$row["gigStatus"]);
+            }
+
+            $stmt = null;
+            $pdo = null;
+
+            return $result;
+        }
 
         public function addChat($sender, $receiver, $datetime, $msg) {
             $conn = new ConnectionManager();
