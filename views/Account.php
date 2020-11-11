@@ -3,6 +3,7 @@
 $passwordEntered = false;
 
 require_once '../model/common.php';
+require_once '../model/protect.php';
 
 $email = $_SESSION["email"]; 
 
@@ -28,6 +29,10 @@ $hashedPass = $user->getPassword();
 
 <!--Awesome-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ <!--Animate CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
 
 <style>
         .checked {
@@ -133,7 +138,7 @@ $hashedPass = $user->getPassword();
                         
                         </div>
                     </li> 
-                  <li>  <button type='button'  class='btn btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li>  <button type='button'  class='btn btn-info'  ><a href='../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    
@@ -156,7 +161,7 @@ $hashedPass = $user->getPassword();
         <div class = "row">
 
             <div class = "col-lg-4 my-3">
-                <div class="card card-fluid">
+                <div class="card card-fluid animate__animated animate__fadeIn">
                     <h6 class="card-header"> Your Details </h6>
                     <nav class="nav flex-column nav-tabs">
                       <a href="./Profile v2.php" class="nav-link">Display Profile</a>
@@ -167,12 +172,12 @@ $hashedPass = $user->getPassword();
             </div>
 
             <div class = "col-lg-8 my-3">
-                <div class = "card card-fluid">
+                <div class = "card card-fluid animate__animated animate__fadeIn">
 
                     <h6 class = "card-header"> Change Password</h6>
 
                     <div class="card-body">
-                        <form method="post" @submit="validateForm" action = "Account.php" enctype="multipart/form-data" >
+                        <form method="post" @submit="validateFormPass" action = "Account.php" enctype="multipart/form-data" >
                           <div class="form-group">
                             <label for="newPass">New Password</label>
                             <input type="password" class="form-control" id="newPass" value="" v-model="newPass"></div>
@@ -184,7 +189,7 @@ $hashedPass = $user->getPassword();
                           <hr>
                           <div class="form-actions">
                             <div class = "btn-toolbar justify-content-around"><input type="password" class="form-control col-md-8" name="currentPassEntered"  v-model = "currentPassEntered" placeholder="Enter Current Password">
-                              <button type="submit" class="btn btn-warning col-md-3" style = "padding:10px; margin-top: 0px; font-size: 15px;">Update Account</button></div>
+                              <button type="submit" class="btn btn-warning col-md-3" style = "padding:10px; margin-top: 0px; font-size: 15px;">Update Password</button></div>
                           </div>
                           <p></p>
                           <p class = "text-danger" v-if="submitAttemptPass">{{currentPassError}}</p>
@@ -198,6 +203,7 @@ $hashedPass = $user->getPassword();
                             else{
                               $newPassHashed = password_hash($_SESSION["newPassConfirm"], PASSWORD_DEFAULT);
                               $dao->updatePassword($email, $newPassHashed);
+                              echo "<p class = 'text-success'>Your password has been changed!</p>";
                             }
                             };
                           ?>
@@ -209,19 +215,25 @@ $hashedPass = $user->getPassword();
 
 
             <div class = "offset-lg-4 col-lg-8 my-3">
-                <div class = "card card-fluid">
+                <div class = "card card-fluid animate__animated animate__fadeIn">
 
                     <h6 class = "card-header"> Change Profile Picture</h6>
 
                     <div class="card-body">
-                        <form method="post" @submit="validateForm" action = "Account.php" enctype="multipart/form-data" >
+                        <form method="post" @submit="validateFormProfile" action = "../Main/profileImageUpload.php" enctype="multipart/form-data" >
                           <div class="form-group">
-                            <label for="newPass">Upload/Change Profile Picture</label>
-                            <input type="file" class="form-control" id="file" value="" v-model="file"></div>
+                          <label for="file">Upload/Change Profile Picture</label>
+                            <input type="file" class="form-control" id="file" value="" v-model="file" name="file"></div>
                             <p class = "text-danger" v-if="submitAttemptProfile">{{profileError}}</p>
-                            <div class="form-actions">
-                            <div class = "btn-toolbar justify-content-around"><input type="password" class="form-control col-md-8" name="currentPassEntered"  v-model = "currentPassEntered" placeholder="Enter Current Password">
-                              <button type="submit" class="btn btn-warning col-md-3" style = "padding:10px; margin-top: 0px; font-size: 15px;">Update Account</button></div>
+                            <?php if(isset($_SESSION["success"])){
+                              if(!$_SESSION["success"]){
+                                echo "<p class = 'text-danger'>Error uploading your image, only JPG accepted or file may be too large</p>";
+                              }else{
+                                echo "<p class = 'text-success'>Your image was uploaded successfully, check your profile!</p>";
+                              }
+                            }; ?>
+                            <div class="form-actions col-md">
+                              <button type="submit" class="btn btn-warning offset-lg-9 col-md-3" style = "padding:10px; margin-top: 0px; font-size: 12px;">Update Profile Picture</button></div>
                           </div>
                         </form>
                       </div>
@@ -287,19 +299,27 @@ $hashedPass = $user->getPassword();
               else{
                 return '';
               }
+            },
+            imageError: function(){
+              if (filesize(this.file) >  134217728 ){
+                return "This file is too big"
+              }
             }
+            
         },
         methods: {
-            validateForm: function(){
+            validateFormPass: function(){
                 if(this.passError || this.passConfirmError || this.currentPassError){
                     event.preventDefault();
                     this.submitAttemptPass = true;
                 }
-                else if(this.profileError){
-                  event.preventDefault();
-                  this.submitAttemptProfile = true;
-                }
             },
+            validateFormProfile: function(){
+                if(this.profileError){
+                    event.preventDefault();
+                    this.submitAttemptProfile = true;
+                }
+            }
             // getPassword: function() {
             //         axios.get('../Main/getUserDetails.php')
             //         .then(response => {

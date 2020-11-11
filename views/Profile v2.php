@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 require_once "../model/protect.php";
+$email = $_SESSION["email"];
 
 ?>
 <head>
@@ -57,6 +58,8 @@ require_once "../model/protect.php";
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 
+    <!--Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <!--Bootstrap-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -113,7 +116,7 @@ require_once "../model/protect.php";
                         
                         </div>
                     </li> 
-                  <li>  <button type='button'  class='btn btn-info up'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li>  <button type='button'  class='btn btn-info up'  ><a href='../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    
@@ -138,7 +141,7 @@ require_once "../model/protect.php";
         <div class = "row">
 
             <div class = "col-lg-4 my-3">
-                <div class="card card-fluid">
+                <div class="card card-fluid animate__animated animate__fadeIn">
                     <h6 class="card-header"> Your Details </h6>
                     <nav class="nav flex-column nav-tabs">
                       <a href="./Profile v2.php" class="nav-link active"> Display Profile</a>
@@ -150,11 +153,16 @@ require_once "../model/protect.php";
             </div>
 
             <div class="col-lg-8 my-3">
-                <div class="card card-fluid">
+                <div class="card card-fluid animate__animated animate__fadeIn">
                   <h6 class="card-header"> Public Profile </h6>
                     <div class="card-body">
 
-                        <div>
+                        <div class = "row">
+                        <div class = "col-lg-2 d-flex align-items-center">
+                          <?php echo "<img src='../resources/profileImages/$email' width='100px' height='100px'>" ?>
+                        </div>
+                          <div class = "col-lg-8">
+                          <div>
                             <h3>Personal Details</h3>
 
                             <h4>Your username is: {{username}}</h4>
@@ -162,7 +170,8 @@ require_once "../model/protect.php";
                             <h4>Your fullname is: {{fullname}}</h4>
 
                             <h4>Your email is: {{email}}</h4>
-                        
+                        </div>
+                          </div>
                         </div>
                     </div>
                    
