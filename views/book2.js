@@ -1,19 +1,25 @@
-window.onload=getPost();
 
-function getPost(){
-
-    let url="../Main/getPost.php";
+var value=document.getElementById("search").value;
+getPost(value);
+function getPost($val){
    
+    var url="";
+    if($val!==""){
+         url="../Main/searchbar.php?searchterm="+$val;
+    }else{
+     url="../Main/getPost.php";
+    }
+    console.log(url);
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var posts=JSON.parse(this.response);
             var img="";
             var number=0;
-         
+            var unique=[];
            for(var node of posts.gig){
-          
-            
+              
+              
             if(node.gigCategory=="cleaning"){
                 img="../resources/images/plumb.jpg";
             }
@@ -25,6 +31,7 @@ function getPost(){
                 name=node.gigbooker;
             }
             var description="";
+          
             if(node.gigDescription.length>30){
                  description=node.gigDescription.slice(0,29)+"...";
             }
@@ -37,7 +44,7 @@ function getPost(){
               <div class="card-body">
                 <h5 class="card-title">${node.gigName} -Booked by  ${name}</h5>
                 <h6>${node.bookeraddress}</h6>
-                <p class="card-text">${description}<br>
+                <p class="card-text">${description} lol<br>
                 Date of Task-${node.gigStartDate}</p>
                 <button class="button" onclick="window.location.href='../Main/process_task.php?id='+${node.gigId}">View</button>
               </div>
@@ -46,10 +53,10 @@ function getPost(){
             `;
             number++;
            }
-          
+        
            document.getElementById("number").innerText=number+" Tasks Available";
-           
         }
+        
       
        
     }

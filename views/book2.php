@@ -39,9 +39,8 @@ session_start();
           letter-spacing: 1px;
           line-height: 22px;
           border: 2px solid ;
-          margin-left:13em;
+          margin-left:1em;
           border-radius: 30px;
-          width:100px;  
           padding: 15px;
           
         }
@@ -237,6 +236,7 @@ card design
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
+
      
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -310,6 +310,7 @@ card design
       
     
 <hr>
+<input type="hidden" id="search" value='<?php if(isset($_POST["searchterm"])){ echo $_POST["searchterm"]; } ?>' >
 <div class="container-fluid" id="moving" >
   <div class="container text-center mb-5 ">
     <h2 class="font-weight-light">Services</h2>
