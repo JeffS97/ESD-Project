@@ -167,7 +167,7 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"],$row['gigDescription']);
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"],$row['gigDescription']);
             }
             
 
@@ -190,7 +190,7 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"],$row['gigDescription']);
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"],$row['gigDescription']);
             }
 
             $stmt = null;
