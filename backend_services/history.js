@@ -65,6 +65,11 @@ function createIcon(icon) {
         historyIcon.setAttribute('data-inline', 'false');
         historyIcon.setAttribute('data-icon', 'ic:round-pending');
         break;
+      case 'Processing':
+        historyIcon.className = 'iconify status_icon';
+        historyIcon.setAttribute('data-inline', 'false');
+        historyIcon.setAttribute('data-icon', 'ic:round-pending');
+        break;
       case 'Completed':
         historyIcon.className ='iconify status_icon';
         historyIcon.setAttribute('data-inline', 'false');

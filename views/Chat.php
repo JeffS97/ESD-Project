@@ -14,6 +14,12 @@
     <!--Raleway font stylesheet-->
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
+    <!-- Vue JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!--Axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <style>
         .logo{
             font-family: cambria;}
@@ -124,6 +130,8 @@
         </div>
     
         <script>
+
+            
             // Get the input field
             const input = document.querySelector("input");
 
