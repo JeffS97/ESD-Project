@@ -236,12 +236,6 @@
                     <div class="invalid-feedback">Please enter a task description. This field is required</div>
                 </div>
 
-                <!--<div class="form-group">
-                    <label class="h4 form-control-label" for="input5">Time<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="time" class="form-control time-picker" name="i5" id="input5" placeholder="" required>
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-        </div>-->
-
                 <div class="form-group">
                     <label for="input5" class="h4 form-control-label">Date and time<abbr class="text-danger" title="This is required">*</abbr></label>
                     <input class="form-control" type="datetime-local" name="i5" value="" id="input5">
@@ -253,6 +247,16 @@
                     <input type="tel" placeholder="8008 1234" pattern="[0-9]{4} [0-9]{4}" class="form-control" name="i6" id="input6" required>
                     <div class="invalid-feedback">Please enter a phone # like 8008 1234. This field is required.</div>
                 </div>
+
+                <div class="form-group">
+                    <label class="h4 form-control-label" for="input8">Upload Image of Task<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <div class="custom-file">
+                        <input type="file" class="form-control custom-file-input" id="i8" name="i8" aria-required="true" required data-msg-required="Please select any photo">
+                        <label class="custom-file-label" for="i8">Choose file</label>
+
+                    </div>
+                </div>
+
                 <div>
                     <button type="submit" class="btn" id="submit-btn">Submit Request</button>
                 </div>
@@ -269,6 +273,11 @@
             
             $('#myModal').modal();
         <?php } ?>
+
+        $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
 
         $("#bootstrapForm").submit(function(event) {
             var vForm = $(this);

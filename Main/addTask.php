@@ -9,14 +9,10 @@
     # Start session
     session_start();
 
-   
-    # Get parameters passed from register.php
-   /* $email = $_SESSION["email"];
+    # Get parameters passed from register/login.php
+    $email = $_SESSION["email"];
     $fullname = $_SESSION["fullname"];
-    $username = $_SESSION["username"];*/
-    $email = 'rohan';
-    $fullname = 'rohan';
-    $username = 'rohan';
+    $username = $_SESSION["username"];
 
     $category = $_POST["i1"];
     $description = $_POST["i2"];
@@ -26,6 +22,7 @@
     $start = str_replace('T'," ", $start);
     $status = "Active";
     $bookeradd = $_POST["i4"];
+    $image = $_POST["i8"];
 
     var_dump($email,$category,$gigName,$price,$start,$description,$status,$bookeradd);
 

@@ -20,6 +20,8 @@
     if($user != null){
         # Get stored hashed password
         $hashed = $user->getPassword();
+        $fullname = $user->getFullName();
+        $username = $user->getFullName();
        
         # Check if entered password matches stored hashed password
         $success = password_verify($password,$hashed); 
@@ -28,6 +30,8 @@
         if($success){
             # Create a session entry for successful login
             $_SESSION["email"] = $email;
+            $_SESSION["fullname"] = $fullname;
+            $_SESSION["username"] = $username;
             # Redirect to welcome.php
             header("Location: ../Homepage.php");
             exit;
