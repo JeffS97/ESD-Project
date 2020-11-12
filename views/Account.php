@@ -225,8 +225,8 @@ $hashedPass = $user->getPassword();
                           <label for="file">Upload/Change Profile Picture</label>
                             <input type="file" class="form-control" id="file" value="" v-model="file" name="file"></div>
                             <p class = "text-danger" v-if="submitAttemptProfile">{{profileError}}</p>
-                            <?php if(isset($_SESSION["success"])){
-                              if(!$_SESSION["success"]){
+                            <?php if(isset($_SESSION["successUpdate"])){
+                              if(!$_SESSION["successUpdate"]){
                                 echo "<p class = 'text-danger'>Error uploading your image, only JPG accepted or file may be too large</p>";
                               }else{
                                 echo "<p class = 'text-success'>Your image was uploaded successfully, check your profile!</p>";

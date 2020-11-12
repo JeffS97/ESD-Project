@@ -29,7 +29,7 @@
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk === 1) {
           if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir . $email . '.jpg')) {
-            $_SESSION["success"] = true;
+            $_SESSION["successUpload"] = true;
             header("Location: ../views/Account.php");
             exit();
           }
