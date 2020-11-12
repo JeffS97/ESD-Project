@@ -292,7 +292,7 @@
                     if (status === "OK") {
                         var directionsData = response.routes[0].legs[0];
                         console.log(directionsData.duration.text);
-                        document.getElementById("duration").innerHTML = "Your Hero will take: " + directionsData.duration.text + "to come to your aid!";
+                        document.getElementById("duration").innerHTML = "Your Hero will take: " + directionsData.duration.text + " to come to your aid!";
                         directionsRenderer.setDirections(response);
                     } else {
                         //window.alert("Directions request failed due to " + status);

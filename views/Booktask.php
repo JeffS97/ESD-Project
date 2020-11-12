@@ -232,8 +232,8 @@
 
                 <div class="form-group">
                     <label class="h4 form-control-label" for="input4">Meet Me At<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="text" class="form-control" name="i4" id="input4" placeholder="Address" required>
-                    <div class="invalid-feedback">Please enter a task description. This field is required</div>
+                    <input type="text" pattern="[0-9]{6}" class="form-control" name="i4" id="input4" placeholder="Address" required>
+                    <div class="invalid-feedback">Please enter a valid address like 760762. This field is required</div>
                 </div>
 
                 <div class="form-group">
