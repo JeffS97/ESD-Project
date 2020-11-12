@@ -101,6 +101,7 @@
         }
         .track {
     width:75%;
+    margin-left:10%;
      background-color: #ddd;
      height: 7px;
      display: -webkit-box;
@@ -136,6 +137,7 @@
  .track .step.active .icon {
      background: #ee5435;
      color: #fff
+     
  }
 
  .track .icon {
@@ -222,6 +224,12 @@
          </ul>  
         </div>
         </nav>
+        <div class="track" >
+                <div class="step active"> <span class="icon"> <i class="fa fa-eye"></i> </span> <span class="text">Post Request</span> </div>
+                <div class="step active"> <span class="icon"> <i class="fa fa-address-card"></i> </span> <span class="text"> Wait for it to be accepted</span> </div>
+                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Hero accepted and coming to Help! </span> </div>
+
+            </div>
         <div class="container">
             <div class="row">
                 <div id="floating-panel">
