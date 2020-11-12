@@ -44,6 +44,8 @@
             }
         }
 
+        /* CHAT INLINE STYLES HERE */
+
         #chat {
             height: 400px;
             overflow: auto;
@@ -70,49 +72,80 @@
         }
 
 
-
         
     </style>
 
-    <title>test</title>
+    <title>Chat</title>
   </head>
   <body>
 
+    <div class = "animate__animated animate__fadeInDown">
+
+       
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
-        <div class = 'container'>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> Project Hero</span>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav" style="margin: auto;">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Profile
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">History</a>
-                      <a class="dropdown-item" href="#">Settings</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Log Out</a>
-                    </div>
-                  </li>
-                </ul>
-                <!-- <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
-                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                </form> -->
-                <button type="button" class="btn btn-outline-danger" style="margin: 10px;">Log In</button>
-                <button type="button" class="btn btn-outline-primary" style="margin: 10px;">Sign Up</button>
-              </div>
-          </nav>
-        </div>
+            <div class = 'container' style="padding: 0;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> PROJECT HERO</span>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav" style="margin: auto;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../../Homepage.php">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Task
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./views/book2.php">Browse</a>
+                        <a class="dropdown-item" href="./views/Booktask.php">Post</a>
+                        </div>
+                    </li>
+                    <?php
+            
+              
+              if(isset($_SESSION["email"])){
+             ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Listings
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="userRequest.php">My Requests</a>
+                        <a class="dropdown-item" href="userTasks.php">My Tasks</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./views/History.php">History</a>
+                        <a class="dropdown-item" href="./views/Profile v2.php">Settings</a>
+                        <div class="dropdown-divider"></div>
+                        
+                        </div>
+                    </li> 
+                  <li>  <button type='button'  class='btn btn-info-nav btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                    <?php }else{?>
+                        
+                   
+                    <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    </form> -->
+                    
+                <button type="button"  class="btn btn-info-nav btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Login</a></button>
+                    <?php }?>  
+                           <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+                    <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
+                </div>
+             </ul>  
+            </div>
+        
+            </nav>
 
         <div class="container ">
             <div class="row justify-content-center">
@@ -131,6 +164,28 @@
     
         <script>
 
+            const vm = new Vue({
+                el: '#chat',
+                data: {
+                  messages: []
+                },
+                created: function() {
+                  axios.get('../Main/getChat.php')
+                        .then(response => {
+                            // this gets the data, which is an array
+                            console.log(response.data)
+                            msg_objs = response.data;
+                            for (msg of msg_objs) {
+                                //console.log(msg)
+                                // pass the data to Vue instance's posts property
+                                this.messages.push(msg);
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                }
+            });
             
             // Get the input field
             const input = document.querySelector("input");
