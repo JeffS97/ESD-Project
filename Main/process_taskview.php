@@ -231,15 +231,15 @@
 
         <body>
             <div id="floating-panel">
-            <b>Start: </b>
+            <b>Your Address: </b>
             <span id="start"><?php echo  $gigArray[0]->getBookeraddress()?>
             </span>
-            <b>End: </b>
-            <span id="end">730888
+            <b>Hero's Location: </b>
+            <span id="end"><?php echo  $gigArray[0]->getAccepteraddress()?>
             </span>
             </div>
             <div id="map"></div>
-            <div id="duration">Your Hero will take: </div>
+            <div id="duration">Unable to compute travel time and route</div>
         </body>
 
         <script>
@@ -265,7 +265,7 @@
                         startadd = results[0].geometry.location
                     }
                     else {
-                    alert('Geocode was not successful for the following reason: ' + status);
+                    //alert('Geocode was not successful for the following reason: ' + status);
                 }
                 });
 
@@ -274,7 +274,7 @@
                         endadd = results[0].geometry.location
                     }
                     else {
-                    alert('Geocode was not successful for the following reason: ' + status);
+                    //alert('Geocode was not successful for the following reason: ' + status);
                 }
                 });
                 directionsService.route(
@@ -291,10 +291,10 @@
                     if (status === "OK") {
                         var directionsData = response.routes[0].legs[0];
                         console.log(directionsData.duration.text);
-                        document.getElementById("duration").innerHTML += directionsData.duration.text;
+                        document.getElementById("duration").innerHTML = "Your Hero will take: " + directionsData.duration.text + "to come to your aid!";
                         directionsRenderer.setDirections(response);
                     } else {
-                        window.alert("Directions request failed due to " + status);
+                        //window.alert("Directions request failed due to " + status);
                     }
                     }
                 );
