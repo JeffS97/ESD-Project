@@ -239,6 +239,7 @@
                 <b>Hero's Location: </b>
                 <span id="end"><?php echo  $gigArray[0]->getAccepteraddress()?>
                 </span>
+                <span><a class="btn btn-warning ml-5 mb-2" href="../views/Chat.php?id=<?php echo $gigArray[0]->getId()?>">Chat with Hero</a></span>
                 </div>
                 <div id="map"></div>
                 <div id="duration">Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way</div>

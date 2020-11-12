@@ -1,6 +1,6 @@
-
+chart();
 window.onload = userDetails();
-window.onload=chart();
+
 function userDetails(){
   var userDetails
     const request = new XMLHttpRequest();
@@ -36,7 +36,7 @@ function chart(){
       document.getElementById("total").innerHTML="Total Earnings: $"+total;
       var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
-  type: 'line',
+  type: 'bar',
   data: {
       labels: date,
       datasets: [{
