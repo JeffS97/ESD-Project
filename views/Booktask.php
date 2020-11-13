@@ -4,12 +4,14 @@
 <head>
     <!-- Required meta tags -->
     <?php
-    session_start();?>
+    require_once "../model/protect.php";
+    ;?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 
 
     <!-- Bootstrap CSS -->
@@ -51,15 +53,18 @@
                 margin-bottom: 20px;
             }
         }
-        .btn-primary {
+        .btn-info {
           font-size: 20px;
           color: white;
           letter-spacing: 1px;
           line-height: 15px;
-          border: 2px solid #34558b;
+          border: 2px solid ;
           border-radius: 30px;
           padding: 15px;
-          background-color:#34558b;
+          margin-left:85%;
+          position:sticky;
+          width:150px;
+          
         }
         .container-fluid{
           width: 100%;
@@ -91,70 +96,71 @@
     <title>Project Hero</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
-        <div class = 'container' style="padding: 0;">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> PROJECT HERO</span>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav" style="margin: auto;">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Task
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Browse</a>
-                      <a class="dropdown-item" href="Book task.php">Post</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Listings
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">My Requests</a>
-                      <a class="dropdown-item" href="#">My Tasks</a>
-                    </div>
-                  </li>
-                  <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Profile
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">History</a>
-                      <a class="dropdown-item" href="#">Settings</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#" hidden>Log Out</a>
-                    </div>
-                  </li> -->
-                </ul>
-                <!-- <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
-                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                </form> -->
-                <?php
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
+            <div class = 'container' style="padding: 0;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> PROJECT HERO</span>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav" style="margin: auto;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../Homepage.php">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Task
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./book2.php">Browse</a>
+                        <a class="dropdown-item" href="./Booktask.php">Post</a>
+                        </div>
+                    </li>
+                    <?php
             
               
               if(isset($_SESSION["email"])){
              ?>
-           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../../views/Signup.html' style='color: white;text-decoration: none;'>Log Out</a></button>
-              <?php }else{?>
-
-      
-            
-                <button type="button"  class="btn btn-primary" style="margin: 10px;"><a href="../../views/Signup.html" style="color: white;text-decoration: none;">Join Us</a></button>
-              <?php }?>
-                <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
-                <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
-              </div>
-          </nav>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Listings
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="userRequest.php">My Requests</a>
+                        <a class="dropdown-item" href="userTasks.php">My Tasks</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./History.php">History</a>
+                        <a class="dropdown-item" href="./Profile v2.php">Settings</a>
+                        <div class="dropdown-divider"></div>
+                        
+                        </div>
+                    </li> 
+                  <li>  <button type='button'  class='btn btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                    <?php }else{?>
+                        
+                   
+                    <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    </form> -->
+                    
+                <button type="button"  class="btn btn-info" ><a href="./Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
+                    <?php }?>  
+                           <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+                    <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
+                </div>
+             </ul>  
+            </div>
+        
+            </nav>
+       
         </div>
 
 
@@ -191,10 +197,10 @@
                 <div class="form-group">
                     <label class="h4 form-control-label" for="input1">Category of Task<abbr class="text-danger" title="This is required">*</abbr></label>
                     <select class="form-control" name="i1" id="input1" required>
-                        <option value="food">Shopping</option>
-                        <option value="homeservice">Food</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="food">Food</option>
                         <option value="vehiclehelp">Vehicle Help</option>
-                        <option value="vehiclehelp">Home Services</option>
+                        <option value="home">Home Services</option>
                         <option value="misc">Miscellaneous</option>
                             </select>
                     <!--<div class="valid-feedback">Valid</div>-->
@@ -226,15 +232,9 @@
 
                 <div class="form-group">
                     <label class="h4 form-control-label" for="input4">Meet Me At<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="text" class="form-control" name="i4" id="input4" placeholder="Address" required>
-                    <div class="invalid-feedback">Please enter a task description. This field is required</div>
+                    <input type="text" pattern="[0-9]{6}" class="form-control" name="i4" id="input4" placeholder="Address" required>
+                    <div class="invalid-feedback">Please enter a valid address like 760762. This field is required</div>
                 </div>
-
-                <!--<div class="form-group">
-                    <label class="h4 form-control-label" for="input5">Time<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="time" class="form-control time-picker" name="i5" id="input5" placeholder="" required>
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-        </div>-->
 
                 <div class="form-group">
                     <label for="input5" class="h4 form-control-label">Date and time<abbr class="text-danger" title="This is required">*</abbr></label>
@@ -247,6 +247,16 @@
                     <input type="tel" placeholder="8008 1234" pattern="[0-9]{4} [0-9]{4}" class="form-control" name="i6" id="input6" required>
                     <div class="invalid-feedback">Please enter a phone # like 8008 1234. This field is required.</div>
                 </div>
+
+                <div class="form-group">
+                    <label class="h4 form-control-label" for="input8">Upload Image of Task<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <div class="custom-file">
+                        <input type="file" class="form-control custom-file-input" id="i8" name="file" aria-required="true" required data-msg-required="Please select any photo">
+                        <label class="custom-file-label" for="i8">Choose file</label>
+
+                    </div>
+                </div>
+
                 <div>
                     <button type="submit" class="btn" id="submit-btn">Submit Request</button>
                 </div>
@@ -263,6 +273,11 @@
             
             $('#myModal').modal();
         <?php } ?>
+
+        $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
 
         $("#bootstrapForm").submit(function(event) {
             var vForm = $(this);

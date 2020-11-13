@@ -1,6 +1,6 @@
-
+chart();
 window.onload = userDetails();
-window.onload=chart();
+
 function userDetails(){
   var userDetails
     const request = new XMLHttpRequest();
