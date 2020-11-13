@@ -22,7 +22,7 @@
         }
         
         // Allow JPG only
-        if($_FILES["file"]["type"] !== "image/jpeg" && $_FILES["file"]["type"] !== "image/png" ) {
+        if($_FILES["file"]["type"] !== "image/jpeg" ) {
           $uploadOk = 0;
         }
         

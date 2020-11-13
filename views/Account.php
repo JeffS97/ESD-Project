@@ -11,6 +11,10 @@ $dao = new UserDAO();
 $user = $dao->retrieve($email);
 $hashedPass = $user->getPassword();
 
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 ?>
 
 
@@ -302,7 +306,7 @@ $hashedPass = $user->getPassword();
             },
             imageError: function(){
               if (filesize(this.file) >  134217728 ){
-                return "This file is too big"
+                return "This file is too big";
               }
             }
             
