@@ -3,7 +3,7 @@
 
 
     $email = $_SESSION["email"];
-    $_SESSION["success"] = false;
+    $_SESSION["successUpdate"] = false;
 
     if ( isset($_FILES["file"])) {
         // adapted from: https://www.w3schools.com/php/php_file_upload.asp
@@ -22,14 +22,14 @@
         }
         
         // Allow JPG only
-        if($_FILES["file"]["type"] !== "image/jpeg") {
+        if($_FILES["file"]["type"] !== "image/jpeg" && $_FILES["file"]["type"] !== "image/png" ) {
           $uploadOk = 0;
         }
         
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk === 1) {
           if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir . $email . '.jpg')) {
-            $_SESSION["successUpload"] = true;
+            $_SESSION["successUpdate"] = true;
             header("Location: ../views/Account.php");
             exit();
           }

@@ -331,8 +331,7 @@ session_start();?>
         </section>
 
 
-    <section id = "services" style = "background-image: linear-gradient(#f9de7a, #FFFFFF); background-size: 100%;">
-    <hr/>
+    <section id = "services">
         <p class="lead mx-3">Services on Offer</p>
         <div class="container-fluid" id="moving" >
             <div class="container text-center mb-5 ">
@@ -341,7 +340,7 @@ session_start();?>
                       <div class="carousel-inner w-100" role="listbox" >
                           <div class="carousel-item active">
                               <div class="col-md-4">
-                                  <div class="card card-body bg-light">
+                                  <div class="shadow card card-body bg-light">
                                       <img class="img-fluid"  src="./resources/images/carwash.jpg">
                                     <p class="my-2">Car Wash</p>
                                   </div>
@@ -349,7 +348,7 @@ session_start();?>
                           </div>
                           <div class="carousel-item">
                               <div class="col-md-4">
-                                  <div class="card card-body bg-light">
+                                  <div class="shadow card card-body bg-light">
                                   <a href="#">    <img class="img-fluid" src="./resources/images/delivery.jpg"></a>
                                   <p class="my-2">Delivery</p>
                                   </div>
@@ -357,7 +356,7 @@ session_start();?>
                           </div>
                           <div class="carousel-item ">
                               <div class="col-md-4 " >
-                                  <div class="card card-body bg-light ">
+                                  <div class="shadow card card-body bg-light ">
                                       <img class="img-fluid "  src="./resources/images/clean.jpg">
                                       <p class="my-2">Home Services</p>
                                   </div>
@@ -378,8 +377,7 @@ session_start();?>
           </div>
     </section>
 
-    <section id = "activeGigsNearYou" style = "background-image: linear-gradient(#5bc0de, #FFFFFF); background-size: 100%;">
-    <hr/>
+    <section id = "activeGigsNearYou" style = " background-size: 100%;">
     <p class="lead mx-3">Active Gigs in Singapore</p>
         <div class = "container" id = "app">
         <div class = "card-columns">

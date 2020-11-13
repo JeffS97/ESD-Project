@@ -251,7 +251,7 @@
                 <div class="form-group">
                     <label class="h4 form-control-label" for="input8">Upload Image of Task<abbr class="text-danger" title="This is required">*</abbr></label>
                     <div class="custom-file">
-                        <input type="file" class="form-control custom-file-input" id="i8" name="i8" aria-required="true" required data-msg-required="Please select any photo">
+                        <input type="file" class="form-control custom-file-input" id="i8" name="file" aria-required="true" required data-msg-required="Please select any photo">
                         <label class="custom-file-label" for="i8">Choose file</label>
 
                     </div>
