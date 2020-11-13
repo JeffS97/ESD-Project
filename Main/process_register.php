@@ -27,9 +27,6 @@
     if($status){
         # Send success message in the session
         $_SESSION["success"] = "Registration Successful";
-        $_SESSION["email"] = $email;
-        $_SESSION["fullname"] = $fullname;
-        $_SESSION["username"] = $username;
 
         # Redirect to login.php
         # Provide information of the newly registered user 

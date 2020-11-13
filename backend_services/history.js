@@ -22,7 +22,7 @@ const historyData = [
   ];
   console.log(historyData);*/
   
-  //const user = 'glenda';
+  const user = 'glenda';
   var historyData;
 
   const request = new XMLHttpRequest();
@@ -91,7 +91,7 @@ return historyIconBackground;
 }
 
 
-function createHistoryInfo(name, date,status,details,address) {
+function createHistoryInfo(name, date,status,details) {
     const historyInfo = document.createElement('div');
     historyInfo.className = 'historyinfo';
   
@@ -104,8 +104,8 @@ function createHistoryInfo(name, date,status,details,address) {
     historyDate.innerHTML = date;
   
     const historyDetailsBtn = document.createElement('button');
-    historyDetailsBtn.className = 'historydetailsbtn btn btn-warning';
-    historyDetailsBtn.setAttribute("onclick",`showDetails("${name}","${date}","${status}","${details}","${address}")`);
+    historyDetailsBtn.className = 'historydetailsbtn';
+    historyDetailsBtn.setAttribute("onclick",`showDetails("${name}","${date}","${status}","${details}")`);
     historyDetailsBtn.setAttribute("data-toggle","modal");
     historyDetailsBtn.setAttribute("data-target","#historyDetail");
     historyDetailsBtn.innerHTML = 'Details';
@@ -122,15 +122,15 @@ function createHistoryList(historyData) {
     for (let i = 0; i < historyData.length; i++) {
        
         console.log(historyData[i]);
-        const { gigName, gigStartDate, gigStatus, gigDescription, bookeraddress } = historyData[i];
+        const { gigName, gigStartDate, gigStatus, bookeraddress } = historyData[i];
         
         const history = document.createElement('div');
         history.className = 'history';
 
         const historyIconBackground = createHistoryIconBackground(gigStatus);
 
-        const historyInfo = createHistoryInfo(gigName, gigStartDate, gigStatus,gigDescription, bookeraddress);
-        console.log(historyInfo);
+        const historyInfo = createHistoryInfo(gigName, gigStartDate, gigStatus, bookeraddress);
+
         const historyStatus = document.createElement('div');
         
         if (gigStatus == "Active") {
@@ -181,13 +181,13 @@ function createSearchResults(q) {
     return currentTitles.join('') !== historyNameList;
   }
 
-  function showDetails(title, date, status, details,address){
+  function showDetails(title, date, status, details){
     
     const modalHeader = document.getElementById("modalTitle");
     modalHeader.innerText = title;
 
     const modalBody = document.getElementById("modalDetails");
-    modalBody.innerHTML = `<p>${details} @ ${address}</p>`;
+    modalBody.innerText = details;
   }
 
 

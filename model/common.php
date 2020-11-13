@@ -6,8 +6,6 @@ spl_autoload_register(
     }
 );
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
 ?>
