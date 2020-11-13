@@ -10,7 +10,21 @@
     $dao = new gigDetailsDAO();
 
     $gigArray = $dao->viewBooking($id);
-  //  echo $gigArray[0]->getDescription();
+
+    $accepter = $gigArray[0]->getGigAccepter();
+
+    if($accepter!=null){
+        $userdao = new userDAO();
+
+        $accepterProfile = $userdao->retrieve($accepter);
+
+
+        $accepterName = $accepterProfile->getFullName();
+        $accepterUserName = $accepterProfile->getUsername();
+        $imagePath = "../resources/profileImages/$accepter.jpg";
+        $noImagePath = "../resources/profileImages/default.jpg";
+    }
+
 ?>
 
 <head>
@@ -24,8 +38,8 @@
     <style>
         /* Set the size of the div element that contains the map */
         #map {
-            height: 500px;  /* The height is 400 pixels */
-            width: 120%;  /* The width is the width of the web page */
+            height: 650px;  /* The height is 400 pixels */
+            width: 100%;  /* The width is the width of the web page */
         }
             /* Optional: Makes the sample page fill the window. */
             .logo{
@@ -161,6 +175,19 @@
      font-size:16px;
  }
 
+ #duration{
+     width:270px;
+     margin-left:100px;
+ }
+
+ .card-img-top{
+     height:270px;
+ }
+
+ #chatButton{
+     margin:20px;
+ }
+
       </style>
 </head>
 <body>
@@ -232,6 +259,7 @@
             </div>
         <div class="container">
             <div class="row">
+                <div class="col-lg-8">
                 <div id="floating-panel">
                 <b>Your Address: </b>
                 <span id="start"><?php echo  $gigArray[0]->getBookeraddress()?>
@@ -239,10 +267,30 @@
                 <b>Hero's Location: </b>
                 <span id="end"><?php echo  $gigArray[0]->getAccepteraddress()?>
                 </span>
-                <span><a class="btn btn-warning ml-5 mb-2" href="../views/Chat.php?id=<?php echo $gigArray[0]->getId()?>">Chat with Hero</a></span>
                 </div>
                 <div id="map"></div>
-                <div id="duration"><?php if($gigArray[0]->getAccepteraddress()===null){echo "No Hero has come to your rescue yet! Please be patient";}else{echo "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way";}?></div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div id="duration">
+                    <?php if($gigArray[0]->getAccepteraddress()===null){
+                        echo "No Hero has come to your rescue yet! Please be patient";}
+                        else{
+                            echo '<div class="card text-center mt-5">
+                            <img class="card-img-top" src="'.$imagePath.'">
+                            <div class="card-body">
+                            <h5 class="card-title">This is your hero!</h5>
+                            <p class="card-text"><b>'.ucwords($accepterName).'</b></p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item border-0" id="durationData"></li>
+                            </ul>
+                                <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Hero</a>
+                            </div>';
+                            //echo "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way";
+                            }?>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
@@ -301,9 +349,10 @@
                     if (status === "OK") {
                         var directionsData = response.routes[0].legs[0];
                         console.log(directionsData.duration.text);
-                        document.getElementById("duration").innerHTML = "Your Hero will take: " + directionsData.duration.text + " to come to your aid!";
+                        document.getElementById("durationData").innerHTML = 'Your Hero will take:</br> <h1>' + directionsData.duration.text + "</h1></br> to come to your aid!";
                         directionsRenderer.setDirections(response);
                     } else {
+                        document.getElementById("durationData").innerHTML = "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way.";
                         //window.alert("Directions request failed due to " + status);
                     }
                     }
