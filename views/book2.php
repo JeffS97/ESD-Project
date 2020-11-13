@@ -7,6 +7,7 @@ session_start();
     <!-- Required meta tags -->
     
     <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
@@ -133,7 +134,30 @@ width: 100%;
         display: block;
     }
 }
+.alert {
+  padding: 20px;
+  
+  background-color: #FFA500; /* Red */
+  color: white;
+  margin-left: 15px;
+  width:80%;
+}
 
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
 .carousel-inner .carousel-item.active,
 .carousel-inner .carousel-item-next,
 .carousel-inner .carousel-item-prev {
@@ -188,10 +212,10 @@ width: 100%;
     }
     
     .item-price {
-      color: black;
+    
       margin-right: 8px;
       font-family: "Open Sans", sans-serif;
-      color: aqua;
+      color:red ;
     }
     
     .item-quantity {
@@ -316,7 +340,7 @@ card design
   <div class="container text-center mb-5 ">
     <h2 class="font-weight-light">Services</h2>
     <div class="row mx-auto " >
-        <div id="recipeCarousel"  class="carousel slide mx-auto animate__animated animate__fadeIn" data-ride="carousel">
+        <div id="gigscarousel"  class="carousel slide mx-auto animate__animated animate__fadeIn" data-ride="carousel">
             <div class="carousel-inner w-100" role="listbox" >
                 <div class="carousel-item active">
                     <div class="col-md-4">
@@ -352,11 +376,11 @@ card design
                 </div>
              
             </div>
-            <a class="carousel-control-prev " href="#recipeCarousel" role="button" data-slide="prev">
+            <a class="carousel-control-prev " href="#gigscarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next " href="#recipeCarousel" role="button" data-slide="next">
+            <a class="carousel-control-next " href="#gigscarousel" role="button" data-slide="next">
                 <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
@@ -394,6 +418,7 @@ card design
           
           <button class="btn btn-danger btn-list float-right ">   <i class="fa fa-bars "></i> </button>
           
+          <i id="icon" class="fa fa-info-circle fa-lg"></i><p class="bg-warning   d-inline" id="weather"></p>
       <h1 class="mt-3">Browse Opportunities</h1>
       <div class="results" id="number"></div>
         <div class=" grid-container mt-5 ">
@@ -428,7 +453,7 @@ function gridList(e) {
 
 $(document).on('click', '.btn-grid', gridList);
 $(document).on('click', '.btn-list', showList);
-$('#recipeCarousel').carousel({
+$('#gigscarousel').carousel({
   interval: 3000
 })
 
@@ -452,6 +477,7 @@ $('.carousel .carousel-item').each(function(){
 
 </script>
 <script src="./book2.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   </body>
   
 </html>

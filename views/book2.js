@@ -17,6 +17,7 @@ function getPost($val) {
             var img = "";
             var number = 0;
             var unique = [];
+            if(posts.gig.length!==0){
             for (var node of posts.gig) {
 
 
@@ -57,6 +58,15 @@ function getPost($val) {
             `;
                 number++;
             }
+        }
+        else{
+            document.getElementById('bookings').innerHTML =`
+            <div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  No Tasks related to ${value} ,Try searching other services
+</div>
+            `
+        }
 
             document.getElementById("number").innerText = number + " Tasks Available";
         }
@@ -152,3 +162,27 @@ request.onreadystatechange = function() {
 }
 request.open('GET', url2, true);
 request.send();
+
+
+//Task 3
+var request=new XMLHttpRequest();
+request.onreadystatechange=function(){
+    if(this.readyState==4 && this.status==200){
+        var data=JSON.parse(this.response);
+        console.log(data);
+        if(data.weather[0].main=="Clouds" || data.weather[0].main=="Rain"  || data.weather[0].main=="Drizzle"){
+            document.getElementById("weather").innerHTML="  Delivery Services may take  longer due to Rainy Condition"
+        }
+        else if(data.main.temp-273.15>=30){
+            document.getElementById("weather").innerHTML="  Good Sunny Time for a Car Wash";
+        }
+        else{
+            document.getElementById("icon").style.display="none";
+        }
+    }  
+}
+request.open("GET", "https://community-open-weather-map.p.rapidapi.com/weather?q=Singapore",true);
+request.setRequestHeader("x-rapidapi-key", "b64cb24da7mshb54fff16a229eb6p18d0f2jsn6534972993ac");
+
+
+request.send('en');
