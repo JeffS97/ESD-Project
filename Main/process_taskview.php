@@ -274,12 +274,12 @@
                 <div id="map"></div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-4 mt-5">
                     <div id="duration">
                     <?php if($gigArray[0]->getAccepteraddress()===null){
-                        echo "No Hero has come to your rescue yet! Please be patient";}
+                        echo "<h1> No Hero has come to your rescue yet! Please be patient </h1>";}
                         else{
-                            echo '<div class="card text-center mt-5">
+                            echo '<div class="card text-center">
                             <img class="card-img-top" src="'.$imagePath.'">
                             <div class="card-body">
                             <h5 class="card-title">This is your hero!</h5>
@@ -361,7 +361,7 @@
                         document.getElementById("durationData").innerHTML = 'Your Hero will take:</br> <h1>' + directionsData.duration.text + "</h1></br> to come to your aid!";
                         directionsRenderer.setDirections(response);
                     } else {
-                        document.getElementById("durationData").innerHTML = "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way.";
+                        document.getElementById("durationData").innerHTML = "<h1> Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way. </h1>";
                         //window.alert("Directions request failed due to " + status);
                     }
                     }
