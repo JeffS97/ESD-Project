@@ -184,7 +184,7 @@
  }
 
  .card-img-top{
-     height:270px;
+     height:200px;
  }
 
  #chatButton{
@@ -279,7 +279,7 @@
                     <?php if($gigArray[0]->getAccepteraddress()===null){
                         echo "<h1> No Hero has come to your rescue yet! Please be patient </h1>";}
                         else{
-                            echo '<div class="card text-center">
+                            echo '<div class="card text-center" style="width: 18rem;">
                             <img class="card-img-top" src="'.$imagePath.'">
                             <div class="card-body">
                             <h5 class="card-title">This is your hero!</h5>

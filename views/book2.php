@@ -134,6 +134,7 @@ width: 100%;
         display: block;
     }
 }
+
 .alert {
   padding: 20px;
   
@@ -345,7 +346,7 @@ card design
                 <div class="carousel-item active">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                            <img class="img-fluid" style="height: 270px;" src="../resources/images/plumber.jpg">
+                        <a href="#" onclick="getPost('home')">   <img class="img-fluid" style="height: 270px;" src="../resources/images/plumber.jpg"></a>
                           Home Services
                         </div>
                     </div>
@@ -353,28 +354,36 @@ card design
                 <div class="carousel-item">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                        <a href="#">    <img class="img-fluid" style="height: 270px;" src="../resources/images/delivery.jpg"></a>
-                        Delivery
+                        <a href="#" onclick="getPost('shopping')">    <img class="img-fluid"  style="height: 270px;" src="../resources/images/shopping.jpg"></a>
+                        Shopping
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                        <a href="#">    <img class="img-fluid" style="height: 270px;" src="../resources/images/food.jpg"></a>
-                        Delivery
+                        <a href="#" onclick="getPost('food')">   <img class="img-fluid" style="height: 270px;" src="../resources/images/food.jpg"></a>
+                       Food Delivery
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item ">
                     <div class="col-md-4 " >
                         <div class="card card-body bg-light ">
-                            <img class="img-fluid " style="height: 270px;" src="../resources/images/clean.jpg">
-                            Home Services
+                        <a href="#" onclick="getPost('vehicleHelp')">   <img class="img-fluid " style="height: 270px;" src="../resources/images/vehicle.jpg"></a>
+                           Vehicle Help
                         </div>
                     </div>
                 </div>
-             
+                
+                <div class="carousel-item ">
+                    <div class="col-md-4 " >
+                        <div class="card card-body bg-light ">
+                        <a href="#" onclick="getPost('miscellaneous')">  <img class="img-fluid " style="height: 270px;" src="../resources/images/misc.jpg"></a>
+                           Miscellaneous
+                        </div>
+                    </div>
+                </div>
             </div>
             <a class="carousel-control-prev " href="#gigscarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>

@@ -1,11 +1,13 @@
 var value = document.getElementById("search").value;
 getPost(value);
 
-function getPost($val) {
+function getPost(val) {
 
+    console.log(val);
+    
     var url = "";
-    if ($val !== "") {
-        url = "../Main/searchbar.php?searchterm=" + $val;
+    if (val !== "") {
+        url = "../Main/searchbar.php?searchterm=" + val;
     } else {
         url = "../Main/getPost.php";
     }
@@ -45,7 +47,7 @@ function getPost($val) {
                 }
                 document.getElementById('bookings').innerHTML += `<div class="col-12   col-md-6 col-lg-4 ">
             <div class=" services  card expand ">
-              <img class="card-img-top img-fluid" src="${img}" alt="Card image cap">
+              <img class="card-img-top img-fluid" src="../resources/gigImages/${node.gigId}.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">${node.gigName} -Booked by  ${name}</h5>
                 <h6>${node.bookeraddress}</h6>
@@ -63,7 +65,7 @@ function getPost($val) {
             document.getElementById('bookings').innerHTML =`
             <div class="alert">
   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-  No Tasks related to ${value} ,Try searching other services
+  No Tasks related to ${val} ,Try searching other services
 </div>
             `
         }
@@ -100,7 +102,7 @@ request.onreadystatechange = function() {
                     img = "../resources/images/help.jpg";
                 }
                 document.getElementById("current").innerHTML += ` <li class="clearfix">
-            <img class="bookimg" src="${img}" alt="item" />
+            <img class="bookimg" src="../resources/gigImages/${node.gigId}.jpg" alt="item" />
             <span class="item-name">${node.gigName}</span>
             <span class="item-price">$${node.gigPrice}</span>
           
@@ -143,7 +145,7 @@ request.onreadystatechange = function() {
                     img = "../resources/images/help.jpg";
                 }
                 document.getElementById("tasks").innerHTML += ` <li class="clearfix">
-            <img class="bookimg" src="${img}" alt="item" />
+            <img class="bookimg" src="../resources/gigImages/${node.gigId}.jpg" alt="item" />
             <span class="item-name">${node.gigName}</span>
             <span class="item-price">$${node.gigPrice}</span>
        
@@ -167,24 +169,24 @@ request.send();
 
 
 //Task 3
-var request=new XMLHttpRequest();
-request.onreadystatechange=function(){
-    if(this.readyState==4 && this.status==200){
-        var data=JSON.parse(this.response);
+// var request=new XMLHttpRequest();
+// request.onreadystatechange=function(){
+//     if(this.readyState==4 && this.status==200){
+//         var data=JSON.parse(this.response);
         
-        if((data.weather[0].main=="Clouds") || (data.weather[0].main=="Rain" ) || (data.weather[0].main=="Drizzle")){
-            document.getElementById("weather").innerHTML="  Delivery Services may take  longer due to Rainy Condition"
-        }
-        else if(data.main.temp-273.15>=30){
-            document.getElementById("weather").innerHTML="  Good Sunny Time for a Car Wash";
-        }
-        else{
-            document.getElementById("weather").className="d-none";
-        }
-    }  
-}
-request.open("GET", "https://community-open-weather-map.p.rapidapi.com/weather?q=Singapore",true);
-request.setRequestHeader("x-rapidapi-key", "b64cb24da7mshb54fff16a229eb6p18d0f2jsn6534972993ac");
+//         if((data.weather[0].main=="Clouds") || (data.weather[0].main=="Rain" ) || (data.weather[0].main=="Drizzle")){
+//             document.getElementById("weather").innerHTML="  Delivery Services may take  longer due to Rainy Condition"
+//         }
+//         else if(data.main.temp-273.15>=30){
+//             document.getElementById("weather").innerHTML="  Good Sunny Time for a Car Wash";
+//         }
+//         else{
+//             document.getElementById("weather").className="d-none";
+//         }
+//     }  
+// }
+// request.open("GET", "https://community-open-weather-map.p.rapidapi.com/weather?q=Singapore",true);
+// request.setRequestHeader("x-rapidapi-key", "b64cb24da7mshb54fff16a229eb6p18d0f2jsn6534972993ac");
 
 
-request.send('en');
+// request.send('en');

@@ -25,7 +25,9 @@ session_start();
         /* Set the size of the div element that contains the map */
         #map {
             height: 200px;  /* The height is 400 pixels */
-            width: 120%;  /* The width is the width of the web page */
+            width: 120%; 
+          
+             /* The width is the width of the web page */
         }
             /* Optional: Makes the sample page fill the window. */
             .logo{
