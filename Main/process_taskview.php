@@ -271,12 +271,12 @@
                 <div id="map"></div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-4 mt-5">
                     <div id="duration">
                     <?php if($gigArray[0]->getAccepteraddress()===null){
-                        echo "No Hero has come to your rescue yet! Please be patient";}
+                        echo "<h1> No Hero has come to your rescue yet! Please be patient </h1>";}
                         else{
-                            echo '<div class="card text-center mt-5">
+                            echo '<div class="card text-center">
                             <img class="card-img-top" src="'.$imagePath.'">
                             <div class="card-body">
                             <h5 class="card-title">This is your hero!</h5>
@@ -285,7 +285,7 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item border-0" id="durationData"></li>
                             </ul>
-                                <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Hero</a>
+                                <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat</a>
                             </div>';
                             //echo "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way";
                             }?>
