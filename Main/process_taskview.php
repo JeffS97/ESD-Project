@@ -6,7 +6,10 @@
     session_start();
 
     $id=$_GET["id"];
-    
+    $num=false;
+    if(isset($_GET["check"])){
+        $num=true;
+    }
     $dao = new gigDetailsDAO();
 
     $gigArray = $dao->viewBooking($id);
@@ -285,8 +288,14 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item border-0" id="durationData"></li>
                             </ul>
-                                <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Hero</a>
-                            </div>';
+                            ';
+                            if($num){
+                               echo ' <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Customer</a> </div>;';
+                            
+                                }   
+                                else{
+                                    echo ' <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Hero </a> </div>;';
+                                }
                             //echo "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way";
                             }?>
                     </div>
