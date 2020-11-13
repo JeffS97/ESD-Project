@@ -352,7 +352,7 @@
                         document.getElementById("durationData").innerHTML = 'Your Hero will take:</br> <h1>' + directionsData.duration.text + "</h1></br> to come to your aid!";
                         directionsRenderer.setDirections(response);
                     } else {
-                        document.getElementById("durationData").innerHTML = "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way.";
+                        document.getElementById("durationData").innerHTML = "<h1> Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way. </h1>";
                         //window.alert("Directions request failed due to " + status);
                     }
                     }
