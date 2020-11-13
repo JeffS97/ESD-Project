@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+
 require_once "../model/protect.php";
 $email = $_SESSION["email"];
 $imagePath = "../resources/profileImages/$email.jpg";
