@@ -17,7 +17,12 @@
         }
         
       body{
-          background-color: wheat   ;
+        
+        
+        
+         
+
+
       }
         
         button:hover {
@@ -34,7 +39,7 @@
             width: 800px;
             height: 300px;
             margin: 0 auto;
-            margin-top: 150px;
+            margin-top: 70px;
         }
         
         .left,
@@ -58,7 +63,7 @@
         }
         
         .back-header {
-            font-family: 'Ubuntu';
+            font-family: 'Open Sans', sans-serif
             font-size: 30px;
             font-weight: 500;
         }
@@ -75,7 +80,9 @@
             position: absolute;
             left: 0;
             bottom: 60px;
+           
         }
+        
         
         .background .left button {
             left: 20px;
@@ -89,7 +96,7 @@
             position: absolute;
             width: 375px;
             height: 400px;
-            background-color: white;
+            background-color:white;
             top: -25px;
             left: 10px;
             -webkit-box-shadow: 9px 13px 16px 0px rgba(0, 0, 0, 0.75);
@@ -112,6 +119,7 @@
             color: #fafafa;
             -webkit-transition: .3s all;
             transition: .3s all;
+            
         }
         
         .back-btn:hover {
@@ -140,7 +148,7 @@
         
         .form-header {
             font-size: 32px;
-            color: #FC7D5F;
+            color: red;
         }
         
         .form-container input {
@@ -165,6 +173,7 @@
         .login button,
         .forgot {
             display: inline-block;
+          
         }
         
         .forgot {
@@ -183,20 +192,27 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <img src="../resources/images/helping.jpg" width="40%">
-            </div>
-        <div class="col-lg-8">
-    <div class="wrapper" style="float:left;">
+           <div class="col-lg-4">
+  <img src="../resources/images/hero.jpg" style="position:fixed;z-index:-1;width:35%;height:100%;   position: absolute;
+  mix-blend-mode: soft-light;">;
+           
+         
+           </div>
+        <div class="col-lg-8 " style="float:right;">
+        <h1 style="margin-left:20%;font-size:70px;font-family: 'Open Sans', sans-serif;" ><i>Hire A Hero</i></h1>
+    <div class="wrapper" >
+    
         <div class="background">
+        
             <div class="left">
+            
                 <h2 class="back-header">Dont have an account yet?</h2>
-                <p class="back-p">Well doggonit you should sign up today!</p>
+                <p class="back-p">Sign up today and be a Hero or get a Hero to help you</p>
                 <button class="back-btn signup-but">SIGN UP</button>
             </div>
             <div class="right">
                 <h2 class="back-header">Do you already have an account?</h2>
-                <p class="back-p">Well doggonit let's get you logged in!</p>
+                <p class="back-p">Let's get you logged in!</p>
                 <button class="back-btn login-but">LOGIN</button>
             </div>
         </div>
@@ -230,13 +246,7 @@
             </div>
             </div>
            
-            <div id="status"></div>	
-<!-- Facebook login or logout button -->
-<a href="javascript:void(0);" onclick="fbLogin();" id="fbLink"><img style="width:200px" src="facebook.png 
-"/></a>
-
-<!-- Display user's profile info -->
-<div class="ac-data" id="userData"></div>
+            
         </div>
     </div>
     </div>

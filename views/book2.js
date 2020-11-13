@@ -39,7 +39,7 @@ function getPost($val) {
                 var description = "";
 
                 if (node.gigDescription.length > 30) {
-                    description = node.gigDescription.slice(0, 29) + "...";
+                    description = node.gigDescription.slice(0, 20) + "...";
                 } else {
                     description = node.gigDescription;
                 }
@@ -49,7 +49,7 @@ function getPost($val) {
               <div class="card-body">
                 <h5 class="card-title">${node.gigName} -Booked by  ${name}</h5>
                 <h6>${node.bookeraddress}</h6>
-                <p class="card-text">${description} lol<br>
+                <p class="card-text">${description} <br>
                 Date of Task-${node.gigStartDate}</p>
                 <button class="button" onclick="window.location.href='../Main/process_task.php?id='+${node.gigId}">View</button>
               </div>
@@ -169,15 +169,15 @@ var request=new XMLHttpRequest();
 request.onreadystatechange=function(){
     if(this.readyState==4 && this.status==200){
         var data=JSON.parse(this.response);
-        console.log(data);
-        if(data.weather[0].main=="Clouds" || data.weather[0].main=="Rain"  || data.weather[0].main=="Drizzle"){
+        
+        if((data.weather[0].main=="Clouds") || (data.weather[0].main=="Rain" ) || (data.weather[0].main=="Drizzle")){
             document.getElementById("weather").innerHTML="  Delivery Services may take  longer due to Rainy Condition"
         }
         else if(data.main.temp-273.15>=30){
             document.getElementById("weather").innerHTML="  Good Sunny Time for a Car Wash";
         }
         else{
-            document.getElementById("icon").style.display="none";
+            document.getElementById("weather").className="d-none";
         }
     }  
 }

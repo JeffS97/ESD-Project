@@ -245,6 +245,7 @@ session_start();
     
 <h1 id="taskName"><?php echo $gigArray[0]->getGigName() ?></h1>
 <br>
+<img src="../resources/gigImages/<?php echo $gigArray[0]->getId()?>.jpg" alt="">
 <span class="sublayout"><?php echo  $gigArray[0]->getCategoryName() ?></span>
 <div class="card">
   <div class="card-header">

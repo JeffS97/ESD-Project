@@ -119,7 +119,7 @@ $noImagePath = "../resources/profileImages/default.jpg";
                         
                         </div>
                     </li> 
-                  <li>  <button type='button'  class='btn btn-info up'  ><a href='../views/Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li>  <button type='button'  class='btn btn-info up'  ><a href='../main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    
