@@ -192,7 +192,7 @@
         <div class="w-75 mx-auto card img-fluid">
             <!-- <img class="card-img-top" src="plumb.jpg" alt="Card image" style="height:100%;">
             <div class="card-img-overlay"> -->
-            <form class="card-body" novalidate="" method="POST" action="../Main/addTask.php" id="bootstrapForm">
+            <form class="card-body" novalidate="" method="POST" action="../Main/addTask.php" id="bootstrapForm" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label class="h4 form-control-label" for="input1">Category of Task<abbr class="text-danger" title="This is required">*</abbr></label>
@@ -287,22 +287,7 @@
             if (vForm[0].checkValidity() === false) {
                 event.preventDefault()
                 event.stopPropagation()
-            } else {
-                // $("#myModal").modal()
-
-                // $.ajax({
-                //     type: "POST",
-                //     url: "process.php",
-                //     data: dataString,
-                //     success: function() {
-                //         // Display message back to the user here
-                //         $("#myModal").modal()
-                //         return false;
-                //     }
-                // });
-
-
-            }
+            } 
         });
     </script>
 </body>

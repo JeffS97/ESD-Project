@@ -30,22 +30,27 @@
             return $isOk;
         }
 
-       /* public function addLike($id) {
+        public function getNumberOfGigs() {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
-
-            $sql = "UPDATE `post` SET `likes` = `likes` + 1 WHERE `id` = :id";
+            
+            $sql = "select count(*) as cnt from gigDetails ";
 
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
 
-            $isOk = $stmt->execute();
+            $result = 0;
+            while($row = $stmt->fetch()){
+                $result = $row['cnt'];
+            }
 
             $stmt = null;
             $pdo = null;
 
-            return $isOk;
-        }*/
+            return $result;
+        }
+
         public function viewBooking($id) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
