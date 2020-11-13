@@ -83,6 +83,9 @@ width: 100%;
     -webkit-box-direction: normal;
             flex-direction: column;
   }
+  .list-view .card:hover{
+width: 100%;
+}
 }
 .list-view .card > .card-img-top {
   width:200px;
@@ -218,7 +221,7 @@ card design
 
 }
 .expand:hover{
- width:280px;
+ width:300px;
  z-index: 1;
 }
     .results{color: #7a7d85;
