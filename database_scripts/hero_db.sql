@@ -40,16 +40,14 @@ create table gigDetails
 
 create table chat
 (
-    chatid int NOT NULL AUTO_INCREMENT,
-    sender varchar(50) NOT NULL,
+    chatid varchar(20),
+    sender varchar(50),
     message text,
-    recipient varchar(50) NOT NULL,
-	msgDateTime	datetime NOT NULL,
-    gigId int NOT NULL,
+    recipient varchar(50),
+	msgDateTime	datetime,
 	PRIMARY KEY (chatid),
     FOREIGN KEY fk1 (sender) REFERENCES user(email),
-    FOREIGN KEY fk2 (recipient) REFERENCES user(email),
-    FOREIGN KEY fk3 (gigId) REFERENCES gigdetails(gigId)
+    FOREIGN KEY fk2 (recipient) REFERENCES user(email)
 );
 
 
@@ -60,18 +58,16 @@ INSERT INTO user (`username`,`fullname`, `email`,`password` )
 VALUES ('admin','admin','admin@gmail.com','$2y$10$7aSS0yScusjM8HoOHcqSluVMui0mNH5IS7Jqx/fYWUliZR/4c5m7m');
 
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan@gmail.com','cleaning' ,'House Clean', 20,2020-11-20,'Active','yishun 81');
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan','cleaning' ,'House Clean', 20,2020-11-20,'Active','yishun 81');
 
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('admin@gmail.com','food' ,'Takeaway food', 10,'2020-11-21','Active','yishun 71');
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda','food' ,'Takeaway food', 10,'2020-11-21','Active','yishun 71');
             
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('admin@gmail.com','cleaning' ,'House Clean', 20,'2020-11-20','Active','yishun 61');
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda','cleaning' ,'House Clean', 20,'2020-11-20','Active','yishun 61');
 
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('admin@gmail.com','cleaning' ,'House Clean', 20,'2020-11-20','Active','yishun 81');
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan','cleaning' ,'House Clean', 20,'2020-11-20','Active','yishun 81');
 
 
-select * from user;
-select * from gigdetails;
-select * from chat;
+

@@ -228,13 +228,13 @@ session_start();?>
                         Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="./views/History.php">History</a>
-                        <a class="dropdown-item" href="./views/Profile v2.php">Settings</a>
+                        <a class="dropdown-item" href="../../views/History.php">History</a>
+                        <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
                         <div class="dropdown-divider"></div>
                         
                         </div>
                     </li> 
-                  <li>  <button type='button'  class='btn btn-info-nav btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li>  <button type='button'  class='btn btn-info-nav btn-info'  ><a href='./Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    
@@ -243,7 +243,7 @@ session_start();?>
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form> -->
                     
-                <button type="button"  class="btn btn-info-nav btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Login</a></button>
+                <button type="button"  class="btn btn-info-nav btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
                     <?php }?>  
                            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
@@ -257,7 +257,7 @@ session_start();?>
             <h1 style="font-size:74px; font-family: 'Inter', sans-serif; margin-bottom: 0; color: white;">HIRE A HERO</h1>
             <h5 style="font-size: 25px; font-family: 'Montserrat', sans-serif; padding-top: 0; color: white;">Get instant help for everyday chores!</h5>
             <label class="sr-only" for="inlineFormInputGroup">Username</label>
-            <form action="views/book2.php" method="POST" id="searchbar">
+            <form action="../../Main/searchbar.php" method="POST" id="searchbar">
                 <div class="input-group col-sm-4" style="margin: 0; padding: 0; margin-top: 20px; font-family: 'Open Sans', sans-serif;">
                 <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search Gigs" name ='searchterm'>
                     <div class="input-group-prepend">
@@ -331,7 +331,8 @@ session_start();?>
         </section>
 
 
-    <section id = "services">
+    <section id = "services" style = "background-image: linear-gradient(#f9de7a, #FFFFFF); background-size: 100%;">
+    <hr/>
         <p class="lead mx-3">Services on Offer</p>
         <div class="container-fluid" id="moving" >
             <div class="container text-center mb-5 ">
@@ -340,7 +341,7 @@ session_start();?>
                       <div class="carousel-inner w-100" role="listbox" >
                           <div class="carousel-item active">
                               <div class="col-md-4">
-                                  <div class="shadow card card-body bg-light">
+                                  <div class="card card-body bg-light">
                                       <img class="img-fluid"  src="./resources/images/carwash.jpg">
                                     <p class="my-2">Car Wash</p>
                                   </div>
@@ -348,7 +349,7 @@ session_start();?>
                           </div>
                           <div class="carousel-item">
                               <div class="col-md-4">
-                                  <div class="shadow card card-body bg-light">
+                                  <div class="card card-body bg-light">
                                   <a href="#">    <img class="img-fluid" src="./resources/images/delivery.jpg"></a>
                                   <p class="my-2">Delivery</p>
                                   </div>
@@ -356,7 +357,7 @@ session_start();?>
                           </div>
                           <div class="carousel-item ">
                               <div class="col-md-4 " >
-                                  <div class="shadow card card-body bg-light ">
+                                  <div class="card card-body bg-light ">
                                       <img class="img-fluid "  src="./resources/images/clean.jpg">
                                       <p class="my-2">Home Services</p>
                                   </div>
@@ -377,7 +378,8 @@ session_start();?>
           </div>
     </section>
 
-    <section id = "activeGigsNearYou" style = " background-size: 100%;">
+    <section id = "activeGigsNearYou" style = "background-image: linear-gradient(#5bc0de, #FFFFFF); background-size: 100%;">
+    <hr/>
     <p class="lead mx-3">Active Gigs in Singapore</p>
         <div class = "container" id = "app">
         <div class = "card-columns">
@@ -540,7 +542,6 @@ const vm = new Vue ({
     },
     mounted: function(){
         this.getGigDetails();
-        setInterval(this.getGigDetails(), 3000);
     }
 });
 </script>

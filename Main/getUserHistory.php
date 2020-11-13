@@ -1,11 +1,10 @@
 <?php
     require_once "common.php";
-    session_start();
+
     $dao = new gigDetailsDAO();
-    
-    $email=$_SESSION["email"];
+
     // to replace 'glenda' as user session variable.
-    $historyArray = $dao->getUserGigsHistory($email);
+    $historyArray = $dao->getUserGigsHistory('glenda');
 
     $result = array("userhistory" => array() );
 
@@ -18,7 +17,6 @@
             "gigPrice" => $history->getGigPrice(),
             "gigStartDate" => $history->getGigStartDate(),
             "gigEndDate" => $history->getGigEndDate(),
-            "gigDescription" => $history->getDescription(),
             "gigStatus" => $history->getGigStatus(),
             "bookeraddress" => $history->getBookeraddress(),
             "accepteraddress" => $history->getAccepteraddress()

@@ -1,6 +1,6 @@
 
 window.onload = userDetails();
-chart();
+window.onload=chart();
 function userDetails(){
   var userDetails
     const request = new XMLHttpRequest();
@@ -43,12 +43,12 @@ var myChart = new Chart(ctx, {
           label: 'Earnings $',
           data: earn,
           backgroundColor: [
-              'rgb(255, 153, 0)',
-              'rgb(255, 153, 0)',
-              'rgb(255, 153, 0)',
-              'rgb(255, 153, 0)',
-              'rgb(255, 153, 0)',
-              'rgb(255, 153, 0)'
+              'rgba(0,60,100,1)',
+              'rgba(0,60,100,1)',
+              'rgba(0,60,100,1)',
+              'rgba(0,60,100,1)',
+              'rgba(0,60,100,1)',
+              'rgba(0,60,100,1)'
           ],
           strokeColor: "black",
           borderWidth: 1

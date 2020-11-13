@@ -115,31 +115,10 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "select * from gigDetails where gigbooker=:book and (gigStatus='Active' or gigStatus='Processing' )";
+            $sql = "select * from gigDetails where gigbooker=:book and gigStatus='active' ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':book', $book, PDO::PARAM_STR);
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $stmt->execute();
-
-            $result = [];
-            while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
-            }
-
-            $stmt = null;
-            $pdo = null;
-
-            return $result;
-        }
-        public function getUserTask($task) {
-            $conn = new ConnectionManager();
-            $pdo = $conn->getConnection();
-            
-            $sql = "select * from gigDetails where gigaccepter=:task and gigStatus='Processing' ";
-
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':task', $task, PDO::PARAM_STR);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
 
@@ -188,7 +167,7 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"],$row['gigDescription']);
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"],$row['gigDescription']);
             }
             
 
@@ -211,7 +190,7 @@
 
             $result = [];
             while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"],$row['gigDescription']);
+                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row["gigStatus"],$row["bookeraddress"],$row["accepteraddress"]);
             }
 
             $stmt = null;
@@ -219,70 +198,27 @@
 
             return $result;
         }
-        public function getSearch($search) {
+
+        public function addChat($sender, $receiver, $datetime, $msg) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "SELECT  * FROM gigDetails WHERE (gigName LIKE CONCAT('%',:search,'%') OR categoryName=:search) and gigStatus='Active' ";
+            $sql = `INSERT INTO chat (sender, recipient, msgDateTime, message)
+            VALUES (:sender,:receiver ,:datetime ,:msg );`;
 
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+            $stmt->bindParam(':sender', $sender, PDO::PARAM_STR);
+            $stmt->bindParam(':receiver', $receiver, PDO::PARAM_STR);
+            $stmt->bindParam(':datetime', $datetime, PDO::PARAM_STR);
+            $stmt->bindParam(':msg', $msg, PDO::PARAM_STR);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
-
-            $result = [];
-            while($row = $stmt->fetch()){
-                $result[] = new gigDetails($row['gigId'],$row["gigbooker"],$row["gigaccepter"],$row["categoryName"],$row["gigName"],$row["gigPrice"],$row["gigStartDate"], $row["gigEndDate"],$row['gigDescription'],$row["bookeraddress"],$row["accepteraddress"],$row["gigStatus"]);
-            }
-
+          
             $stmt = null;
             $pdo = null;
 
             return $result;
         }
-        public function UpdateBooking($time,$accepteradd,$accepter,$id) {
-            $conn = new ConnectionManager();
-            $pdo = $conn->getConnection();
-            
-            $sql = "UPDATE gigDetails SET gigEndDate=:datenow ,accepteraddress=:accepteradd ,gigaccepter=:accepter,gigStatus='Processing' where gigId=:id ";
-
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':datenow', $time, PDO::PARAM_STR);
-            $stmt->bindParam(':accepteradd', $accepteradd, PDO::PARAM_STR);
-            $stmt->bindParam(':accepter', $accepter, PDO::PARAM_STR);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-          
-            $isOk = $stmt->execute();
-
-            # $lastID = $pdo->lastInsertId();
-        
-            $stmt = null;
-            $pdo = null;
-        
-            return $isOk;
-        }
-        public function Complete($date,$id) {
-            $conn = new ConnectionManager();
-            $pdo = $conn->getConnection();
-            
-            $sql = "UPDATE gigDetails SET gigEndDate=:datenow , gigStatus='Completed' where gigId=:id ";
-
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':datenow', $date, PDO::PARAM_STR);
-           
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-          
-            $isOk = $stmt->execute();
-
-            # $lastID = $pdo->lastInsertId();
-        
-            $stmt = null;
-            $pdo = null;
-        
-            return $isOk;
-        }
-
-        
 /*
 
         public function getHigherThanID($id, $limit){
