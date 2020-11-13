@@ -257,7 +257,7 @@ session_start();?>
             <h1 style="font-size:74px; font-family: 'Inter', sans-serif; margin-bottom: 0; color: white;">HIRE A HERO</h1>
             <h5 style="font-size: 25px; font-family: 'Montserrat', sans-serif; padding-top: 0; color: white;">Get instant help for everyday chores!</h5>
             <label class="sr-only" for="inlineFormInputGroup">Username</label>
-            <form action="../../Main/searchbar.php" method="POST" id="searchbar">
+            <form action="../WAD-2-Project/Main/searchbar.php" method="POST" id="searchbar">
                 <div class="input-group col-sm-4" style="margin: 0; padding: 0; margin-top: 20px; font-family: 'Open Sans', sans-serif;">
                 <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search Gigs" name ='searchterm'>
                     <div class="input-group-prepend">

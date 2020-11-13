@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchbar Results</title>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="row row-cols-1 row-cols-md-3">
+        <div class="col mb-4">
+          <div class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" id = "title">herouchevorucv</h5>
+              <p class="card-text" id = "text">dgc isUG DCIUgw dou</p>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script>
+        var title = document.getElementById("title");
+        var text = document.getElementById("text");
+        
+        function getServerTime() {
+        var request = new XMLHttpRequest();
+        var url = "searchbar.php";
+        request.open("POST", url, true);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        
+        request.onreadystatechange = function() {
+        if(request.readyState == 4 && request.status == 200) {
+        showTime(request.responseText);
+        }
+        }
+        request.send();
+        }
+        
+        function showTime(response) {
+        var time = JSON.parse(response);
+        
+        var hour = time.tm_hour;
+        var minute = parseInt(time.tm_min);
+        
+        if (minute < 10) {
+        minute = "0" + minute;
+        }
+        
+        myText.textContent = hour + ":" + minute;
+        }
+        
+    </script>
+</body>
+</html>
