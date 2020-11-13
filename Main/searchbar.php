@@ -1,3 +1,4 @@
+
 <?php
     // # Autoload
     spl_autoload_register(
@@ -39,5 +40,4 @@
         $result = json_encode($result);
         echo ($result); 
         return ($result);
-    }
-?>
+}
