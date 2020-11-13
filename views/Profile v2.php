@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <?php
+
 require_once "../model/protect.php";
 $email = $_SESSION["email"];
 $imagePath = "../resources/profileImages/$email.jpg";
 $noImagePath = "../resources/profileImages/default.jpg";
+
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
 ?>
 <head>
