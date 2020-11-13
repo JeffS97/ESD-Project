@@ -1,7 +1,11 @@
 <!doctype html>
 <html lang="en">
+  <?php
+session_start();
+  ?>
   <head>
     <!-- Required meta tags -->
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,20 +31,24 @@
         }
         body{
             font-family:'Montserrat', sans-serif;
-            font-size: 23px;
+           
         }
+        
         .btn-info {
           font-size: 20px;
           color: white;
           letter-spacing: 1px;
-          line-height: 15px;
+          line-height: 22px;
           border: 2px solid ;
+          margin-left:1em;
           border-radius: 30px;
           padding: 15px;
+          
         }
         .nav-item{
             padding-left: 20px;
             padding-right: 20px;
+            font-size: 23px;
         }
         @media screen and (max-width: 575px) {
             .carousel{
@@ -75,9 +83,6 @@ width: 100%;
     -webkit-box-direction: normal;
             flex-direction: column;
   }
-  .list-view .card:hover{
-width: 100%;
-}
 }
 .list-view .card > .card-img-top {
   width:200px;
@@ -213,7 +218,7 @@ card design
 
 }
 .expand:hover{
- width:300px;
+ width:280px;
  z-index: 1;
 }
     .results{color: #7a7d85;
@@ -228,88 +233,95 @@ card design
   </head>
   <body>
     
-   
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
      
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
-        <div class = 'container' style="padding: 0;">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> PROJECT HERO</span>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav" style="margin: auto;">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="../../Homepage.php">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact Us</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Task
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../../views/book2.php">Browse</a>
-                      <a class="dropdown-item" href="../../views/Booktask.php">Post</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Listings
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="userRequest.php">My Requests</a>
-                      <a class="dropdown-item" href="userTasks.php">My Tasks</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown collapse">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Profile
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="../../views/History.php">History</a>
-                      <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="logout.php" hidden>Log Out</a>
-                    </div>
-                  </li> 
-                </ul>
-                <!-- <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
-                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                </form> -->
-                <?php
+            <div class = 'container' style="padding: 0;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <span class = 'logo' style="padding: 10px; font-size: 25px; padding-bottom: 5px;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 40px width = 40px> PROJECT HERO</span>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav" style="margin: auto;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../Homepage.php">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Task
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./book2.php">Browse</a>
+                        <a class="dropdown-item" href="./Booktask.php">Post</a>
+                        </div>
+                    </li>
+                    <?php
             
               
               if(isset($_SESSION["email"])){
              ?>
-           <button type='button'  class='btn btn-primary' style='margin:10px;'><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button>
-              <?php }else{?>
-
-                <button type="button"  class="btn btn-info" style="margin: 10px;"><a href="../../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
-              <?php }?>
-                <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
-                <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
-              </div>
-          </nav>
-        </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Listings
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="userRequest.php">My Requests</a>
+                        <a class="dropdown-item" href="userTasks.php">My Tasks</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./History.php">History</a>
+                        <a class="dropdown-item" href="./Profile v2.php">Settings</a>
+                        <div class="dropdown-divider"></div>
+                        
+                        </div>
+                    </li> 
+                  <li>  <button type='button'  class='btn btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                    <?php }else{?>
+                        
+                   
+                    <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    </form> -->
+                    
+                <button type="button"  class="btn btn-info" ><a href="./Signup.php" style="color: white;text-decoration: none;">Login</a></button>
+                    <?php }?>  
+                           <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
+                    <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
+                </div>
+             </ul>  
+            </div>
+        
+            </nav>
+       
       
     
 <hr>
+<input type="hidden" id="search" value='<?php if(isset($_POST["searchterm"])){ echo $_POST["searchterm"]; } ?>' >
 <div class="container-fluid" id="moving" >
   <div class="container text-center mb-5 ">
     <h2 class="font-weight-light">Services</h2>
     <div class="row mx-auto " >
-        <div id="recipeCarousel"  class="carousel slide mx-auto" data-ride="carousel">
+        <div id="recipeCarousel"  class="carousel slide mx-auto animate__animated animate__fadeIn" data-ride="carousel">
             <div class="carousel-inner w-100" role="listbox" >
                 <div class="carousel-item active">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                            <img class="img-fluid" style="height: 200px;" src="../resources/images/plumber.jpg">
+                            <img class="img-fluid" style="height: 270px;" src="../resources/images/plumber.jpg">
                           Home Services
                         </div>
                     </div>
@@ -317,7 +329,7 @@ card design
                 <div class="carousel-item">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                        <a href="#">    <img class="img-fluid" style="height: 200px;" src="../resources/images/delivery.jpg"></a>
+                        <a href="#">    <img class="img-fluid" style="height: 270px;" src="../resources/images/delivery.jpg"></a>
                         Delivery
                         </div>
                     </div>
@@ -325,7 +337,7 @@ card design
                 <div class="carousel-item">
                     <div class="col-md-4">
                         <div class="card card-body bg-light">
-                        <a href="#">    <img class="img-fluid" style="height: 200px;" src="../resources/images/food.jpg"></a>
+                        <a href="#">    <img class="img-fluid" style="height: 270px;" src="../resources/images/food.jpg"></a>
                         Delivery
                         </div>
                     </div>
@@ -333,7 +345,7 @@ card design
                 <div class="carousel-item ">
                     <div class="col-md-4 " >
                         <div class="card card-body bg-light ">
-                            <img class="img-fluid " style="height: 200px;" src="../resources/images/clean.jpg">
+                            <img class="img-fluid " style="height: 270px;" src="../resources/images/clean.jpg">
                             Home Services
                         </div>
                     </div>
@@ -356,16 +368,25 @@ card design
    <div class="container">
     <div class="row">
         <div class="col-md-3 mt-5" style="border-right:1px solid gray;">
+      
           <h3>YOUR LIST</h3>
-    <div id="cart">
+    <div id="cart" >
     	<span class="empty">Current Bookings</span>       
     </div>
-    <div class="bookings">
-      <ul class="shopping-cart-items" id="current" >
+    <div class="bookings" >
+      <ul class="shopping-cart-items" id="current"  >
        
        
       </ul>
     </div>
+    <span class="empty">Current Tasks</span>  
+    <div class="bookings">
+      <ul class="shopping-cart-items" id="tasks" >
+       
+       
+      </ul>
+    </div>
+       
         </div>
         <div class="col-md-9">
        

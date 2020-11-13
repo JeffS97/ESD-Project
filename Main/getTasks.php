@@ -1,14 +1,17 @@
 <?php
-    spl_autoload_register(function($class){
-        require_once "../model/$class.php";
-    });
+    spl_autoload_register(
+        function($class){
+            require_once "../model/$class.php";
+        }
+    );
+    session_start();
 
-
+    
+    $dao = new gigDetailsDAO();
+    $email=$_SESSION["email"];
   
 
-    $dao = new gigDetailsDAO();
-
-    $gigArray = $dao->getAllPosts('Active');
+    $gigArray = $dao->getUserTask($email,date('Y-m-d H:i:s'));
 
     $result = array("gig" => array() );
 

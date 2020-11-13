@@ -176,7 +176,7 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav" style="margin: auto;">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../../Homepage.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../Homepage.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 
                 <li class="nav-item dropdown">
@@ -184,8 +184,8 @@ session_start();
                     Task
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="./views/book2.php">Browse</a>
-                    <a class="dropdown-item" href="./views/Booktask.php">Post</a>
+                    <a class="dropdown-item" href="../views/book2.php">Browse</a>
+                    <a class="dropdown-item" href="../views/Booktask.php">Post</a>
                     </div>
                 </li>
                 <?php
@@ -208,7 +208,7 @@ session_start();
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="../views/History.php">History</a>
-                    <a class="dropdown-item" href="../../views/Profile v2.php">Settings</a>
+                    <a class="dropdown-item" href="../views/Profile v2.php">Settings</a>
                     <div class="dropdown-divider"></div>
                     
                     </div>
@@ -255,6 +255,9 @@ session_start();
     <p class="card-text float-left" ><?php echo  $gigArray[0]->getDescription()?></p>
     
   </div>
+  <div id="error">
+        
+        </div>
 </div>
 
 </div>
@@ -295,7 +298,7 @@ session_start();
   <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1iSJyi8nOzkGwMWsmrEDQstq6b22-XoI&callback=initMap">
     </script>  
-
+ 
 <div class="jumbotron" style="width:120%;">          
    
     <form>
@@ -312,11 +315,12 @@ session_start();
     </form>
     <form action="./acceptbooking.php" method="POST">
         <div class="form-group">
-        <input type="text" value="" class="form-control" id="field" >
-
+        <input type="text" value="" name="field" class="form-control" id="field" >
+<input type="hidden" value="<?php echo  $gigArray[0]->getId() ?>" name="id">
         </div>
         <input type="submit" onclick="validates()"  class="btn btn-block btn-warning statusBtn"  value="Accept Booking"></input>
     </form>
+   
 </div>
 </div>
 
@@ -324,10 +328,13 @@ session_start();
 </div>
 <script>
      function validates(){
-    if(document.getElementById('field').value=" "){
-        alert("Cannot Accept until your current location is entered!");
+    if(document.getElementById('field').value==""){
+        document.getElementById("error").innerHTML=`<div class="alert alert-danger" role="alert">
+  Enter Your Current Location
+</div>`;
         event.preventDefault();
     }
+    
 }
     // Ajax call
     function getLoc(action) {
