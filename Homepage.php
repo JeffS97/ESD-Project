@@ -388,7 +388,8 @@ session_start();?>
             :categoryname="gig.gigCategory"
             :gigdescription="gig.gigDescription"
             :gigbooker="gig.gigbooker"
-            :location="gig.bookeraddress">
+            :location="gig.bookeraddress"
+            :gigid = "gig.gigId">
             </gig-post>
         </div>
         <div class = "row justify-content-center" style="margin-top: 15px;"> <a href="views/Booktask.php" class = "btn btn-info">...book your own gig!</a>
@@ -509,19 +510,29 @@ session_start();?>
 <script type="application/javascript">
 
 Vue.component ('gig-post', {
-    props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location'],
+    props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location', 'gigid'],
+    methods: {
+        gigImagesPath: function(){
+            var str1 = "/resources/gigImages/";
+            var strPath = str1.concat(this.gigid);
+            return strPath;
+        },
+    },
     template: 
-    `<div class="col-md-4 col-lg-4 col-sm-4">
+    `
+    <div class="col-md-4 col-lg-4 col-sm-4">
         <div class="card card-body" style="width: 22rem;">
             <h5 class="card-title">{{ gigname }}</h5>
             <br>
+            <img :src = 'gigImagesPath()'>
             <h6 class="card-subtitle mb-2 text-muted"> Requested by: {{ gigbooker }}</h6>
             <h6 class="card-subtitle mb-2 text-muted"> Category Type: {{ categoryname }}</h6>
             <h6 class="card-subtitle mb-2 text-muted"> Location: {{ location }}</h6>
             <br>
             <p class="card-text">{{ gigdescription }}</p>
         </div>
-    </div>`
+    </div>
+    `
 });
 
 const vm = new Vue ({
@@ -529,6 +540,7 @@ const vm = new Vue ({
     data: {
         gigs: [],
     },
+   
     methods: {
         getGigDetails: function(){
             axios.get('main/getSomePosts.php')
