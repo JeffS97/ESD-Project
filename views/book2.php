@@ -85,6 +85,11 @@ width: 100%;
             flex-direction: column;
   }
 }
+.card-img-top{
+  width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
 .list-view .card > .card-img-top {
   width:200px;
 }
@@ -109,10 +114,11 @@ width: 100%;
   height: 40px;
   font-size: 1rem;
   margin: 20px;
-  color: black;
+  color: white;
+  font-weight:900;
   border: none;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  border-radius: 30px;
   background: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%)
 ;
   background-size: 300% 300%;
@@ -402,9 +408,10 @@ card design
 </div>
    <div class="container">
     <div class="row">
-        <div class="col-md-3 mt-5" style="border-right:1px solid gray;">
+        <div class="col-md-3 mt-5" style="border:2px solid #dadada;border-radius:10px;padding:10px;">
       
-          <h3>YOUR LIST</h3>
+          <h3 style="text-align:center;" >YOUR LIST</h3>
+          <hr>
     <div id="cart" >
     	<span class="empty">Current Bookings</span>       
     </div>
@@ -430,7 +437,7 @@ card design
           <button class="btn btn-danger btn-list float-right ">   <i class="fa fa-bars "></i> </button>
           
           <i id="icon" class="fa fa-info-circle fa-lg"></i><p class="bg-warning   d-inline" id="weather"></p>
-      <h1 class="mt-3">Browse Opportunities</h1>
+      <h1 class="mt-4"><b>Browse Opportunities</b></h1>
       <div class="results" id="number"></div>
         <div class=" grid-container mt-5 ">
           <div class="row " id="bookings">
