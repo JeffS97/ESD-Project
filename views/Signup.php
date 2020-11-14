@@ -8,35 +8,25 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!--Open Sans Regular-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+
 <head>
-<?php session_start() ;
-function function_alert($message) { 
-      
-    // Display the alert box  
-    echo "<script>alert('$message');</script>"; 
-} 
-if (isset($_SESSION['error'])) { 
-
-   function_alert($_SESSION['error']);
-   unset($_SESSION["error"]);
-
-}
-
-?>
-
+<?php session_start() ?>
     <style>
         * {
             margin: 0;
             padding: 0;
         }
+
+        .logo{
+          font-family: 'Open Sans', sans-serif;
+          font-weight: bolder;
+        } 
         
       body{
-        
-        
-        
-         
-
-
+        font-family: 'Open Sans', sans-serif;
       }
         
         button:hover {
@@ -71,9 +61,11 @@ if (isset($_SESSION['error'])) {
         
         .back-header,
         .back-p {
-            margin: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
             color: #fafafa;
             letter-spacing: 1px;
+            text-align: center;
         }
         
         .back-header {
@@ -99,11 +91,11 @@ if (isset($_SESSION['error'])) {
         
         
         .background .left button {
-            left: 20px;
+            left: 150px;
         }
         
         .background .right button {
-            left: 420px;
+            left: 550px;
         }
         
         .form-container {
@@ -124,45 +116,50 @@ if (isset($_SESSION['error'])) {
         
         .back-btn {
             width: 100px;
-            height: 30px;
+            height: 40px;
             font-size: 15px;
             border: 0;
-            border-radius: 3px;
+            border-radius: 30px;
             background: transparent;
             border: 1px solid white;
             color: #fafafa;
             -webkit-transition: .3s all;
             transition: .3s all;
+            justify-content: center;
             
         }
         
         .back-btn:hover {
-            background-color: #145977;
-            border: 1px solid #145977;
+            background-color: #1f3f47;
+            border: 1px solid #1f3f47;
         }
         
         .form-btn {
             display: block;
             margin-top: 30px;
             width: 150px;
-            height: 35px;
+            height: 40px;
             font-size: 18px;
             border: 0;
-            border-radius: 3px;
-            background-color: royalblue;
+            border-radius: 30px;
+            background-color: #5dbcd2;
             color: #fafafa;
             -webkit-transition: .4s all;
             transition: .4s all;
+            
         }
-        
+
         .sign-up button:hover,
         .login button:hover {
-            background-color: #C53716;
+            background-color: #1f3f47;
         }
+        
         
         .form-header {
             font-size: 32px;
-            color: red;
+            color: black;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
         }
         
         .form-container input {
@@ -200,136 +197,89 @@ if (isset($_SESSION['error'])) {
             color: #FC7D5F;
             text-decoration: underline;
         }
+
+        body{
+            background-image: url("../resources/images/hero.png"); 
+            background-size: cover; 
+        
+        }
+        
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-           <div class="col-lg-4">
-  <img src="../resources/images/hero.jpg" style="position:fixed;z-index:-1;width:35%;height:100%;   position: absolute;
+
+    <div class="container" id = 'background'>
+
+  <!-- <img src="../resources/hero.png" id = 'background' style="z-index:-1;width:100%;height:100%; 
   mix-blend-mode: soft-light;">;
-           
+            -->
          
-           </div>
-        <div class="col-lg-8 " style="float:right;">
-        <h1 style="margin-left:20%;font-size:70px;font-family: 'Open Sans', sans-serif;" ><i>Hire A Hero</i></h1>
-    <div class="wrapper" >
+       <!-- <div class="col-lg-8 " style="float: right;"><span class = 'logo' style="padding: 10px; font-size: 40px; padding-bottom: 5px; float: center; margin-left: 25%; margin-top:20%;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 50px width = 50px> PROJECT HERO</span>
+    https://static1.squarespace.com/static/5f0384852da53a4ed0d548c9/t/5f03860d5b6cfa0aa7a5a52c/1605039836562/?format=1500w -->
+        
+    
+    <div class="col-sm-12" style = 'float: left; margin-top: 9%'>
+    <div class="wrapper" style = 'background-color: #de625b' >
+    
     
         <div class="background">
         
-            <div class="left">
+            <div class="left" style = 'text-align: center'>
             
-                <h2 class="back-header">Dont have an account yet?</h2>
-                <p class="back-p">Sign up today and be a Hero or get a Hero to help you</p>
-                <button class="back-btn signup-but">SIGN UP</button>
+                <h2 class="back-header" style = 'margin-top: 50px' ></b>Don't have an account?</b></h2>
+                <p class="back-p" style = 'text-align: center'>Sign up today to be a Hero or get a Hero to help you!</p>
+                <button class="back-btn signup-but">Sign Up</button>
             </div>
             <div class="right">
-                <h2 class="back-header">Do you already have an account?</h2>
+                <h2 class="back-header" style = 'margin-top: 50px'>Do you already have an account?</h2>
                 <p class="back-p">Let's get you logged in!</p>
-                <button class="back-btn login-but">LOGIN</button>
+                <button class="back-btn login-but">Log In</button>
             </div>
         </div>
         <div class="form-container">
             <div class="sign-up">
                 <form method="post" action="../Main/process_register.php" >
-                <h2 class="form-header">SIGN UP</h2>
+                <h2 class="form-header">Sign Up</h2>
 
              
                 <input type="text" name="fullname" placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="text" name="username" placeholder="Username"><i class="fa fa-envelope-o"></i></input>
+                <input type="text" name="username" placeholder="Username"><i class="fa fa-user"></i></input>
                 <input type="text" name="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
                 <input type="password" name="password" placeholder="Password"><i class="fa fa-lock"></i></input>
-                <button type="submit" class="form-btn " style="margin-left: 20%;"  >SIGN UP</button>
+                <button type="submit" class="form-btn " style="margin-left: 20%;"  >Sign Up</button>
             </form>
             </div>
             <div class="my-5">
             <div class="login hide ">
                 <form method="post"   action="../Main/process_login.php" >
-                <h2 class="form-header">LOGIN</h2>  
+                <h2 class="form-header">Log In</h2>  
                 <input type="text" name="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
                 
                 <input type="password" name="password" placeholder="Password"><i class="fa fa-lock"></i></input>
               
-                <div class="g-recaptcha" style="margin-top: 10px;" data-sitekey="6Lf2x-IZAAAAALMzDGQ3989jbM0-iRozvWHqGvb9"></div>
+                <div class="g-recaptcha" style="margin-top: 10px;" data-sitekey="6LcvOtsZAAAAAPiHd4MP6LealQ4myJuvWzb_4GpM"></div>
                  <br/>
               
-                <button class="form-btn" style="margin-left: 20%;">LOGIN</button>
+                <button class="form-btn text-center" style="margin-left: 20%;">Log In</button>
                 </form>
               
             </div>
             </div>
            
-            
+    </div>
         </div>
     </div>
     </div>
     </div>
     </div>
     <script>
-        window.fbAsyncInit = function() {
-    // FB JavaScript SDK configuration and setup
-    FB.init({
-      appId      : '2758183634395949', // FB App ID
-      cookie     : true,  // enable cookies to allow the server to access the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.8' // use graph api version 2.8
-    });
+      
     
-    // Check whether the user already logged in
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            //display user data
-            getFbUserData();
-        }
-    });
-};
+  
 
-// Load the JavaScript SDK asynchronously
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
 
-// Facebook login with JavaScript SDK
-function fbLogin() {
-    FB.login(function (response) {
-        if (response.authResponse) {
-            // Get and display the user profile data
-            
-            getFbUserData();
-           
-        } else {
-            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
-        }
-    }, {scope: 'email'});
-}
 
-// Fetch the user profile data from facebook
-function getFbUserData(){
-    
-    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
-    function (response) {
-       
-        document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
-        document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
-        document.getElementById('status').innerHTML = '<p>Thanks for logging in, ' + response.first_name + '!</p>';
-        document.getElementById('userData').innerHTML = '<h2>Facebook Profile Details</h2><p><img src="'+response.picture.data.url+'"/></p><p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p>';
-    });
-}
-
-// Logout from facebook
-function fbLogout() {
-    FB.logout(function() {
-        document.getElementById('fbLink').setAttribute("onclick","fbLogin()");
-        document.getElementById('fbLink').innerHTML = '<img src="images/fb-login-btn.png"/>';
-        document.getElementById('userData').innerHTML = '';
-        document.getElementById('status').innerHTML = '<p>You have successfully logout from Facebook.</p>';
-    });
-}
         $(document).ready(function() {
             var signUp = $('.signup-but');
             var logIn = $('.login-but');

@@ -72,6 +72,27 @@
 
             return $result;
         }
+        public function leader() {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            
+            $sql = "select DISTINCT gigaccepter,count(gigId) as num from gigDetails group by gigaccepter order by num DESC   ";
+
+            $stmt = $pdo->prepare($sql);
+         
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+
+            $result = [];
+            while($row = $stmt->fetch()){
+              
+                $result[] = [$row['gigaccepter'],$row['num']];
+            }
+            $stmt = null;
+            $pdo = null;
+
+            return $result;
+        }
         public function getAllPosts($status) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();

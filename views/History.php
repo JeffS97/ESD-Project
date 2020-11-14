@@ -131,20 +131,15 @@ require_once "../model/protect.php";
                         <a class="dropdown-item" href="./Booktask.php">Post</a>
                         </div>
                     </li>
+                   
+                    <li class="nav-item dropdown">
+                    <a class="nav-link" href="./views/leaderdisplay.php">Top Heroes </a>
+                    </li>
                     <?php
             
               
-              if(isset($_SESSION["email"])){
-             ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Listings
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="userRequest.php">My Requests</a>
-                        <a class="dropdown-item" href="userTasks.php">My Tasks</a>
-                        </div>
-                    </li>
+            if(isset($_SESSION["email"])){
+           ?>
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Profile

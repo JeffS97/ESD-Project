@@ -16,10 +16,9 @@ session_start();
  
 ?>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
@@ -278,20 +277,15 @@ session_start();
                     <a class="dropdown-item" href="../views/Booktask.php">Post</a>
                     </div>
                 </li>
-                <?php
+                
+                 <li class="nav-item dropdown">
+                    <a class="nav-link" href="./views/leaderdisplay.php">Top Heroes </a>
+                    </li>
+                    <?php
         
           
           if(isset($_SESSION["email"])){
          ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Listings
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="userRequest.php">My Requests</a>
-                    <a class="dropdown-item" href="userTasks.php">My Tasks</a>
-                    </div>
-                </li>
                 <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Profile
@@ -366,9 +360,7 @@ elseif($gigArray[0]->getCategoryName()=="miscellaneous"){
 
 <div class="card" style="width:40rem;">
 <div class="card-body">
-<svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-</svg><h5 class="card-title d-inline  "><?php echo 'Date:'. $gigArray[0]->getGigStartDate()?></h5></div>
+<i class="fas fa-clock"></i><h5 class="card-title d-inline  "><?php echo 'Date:'. $gigArray[0]->getGigStartDate()?></h5></div>
   <div class="card-body">
   <svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z"/>
