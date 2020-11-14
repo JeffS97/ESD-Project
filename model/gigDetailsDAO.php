@@ -98,7 +98,10 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "SELECT * from  gigDetails WHERE gigStatus=:status LIMIT 3";
+            $sql = "SELECT * from  gigDetails 
+            WHERE gigStatus=:status
+            ORDER BY gigId DESC
+            LIMIT 3 ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':status', $status, PDO::PARAM_STR);

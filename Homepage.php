@@ -353,7 +353,7 @@ session_start();?>
                           <div class="carousel-item">
                               <div class="col-md-4">
                                   <div class="shadow card card-body bg-light">
-                                  <a href="#">    <img class="img-fluid" src="./resources/images/delivery.jpg"></a>
+                                  <img class="img-fluid" src="./resources/images/delivery.jpg"></a>
                                   <p class="my-2">Delivery</p>
                                   </div>
                               </div>
@@ -393,6 +393,7 @@ session_start();?>
             :gigdescription="gig.gigDescription"
             :gigbooker="gig.gigbooker"
             :location="gig.bookeraddress"
+            :startdate = "gig.gigStartDate"
             :gigid = "gig.gigId">
             </gig-post>
         </div>
@@ -459,7 +460,7 @@ session_start();?>
 <script type="application/javascript">
 
 Vue.component ('gig-post', {
-    props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location', 'gigid'],
+    props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location', 'gigid', 'startdate'],
     methods: {
         gigImagesPath: function(){
             var str1 = "resources/gigImages/";
@@ -480,7 +481,7 @@ Vue.component ('gig-post', {
         <div class="card-body">
             <h5 class="card-title">{{gigname}}</h5>
             <p class="card-text">{{gigdescription}}</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted">Requested on: <br>{{startdate}}</small></p>
         </div>
         </div>
     </div>
