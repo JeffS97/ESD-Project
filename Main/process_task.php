@@ -166,6 +166,8 @@ session_start();
   border-radius: 20px;
   cursor: pointer;
   transition: 0.3s;
+  height:600px;
+  width:600px;
 }
 
 #myImg:hover {opacity: 0.7;}
@@ -332,7 +334,7 @@ session_start();
     
 <h1 id="taskName"><?php echo $gigArray[0]->getGigName() ?></h1>
 <br>
-<img id="myImg" src="../resources/gigImages/<?php echo $gigArray[0]->getId()?>.jpg" alt="" >
+<img id="myImg" src="../resources/gigImages/<?php echo $gigArray[0]->getId()?>.jpg" alt=""  >
 <div id="myModal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="img01">

@@ -72,6 +72,7 @@
         .sublayout {
     color: #9B9B9B;
     background: #F1F1F1;
+    
     font-size: 15px;
     margin: 5px;
     padding: 2px 5px;
@@ -146,7 +147,8 @@
      height: 7px;
      position: absolute;
      content: "";
-     width: 100%;
+     width:100%;
+    
      left: 0;
      top: 18px
  }
@@ -257,8 +259,17 @@
         <div class="track" >
                 <div class="step active"> <span class="icon"> <i class="fa fa-eye"></i> </span> <span class="text">Post Request</span> </div>
                 <div class="step active"> <span class="icon"> <i class="fa fa-address-card"></i> </span> <span class="text"> Wait for it to be accepted</span> </div>
-                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Hero accepted and coming to Help! </span> </div>
+               <?php
+             
+               if($accepter==null){
+                  
+            echo  ' <div class="step "> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Hero accepted and coming to Help! </span> </div>';
 
+               }
+               else{
+              echo  '<div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text"> Hero accepted and coming to Help! </span> </div>';
+               }
+?>
             </div>
         <div class="container">
             <div class="row">
