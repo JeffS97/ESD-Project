@@ -335,7 +335,8 @@ session_start();?>
         </section>
 
 
-    <section id = "services">
+    <section id = "services" style = 'background-image: linear-gradient(#FFFFFF, #5bc0de, #FFFFFF);'>
+        <div class = "pt-4 pb-1">
         <p class="lead mx-3">Services on Offer</p>
         <div class="container-fluid" id="moving" >
             <div class="container text-center mb-5 ">
@@ -379,6 +380,7 @@ session_start();?>
                   </div>
               </div>
           </div>
+        </div>
     </section>
 
     <section id = "activeGigsNearYou" style = " background-size: 100%;">
