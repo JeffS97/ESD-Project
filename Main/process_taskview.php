@@ -287,7 +287,8 @@
 
                 <div class="col-lg-4 mt-5">
                     <div id="duration">
-                    <?php if($gigArray[0]->getAccepteraddress()===null){
+                    <?php if($accepter!=null){
+                    if($gigArray[0]->getAccepteraddress()===null){
                         echo "<h1> No Hero has come to your rescue yet! Please be patient </h1>";}
                         else{
                             echo '<div class="card text-center" style="width: 18rem;">
@@ -308,7 +309,8 @@
                                     echo ' <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Hero </a> </div>;';
                                 }
                             //echo "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way";
-                            }?>
+                            }
+                        }?>
                     </div>
                 </div>
             </div>

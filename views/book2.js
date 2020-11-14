@@ -68,13 +68,18 @@ function getPost(val) {
             }
         }
         else{
+           if(val==""){
+            document.getElementById('bookings').innerHTML =`<i style="margin-left:5%;font-size:30px">No Current Tasks</i>`;
+           }else{
             document.getElementById('bookings').innerHTML =`
             <div class="alert">
   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
   No Tasks related to ${val} ,Try searching other services
 </div>
             `
+
         }
+    }
 
             document.getElementById("number").innerText = number + " Tasks Available";
         }
