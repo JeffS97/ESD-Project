@@ -112,12 +112,14 @@ width: 100%;
   color: black;
   border: none;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
-  background: linear-gradient(45deg, #ff6b6c, #ffc145, #ffc145, #ff6b6c);
+  border-radius: 10px;
+  background: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%)
+;
   background-size: 300% 300%;
   outline: none;
   transition: all 200ms ease-in-out;
 }
+
  .button:hover {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   transform: translateY(2px);

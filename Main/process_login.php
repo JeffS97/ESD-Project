@@ -50,14 +50,13 @@
                 # Redirect to login.php, while passing username information 
                 # at the back of the URL, e.g., header("Location: login.php?...");
                header("Location: ../views/Signup.php");
-               $_SESSION["error"]="Wrong Credentials";
+               $_SESSION["error"]="Wrong Credentials Entered";
                 exit; 
             }
           }
           else
           {
             header("Location: ../views/Signup.php");
-            $_SESSION["error"]="Wrong Credentials";
             exit; 
           }
      }

@@ -194,7 +194,24 @@ session_start();
 }
 
 
+.category {
+  display: inline-block;
+  margin:5px;
+  padding: 0 25px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+}
 
+.category img {
+  float: left;
+  margin: 0 10px 0 -25px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
 
 .modal-content, #caption {  
   animation-name: zoom;
@@ -321,8 +338,29 @@ session_start();
   <img class="modal-content" id="img01">
   <div id="caption"></div>
 </div>
+<div class="category" >
+<?php
+if($gigArray[0]->getCategoryName()=="homeservice"){
+echo  '<img src="../resources/images/plumber.jpg" alt="Person" width="96" height="96">';
+}
+elseif($gigArray[0]->getCategoryName()=="vehiclehelp"){
+    echo  '<img src="../resources/images/vehicle.jpg" alt="Person" width="96" height="96">';
+    }
+elseif($gigArray[0]->getCategoryName()=="food"){
+        echo  '<img src="../resources/images/food.jpg" alt="Person" width="96" height="96">';
+        }
+elseif($gigArray[0]->getCategoryName()=="shopping"){
+            echo  '<img src="../resources/images/shopping.jpg" alt="Person" width="96" height="96">';
+            }
+elseif($gigArray[0]->getCategoryName()=="miscellaneous"){
+                echo  '<img src="../resources/images/misc.jpg" alt="Person" width="96" height="96">';
+                }
 
-<span class="sublayout"><?php echo  $gigArray[0]->getCategoryName() ?></span>
+?>
+ 
+  <?php echo  $gigArray[0]->getCategoryName() ?>
+</div>
+
 <div class="card" style="width:40rem;">
   <div class="card-header">
     Description

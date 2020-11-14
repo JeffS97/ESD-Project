@@ -34,9 +34,9 @@ function getPost(val) {
                 }
                 var num = node.gigbooker.search('@');
                 if (num != -1) {
-                    name = node.gigbooker.slice(0, num);
+                    name = (node.gigbooker.slice(0, num)).toUpperCase();
                 } else {
-                    name = node.gigbooker;
+                    name = node.gigbooker.toUpperCase();
                 }
                 var description = "";
 
@@ -49,11 +49,17 @@ function getPost(val) {
             <div class=" services  card expand ">
               <img class="card-img-top img-fluid" src="../resources/gigImages/${node.gigId}.jpg" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">${node.gigName} -Booked by  ${name}</h5>
-                <h6>${node.bookeraddress}</h6>
-                <p class="card-text">${description} <br>
-                Date of Task-${node.gigStartDate}</p>
-                <button class="button" onclick="window.location.href='../Main/process_task.php?id='+${node.gigId}">View</button>
+                <h5 class="card-title d-inline">${node.gigName} </h5>
+              
+                <p style="font-size:13px;margin-left:40%;">-Posted by  ${name}</p>
+                <hr>
+                <div class="animate__animated animate__fadeIn">
+                <h6><b>Address:</b>  ${node.bookeraddress}</h6>
+                <p class="card-title">${description} <br>
+               <b> Date of Task:</b> <br>${node.gigStartDate}</p>
+               <h6><b>Fee:</b> $${node.gigPrice}</h6>
+               </div>
+                <button class="button" onclick="window.location.href='../Main/process_task.php?id='+${node.gigId}">View Task</button>
               </div>
             </div>
             </div>
@@ -135,15 +141,7 @@ request.onreadystatechange = function() {
             for (var node of result.gig) {
 
                 number++;
-                if (node.gigCategory == "home") {
-                    img = "../resources/images/plumb.jpg";
-                } else if (node.gigCategory == "food") {
-                    img = "../resources/images/food.jpg";
-                } else if (node.gigCategory == "vehiclehelp") {
-                    img = "../resources/images/carwash.jpg";
-                } else if (node.gigCategory == "misc") {
-                    img = "../resources/images/help.jpg";
-                }
+                
                 document.getElementById("tasks").innerHTML += ` <li class="clearfix">
             <img class="bookimg" src="../resources/gigImages/${node.gigId}.jpg" alt="item" />
             <span class="item-name">${node.gigName}</span>
@@ -168,16 +166,17 @@ request.open('GET', url2, true);
 request.send();
 
 
-//Task 3
+
 // var request=new XMLHttpRequest();
 // request.onreadystatechange=function(){
 //     if(this.readyState==4 && this.status==200){
 //         var data=JSON.parse(this.response);
-        
+//         console.log(data.main.temp-273.15);
 //         if((data.weather[0].main=="Clouds") || (data.weather[0].main=="Rain" ) || (data.weather[0].main=="Drizzle")){
 //             document.getElementById("weather").innerHTML="  Delivery Services may take  longer due to Rainy Condition"
 //         }
-//         else if(data.main.temp-273.15>=30){
+        
+//         else if((data.main.temp-273.15)>=30){
 //             document.getElementById("weather").innerHTML="  Good Sunny Time for a Car Wash";
 //         }
 //         else{
