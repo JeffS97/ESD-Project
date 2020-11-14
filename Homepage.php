@@ -213,15 +213,15 @@ session_start();?>
                         <a class="dropdown-item" href="./views/Booktask.php">Post</a>
                         </div>
                     </li>
-                    
-                    <li class="nav-item dropdown">
-                    <a class="nav-link" href="./views/leaderdisplay.php">Top Heroes </a>
-                    </li>
                     <?php
             
               
               if(isset($_SESSION["email"])){
              ?>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link" href="./views/leaderdisplay.php">Top Heroes </a>
+                    </li>
+                    
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Profile

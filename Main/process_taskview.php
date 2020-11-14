@@ -236,7 +236,7 @@
                 </li>
                 
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="./views/leaderdisplay.php">Top Heroes </a>
+                    <a class="nav-link" href="../views/leaderdisplay.php">Top Heroes </a>
                     </li>
                     <?php
         
