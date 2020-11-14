@@ -72,6 +72,7 @@ var myChart = new Chart(ctx, {
 request.open('GET', url, true);
 request.send();
 }
+
 // 
 //  
 //  
