@@ -408,7 +408,7 @@ card design
 </div>
    <div class="container">
     <div class="row">
-        <div class="col-md-3 mt-5" style="border:2px solid #dadada;border-radius:10px;padding:10px;">
+        <div class="col-md-3 mt-5 bg-light" style="border:2px solid #dadada;border-radius:10px;padding:10px;">
       
           <h3 style="text-align:center;" >YOUR LIST</h3>
           <hr>

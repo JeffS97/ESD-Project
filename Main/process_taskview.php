@@ -173,6 +173,20 @@
      font-weight: 400;
      color: #000
  }
+ .loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  margin-left:50%;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
  .track .text {
      display: block;
@@ -256,6 +270,12 @@
          </ul>  
         </div>
         </nav>
+        <?php
+            if($accepter==null){
+         echo   "<i><h1 style='position:relative;margin-left:40%;' >Searching a Hero for you</h1></i> <div class='loader '></div>";
+            }
+
+            ?>
         <div class="track" >
                 <div class="step active"> <span class="icon"> <i class="fa fa-eye"></i> </span> <span class="text">Post Request</span> </div>
                 <div class="step active"> <span class="icon"> <i class="fa fa-address-card"></i> </span> <span class="text"> Wait for it to be accepted</span> </div>
@@ -271,6 +291,7 @@
                }
 ?>
             </div>
+           
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -314,7 +335,9 @@
                     </div>
                 </div>
             </div>
+            
         </div>
+        
     </body>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

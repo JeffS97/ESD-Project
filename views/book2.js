@@ -45,8 +45,8 @@ function getPost(val) {
                 } else {
                     description = node.gigDescription;
                 }
-                document.getElementById('bookings').innerHTML += `<div class="col-12   col-md-6 col-lg-4 ">
-            <div class=" services  card expand ">
+                document.getElementById('bookings').innerHTML += `<div class="col-12   col-md-6 col-lg-4 " >
+            <div class=" services  card expand " >
               <img class="card-img-top img-fluid" src="../resources/gigImages/${node.gigId}.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title d-inline">${node.gigName} </h5>
