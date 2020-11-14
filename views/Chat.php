@@ -68,7 +68,7 @@ require_once "../model/common.php";
         }
 
         #sendMsg{
-            margin: 0px;
+            
         }
         
 
@@ -86,6 +86,22 @@ require_once "../model/common.php";
             color: grey;
             margin-left: 15px;
         }
+
+        .msgReceiverBackground{
+            
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            /* text-align: right; */
+            /* display: inline-block; */
+            background-color: white;
+            font-size: 14px;
+            margin: 10px 25px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        
 
 
         
@@ -163,17 +179,26 @@ require_once "../model/common.php";
         
             </nav>
 
-        <div class="container ">
+        <div class="container " id="chatgroup">
             <div class="row justify-content-center">
                 <div class="col-sm-8 bg-light p-0">
                       <div id="chat">
-                      </div> 
-                        <div id="sendMsg" class="input-group">
-                            <input id="message" type="text" class="form-control" placeholder="Type a Message!" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                            <button onclick="sendMsg()" class="btn btn-primary" type="button">Send</button>
+                        <div v-for="msg in messages">
+                            <p class="msgSenderBackground">
+                              <span><b>{{msg.sender}}:</b></span>
+                              <span>{{msg.message}}</span>
+                              <span class="time">{{msg.msgDateTime}}</span>
+                             </p>
                             </div>
+                         
                         </div>
+                        <div id="sendMsg" class="input-group">
+                            <input v-on:keyup.enter="addChat" v-model="message" id="message" type="text" class="form-control" placeholder="Type a Message!" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                            <button class="btn btn-primary" type="button"  @click="addChat">Send</button>
+                            </div>
+                      </div> 
+                        
                 </div>
             </div>
         </div>
@@ -181,30 +206,70 @@ require_once "../model/common.php";
         <script>
 
             const vm = new Vue({
-                el: '#chat',
+                el: '#chatgroup',
                 data: {
+                  sender: 'admin@gmail.com',
+                  message: '',
+                  recipient: 'rohan@gmail.com',
+                  datetime: '2020-11-14 02:00:00',
+                  gigId: '1',
                   messages: []
                 },
-                created: function() {
-                  axios.get('../Main/getChat.php')
+                methods:  {
+                  getChat: function(){
+                    axios.get('../Main/getChat.php')
                         .then(response => {
                             // this gets the data, which is an array
-                            console.log(response.data)
-                            msg_objs = response.data;
-                            for (msg of msg_objs) {
-                                //console.log(msg)
+                            //console.log(response.data.chat)
+                            msgObjs = response.data.chat;
+                            console.log (msgObjs);
+                            for (msg of msgObjs) {
+                                //console.log(msg.chatid)
                                 // pass the data to Vue instance's posts property
                                 this.messages.push(msg);
                             }
                         })
                         .catch(error => {
                             console.log(error);
-                        })
+                        });        
+                  },
+                  addChat: function(){
+                   //alert("added");
+
+                   
+                   /*axios.post('../Main/addChat.php', JSON.stringify({
+                        sender: this.sender,
+                        message: this.message,
+                        recipient: this.recipient,
+                        datetime: this.datetime,
+                        gigId:this.gigId
+                    }))*/
+                    url = '../Main/addChat.php?sender=' + 
+                            encodeURIComponent(this.sender) + '&recipient=' + encodeURIComponent(this.recipient) + '&message=' + encodeURIComponent(this.message)
+                            + '&datetime=' + encodeURIComponent(this.datetime) + '&gigId=' + encodeURIComponent(this.gigId)
+                    axios.get(url)
+                    .then(response => {
+                        console.log(response.data)
+                        //this.showStatus = true
+                        //this.status = response.data
+                    })
+                    .catch(error => {
+                      console.log(error.message)  
+                      //this.showStatus = true
+                        //this.status = 'There was an error: ' + error.message 
+                    }) 
+                  }
+                },
+                mounted: function() {
+                  this.getChat();
+                  window.setInterval(this.getChat(), 1000);
                 }
+
+
             });
             
             // Get the input field
-            const input = document.querySelector("input");
+            /*const input = document.querySelector("input");
 
             // Execute a function when the user releases a key on the keyboard
             input.addEventListener("keyup", function(event) {
@@ -215,7 +280,8 @@ require_once "../model/common.php";
             });
 
             windows.load() = retrieveMsgs();
-
+            
+            */
  
 
             /*function retrieveMsgs(){
@@ -223,7 +289,7 @@ require_once "../model/common.php";
                 for (message in messages){}
 
             }*/
-                       
+            /*  
             function sendMsg(){
                 const msgvalue = document.getElementById("message").value
                 var currentTime= new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
@@ -264,11 +330,14 @@ require_once "../model/common.php";
             }
 
 
-            
+            */
 
 
         </script>
-    
+        <?php
+          //var_dump(json_decode(array_keys($_POST),true));
+         // $_POST = json_decode(array_keys($_POST),true);
+        ?>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

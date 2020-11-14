@@ -2,7 +2,10 @@
 
     require_once "common.php";
     //session_start();
-    $gigId = $_GET['id'];
+    
+    //$gigId = $_GET['id'];
+    $gigId= 1;
+
     //var_dump($gigId);
     //$email=$_SESSION["email"];
     

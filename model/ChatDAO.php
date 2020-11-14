@@ -5,7 +5,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
 
-            $sql = "select * from chat where gigId=:id";
+            $sql = "select * from chat where gigId=:id order by msgDateTime";
             
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -23,25 +23,25 @@
             return $result;
         }
 
-        public function addChat($sender, $receiver, $datetime, $msg) {
+        public function addChat($sender, $receiver, $datetime, $msg,$gigId) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = `INSERT INTO chat (sender, recipient, msgDateTime, message)
-            VALUES (:sender,:receiver ,:datetime ,:msg );`;
+            $sql = "INSERT INTO chat (sender, recipient, msgDateTime, message, gigId)
+            VALUES (:sender,:receiver ,:datetime ,:msg , :gigId);";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':sender', $sender, PDO::PARAM_STR);
             $stmt->bindParam(':receiver', $receiver, PDO::PARAM_STR);
             $stmt->bindParam(':datetime', $datetime, PDO::PARAM_STR);
             $stmt->bindParam(':msg', $msg, PDO::PARAM_STR);
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $stmt->execute();
+            $stmt->bindParam(':gigId', $gigId, PDO::PARAM_INT);
+            $isOk = $stmt->execute();
           
             $stmt = null;
             $pdo = null;
 
-            return $result;
+            return $isOk;
         }
     
     }

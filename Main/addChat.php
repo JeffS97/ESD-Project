@@ -4,14 +4,37 @@
     
     # Start session
     session_start();
+    /*
+    $sender ="rohan@gmail.com";
+    $receiver ="admin@gmail.com";
+    $datetime = '2020-11-13 11:11:11';
+    $msg ='Tefsdfsst';
+    $gigId = 1;
+    */
+    
+    /*
+    $rp = json_decode(file_get_contents('php://input'), true);
+    var_dump($rp);
+    */
+    /*
+    //var_dump($_POST);
+    $sender = $_POST['sender'];
+    $receiver = $_POST['receiver'];
+    $datetime = $_POST['datetime'];
+    $msg = $_POST['msg'];
+    $gigId = $_POST['gigId'];
+    */
 
-    $sender ="admin";
-    $receiver ="rohan";
-    $datetime = NOW();
-    $msg ='Test';
+    $sender = $_GET['sender'];
+    $recipient = $_GET['recipient'];
+    $datetime = $_GET['datetime'];
+    $msg = $_GET['message'];
+    $gigId = $_GET['gigId'];
+
 
     # Add chat
-    $dao = new gigDetailsDAO();
-    $status = $dao->addChat($sender, $receiver, $datetime, $msg);
-
+    $dao = new ChatDAO();
+    $status = $dao->addChat($sender, $recipient, $datetime, $msg, $gigId) ;
+    
+    
 ?>
