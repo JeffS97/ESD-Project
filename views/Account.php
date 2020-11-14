@@ -234,6 +234,7 @@ header("Pragma: no-cache");
                                 echo "<p class = 'text-danger'>Error uploading your image, only JPG accepted or file may be too large</p>";
                               }else{
                                 echo "<p class = 'text-success'>Your image was uploaded successfully, check your profile!</p>";
+                                unset($_SESSION["successUpdate"]);
                               }
                             }; ?>
                             <div class="form-actions col-md">

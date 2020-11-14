@@ -9,7 +9,21 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <head>
-<?php session_start() ?>
+<?php session_start() ;
+function function_alert($message) { 
+      
+    // Display the alert box  
+    echo "<script>alert('$message');</script>"; 
+} 
+if (isset($_SESSION['error'])) { 
+
+   function_alert($_SESSION['error']);
+   unset($_SESSION["error"]);
+
+}
+
+?>
+
     <style>
         * {
             margin: 0;
@@ -237,7 +251,7 @@
                 
                 <input type="password" name="password" placeholder="Password"><i class="fa fa-lock"></i></input>
               
-                <div class="g-recaptcha" style="margin-top: 10px;" data-sitekey="6LcvOtsZAAAAAPiHd4MP6LealQ4myJuvWzb_4GpM"></div>
+                <div class="g-recaptcha" style="margin-top: 10px;" data-sitekey="6Lf2x-IZAAAAALMzDGQ3989jbM0-iRozvWHqGvb9"></div>
                  <br/>
               
                 <button class="form-btn" style="margin-left: 20%;">LOGIN</button>

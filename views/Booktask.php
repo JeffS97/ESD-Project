@@ -199,9 +199,9 @@
                     <select class="form-control" name="i1" id="input1" required>
                         <option value="shopping">Shopping</option>
                         <option value="food">Food</option>
-                        <option value="vehiclehelp">Vehicle Help</option>
+                        <option value="vehicleHelp">Vehicle Help</option>
                         <option value="home">Home Services</option>
-                        <option value="misc">Miscellaneous</option>
+                        <option value="miscellaneous">Miscellaneous</option>
                             </select>
                     <!--<div class="valid-feedback">Valid</div>-->
                 </div>
