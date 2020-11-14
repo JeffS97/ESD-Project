@@ -84,7 +84,7 @@
         
         #basic-addon1,
         #submit-btn {
-            background-color: royalblue;
+            background-color: #5dbcd2;
             color: white;
         }
 
@@ -185,7 +185,7 @@
             </div>
         </div>
         <div class="w-75 mx-auto">
-            <h3>Book a Hero!</h3>
+            <h3><b>Book a Hero!</b></h3>
             <hr>
         </div>
 
@@ -231,7 +231,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="h4 form-control-label" for="input4">Meet Me At<abbr class="text-danger" title="This is required">*</abbr></label>
+                    <label class="h4 form-control-label" for="input4">Meet Me At (Postal Code)<abbr class="text-danger" title="This is required">*</abbr></label>
                     <input type="text" pattern="[0-9]{6}" class="form-control" name="i4" id="input4" placeholder="Address" required>
                     <div class="invalid-feedback">Please enter a valid address like 760762. This field is required</div>
                 </div>
@@ -240,12 +240,6 @@
                     <label for="input5" class="h4 form-control-label">Date and time<abbr class="text-danger" title="This is required">*</abbr></label>
                     <input class="form-control" type="datetime-local" name="i5" value="" id="input5">
                     <div class="invalid-feedback">Please enter a valid date. This field is required</div>
-                </div>
-
-                <div class="form-group">
-                    <label class="h4 form-control-label" for="input6">Phone No.<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="tel" placeholder="8008 1234" pattern="[0-9]{4} [0-9]{4}" class="form-control" name="i6" id="input6" required>
-                    <div class="invalid-feedback">Please enter a phone # like 8008 1234. This field is required.</div>
                 </div>
 
                 <div class="form-group">
@@ -258,7 +252,7 @@
                 </div>
 
                 <div>
-                    <button type="submit" class="btn" id="submit-btn">Submit Request</button>
+                    <button type="submit" class="btn" style="border-radius:30px;" id="submit-btn">Submit Request</button>
                 </div>
             </form>
 
