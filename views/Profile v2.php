@@ -12,7 +12,6 @@ header("Pragma: no-cache");
 
 ?>
 <head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js" ></script>
 <script src="profile.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -166,34 +165,28 @@ header("Pragma: no-cache");
                   <h6 class="card-header"> Public Profile </h6>
                     <div class="card-body">
 
-                        <div class = "row">
-                        <div class = "col-lg-2 d-flex align-items-center">
-                          <?php if(file_exists($imagePath)){
-                            echo "<img src='$imagePath' width='100px' height='100px' style='border-radius: 50%;'>";
+                    <div class = "row justify-content-center">
+                    <?php if(file_exists($imagePath)){
+                            echo "<img src='$imagePath' width='150px' height='150px' style='border-radius: 50%;'>";
                           }else{
-                            echo "<img src='$noImagePath' width='100px' height='100px' style='border-radius: 50%;'>";
+                            echo "<img src='$noImagePath' width='150px' height='150px' style='border-radius: 50%;'>";
                           } ?>
-                        </div>
-                          <div class = "col-lg-8">
-                          <div>
-                            <h3>Personal Details</h3>
-
-                            <h4>Your username is: {{username}}</h4>
-
-                            <h4>Your fullname is: {{fullname}}</h4>
-
-                            <h4>Your email is: {{email}}</h4>
-                        </div>
-                          </div>
-                        </div>
                     </div>
-                   
+                    <div class = "row my-3 justify-content-center"><h3>Personal Details</h3></div>
+                    <div class = "row justify-content-center"><p><b>Your email is:</b> {{email}}</p></div>
+                    <div class = "row justify-content-center"><p><b>Your username is: </b> {{username}}</p></div>
+                    <div class = "row justify-content-center"><p><b>Your full name is:</b> {{fullname}}</p></div>
+                    </div>
+
+                    <div>
                     <a href="#chart" style="margin-bottom: 20px;" class="btn btn-info" data-toggle="collapse">View Personal Earnings</a>
-                    
                 <div class="bg-light collapse " style="width: 70%;margin-left:30px;"  id="chart">
     <span style="font-size: 30px;color: black;
     font-weight: 700;" id="total"></span>
-    <canvas id="myChart" ></canvas></div>
+    <canvas id="myChart" ></canvas>
+                    </div>
+                   
+                    </div>
                 </div>
             </div>
             
@@ -233,7 +226,7 @@ const vm = new Vue({
 
 
 <!--Chart-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js" ></script>
 
 
 
