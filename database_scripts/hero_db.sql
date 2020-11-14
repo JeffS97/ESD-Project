@@ -60,9 +60,6 @@ INSERT INTO user (`username`,`fullname`, `email`,`password` )
 VALUES ('admin','admin','admin@gmail.com','$2y$10$7aSS0yScusjM8HoOHcqSluVMui0mNH5IS7Jqx/fYWUliZR/4c5m7m');
 
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan@gmail.com','cleaning' ,'House Clean', 20,2020-11-20,'Active','yishun 81');
-
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
             ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('admin@gmail.com','food' ,'Takeaway food', 10,'2020-11-21','Active','yishun 71');
             
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`

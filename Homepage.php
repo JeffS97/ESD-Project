@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php  
 
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 session_start();?>
 <head>
     <!--Bootstrap-->
@@ -379,8 +383,8 @@ session_start();?>
 
     <section id = "activeGigsNearYou" style = " background-size: 100%;">
     <p class="lead mx-3">Active Gigs in Singapore</p>
-        <div class = "container" id = "app">
-        <div class = "card-columns">
+        <div class = "container " id = "app">
+        <div class = "card-columns ">
             <gig-post
             v-for="gig in gigs"
             :key = "gig.gigName"
@@ -394,61 +398,6 @@ session_start();?>
         </div>
         <div class = "row justify-content-center" style="margin-top: 15px;"> <a href="views/Booktask.php" class = "btn btn-info">...book your own gig!</a>
         </div>
-
-    </section>
-
-    <!-- <div id = "app">
-        <span>{{test}}</span>
-        <p class="lead mx-3">Freelancers Near You</p>
-        <div class="container-fluid" id="moving" >
-            <div class="container text-center mb-5 ">
-            <div class="row mx-auto " >
-                <div id="recipeCarousel"  class="carousel slide mx-auto" data-ride="carousel">
-                    <div class="carousel-inner w-100" role="listbox" >
-                        <div class="carousel-item active">
-                            <div class="col-md-4">
-                                <div class="card card-body bg-light">
-                                    <img class="img-fluid"  src="https://static01.nyt.com/images/2020/03/03/well/physed-foods/physed-foods-mediumSquareAt3X.jpg">
-                                    Home Services
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="col-md-4">
-                                <div class="card card-body bg-light">
-                                <a href="#">    <img class="img-fluid" src="https://static01.nyt.com/images/2020/03/03/well/physed-foods/physed-foods-mediumSquareAt3X.jpg"></a>
-                                Delivery
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item ">
-                            <div class="col-md-4 " >
-                                <div class="card card-body bg-light ">
-                                    <img class="img-fluid "  src="https://static01.nyt.com/images/2020/03/03/well/physed-foods/physed-foods-mediumSquareAt3X.jpg">
-                                    Home Services
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
-                    <a class="carousel-control-prev " href="#recipeCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next " href="#recipeCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-   
-
-    <section id = "testimonials">
-
-        <div class = "container"></div>
 
     </section>
 
@@ -513,26 +462,56 @@ Vue.component ('gig-post', {
     props: ['gigname', 'categoryname', 'gigdescription', 'gigbooker', 'location', 'gigid'],
     methods: {
         gigImagesPath: function(){
-            var str1 = "/resources/gigImages/";
-            var strPath = str1.concat(this.gigid);
+            var str1 = "resources/gigImages/";
+            var str3 = ".jpg";
+            var str2 = str1.concat(this.gigid);
+            var strPath = str2.concat(str3);
             return strPath;
         },
     },
     template: 
     `
-    <div class="col-md-4 col-lg-4 col-sm-4">
-        <div class="card card-body" style="width: 22rem;">
-            <h5 class="card-title">{{ gigname }}</h5>
-            <br>
-            <img :src = 'gigImagesPath()'>
-            <h6 class="card-subtitle mb-2 text-muted"> Requested by: {{ gigbooker }}</h6>
-            <h6 class="card-subtitle mb-2 text-muted"> Category Type: {{ categoryname }}</h6>
-            <h6 class="card-subtitle mb-2 text-muted"> Location: {{ location }}</h6>
-            <br>
-            <p class="card-text">{{ gigdescription }}</p>
+    <div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+        <img :src='gigImagesPath()' class="card-img-top" style="height:15rem;object-fit:cover;" >
+        </div>
+        <div class="col-md-8">
+        <div class="card-body">
+            <h5 class="card-title">{{gigname}}</h5>
+            <p class="card-text">{{gigdescription}}</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
         </div>
     </div>
+    </div>
+    
     `
+    // <div class="col-md-4 col-lg-4 col-sm-4">
+    //     <div class="card card-body" style="width: 22rem;">
+    //         <img class="card-img-top" :src='gigImagesPath()'>
+    //         <h5 class="card-title">{{ gigname }}</h5>
+    //         <br>
+    //         <h6 class="card-subtitle mb-2 text-muted"> Requested by: {{ gigbooker }}</h6>
+    //         <h6 class="card-subtitle mb-2 text-muted"> Category Type: {{ categoryname }}</h6>
+    //         <h6 class="card-subtitle mb-2 text-muted"> Location: {{ location }}</h6>
+    //         <br>
+    //         <p class="card-text">{{ gigdescription }}</p>
+    //     </div>
+    // </div>
+    // // <div class="card col-md-4 col-lg-4 col-sm-4" style="width: 18rem;">
+    // // <img class="card-img-top" :src='gigImagesPath()'>
+
+    // <div class="card-body">
+    // <h5 class="card-title">{{gigname}}</h5>
+    // <h6 class="card-subtitle mb-2 text-muted"> Requested by: {{ gigbooker }}</h6>
+    // <h6 class="card-subtitle mb-2 text-muted"> Category Type: {{ categoryname }}</h6>
+    // <h6 class="card-subtitle mb-2 text-muted"> Location: {{ location }}</h6>
+    // <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    // <p class="card-text">{{gigdescription}}</p></div>
+    // </div>
+    // </div>
+    
 });
 
 const vm = new Vue ({
