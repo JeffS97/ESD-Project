@@ -1,42 +1,46 @@
-.logo {
-    font-family: 'Open Sans', sans-serif;
-}
-
-.nav {
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Stay on top */
-    top: 0;
-    /* Stay at the top */
-}
-
-.btn-info {
-    font-size: 20px;
-    color: white;
-    letter-spacing: 1px;
-    line-height: 22px;
-    border: 2px solid;
-    margin-left: 1em;
-    border-radius: 30px;
-    padding: 15px;
-    margin-left: 80%;
-}
-
 body {
     font-family: 'Montserrat', sans-serif;
-    font-size: 23px;
 }
 
-.nav-item {
-    padding-left: 20px;
-    padding-right: 20px;
+h1 {
+    font-size: 75px;
+    font-weight: bold;
 }
 
-@media screen and (max-width: 575px) {
-    .carousel {
-        width: 100%;
-        display: block;
-        margin-bottom: 20px;
-    }
+h2 {
+    font-size: 50px;
+}
+
+p {
+    font-size: 20px;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+    margin: auto;
+    text-align: center;
+}
+
+.jumbotron {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: transparent;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+.btn-primary {
+    outline-style: solid blue;
+    background-color: white;
+    color: blue;
+}
+
+p.lead {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h5 {
+    font-weight: bold;
+    font-size: 25px;
 }
