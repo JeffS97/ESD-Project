@@ -393,7 +393,7 @@ session_start();?>
             :gigid = "gig.gigId">
             </gig-post>
         </div>
-        <div class = "row justify-content-center" style="margin-top: 15px;"> <a href="views/Booktask.php" class = "btn btn-info">...book your own gig!</a>
+        <div class = "row justify-content-center" style="margin-top: 15px;"> <a href="views/Booktask.php" class = "btn btn-info">Book your own gig now!</a>
         </div>
 
     </section>

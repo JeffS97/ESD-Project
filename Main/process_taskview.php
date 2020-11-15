@@ -295,7 +295,7 @@
             <div class="row">
                 <div class="col-lg-8">
                 <div id="floating-panel">
-                <b>Your Address: </b>
+                <b>Booker's Address: </b>
                 <span id="start"><?php echo  $gigArray[0]->getBookeraddress()?>
                 </span>
                 <b>Hero's Location: </b>
@@ -314,7 +314,7 @@
                             echo '<div class="card text-center" style="width: 18rem;">
                             <img class="card-img-top" src="'.$imagePath.'">
                             <div class="card-body">
-                            <h5 class="card-title">This is your hero!</h5>
+                            <h5 class="card-title">The hero assigned to this task is:</h5>
                             <p class="card-text"><b>'.ucwords($accepterName).'</b></p>
                             </div>
                             <ul class="list-group list-group-flush">
@@ -334,7 +334,7 @@
                                 echo '<div class="card text-center" style="width: 18rem;">
                                 <img class="card-img-top" src="'.$noImagePath.'">
                                 <div class="card-body">
-                                <h5 class="card-title">This is your hero!</h5>
+                                <h5 class="card-title">The hero assigned to this task is:</h5>
                                 <p class="card-text"><b>'.ucwords($accepterName).'</b></p>
                                 </div>
                                 <ul class="list-group list-group-flush">
@@ -413,7 +413,7 @@
                     if (status === "OK") {
                         var directionsData = response.routes[0].legs[0];
                         console.log(directionsData.duration.text);
-                        document.getElementById("durationData").innerHTML = 'Your Hero will take:</br> <h1>' + directionsData.duration.text + "</h1></br> to come to your aid!";
+                        document.getElementById("durationData").innerHTML = 'The Hero is approximately:</br> <h1>' + directionsData.duration.text + "</h1></br> away from the booker!";
                         directionsRenderer.setDirections(response);
                     } else {
                         document.getElementById("durationData").innerHTML = "<h1> Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way. </h1>";
