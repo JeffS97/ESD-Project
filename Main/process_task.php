@@ -26,7 +26,7 @@ session_start();
         #map {
             height: 200px;  /* The height is 400 pixels */
             width: 120%; 
-            margin-top:60%;
+            margin-top:75%;
             
           
              /* The width is the width of the web page */
@@ -200,6 +200,7 @@ session_start();
 
 .category {
   display: inline-block;
+  border:0.5px solid gray;
   margin:5px;
   padding: 0 25px;
   height: 50px;
@@ -271,21 +272,21 @@ session_start();
  vertical-align: top;
 }
 
-.gc--1-of-3 {
+.first {
  width: 33.33333%;
 }
 
-.gc--2-of-3 {
+.second {
  width: 66.66666%;
 }
 
-.naccs {
+.viewdetails {
  position: relative;
  max-width: 900px;
  margin: 10px auto 0;
 }
 
-.naccs .menu div {
+.viewdetails .menu div {
  padding: 15px 20px 15px 40px;
  margin-bottom: 10px;
 
@@ -297,11 +298,11 @@ session_start();
  transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.naccs .menu div:hover {
+.viewdetails .menu div:hover {
  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.naccs .menu div span.light {
+.viewdetails .menu div span.light {
     
  height: 10px;
  width: 10px;
@@ -314,7 +315,7 @@ session_start();
  transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.naccs .menu div.active span.light {
+.viewdetails .menu div.active span.light {
  
  left: 0;
  height: 100%;
@@ -323,7 +324,7 @@ session_start();
  border-radius: 0;
 }
 
-.naccs .menu div.active {
+.viewdetails .menu div.active {
  color: $third-color;
  padding: 15px 20px 15px 20px;
 }
@@ -439,13 +440,6 @@ ul.nacc li p {
     
 <h1 id="taskName"><?php echo $gigArray[0]->getGigName() ?></h1>
 <br>
-<img id="myImg" src="../resources/gigImages/<?php echo $gigArray[0]->getId()?>.jpg" alt=""  >
-<div id="myModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="img01">
-  <div id="caption"></div>
-</div>
-<br>
 <div class="category" >
 <?php
 if($gigArray[0]->getCategoryName()=="home"){
@@ -468,21 +462,29 @@ elseif($gigArray[0]->getCategoryName()=="miscellaneous"){
  
   <?php echo  $gigArray[0]->getCategoryName() ?>
 </div>
-<div class="jumbotron text-white text-center" style="background: #3F51B5;margin-bottom:-10px;margin-top:10px;font-family: 'Open Sans', sans-serif;height:50px;">Task Details</div>
-<div class="naccs" style="border:1px solid #dadada ;padding:20px">
+<img id="myImg" style="margin-top:10px" src="../resources/gigImages/<?php echo $gigArray[0]->getId()?>.jpg" alt=""  >
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+<br>
+
+<div class="jumbotron   text-center  " style="margin-bottom:-10px;margin-top:80px;font-family: 'Open Sans', sans-serif;height:100px;font-size:45px;">Task Details</div>
+<div class="viewdetails" style="border:1px solid #dadada ;padding:20px;">
 
   <div class="grid">
-   <div class="gc gc--1-of-3">
+   <div class="gc first">
     <div class="menu">
      <div class="active " ><span class="light"></span><span style=" font-family: 'Open Sans', sans-serif;
   text-transform: uppercase; font-size: .6em;">Description</span></div>
      <div class=" "><span class="light" ></span><span  style=" font-family: 'Open Sans', sans-serif;
-  text-transform: uppercase; font-size: .6em;">Price</span></div>
+  text-transform: uppercase; font-size: .6em;">Fee</span></div>
      <div class=" "><span class="light"></span><span  style=" font-family: 'Open Sans', sans-serif;
   text-transform: uppercase; font-size: .6em;">Address</span></div>
     </div>
    </div>
-   <div class="gc gc--2-of-3">
+   <div class="gc second">
     <ul class="nacc">
      <li class="active">
       <div>
@@ -590,20 +592,20 @@ img.onclick = function(){
 
 var span = document.getElementsByClassName("close")[0];
 
-$(document).on("click", ".naccs .menu div", function() {
-	var numberIndex = $(this).index();
+$(document).on("click", ".viewdetails .menu div", function() {
+	var number = $(this).index();
 
 	if (!$(this).is("active")) {
-		$(".naccs .menu div").removeClass("active");
-		$(".naccs ul li").removeClass("active");
+		$(".viewdetails .menu div").removeClass("active");
+		$(".viewdetails ul li").removeClass("active");
 
 		$(this).addClass("active");
-		$(".naccs ul").find("li:eq(" + numberIndex + ")").addClass("active");
+		$(".viewdetails ul").find("li:eq(" + number + ")").addClass("active");
 
-		var listItemHeight = $(".naccs ul")
-			.find("li:eq(" + numberIndex + ")")
+		var listItem = $(".viewdetails ul")
+			.find("li:eq(" + number + ")")
 			.innerHeight();
-		$(".naccs ul").height(listItemHeight + "px");
+		$(".viewdetails ul").height(listItem + "px");
 	}
 });
 span.onclick = function() { 
