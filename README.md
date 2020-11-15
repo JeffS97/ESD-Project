@@ -22,7 +22,7 @@ Project Hero is a project that aims to connect freelancers with people who requi
   - History page where the user can view all the past tasks/gigs that they have created
   - Top Heroes page which shows a leaderboard of users who have accepted tasks and orders them by total tasks completed
 
-### Tech
+# Tech
 
 Project Hero uses a number of open source projects in order to function properly:
 
@@ -35,7 +35,7 @@ Project Hero uses a number of open source projects in order to function properly
 * [Twitter Bootstrap] - To make our page responsive on different viewports
 * [SASS] - To stylize and beautify our webpage
 
-### APIs Used
+# APIs Used
 
 Project Hero uses a number of APIs in order to function properly:
 * [Google Maps Api] - To calculate distance between users
@@ -43,7 +43,7 @@ Project Hero uses a number of APIs in order to function properly:
 * [ReCaptcha Api] - To validate logins and prevent malicious attacks
 * [Iconify Api] - To stylize the icons
 
-**Project Team: Glenda Marco Conejero Satuito, Jeffvinder Singh, Lim Si Hui Amanda, Rohan Manoj Kuruvilla**
+**Project Team: Glenda Marco Conejero Satuito, Jeffvinder Singh, Lim Si Hui Amanda, Ling Li Yin, Rohan Manoj Kuruvilla**
 
    [Home]: <https://github.com/JeffS97/WAD-2-Project>
    [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
