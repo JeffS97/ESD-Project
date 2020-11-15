@@ -62,9 +62,10 @@
       }
       else{
           echo "Failed to register";
+          $_SESSION["success"] = false; 
+          header("Location: ../views/Booktask.php");
       }
       
-      $_SESSION["success"] = false; 
   }
     
 ?>

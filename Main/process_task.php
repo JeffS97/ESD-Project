@@ -21,6 +21,10 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <!--Open Sans Regular-->
+     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+     <!--Montserrat-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
     <style>
         /* Set the size of the div element that contains the map */
         #map {
@@ -470,8 +474,8 @@ elseif($gigArray[0]->getCategoryName()=="miscellaneous"){
 </div>
 <br>
 
-<div class="jumbotron   text-center  " style="margin-bottom:-10px;margin-top:80px;font-family: 'Open Sans', sans-serif;height:100px;font-size:45px;">Task Details</div>
-<div class="viewdetails" style="border:1px solid #dadada ;padding:20px;">
+<div class="text-center  " style="margin-bottom:-10px;margin-top:80px;font-family: 'Open Sans', sans-serif;height:100px;font-size:45px;">Task Details</div>
+<div class="viewdetails" style="padding:20px;">
 
   <div class="grid">
    <div class="gc first">

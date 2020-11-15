@@ -282,6 +282,15 @@
             } 
         });
     </script>
+    <?php 
+
+        if(isset($_SESSION["success"])){
+            if(!($_SESSION["success"])){
+                echo "<script type='text/javascript'>alert('Please upload a smaller file or ensure that it is JPG!');</script>";
+            }
+        }
+    
+    ?>
 </body>
 
 </html>
