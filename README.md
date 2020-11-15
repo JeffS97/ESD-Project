@@ -1,6 +1,6 @@
 # Project Hero - Team H
 
-Project Hero is a project that aims to connect freelancers with people who require help with tasks. It serves as a hub of communication between task booker and accepter, facilitating the transaction and event itself.
+Project Hero is a project that aims to connect freelancers with people who require help with tasks. It serves as a hub of communication between task poster and freelancer, facilitating the transaction and event itself **during this covid period**
 
 # File Organization
 
@@ -31,11 +31,12 @@ Project Hero possesses the following functionality :
 
   - Account Creation and Logging in
   - Posting of task/gig by user
+  - Search for gigs using the search bar or by clicking the carousell in the view bookings page
   - View list of bookings and accept booking made by other users
   - Message each other via a chat function
   - View status of the gig/task with an interactive Map showing the distance and duration of the booker and accepter
   - Mark the gig/task as completed when desired
-  - Profile page which allows the user to edit their profile details including name and display picture
+  - Profile page which allows the user to edit their profile details including password and display picture
   - Viewing of personal earnings which displays the total amount the user has earned using our website in a chart format using chart.js
   - History page where the user can view all the past tasks/gigs that they have created
   - Top Heroes page which shows a leaderboard of users who have accepted tasks and orders them by total tasks completed
