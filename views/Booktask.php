@@ -174,6 +174,7 @@
                     </div>
                     <div class="modal-body">
                         <p>Your task has been submitted for our Heroes to accept!</p>
+                        <p><a href = "book2.php">Click here</a> to see your listing</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
