@@ -11,6 +11,7 @@ function getPost(val) {
     } else {
         url = "../Main/getPost.php";
     }
+    document.getElementById('bookings').innerHTML="";
     console.log(url);
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
@@ -45,6 +46,7 @@ function getPost(val) {
                 } else {
                     description = node.gigDescription;
                 }
+               
                 document.getElementById('bookings').innerHTML += `<div class="col-12   col-md-6 col-lg-4 " >
             <div class=" services  card expand  " >
               <img class="card-img-top img-fluid" src="../resources/gigImages/${node.gigId}.jpg" alt="Card image cap">
