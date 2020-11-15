@@ -42,7 +42,8 @@ session_start();
 }
 body{
   font-size:23px;
-  font-family: 'Open Sans', sans-serif;
+  font-family:'Montserrat', sans-serif;
+          
 }
 .group:after {
   content: "";
@@ -67,7 +68,7 @@ body{
 }
 .logo2{padding:2em;
   width:100%;
-  font-family:'OPEN sans';
+  font-family:'Open Sans', sans-serif;
   font-weight: 700;
   font-size:1em;
   text-align:center;
@@ -263,7 +264,7 @@ small{
       <div class="banner_content">
          <div class="banner_wrapper">
   <div class="container">
-    <h2 class="title"><img src="http://findicons.com/files/icons/2799/flat_icons/256/trophy.png">
+    <h2 class="title" style = 'text-align: center'><img src="http://findicons.com/files/icons/2799/flat_icons/256/trophy.png">
        TOP HEROES WITH MOST SERVICES COMPLETED</h2>
     <ol id="board" class="leaderboard">
 
