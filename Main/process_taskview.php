@@ -306,7 +306,7 @@
                     <?php if($accepter!=null){
                     if($gigArray[0]->getAccepteraddress()===null){
                         echo "<h1> No Hero has come to your rescue yet! Please be patient </h1>";}
-                        else{
+                        else if (file_exists($imagePath)){
                             echo '<div class="card text-center" style="width: 18rem;">
                             <img class="card-img-top" src="'.$imagePath.'">
                             <div class="card-body">
@@ -326,6 +326,26 @@
                                 }
                             //echo "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way";
                             }
+                            else if (!file_exists($imagePath)){
+                                echo '<div class="card text-center" style="width: 18rem;">
+                                <img class="card-img-top" src="'.$noImagePath.'">
+                                <div class="card-body">
+                                <h5 class="card-title">This is your hero!</h5>
+                                <p class="card-text"><b>'.ucwords($accepterName).'</b></p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item border-0" id="durationData"></li>
+                                </ul>
+                                ';
+                                if($num){
+                                   echo ' <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Customer</a> </div>;';
+                                
+                                    }   
+                                    else{
+                                        echo ' <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Hero </a> </div>;';
+                                    }
+                                //echo "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way";
+                                }
                         }?>
                     </div>
                 </div>
