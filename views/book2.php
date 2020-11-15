@@ -69,6 +69,7 @@ session_start();
 
         .card {
   margin-bottom: 1rem;
+  width:17rem;
 }
 
 .list-view .row > [class*='col-'] {
