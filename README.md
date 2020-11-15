@@ -2,6 +2,17 @@
 
 Project Hero is a project that aims to connect freelancers with people who require help with tasks. It serves as a hub of communication between task booker and accepter, facilitating the transaction and event itself.
 
+# File Organization
+
+| Folder | Purpose |
+| ------ | ------ |
+| Main | Storing of php files used to process data |
+| backend_services | Storing of backend Javascript files |
+| database_scripts | Storing of database scripts for loading data |
+| model | Storing of files related to the creation of DAO Objects |
+| resources | Storing of commonly accessed files and resources |
+| views | Storing of all page views |
+| deprecated | Storing of Non-functional and ignored files |
 
 #  Setting up
 
