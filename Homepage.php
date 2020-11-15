@@ -200,11 +200,6 @@ session_start();?>
             }
         }
 
-        .dropdown-item:hover {
-            background-color: #5bc0de;
-            }
-        
-
     </style>
 
 </head>
