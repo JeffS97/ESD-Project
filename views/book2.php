@@ -313,7 +313,6 @@ card design
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="./History.php">History</a>
                         <a class="dropdown-item" href="./Profile v2.php">Settings</a>
-                        <div class="dropdown-divider"></div>
                         
                         </div>
                     </li> 

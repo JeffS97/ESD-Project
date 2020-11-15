@@ -133,8 +133,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="./History.php">History</a>
                         <a class="dropdown-item" href="./Profile v2.php">Settings</a>
-                        <div class="dropdown-divider"></div>
-                        
+
                         </div>
                     </li> 
                   <li>  <button type='button'  class='btn btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
