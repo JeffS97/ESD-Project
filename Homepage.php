@@ -199,6 +199,10 @@ session_start();?>
                 column-count: 3;
             }
         }
+
+        .dropdown-item:hover {
+            background-color: #5bc0de;
+            }
         
 
     </style>
@@ -274,7 +278,7 @@ session_start();?>
             </div>
         
             </nav>
-        <div class = 'container-fluid animate__animated animate__fadeIn animate__delay-1s' style="background-image: url(https://www.kut.org/sites/kut/files/styles/x_large/public/202005/el_paso_food_bank_coronavirus_pandemic_ek_tt_26.jpg); background-attachment: fixed;  background-size:cover; background-position: center; background-attachment: sticky; padding-top: 200px; padding-bottom: 200px; padding-left: 130px;">
+        <div class = 'container-fluid animate__animated animate__fadeIn animate__delay-1s' style="background-image: url('resources/images/hero.png'); background-attachment: fixed;  background-size:cover; background-position: center; background-attachment: sticky; padding-top: 200px; padding-bottom: 200px; padding-left: 130px;">
             <div class="jumbotron">
             <h1 style="font-size:74px; font-family: 'Inter', sans-serif; margin-bottom: 0; color: white;">HIRE A HERO</h1>
             <h5 style="font-size: 25px; font-family: 'Montserrat', sans-serif; padding-top: 0; color: white;">Get instant help for everyday chores!</h5>
@@ -313,7 +317,7 @@ session_start();?>
         
         <a href="views/Booktask.php" class = "btn btn-info my-2">Find help now!</a></div>
         
-        <div class="col-sm-12 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/help.jpg" class = "img-fluid"></div>
+        <div class="col-sm-12 col-md-12 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/help.jpg" class = "img-fluid"></div>
         </div>
         </div>
         <!-- end tab-pane-->
@@ -330,7 +334,7 @@ session_start();?>
         <p>Become a Hero and you will have access to many fast jobs. Be rewarded for your hard work.</p>
         <a href="views/book2.php" class = "btn btn-info my-2">Get a job right now!</a></div>
         
-        <div class="col-sm-12 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/plumber.jpg" class = "img-fluid"></div>
+        <div class="col-sm-12 col-md-12 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/plumber.jpg" class = "img-fluid"></div>
         </div>
         </div>
         <!-- end tab-pane-->
@@ -345,7 +349,7 @@ session_start();?>
         <a href = "views/Signup.php" class = "btn btn-info my-2">Join us today!</a>
         </div>
         
-        <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/hero.jpg" class = "img-fluid"></div>
+        <div class="col-sm-6 col-md-12 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/hero.jpg" class = "img-fluid"></div>
         </div>
         </div>
         <!-- end tab-pane-->
@@ -363,7 +367,7 @@ session_start();?>
                   <div id="listingsCarousel"  class="carousel slide mx-auto" data-ride="carousel">
                       <div class="carousel-inner w-100" role="listbox" >
                           <div class="carousel-item active">
-                              <div class="col-md-4">
+                              <div class="col-md-4 col-sm-12">
                                   <div class="shadow card card-body bg-light">
                                       <img class="img-fluid"  src="./resources/images/carwash.jpg">
                                     <p class="my-2">Car Wash</p>
@@ -371,7 +375,7 @@ session_start();?>
                               </div>
                           </div>
                           <div class="carousel-item">
-                              <div class="col-md-4">
+                              <div class="col-md-4 col-sm-12">
                                   <div class="shadow card card-body bg-light">
                                   <img class="img-fluid" src="./resources/images/delivery.jpg"></a>
                                   <p class="my-2">Delivery</p>
@@ -379,7 +383,7 @@ session_start();?>
                               </div>
                           </div>
                           <div class="carousel-item ">
-                              <div class="col-md-4 " >
+                              <div class="col-md-4 col-sm-12" >
                                   <div class="shadow card card-body bg-light ">
                                       <img class="img-fluid "  src="./resources/images/clean.jpg">
                                       <p class="my-2">Home Services</p>
