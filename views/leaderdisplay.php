@@ -9,9 +9,13 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!--Open Sans Regular-->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <style>
+
          .logo{
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Open Sans', sans-serif;
           font-weight: bolder;
         } 
         .nav-item{
@@ -38,6 +42,7 @@ session_start();
 }
 body{
   font-size:23px;
+  font-family: 'Open Sans', sans-serif;
 }
 .group:after {
   content: "";
@@ -52,7 +57,7 @@ body{
 }
 .head_wrapper{
   background:rgba(100,100,100,0.4);
-  border-bottom:2px solid goldenrod;
+  border-bottom:1px solid gold;
 }
 
 .head{
@@ -225,7 +230,7 @@ small{
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="../views/History.php">History</a>
                     <a class="dropdown-item" href="../views/Profile v2.php">Settings</a>
-                    <div class="dropdown-divider"></div>
+                    
                     
                     </div>
                 </li> 
