@@ -55,7 +55,7 @@ function getPost(val) {
                 <hr>
                 <div class="animate__animated animate__fadeIn">
                 <h6><b>Address:</b>  ${node.bookeraddress}</h6>
-                <p class="card-title">${description} <br>
+                <p class="card-title"><b>Info: </b>${description} <br>
                <b> Date of Task:</b> <br>${node.gigStartDate}</p>
                <h6><b>Fee:</b> $${node.gigPrice}</h6>
                </div>
