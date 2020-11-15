@@ -80,8 +80,8 @@ if (isset($_SESSION['error'])) {
             float: right;
         }
         
-        .back-header,
-        .back-p {
+        .bh,
+        .bp {
             margin-left: 20px;
             margin-right: 20px;
             color: #fafafa;
@@ -89,13 +89,13 @@ if (isset($_SESSION['error'])) {
             text-align: center;
         }
         
-        .back-header {
-            font-family: 'Open Sans', sans-serif
+        .bh {
+            font-family: 'Open Sans', sans-serif;
             font-size: 30px;
             font-weight: 500;
         }
         
-        .back-p {
+        .bp {
             font-family: 'PT Sans';
             letter-spacing: 1px;
             font-size: 20px;
@@ -248,13 +248,13 @@ if (isset($_SESSION['error'])) {
         
             <div class="left" style = 'text-align: center'>
             
-                <h2 class="back-header" style = 'margin-top: 50px' ></b>Don't have an account?</b></h2>
-                <p class="back-p" style = 'text-align: center'>Sign up today to be a Hero or get a Hero to help you!</p>
+                <h2 class="bh" style = 'margin-top: 50px' ></b>Don't have an account?</b></h2>
+                <p class="bp" style = 'text-align: center'>Sign up today to be a Hero or get a Hero to help you!</p>
                 <button class="back-btn signup-but">Sign Up</button>
             </div>
             <div class="right">
-                <h2 class="back-header" style = 'margin-top: 50px'>Do you already have an account?</h2>
-                <p class="back-p">Let's get you logged in!</p>
+                <h2 class="bh" style = 'margin-top: 50px'>Do you already have an account?</h2>
+                <p class="bp">Let's get you logged in!</p>
                 <button class="back-btn login-but">Log In</button>
             </div>
         </div>

@@ -154,13 +154,9 @@
                       </div>
                       
                     </div>
-                    <a href="#chart" style="margin-bottom: 20px;" class="btn btn-danger" data-toggle="collapse">View Personal Earnings</a>
+                  
   
-  <div class="bg-light collapse " style="width: 70%;margin-left:30px;"  id="chart">
-    <span style="font-size: 30px;color: black;
-    font-weight: 700;" id="total"></span>
-    <canvas id="myChart" ></canvas></div>
-  </div>
+ 
                     <div class = "row">
 
                         <div class = "col-md-3 mb-3">
@@ -250,5 +246,5 @@
     
 
 </body>
-<script src="profile.js"></script>
+
 </html>
