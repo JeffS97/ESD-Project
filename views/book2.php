@@ -239,8 +239,8 @@ width: 100%;
       margin-right: 8px;
       font-family: "Open Sans", sans-serif;
       font-weight:bold;
-      font-size:2em;
-      color:orange ;
+      font-size:1em;
+     
     }
     
     .item-quantity {

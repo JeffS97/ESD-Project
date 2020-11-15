@@ -1,4 +1,4 @@
-chart();
+window.onload=chart();
 window.onload = userDetails();
 
 function userDetails(){
