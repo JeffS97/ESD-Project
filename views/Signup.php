@@ -16,8 +16,7 @@
 <!--Montserrat-->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
-<!--Bootstrap-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     
 
 
@@ -317,7 +316,7 @@ if (isset($_SESSION['error'])) {
             };
 
             for (error of errors){
-                document.getElementById("errorSU").innerHTML += `<p class = 'text-danger' style = 'margin: 2px; font-size: 10px;'>${error}</p>`;
+                document.getElementById("errorSU").innerHTML += `<p style = 'margin: 2px; font-size: 10px; color:red;'>${error}</p>`;
             }
         };
 
