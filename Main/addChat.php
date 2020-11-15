@@ -27,14 +27,15 @@
 
     $sender = $_GET['sender'];
     $recipient = $_GET['recipient'];
-    $datetime = $_GET['datetime'];
     $msg = $_GET['message'];
     $gigId = $_GET['gigId'];
 
 
     # Add chat
     $dao = new ChatDAO();
-    $status = $dao->addChat($sender, $recipient, $datetime, $msg, $gigId) ;
-    
+    $status = $dao->addChat($sender, $recipient, $msg, $gigId) ;
+
+    $url = "Location:: ../views/Chat.php?id='{$gigId}'";
+    //header($url);
     
 ?>

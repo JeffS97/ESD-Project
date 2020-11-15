@@ -23,17 +23,16 @@
             return $result;
         }
 
-        public function addChat($sender, $receiver, $datetime, $msg,$gigId) {
+        public function addChat($sender, $receiver, $msg,$gigId) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
             $sql = "INSERT INTO chat (sender, recipient, msgDateTime, message, gigId)
-            VALUES (:sender,:receiver ,:datetime ,:msg , :gigId);";
+            VALUES (:sender,:receiver , NOW() ,:msg , :gigId);";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':sender', $sender, PDO::PARAM_STR);
             $stmt->bindParam(':receiver', $receiver, PDO::PARAM_STR);
-            $stmt->bindParam(':datetime', $datetime, PDO::PARAM_STR);
             $stmt->bindParam(':msg', $msg, PDO::PARAM_STR);
             $stmt->bindParam(':gigId', $gigId, PDO::PARAM_INT);
             $isOk = $stmt->execute();
