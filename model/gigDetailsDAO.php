@@ -76,7 +76,7 @@
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             
-            $sql = "select DISTINCT gigaccepter,count(gigId) as num from gigDetails group by gigaccepter order by num DESC   ";
+            $sql = "select DISTINCT gigaccepter,count(gigId) as num from gigDetails where gigaccepter!='null' group by gigaccepter order by num DESC   ";
 
             $stmt = $pdo->prepare($sql);
          
