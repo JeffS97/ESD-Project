@@ -69,6 +69,7 @@ session_start();
 
         .card {
   margin-bottom: 1rem;
+  width:17rem;
 }
 
 .list-view .row > [class*='col-'] {
@@ -323,7 +324,8 @@ card design
                         
                         </div>
                     </li> 
-                  <li>  <button type='button'  class='btn btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li> 
+                  </ul> <button type='button'  class='btn btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    
@@ -332,12 +334,13 @@ card design
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form> -->
                     
+                </ul>
                 <button type="button"  class="btn btn-info" ><a href="./Signup.php" style="color: white;text-decoration: none;">Login</a></button>
                     <?php }?>  
                            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
                 </div>
-             </ul>  
+             
             </div>
         
             </nav>

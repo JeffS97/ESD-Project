@@ -18,7 +18,7 @@ session_start();
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
@@ -26,6 +26,8 @@ session_start();
         #map {
             height: 200px;  /* The height is 400 pixels */
             width: 120%; 
+            margin-top:60%;
+            
           
              /* The width is the width of the web page */
         }
@@ -104,7 +106,7 @@ session_start();
             padding-right: 20px;
         }
         .track {
-    width:75%;
+    width:150%;
      background-color: #ddd;
      height: 7px;
      display: -webkit-box;
@@ -277,15 +279,20 @@ session_start();
                     <a class="dropdown-item" href="../views/Booktask.php">Post</a>
                     </div>
                 </li>
-                
-                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="../views/leaderdisplay.php">Top Heroes </a>
-                    </li>
-                    <?php
+                <?php
         
           
           if(isset($_SESSION["email"])){
          ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Listings
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="userRequest.php">My Requests</a>
+                    <a class="dropdown-item" href="userTasks.php">My Tasks</a>
+                    </div>
+                </li>
                 <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Profile
@@ -335,6 +342,7 @@ session_start();
   <img class="modal-content" id="img01">
   <div id="caption"></div>
 </div>
+<br>
 <div class="category" >
 <?php
 if($gigArray[0]->getCategoryName()=="homeservice"){
@@ -360,14 +368,16 @@ elseif($gigArray[0]->getCategoryName()=="miscellaneous"){
 
 <div class="card" style="width:40rem;">
 <div class="card-body">
-<i class="fas fa-clock"></i><h5 class="card-title d-inline  "><?php echo 'Date:'. $gigArray[0]->getGigStartDate()?></h5></div>
+<svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+</svg><h5 class="card-title d-inline  "><?php echo 'Date:'. $gigArray[0]->getGigStartDate()?></h5></div>
   <div class="card-body">
   <svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z"/>
   <path fill-rule="evenodd" d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z"/>
   <path d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
 </svg>
-    <h5 class="card-title d-inline">Price :$<?php echo  $gigArray[0]->getGigPrice()?></h5>
+   Price :$<?php echo  $gigArray[0]->getGigPrice()?>
     
     
   </div>
@@ -420,10 +430,11 @@ elseif($gigArray[0]->getCategoryName()=="miscellaneous"){
    
     <form>
         <div class="form-group">
-            <label for="addr">Enter Your Current Location</label>
+            <label for="addr">Enter Your Current Location:</label>
             <input type="text" class="form-control" name="addr" id="addr" placeholder="E.g. Singapore Management University" >
-
-            <button type="button"  onclick="getLoc('postcode')" class="btn btn-primary mt-2">Get Postal Code!</button>
+            
+            <button type="button"  onclick="getLoc('postcode')" class="btn btn-primary mt-2" >Get Postal Code!</button>
+          
             <!-- the following set the lat, lng values to put a marker on the map-->
             <input type="hidden" id="lat" name="lat" value="1.2973784" />
             <input type="hidden" id="lng" name="lng" value="103.8495219" />
@@ -432,6 +443,8 @@ elseif($gigArray[0]->getCategoryName()=="miscellaneous"){
     </form>
     <form action="./acceptbooking.php" method="POST">
         <div class="form-group">
+        <br>
+        <label >Postal:</label>
         <input type="text" value="" name="field" class="form-control" id="field" >
 <input type="hidden" value="<?php echo  $gigArray[0]->getId() ?>" name="id">
         </div>
