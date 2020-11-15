@@ -415,7 +415,7 @@ card design
 </div>
    <div class="container">
     <div class="row">
-        <div class="col-md-3 mt-5 " style="border:2px solid #dadada;border-radius:10px;padding:10px;">
+        <div class="col-md-3 mt-5 " style="border:2px solid #dadada;padding:10px;">
       
           <h3 style="text-align:center;" >YOUR LIST</h3>
           <hr>
@@ -444,7 +444,7 @@ card design
           <button class="btn btn-danger btn-list float-right ">   <i class="fa fa-bars "></i> </button>
           
           <i id="icon" class="fa fa-info-circle fa-lg"></i><p class="bg-warning   d-inline" id="weather"></p>
-      <h1 class="mt-4"><b>Browse Opportunities</b></h1>
+      <h1 class="mt-4"><b>Browse Available Opportunities</b></h1>
       <div class="results" id="number"></div>
         <div class=" grid-container mt-5 ">
           <div class="row " id="bookings">
