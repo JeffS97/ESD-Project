@@ -204,7 +204,7 @@ session_start();
 
 .category {
   display: inline-block;
-  border:0.5px solid gray;
+ 
   margin:5px;
   padding: 0 25px;
   height: 50px;
@@ -438,7 +438,7 @@ ul.nacc li p {
     
 <h1 id="taskName"><?php echo $gigArray[0]->getGigName() ?></h1>
 <br>
-<div class="category bg-warning" >
+<div class="category bg-light" >
 <?php
 if($gigArray[0]->getCategoryName()=="home"){
 echo  '<img src="../resources/images/plumber.jpg" alt="Person" width="96" height="96">';

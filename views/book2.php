@@ -132,7 +132,7 @@ width: 100%;
   border: none;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 30px;
-  background: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%)
+  background: linear-gradient(to right, #ffbf3e 0%, #ff7e7c  50%)
 ;
   background-size: 300% 300%;
   outline: none;
@@ -231,13 +231,16 @@ width: 100%;
       padding-top: 10px;
       font-family: "Open Sans", sans-serif;
       font-size: 16px;
+      font-weight:bold;
     }
     
     .item-price {
     
       margin-right: 8px;
       font-family: "Open Sans", sans-serif;
-      color:red ;
+      font-weight:bold;
+      font-size:2em;
+      color:orange ;
     }
     
     .item-quantity {
@@ -275,7 +278,7 @@ card design
     }
     </style>
 
-    <title>test</title>
+    <title>Book Gig</title>
   </head>
   <body>
     
@@ -501,7 +504,7 @@ $('.carousel .carousel-item').each(function(){
 });
 
 </script>
-<script src="./book2.js"></script>
+<script src="../backend_services/book2.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   </body>
   
