@@ -16,6 +16,10 @@
 <!--Montserrat-->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
+<!--Bootstrap-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+
 
 <head>
 <?php session_start();
@@ -261,25 +265,26 @@ if (isset($_SESSION['error'])) {
                 <h2 class="form-header">Sign Up</h2>
 
              
-                <input type="text" name="fullname" placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="text" name="username" placeholder="Username"><i class="far fa-address-card"></i></input>
-                <input type="text" name="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
-                <input type="password" name="password" placeholder="Password"><i class="fa fa-lock"></i></input>
-                <button type="submit" class="form-btn " style="margin-left: 20%;"  >Sign Up</button>
+                <input type="text" name="fullname" id = 'fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
+                <input type="text" name="username" id = 'usernameSU' placeholder="Username"><i class="far fa-address-card"></i></input>
+                <input type="text" name="email" id = 'emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                <input type="password" name="password" id='passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input>
+                <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "signUpValidate()" >Sign Up</button>
+                <div id = "errorSU"></div>
             </form>
             </div>
             <div class="my-5">
             <div class="login hide ">
-                <form method="post"   action="../Main/process_login.php" >
+                <form method="post"  action="../Main/process_login.php" >
                 <h2 class="form-header">Log In</h2>  
-                <input type="text" name="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                <input type="text" name="email" id = 'emailLI' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
                 
-                <input type="password" name="password" placeholder="Password"><i class="fa fa-lock"></i></input>
+                <input type="password" name="password" id = 'passwordLI' placeholder="Password"><i class="fa fa-lock"></i></input>
               
                 <div class="g-recaptcha" style="margin-top: 10px;" data-sitekey="6Lf2x-IZAAAAALMzDGQ3989jbM0-iRozvWHqGvb9"></div>
                  <br/>
-              
-                <button class="form-btn text-center" style="margin-left: 20%;">Log In</button>
+                <div id = 'errorLI'></div>
+                <button type = 'submit' class="form-btn text-center" style="margin-left: 20%;" onclick='logInValidate()'>Log In</button>
                 </form>
               
             </div>
@@ -292,6 +297,41 @@ if (isset($_SESSION['error'])) {
     </div>
     </div>
     <script>
+
+    function signUpValidate(){
+        document.getElementById("errorSU").innerHTML = '';
+        var fullnameSU = document.getElementById("fullnameSU").value;
+        var usernameSU = document.getElementById("usernameSU").value;
+        var emailSU = document.getElementById("emailSU").value;
+        var passwordSU = document.getElementById("passwordSU").value;
+        var errors = [];
+
+            if (fullnameSU === "" || usernameSU === "" || emailSU === "" || passwordSU === ""){
+                event.preventDefault();
+                errors.push('Error: None of your fields can be empty');
+            };
+
+            if (!emailSU.includes('@') || !emailSU.includes('.com')){
+                event.preventDefault();
+                errors.push('Error: Please enter a valid email');
+            };
+
+            for (error of errors){
+                document.getElementById("errorSU").innerHTML += `<p class = 'text-danger' style = 'margin: 2px; font-size: 10px;'>${error}</p>`;
+            }
+        };
+
+    function logInValidate(){
+        var emailLI = document.getElementById("emailLI").value;
+        var passwordLI = document.getElementByID("passwordLI").value;
+
+        if (emailLI === "" || passwordLI === ""){
+            document.getElementById("errorLI").innerHTML = `<p class = 'text-danger'>None of your fields can be empty</p>`;
+
+        };
+    };
+
+
         window.fbAsyncInit = function() {
     // FB JavaScript SDK configuration and setup
     FB.init({
