@@ -103,11 +103,11 @@ width: 100%;
     object-fit: cover;
 }
 .list-view .card > .card-img-top {
-  width:200px;
-  height: 28vw;
+  width:420px;
+  height: 30vw;
 }
 .list-view .card  .button{
- width: 20%
+ width: 30%
 }
 .list-view .card .card-body {
   display: inline-block;
