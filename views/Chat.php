@@ -2,6 +2,20 @@
 <?php
 require_once "../model/common.php";
 
+$dao = new gigDetailsDAO();
+
+$id = $_GET["id"];
+$sender = $_SESSION["email"];
+
+
+$gigArray = $dao->viewBooking($_GET["id"]);
+$recipient = $gigArray[0]->getGigBooker();
+if ($recipient == $sender) {
+    $recipient = $gigArray[0]->getGigAccepter();
+}
+
+
+
 ?>
 <html lang="en">
   <head>
@@ -24,15 +38,12 @@ require_once "../model/common.php";
     <!--Axios-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <!--Open Sans Regular-->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
-    <!--Montserrat-->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
     <style>
         .logo{
-            font-family: cambria;}
+            font-family: 'Open Sans', sans-serif;
+        }
         .nav{
             position: fixed; /* Stay in place */
             z-index: 1; /* Stay on top */
@@ -80,6 +91,8 @@ require_once "../model/common.php";
 
         .msgSenderBackground {
             display: inline-block;
+            position: relative;
+            left: 0;
             background-color: lightblue;
             font-size: 14px;
             margin: 10px 25px;
@@ -96,7 +109,7 @@ require_once "../model/common.php";
         .msgReceiverBackground{
             
             display: inline-block;
-            position: absolute;
+            position: relative;
             right: 0;
             /* text-align: right; */
             /* display: inline-block; */
@@ -188,6 +201,7 @@ require_once "../model/common.php";
             <div class="row justify-content-center">
                 <div class="col-sm-8 bg-light p-0">
                       <div id="chat">
+                         <!-- 
                         <div v-for="msg in messages">
                             <p class="msgSenderBackground">
                               <span><b>{{msg.sender}}:</b></span>
@@ -197,32 +211,77 @@ require_once "../model/common.php";
                             </div>
                          
                         </div>
-                        <div id="sendMsg" class="input-group">
-                            <input v-on:keyup.enter="addChat" v-model="message" id="message" type="text" class="form-control" placeholder="Type a Message!" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                            <button class="btn btn-primary" type="button"  @click="addChat">Send</button>
-                            </div>
-                      </div> 
+                        <form action="../Main/getChat.php" >
+                            <div id="sendMsg" class="input-group">
+
+                                <input v-on:keyup.enter="addChat" v-model="message" id="message" type="text" class="form-control" placeholder="Type a Message!" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button"  @click="addChat">Send</button>
+                                </div>
                         
+                            </div> 
+                        </form>
+                         -->
+                    </div>
+                    <div id="sendMsg" class="input-group">
+
+                            <input id="message" type="text" class="form-control" placeholder="Type a Message!" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button"  onclick="sendMsg()">Send</button>
+                            </div>
+                        
+                    </div> 
                 </div>
             </div>
         </div>
     
         <script>
-
+                      
+            /*
             const vm = new Vue({
                 el: '#chatgroup',
                 data: {
-                  sender: 'admin@gmail.com',
+                  sender: '',
                   message: '',
-                  recipient: 'rohan@gmail.com',
-                  datetime: '2020-11-14 02:00:00',
-                  gigId: '1',
+                  recipient: 'admin@gmail.com',
+                  gigId: '',
                   messages: []
                 },
                 methods:  {
-                  getChat: function(){
-                    axios.get('../Main/getChat.php')
+                  addChat: function(){
+                    event.preventDefault()
+                   //alert("added");
+                   axios.post('../Main/addChat.php', JSON.stringify({
+                        sender: this.sender,
+                        message: this.message,
+                        recipient: this.recipient,
+                        datetime: this.datetime,
+                        gigId:this.gigId
+                    }))
+                    url = '../Main/addChat.php?sender=' + 
+                            encodeURIComponent(this.sender) + '&recipient=' + encodeURIComponent(this.recipient) + '&message=' + encodeURIComponent(this.message)
+                           + '&gigId=' + encodeURIComponent(this.gigId)
+                    axios.get(url)
+                    .then(response => {
+                      //alert('test')  
+                      console.log(response.data)                           
+                        
+                    })
+                    .catch(error => {
+                      console.log(error.message)  
+                      //this.showStatus = true
+                        //this.status = 'There was an error: ' + error.message 
+                    }) 
+                  }
+                },
+                computed: {
+                    
+                },
+                mounted: function() {
+                    //event.preventDefault()
+                  //this.getChat();
+                  //window.setInterval(this.getChat(), 1000);
+                  axios.get('../Main/getChat.php')
                         .then(response => {
                             // this gets the data, which is an array
                             //console.log(response.data.chat)
@@ -236,45 +295,15 @@ require_once "../model/common.php";
                         })
                         .catch(error => {
                             console.log(error);
-                        });        
-                  },
-                  addChat: function(){
-                   //alert("added");
+                        });  
 
-                   
-                   /*axios.post('../Main/addChat.php', JSON.stringify({
-                        sender: this.sender,
-                        message: this.message,
-                        recipient: this.recipient,
-                        datetime: this.datetime,
-                        gigId:this.gigId
-                    }))*/
-                    url = '../Main/addChat.php?sender=' + 
-                            encodeURIComponent(this.sender) + '&recipient=' + encodeURIComponent(this.recipient) + '&message=' + encodeURIComponent(this.message)
-                            + '&datetime=' + encodeURIComponent(this.datetime) + '&gigId=' + encodeURIComponent(this.gigId)
-                    axios.get(url)
-                    .then(response => {
-                        console.log(response.data)
-                        //this.showStatus = true
-                        //this.status = response.data
-                    })
-                    .catch(error => {
-                      console.log(error.message)  
-                      //this.showStatus = true
-                        //this.status = 'There was an error: ' + error.message 
-                    }) 
-                  }
-                },
-                mounted: function() {
-                  this.getChat();
-                  window.setInterval(this.getChat(), 1000);
                 }
 
 
             });
-            
+            */
             // Get the input field
-            /*const input = document.querySelector("input");
+            const input = document.querySelector("input");
 
             // Execute a function when the user releases a key on the keyboard
             input.addEventListener("keyup", function(event) {
@@ -283,27 +312,96 @@ require_once "../model/common.php";
                 sendMsg();
             }
             });
-
-            windows.load() = retrieveMsgs();
             
-            */
- 
+            var id = "<?php echo"$id"?>";
+            var sender = "<?php echo"$sender"?>";
+            var recipient = "<?php echo"$recipient"?>";
+            //console.log(sender);
 
-            /*function retrieveMsgs(){
-                let msgvalue = "";
-                for (message in messages){}
+            window.onload = retrieveMsgs(id);
+            
+            function retrieveMsgs(id){
+                               
+                const request = new XMLHttpRequest();
+                request.onreadystatechange = function() {
+                    if(this.readyState == 4 && this.status == 200) {
+                        //console.log("entered");
+                        let chatArr = JSON.parse(this.responseText).chat;
+                        console.log(chatArr);
+                        const chatbox = document.getElementById("chat");
 
-            }*/
-            /*  
+                        for (chat of chatArr){
+                            const div = document.createElement("div");
+                            const p = document.createElement("p");
+
+                            if (chat.sender == sender){
+                                p.setAttribute("class","msgSenderBackground");
+                                div.setAttribute("class", "d-flex flex-row-reverse");
+                               
+                            }else {
+                                p.setAttribute("class","msgReceiverBackground");
+                                
+                            }    
+                            
+                            p.innerText = chat.message;
+
+                            const time = document.createElement("span");
+                            time.setAttribute("class","time");
+                            datetime = chat.msgDateTime.substring(11,16);
+                            time.innerText = datetime;
+
+                            p.appendChild(time);
+                            div.appendChild(p);
+                            chatbox.appendChild(div);
+                            
+                        }
+                      
+                    }
+                };
+                //console.log(jsonObj);
+                request.open("GET", "../Main/getChat.php?id="+id, true);
+                request.send();
+                
+                //request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                
+            }
+            
             function sendMsg(){
-                const msgvalue = document.getElementById("message").value
-                var currentTime= new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                //alert("clicked");
+                const msgvalue = document.getElementById("message").value;
+                
+                const div = document.createElement("div");
+                const p = document.createElement("p");
+                p.setAttribute("class","msgSenderBackground");
+                div.setAttribute("class", "d-flex flex-row-reverse");
+                p.innerText = msgvalue;
 
+                //var currentTime= new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                
+                var today = new Date();
+                var minutes = today.getMinutes();
+
+                if (minutes < 10){
+                    minutes = "0"+minutes;
+                }
+
+                var currentTime = today.getHours() + ":" + minutes;
                 const time = document.createElement("span");
                 time.setAttribute("class","time");
                 time.innerText = currentTime;
 
+                const chatbox = document.getElementById("chat");
+                p.appendChild(time);
+                div.appendChild(p);
+                chatbox.appendChild(div);
+
+                var id = "<?php echo"$id"?>";
+                var sender = "<?php echo"$sender"?>";
+                var recipient = "<?php echo"$recipient"?>";
+
                 
+
+                /*
                 const p = document.createElement("p");
                 p.setAttribute("class","msgSenderBackground");
                 p.innerText = msgvalue;
@@ -314,35 +412,34 @@ require_once "../model/common.php";
                 p.appendChild(time);
                 chatbox.appendChild(p);
                 chatbox.appendChild(br);
-
+                */
                 const request = new XMLHttpRequest();
                 request.onreadystatechange = function() {
                     if(this.readyState == 4 && this.status == 200) {
-                        //console.log(this.responseText);
+                        
+                        console.log(this.responseText);
                         //JSON.parse(this.responseText);
+
+                        
                       
                     }
                 };
                 //console.log(jsonObj);
-                request.open("POST", "addChat.php", true);
-                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                request.open("GET", '../Main/addChat.php?sender=' + 
+                            encodeURIComponent(sender) + '&recipient=' + encodeURIComponent(recipient) + '&message=' + encodeURIComponent(msgvalue)
+                           + '&gigId=' + id, true);
+                request.send();
+                //request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 //request.send("query=" + jsonObj);
 
                 
 
                 document.getElementById("message").value = '';
-                
+               
             }
 
-
-            */
-
-
         </script>
-        <?php
-          //var_dump(json_decode(array_keys($_POST),true));
-         // $_POST = json_decode(array_keys($_POST),true);
-        ?>
+    
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
