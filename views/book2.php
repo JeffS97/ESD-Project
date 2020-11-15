@@ -19,11 +19,16 @@ session_start();
     <!--Raleway font stylesheet-->
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
+    <!--Open Sans Regular-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
     <style>
+
        .logo{
           font-family: 'Open Sans', sans-serif;
-          font-weight: bolder;
+          font-weight: bolder; 
         } 
+
         .nav{
             position: fixed; /* Stay in place */
             z-index: 1; /* Stay on top */
@@ -276,7 +281,7 @@ card design
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding: 12px;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white; padding-top:12px; margin-bottom: 0px; padding-bottom: 0px">
             <div class = 'container' style="padding: 0;">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
