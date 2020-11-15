@@ -154,20 +154,15 @@ if ($recipient == $sender) {
                         <a class="dropdown-item" href="./Booktask.php">Post</a>
                         </div>
                     </li>
+                   
+                    <li class="nav-item dropdown">
+                    <a class="nav-link" href="./leaderdisplay.php">Top Heroes </a>
+                    </li>
                     <?php
             
               
-              if(isset($_SESSION["email"])){
-             ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Listings
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="userRequest.php">My Requests</a>
-                        <a class="dropdown-item" href="userTasks.php">My Tasks</a>
-                        </div>
-                    </li>
+            if(isset($_SESSION["email"])){
+           ?>
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Profile
@@ -187,7 +182,7 @@ if ($recipient == $sender) {
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form> -->
                     
-                <button type="button"  class="btn btn-info" ><a href="./Signup.php" style="color: white;text-decoration: none;">Login</a></button>
+                <button type="button"  class="btn btn-info" ><a href="./views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button>
                     <?php }?>  
                            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
