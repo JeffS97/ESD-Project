@@ -55,7 +55,7 @@ function getPost(val) {
                 <hr>
                 <div class="animate__animated animate__fadeIn">
                 <h6><b>Address:</b>  ${node.bookeraddress}</h6>
-                <p class="card-title">${description} <br>
+                <p class="card-title"><b>Info: </b>${description} <br>
                <b> Date of Task:</b> <br>${node.gigStartDate}</p>
                <h6><b>Fee:</b> $${node.gigPrice}</h6>
                </div>
@@ -118,7 +118,7 @@ request.onreadystatechange = function() {
             <span class="item-price">$${node.gigPrice}</span>
           
             <span class="item-quantity d-block">Date: ${node.gigStartDate}</span>
-            <a href="../Main/process_taskview.php?id=${node.gigId}" style="margin-left:45%;"> <span class="badge badge-success ">View Status</span></a>
+            <a href="../Main/process_taskview.php?id=${node.gigId}" style="margin-left:45%;"> <span class="badge badge-warning ">View Status</span></a>
             </li>
             <hr>`;
 
@@ -153,7 +153,7 @@ request.onreadystatechange = function() {
             <span class="item-price">$${node.gigPrice}</span>
        
             <span class="item-quantity d-block">Date: ${node.gigStartDate}</span>
-            <a href="../Main/process_taskview.php?id=${node.gigId}&check=1" style="margin-left:45%;"> <span class="badge badge-success ">View Status</span></a>
+            <a href="../Main/process_taskview.php?id=${node.gigId}&check=1" style="margin-left:45%;"> <span class="badge badge-warning ">View Status</span></a>
             <a href="../Main/process_update.php?id=${node.gigId}" style="margin-left:45%;"> <span class="badge badge-success d-inline">Mark as Complete</span></a>
           
             </li>

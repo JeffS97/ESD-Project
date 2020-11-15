@@ -141,7 +141,7 @@ require_once "../model/protect.php";
                     <a class="nav-link" href="./leaderdisplay.php">Top Heroes </a>
                     </li>
                     <?php
-            
+              
               
             if(isset($_SESSION["email"])){
            ?>
