@@ -77,46 +77,47 @@ VALUES ('Liyin','Liyin','Liyin@gmail.com','$2y$10$W.Dn66Q00/2gKC552VljSuD7xSd9u5
 
 /*ADD USERS
 */
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan@gmail.com','Food' ,'Takeaway food', 10,'2020-11-21 02:32:00','Active','');
-            
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda@gmail.com','Home Services' ,'House Clean', 20,'2020-11-19 17:08:00','Active','');
-
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('amanda@gmail.com','Shopping' ,'House Clean', 20,'','2020-11-18 23:33:00','Active','');
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan@gmail.com','Food' ,'Takeaway food', 10,'Lorem Ipsum','2020-11-21 02:32:00','Active','');
             
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('jeff@gmail.com','Shopping' ,'House Clean', 20,'','2020-11-18 23:55:00','Active','');
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda@gmail.com','Home Services' ,'House Clean', 20,'Lorem Ipsum','2020-11-19 17:08:00','Active','');
 
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('liyin@gmail.com','Miscellaneous' ,'HELP', 20,'','2020-11-16 08:10:00','Active','');
-
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan@gmail.com','Food' ,'Takeaway food', 10,'2020-11-20 02:32:00','Active','');
-            
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda@gmail.com','home' ,'House Clean', 20,'2020-11-18 17:08:00','Active','');
-
-INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('amanda@gmail.com','shopping' ,'House Clean', 20,'','2020-11-17 23:33:00','Active','');
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('amanda@gmail.com','Shopping' ,'House Clean', 20,'Lorem Ipsum','2020-11-18 23:33:00','Active','');
             
 INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
-            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('jeff@gmail.com','shopping' ,'House Clean', 20,'','2020-11-15 23:55:00','Active','');
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('jeff@gmail.com','Shopping' ,'House Clean', 20,'Lorem Ipsum','2020-11-18 23:55:00','Active','');
+
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('liyin@gmail.com','Miscellaneous' ,'HELP', 20,'Lorem Ipsum','2020-11-16 08:10:00','Active','');
+
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('rohan@gmail.com','Food' ,'Takeaway food', 10,'Lorem Ipsum','2020-11-20 02:32:00','Active','');
+            
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('glenda@gmail.com','home' ,'House Clean', 20,'Lorem Ipsum','2020-11-18 17:08:00','Active','');
+
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('amanda@gmail.com','shopping' ,'House Clean', 20,'Lorem Ipsum','2020-11-17 23:33:00','Active','');
+            
+INSERT INTO gigDetails (`gigbooker`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
+            ,`gigStartDate`,`gigStatus`,`bookeraddress`) VALUES ('jeff@gmail.com','shopping' ,'House Clean', 20,'Lorem Ipsum','2020-11-15 23:55:00','Active','');
 
 INSERT INTO gigDetails (`gigbooker`,`gigaccepter`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
             ,`gigStartDate`,`gigEndDate`,`gigStatus`,`bookeraddress`,`accepteraddress`) 
-            VALUES ('liyin@gmail.com','glenda@gmail.com' ,'miscellaneous' ,'HELP', 16,'','2020-11-14 08:10:00','2020-11-14 010:10:00','Completed','768445','760717');
+            VALUES ('liyin@gmail.com','glenda@gmail.com' ,'miscellaneous' ,'HELP', 16,'Lorem Ipsum','2020-11-14 08:10:00','2020-11-14 010:10:00','Completed','768445','760717');
 
 INSERT INTO gigDetails (`gigbooker`,`gigaccepter`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
             ,`gigStartDate`,`gigEndDate`,`gigStatus`,`bookeraddress`,`accepteraddress`) 
-            VALUES ('liyin@gmail.com','glenda@gmail.com' ,'food' ,'Dabao', 23,'','2020-11-14 08:10:00','2020-11-14 010:10:00','Completed','768445','760717');
+            VALUES ('liyin@gmail.com','glenda@gmail.com' ,'food' ,'Dabao', 23,'Lorem Ipsum','2020-11-14 08:10:00','2020-11-14 010:10:00','Completed','768445','760717');
 
 INSERT INTO gigDetails (`gigbooker`,`gigaccepter`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
             ,`gigStartDate`,`gigEndDate`,`gigStatus`,`bookeraddress`,`accepteraddress`) 
-            VALUES ('jeff@gmail.com','rohan@gmail.com' ,'vehicle help' ,'HELP', 16,'','2020-11-14 08:10:00','2020-11-14 010:10:00','Completed','768445','760717');
+            VALUES ('jeff@gmail.com','rohan@gmail.com' ,'vehicle help' ,'HELP', 16,'Lorem Ipsum','2020-11-14 08:10:00','2020-11-14 010:10:00','Completed','768445','760717');
 
 INSERT INTO gigDetails (`gigbooker`,`gigaccepter`,`categoryName`, `gigName`,`gigPrice`,`gigDescription`
             ,`gigStartDate`,`gigEndDate`,`gigStatus`,`bookeraddress`,`accepteraddress`) 
-            VALUES ('amanda@gmail.com','rohan@gmail.com' ,'vehicle help' ,'HELP', 16,'','2020-11-14 08:10:00','2020-11-14 010:10:00','Processing','768445','760717');
+            VALUES ('amanda@gmail.com','rohan@gmail.com' ,'vehicle help' ,'HELP', 16,'Lorem Ipsum','2020-11-14 08:10:00','2020-11-14 010:10:00','Processing','768445','760717');
+
 
