@@ -20,16 +20,13 @@
     <!--Montserrat-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" type="text/css" href="../resources/templates/css template.css" />
+    <link rel="stylesheet" href="../resources/templates/css template.css">
 
     <!--Open Sans Regular-->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
     <!--Inter-->
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans&display=swap" rel="stylesheet">
-
-    <!--Montserrat-->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
 
     <style>
         .logo{
