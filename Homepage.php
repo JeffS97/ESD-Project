@@ -175,6 +175,30 @@ session_start();?>
             padding-left: 20px;
             padding-right: 20px;
         }
+
+        @media (min-width: 576px) {
+            .card-columns {
+                column-count: 1;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card-columns {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .card-columns {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .card-columns {
+                column-count: 3;
+            }
+        }
         
 
     </style>
@@ -286,9 +310,10 @@ session_start();?>
         
         <p>Need a small task to be done?</p>
         <p>Worry not! Hire a Hero now and we will quickly assign a freelancer to you.</p>
-        <a href="views/Booktask.php" class = "btn btn-info">Find help now!</a></div>
         
-        <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/help.jpg" class = "img-fluid"></div>
+        <a href="views/Booktask.php" class = "btn btn-info my-2">Find help now!</a></div>
+        
+        <div class="col-sm-12 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/help.jpg" class = "img-fluid"></div>
         </div>
         </div>
         <!-- end tab-pane-->
@@ -303,21 +328,21 @@ session_start();?>
         <p>In need of work?</p>
         <p>Look no further. </p>
         <p>Become a Hero and you will have access to many fast jobs. Be rewarded for your hard work.</p>
-        <a href="views/book2.php" class = "btn btn-info">Get a job right now!</a></div>
+        <a href="views/book2.php" class = "btn btn-info my-2">Get a job right now!</a></div>
         
-        <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/plumber.jpg" class = "img-fluid"></div>
+        <div class="col-sm-12 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/plumber.jpg" class = "img-fluid"></div>
         </div>
         </div>
         <!-- end tab-pane-->
         
         <div aria-labelledby="tab-about-us" class="tab-pane active" id="contact-blu" role="tabpanel">
         <div class="row justify-content-center">
-        <div class="col-sm-6 col-md-5 my-auto animate__animated animate__fadeIn">
+        <div class="col-sm-12 col-md-5 my-auto animate__animated animate__fadeIn">
         <h3>About us</h3>
         
         <p>Not every hero wears a cape.</p>
         <p>Welcome to Hire a Hero, a platform designed to help everyday individuals <b>find help for their daily tasks</b> and enable others to <b>find temporary jobs on the go.</b></p>
-        <a href = "views/Signup.php" class = "btn btn-info">Join us today!</a>
+        <a href = "views/Signup.php" class = "btn btn-info my-2">Join us today!</a>
         </div>
         
         <div class="col-sm-6 col-md-7 col-lg-6 pl-lg-5 img-holder"><img src="./resources/images/hero.jpg" class = "img-fluid"></div>
@@ -468,9 +493,9 @@ Vue.component ('gig-post', {
     },
     template: 
     `
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mb-3 " style="max-width: 540px;">
     <div class="row no-gutters">
-        <div class="col-md-4">
+        <div class="col-lg-4">
         <img :src='gigImagesPath()' class="card-img-top" style="height:15rem;object-fit:cover;" >
         </div>
         <div class="col-md-8">
