@@ -258,22 +258,27 @@ small{
         </div>
     
         </nav>
+  
 <div class="page_wrapper">
   <header class="head group">
     <div class="head_wrapper group">
       <div class="logo2"><h1>TOP  HEROES</h1></div>
     </div>  
   </header>
-  <div class="banner">
+  <div class="container  ">
+  <div class="row">
+  <div class="col-sm-12 board ">
+  <div class="banner mx-auto">
     <div class="wrapper">
       <div class="banner_content">
          <div class="banner_wrapper">
-  <div class="container ">
-  <div class="row">
-  <div class="col-sm-12 board">
+  
+ 
     <h2 class="title" style = 'text-align: center'><img src="http://findicons.com/files/icons/2799/flat_icons/256/trophy.png">
        TOP HEROES WITH MOST SERVICES COMPLETED</h2>
-    <ol id="board" class="leaderboard ">
+       
+  
+    <ol id="board" class="leaderboard " >
 
     </ol>
   </div>
