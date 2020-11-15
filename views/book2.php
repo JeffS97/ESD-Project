@@ -107,7 +107,7 @@ width: 100%;
   height: 30vw;
 }
 .list-view .card  .button{
- width: 30%
+ width: 40%
 }
 .list-view .card .card-body {
   display: inline-block;
@@ -442,10 +442,7 @@ card design
         </div>
         <div class="col-md-9">
        <br>
-          <button class="btn btn-primary btn-grid float-right ml-2"><i class="fa fa-th-large"></i></button>
-          
-          <button class="btn btn-danger btn-list float-right ">   <i class="fa fa-bars "></i> </button>
-          
+         
           <i id="icon" class="fa fa-info-circle fa-lg"></i><p class="bg-warning   d-inline" id="weather"></p>
       <h1 class="mt-4"><b>Browse Available Opportunities</b></h1>
       <div class="results" id="number"></div>
