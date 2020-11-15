@@ -3,7 +3,8 @@
 
 <link href="https://fonts.googleapis.com/css?family=PT+Sans|Ubuntu:400,500" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="mystyle.css">
+<script src="https://kit.fontawesome.com/44084b3444.js" crossorigin="anonymous"></script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
@@ -261,7 +262,7 @@ if (isset($_SESSION['error'])) {
 
              
                 <input type="text" name="fullname" placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="text" name="username" placeholder="Username"><i class="fa fa-envelope-o"></i></input>
+                <input type="text" name="username" placeholder="Username"><i class="far fa-address-card"></i></input>
                 <input type="text" name="email" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
                 <input type="password" name="password" placeholder="Password"><i class="fa fa-lock"></i></input>
                 <button type="submit" class="form-btn " style="margin-left: 20%;"  >Sign Up</button>
