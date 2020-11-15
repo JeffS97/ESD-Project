@@ -4,6 +4,8 @@ Project Hero is a project that aims to connect freelancers with people who requi
 
 # File Organization
 
+Project Hero's files are organized into folders by: 
+
 | Folder | Purpose |
 | ------ | ------ |
 | Main | Storing of php files used to process data |
@@ -16,12 +18,17 @@ Project Hero is a project that aims to connect freelancers with people who requi
 
 #  Setting up
 
+Project Hero's initial set up phase can be done by: 
+
   - After downloading the source code, import the SQL script(hero_db.sql) located in the database_scripts folder
   - Ensure the ConnectionManager.php located in the Model folder is properly configured to your settings
   - Access the webpage via homepage.php (This functions as an index.html page)
   - Sign-up for an account via the log-in button at the top right hand corner of the navigation bar
 
 # Functionality
+
+Project Hero possesses the following functionality :
+
   - Account Creation and Logging in
   - Posting of task/gig by user
   - View list of bookings and accept booking made by other users
