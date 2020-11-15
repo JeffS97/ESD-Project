@@ -251,7 +251,110 @@ session_start();
     width: 100%;
   }
 }
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 
+
+
+
+
+.grid {
+ 
+ margin-left: -40px;
+}
+
+.gc {
+ box-sizing: border-box;
+ display: inline-block;
+ margin-right: -.25em;
+ min-height: 1px;
+ padding-left: 40px;
+ vertical-align: top;
+}
+
+.gc--1-of-3 {
+ width: 33.33333%;
+}
+
+.gc--2-of-3 {
+ width: 66.66666%;
+}
+
+.naccs {
+ position: relative;
+ max-width: 900px;
+ margin: 10px auto 0;
+}
+
+.naccs .menu div {
+ padding: 15px 20px 15px 40px;
+ margin-bottom: 10px;
+
+ box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+ cursor: pointer;
+ position: relative;
+ vertical-align: middle;
+ font-weight: 700;
+ transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.naccs .menu div:hover {
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.naccs .menu div span.light {
+    
+ height: 10px;
+ width: 10px;
+ 
+ position: absolute;
+ top: 24px;
+ left: 15px;
+
+ border-radius: 100%;
+ transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.naccs .menu div.active span.light {
+ 
+ left: 0;
+ height: 100%;
+ width: 3px;
+ top: 0;
+ border-radius: 0;
+}
+
+.naccs .menu div.active {
+ color: $third-color;
+ padding: 15px 20px 15px 20px;
+}
+
+ul.nacc {
+ position: relative;
+ height: 0px;
+ list-style: none;
+ margin: 0;
+ padding: 0;
+ transition: .5s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+ul.nacc li {
+ opacity: 0;
+ transform: translateX(50px);
+ position: absolute;
+ list-style: none;
+ transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+ul.nacc li.active {
+ transition-delay: .3s;
+ z-index: 2;
+ opacity: 1;
+ transform: translateX(0px);
+}
+
+ul.nacc li p {
+ margin: 0;
+}
       </style>
 </head>
 <body>
@@ -324,7 +427,7 @@ session_start();
         </nav>
 <div class="container">
 <div class="row">
-    <div class="col-lg-8 col-md-8">
+    <div class="col-lg-8 col-md-8 col-sm-12">
 
         <p style="margin-right:80%" class="lead mt-3">3 Easy Steps...</p>
     <div class="track" >
@@ -345,7 +448,7 @@ session_start();
 <br>
 <div class="category" >
 <?php
-if($gigArray[0]->getCategoryName()=="homeservice"){
+if($gigArray[0]->getCategoryName()=="home"){
 echo  '<img src="../resources/images/plumber.jpg" alt="Person" width="96" height="96">';
 }
 elseif($gigArray[0]->getCategoryName()=="vehicleHelp"){
@@ -365,39 +468,55 @@ elseif($gigArray[0]->getCategoryName()=="miscellaneous"){
  
   <?php echo  $gigArray[0]->getCategoryName() ?>
 </div>
+<div class="jumbotron text-white text-center" style="background: #3F51B5;margin-bottom:-10px;margin-top:10px;font-family: 'Open Sans', sans-serif;height:50px;">Task Details</div>
+<div class="naccs" style="border:1px solid #dadada ;padding:20px">
 
-<div class="card" style="width:40rem;">
-<div class="card-body">
-<svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-</svg><h5 class="card-title d-inline  "><?php echo 'Date:'. $gigArray[0]->getGigStartDate()?></h5></div>
-  <div class="card-body">
-  <svg width="2em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z"/>
-  <path fill-rule="evenodd" d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z"/>
-  <path d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
-</svg>
-   Price :$<?php echo  $gigArray[0]->getGigPrice()?>
-    
-    
+  <div class="grid">
+   <div class="gc gc--1-of-3">
+    <div class="menu">
+     <div class="active " ><span class="light"></span><span style=" font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase; font-size: .6em;">Description</span></div>
+     <div class=" "><span class="light" ></span><span  style=" font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase; font-size: .6em;">Price</span></div>
+     <div class=" "><span class="light"></span><span  style=" font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase; font-size: .6em;">Address</span></div>
+    </div>
+   </div>
+   <div class="gc gc--2-of-3">
+    <ul class="nacc">
+     <li class="active">
+      <div>
+       <p > <?php echo  $gigArray[0]->getDescription() ?></p>
+      </div>
+     </li>
+     <li>
+      <div>
+       <p>$<?php echo  $gigArray[0]->getGigPrice() ?>-Payment by Cash or Paylah</p>
+      </div>
+     </li>
+     <li>
+      <div>
+       <p>Postal Code:<?php echo  $gigArray[0]->getbookeraddress() ?></p>
+      </div>
+     </li>
+    </ul>
+   </div>
   </div>
-  <p class="card-text float-left" ><?php echo  $gigArray[0]->getDescription()?></p>
-  <div id="error">
-        
-        </div>
-</div>
+ </div>
+
 
 </div>
 
     
     
 
-    <div class="col-lg-4 col-md-4">
+ 
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <div class="col-lg-4 col-md-4 col-sm-12">
     <div id="map"></div>
     <script>
         // Initialize and add the map
@@ -471,7 +590,22 @@ img.onclick = function(){
 
 var span = document.getElementsByClassName("close")[0];
 
+$(document).on("click", ".naccs .menu div", function() {
+	var numberIndex = $(this).index();
 
+	if (!$(this).is("active")) {
+		$(".naccs .menu div").removeClass("active");
+		$(".naccs ul li").removeClass("active");
+
+		$(this).addClass("active");
+		$(".naccs ul").find("li:eq(" + numberIndex + ")").addClass("active");
+
+		var listItemHeight = $(".naccs ul")
+			.find("li:eq(" + numberIndex + ")")
+			.innerHeight();
+		$(".naccs ul").height(listItemHeight + "px");
+	}
+});
 span.onclick = function() { 
   modal.style.display = "none";
 }

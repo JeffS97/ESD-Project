@@ -270,10 +270,11 @@
         </nav>
         <?php
             if($accepter==null){
-         echo   "<i><h1 style='position:relative;margin-left:40%;' >Searching a Hero for you</h1></i> <div class='loader '></div>";
+         echo   "<i style='text-align:center;'><p  style='font-size:40px'>Searching a Hero for you</p></i> <div class='loader mx-auto  '></div>";
             }
 
             ?>
+           
         <div class="track" >
                 <div class="step active"> <span class="icon"> <i class="fa fa-eye"></i> </span> <span class="text">Post Request</span> </div>
                 <div class="step active"> <span class="icon"> <i class="fa fa-address-card"></i> </span> <span class="text"> Wait for it to be accepted</span> </div>
@@ -289,7 +290,7 @@
                }
 ?>
             </div>
-           
+            <br>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">

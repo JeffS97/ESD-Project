@@ -69,11 +69,12 @@ session_start();
 
         .card {
   margin-bottom: 1rem;
-  width:17rem;
+  
 }
 
 .list-view .row > [class*='col-'] {
   max-width: 90%;
+  
   -webkit-box-flex: 0;
           flex: 0 0 800%;
   
@@ -81,6 +82,7 @@ session_start();
 .list-view .card {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
+  
           flex-direction: row;
 }
 .list-view .card:hover{
@@ -91,6 +93,8 @@ width: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
             flex-direction: column;
+          
+          
   }
 }
 .card-img-top{
@@ -100,6 +104,7 @@ width: 100%;
 }
 .list-view .card > .card-img-top {
   width:200px;
+  height: 28vw;
 }
 .list-view .card  .button{
  width: 20%
@@ -324,8 +329,7 @@ card design
                         
                         </div>
                     </li> 
-                  <li> 
-                  </ul> <button type='button'  class='btn btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
+                  <li>  <button type='button'  class='btn btn-info'  ><a href='../Main/process_logout.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                     <?php }else{?>
                         
                    
@@ -334,13 +338,12 @@ card design
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form> -->
                     
-                </ul>
                 <button type="button"  class="btn btn-info" ><a href="./Signup.php" style="color: white;text-decoration: none;">Login</a></button>
                     <?php }?>  
                            <!-- <button type="button" class="btn btn-primary" style="margin: 10px;">Sign Up</button> -->
                     <span class = 'noti' style="padding: 10px; font-size: 25px; padding-bottom: 15px;" hidden><img src = "https://www.flaticon.com/svg/static/icons/svg/523/523152.svg" height = 35px width = 35px> </span>
                 </div>
-             
+             </ul>  
             </div>
         
             </nav>
@@ -355,9 +358,9 @@ card design
     <div class="row mx-auto " >
         <div id="gigscarousel"  class="carousel slide mx-auto animate__animated animate__fadeIn" data-ride="carousel">
             <div class="carousel-inner w-100" role="listbox" >
-                <div class="carousel-item active">
+                <div class="carousel-item active ">
                     <div class="col-md-4">
-                        <div class="card card-body bg-light">
+                        <div class="card card-body bg-light mx-auto">
                         <a href="#" onclick="getPost('home')">   <img class="img-fluid" style="height: 270px;" src="../resources/images/plumber.jpg"></a>
                           Home Services
                         </div>
@@ -365,7 +368,7 @@ card design
                 </div>
                 <div class="carousel-item">
                     <div class="col-md-4">
-                        <div class="card card-body bg-light">
+                        <div class="card card-body bg-light mx-auto">
                         <a href="#" onclick="getPost('shopping')">    <img class="img-fluid"  style="height: 270px;" src="../resources/images/shopping.jpg"></a>
                         Shopping
                         </div>
@@ -373,7 +376,7 @@ card design
                 </div>
                 <div class="carousel-item">
                     <div class="col-md-4">
-                        <div class="card card-body bg-light">
+                        <div class="card card-body bg-light mx-auto">
                         <a href="#" onclick="getPost('food')">   <img class="img-fluid" style="height: 270px;" src="../resources/images/food.jpg"></a>
                        Food Delivery
                         </div>
@@ -381,7 +384,7 @@ card design
                 </div>
                 <div class="carousel-item ">
                     <div class="col-md-4 " >
-                        <div class="card card-body bg-light ">
+                        <div class="card card-body bg-light mx-auto ">
                         <a href="#" onclick="getPost('vehicleHelp')">   <img class="img-fluid " style="height: 270px;" src="../resources/images/vehicle.jpg"></a>
                            Vehicle Help
                         </div>
@@ -390,7 +393,7 @@ card design
                 
                 <div class="carousel-item ">
                     <div class="col-md-4 " >
-                        <div class="card card-body bg-light ">
+                        <div class="card card-body bg-light mx-auto ">
                         <a href="#" onclick="getPost('miscellaneous')">  <img class="img-fluid " style="height: 270px;" src="../resources/images/misc.jpg"></a>
                            Miscellaneous
                         </div>
@@ -412,7 +415,7 @@ card design
 </div>
    <div class="container">
     <div class="row">
-        <div class="col-md-3 mt-5 bg-light" style="border:2px solid #dadada;border-radius:10px;padding:10px;">
+        <div class="col-md-3 mt-5 " style="border:2px solid #dadada;border-radius:10px;padding:10px;">
       
           <h3 style="text-align:center;" >YOUR LIST</h3>
           <hr>
@@ -435,7 +438,7 @@ card design
        
         </div>
         <div class="col-md-9">
-       
+       <br>
           <button class="btn btn-primary btn-grid float-right ml-2"><i class="fa fa-th-large"></i></button>
           
           <button class="btn btn-danger btn-list float-right ">   <i class="fa fa-bars "></i> </button>

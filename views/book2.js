@@ -46,12 +46,12 @@ function getPost(val) {
                     description = node.gigDescription;
                 }
                 document.getElementById('bookings').innerHTML += `<div class="col-12   col-md-6 col-lg-4 " >
-            <div class=" services  card expand " >
+            <div class=" services  card expand  " >
               <img class="card-img-top img-fluid" src="../resources/gigImages/${node.gigId}.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title d-inline">${node.gigName} </h5>
               
-                <p style="font-size:13px;margin-left:40%;">-Posted by  ${name}</p>
+                <p style="font-size:13px;margin-left:30%;">-Posted by  ${name}</p>
                 <hr>
                 <div class="animate__animated animate__fadeIn">
                 <h6><b>Address:</b>  ${node.bookeraddress}</h6>
@@ -172,25 +172,26 @@ request.send();
 
 
 
-// var request=new XMLHttpRequest();
-// request.onreadystatechange=function(){
-//     if(this.readyState==4 && this.status==200){
-//         var data=JSON.parse(this.response);
-//         console.log(data.main.temp-273.15);
-//         if((data.weather[0].main=="Clouds") || (data.weather[0].main=="Rain" ) || (data.weather[0].main=="Drizzle")){
-//             document.getElementById("weather").innerHTML="  Delivery Services may take  longer due to Rainy Condition"
-//         }
+/* var request=new XMLHttpRequest();
+request.onreadystatechange=function(){
+    if(this.readyState==4 && this.status==200){
+        var data=JSON.parse(this.response);
+        console.log(data.main.temp-273.15);
+        if( (data.weather[0].main=="Rain" ) || (data.weather[0].main=="Drizzle")){
+            document.getElementById("weather").innerHTML="  Delivery Services may take  longer due to Rainy Condition"
+        }
         
-//         else if((data.main.temp-273.15)>=30){
-//             document.getElementById("weather").innerHTML="  Good Sunny Time for a Car Wash";
-//         }
-//         else{
-//             document.getElementById("weather").className="d-none";
-//         }
-//     }  
-// }
-// request.open("GET", "https://community-open-weather-map.p.rapidapi.com/weather?q=Singapore",true);
-// request.setRequestHeader("x-rapidapi-key", "b64cb24da7mshb54fff16a229eb6p18d0f2jsn6534972993ac");
+        else if((data.main.temp-273.15)>=30){
+            document.getElementById("weather").innerHTML="  Good Sunny Time for a Car Wash";
+        }
+        else{
+            document.getElementById("weather").className="d-none";
+        }
+    }  
+}
+request.open("GET", "https://community-open-weather-map.p.rapidapi.com/weather?q=Singapore",true);
+request.setRequestHeader("x-rapidapi-key", "b64cb24da7mshb54fff16a229eb6p18d0f2jsn6534972993ac");
 
 
-// request.send('en');
+request.send('en');
+ */

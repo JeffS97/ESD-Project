@@ -61,7 +61,7 @@ body{
   
 }
 .head_wrapper{
-  background:rgba(100,100,100,0.4);
+  background:#de625b;
   border-bottom:1px solid gold;
 }
 
@@ -192,6 +192,7 @@ small{
   -webkit-transform: translateZ(0) scale(1, 1);
           transform: translateZ(0) scale(1, 1);
 }
+
     </style>
 </head>
 <body>
@@ -267,10 +268,12 @@ small{
     <div class="wrapper">
       <div class="banner_content">
          <div class="banner_wrapper">
-  <div class="container">
+  <div class="container ">
+  <div class="row">
+  <div class="col-sm-12 board">
     <h2 class="title" style = 'text-align: center'><img src="http://findicons.com/files/icons/2799/flat_icons/256/trophy.png">
        TOP HEROES WITH MOST SERVICES COMPLETED</h2>
-    <ol id="board" class="leaderboard">
+    <ol id="board" class="leaderboard ">
 
     </ol>
   </div>
@@ -278,7 +281,8 @@ small{
       </div>
     </div>
   </div>
-  
+  </div>
+  </div>
 </div>
 </body>
 <script>
