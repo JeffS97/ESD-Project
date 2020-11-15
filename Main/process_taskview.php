@@ -338,11 +338,11 @@
                                 </ul>
                                 ';
                                 if($num){
-                                   echo ' <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Customer</a> </div>;';
+                                   echo ' <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Customer</a> </div>';
                                 
                                     }   
                                     else{
-                                        echo ' <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Hero </a> </div>;';
+                                        echo ' <a href="../views/Chat.php?id='.$id.'" id="chatButton" class="btn btn-warning mx-auto">Chat with Hero </a> </div>';
                                     }
                                 //echo "Unable to compute travel time and route due to incorrect address format. <br> Rest assured! your hero is still on his way";
                                 }
