@@ -124,7 +124,7 @@ margin-top:0;
   
   
 }
-.leaderboard{
+.ld{
   width:500px;
   display:flex-column;
   padding-bottom:10px;
@@ -154,7 +154,7 @@ small{
   
   
 }
- .leaderboard li h2::before, .leaderboard li h2::after {
+ .ld li h2::before, .ld li h2::after {
   content: '';
   position: absolute;
   z-index: 1;
@@ -166,8 +166,8 @@ small{
   transition: all .1s ease-in-out;
   opacity: 0;
 }
-.leaderboard li::before {
-  content: counter(leaderboard);
+.ld li::before {
+  content: counter(ld);
   position: absolute;
   z-index: 2;
   top: 15px;
@@ -180,11 +180,11 @@ small{
   border-radius: 20px;
   text-align: center;
 }
-.leaderboard li {
+.ld li {
   position: relative;
   z-index: 1;
   font-size: 14px;
-  counter-increment: leaderboard;
+  counter-increment: ld;
   padding: 18px 10px 18px 50px;
   cursor: pointer;
   -webkit-backface-visibility: hidden;
@@ -243,11 +243,7 @@ small{
               <li>  <button type='button'  class='btn btn-info'  ><a href='Signup.php' style='color: white;text-decoration: none;'>Log Out</a></button></li>
                 <?php }else{?>
                     
-               
-                <!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="background-color: transparent;">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                </form> -->
+            
                 
          <li> <button type="button"  class="btn btn-info" ><a href="../views/Signup.php" style="color: white;text-decoration: none;">Join Us</a></button></li>  
                 <?php }?>  
@@ -278,7 +274,7 @@ small{
        TOP HEROES WITH MOST SERVICES COMPLETED</h2>
        
   
-    <ol id="board" class="leaderboard " >
+    <ol id="board" class="ld " >
 
     </ol>
   </div>
