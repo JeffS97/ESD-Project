@@ -15,6 +15,13 @@ header("Pragma: no-cache");
 <script src="profile.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!--Open Sans Regular-->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+        <!--Montserrat-->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
     <style>
         .checked {
             color: orange;
@@ -54,6 +61,11 @@ header("Pragma: no-cache");
           width:150px;
           
         }
+        .logo{
+          font-family: 'Open Sans', sans-serif;
+          font-weight: bolder;
+        } 
+        
     </style>
     
     <!-- Vue JS -->

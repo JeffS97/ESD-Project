@@ -22,6 +22,8 @@ session_start();
     <!--Open Sans Regular-->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
+  <!--Montserrat-->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <style>
 
        .logo{
