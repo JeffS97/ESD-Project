@@ -22,4 +22,7 @@ if($gig==1){
     window.location.href='../views/book2.php';
     </script>";
 }
+#test
 ?>
+
+
