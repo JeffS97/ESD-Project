@@ -173,7 +173,7 @@ request.open('GET', url2, true);
 request.send();
 
 
-/* 
+
  var request=new XMLHttpRequest();
 request.onreadystatechange=function(){
     if(this.readyState==4 && this.status==200){
@@ -196,4 +196,4 @@ request.setRequestHeader("x-rapidapi-key", "b64cb24da7mshb54fff16a229eb6p18d0f2j
 
 
 request.send('en');
-  */
+  

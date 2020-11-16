@@ -383,13 +383,13 @@ ul.nacc li p {
                         Task
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="./book2.php">Browse</a>
-                        <a class="dropdown-item" href="./Booktask.php">Post</a>
+                        <a class="dropdown-item" href="../views/book2.php">Browse</a>
+                        <a class="dropdown-item" href="../views/Booktask.php">Post</a>
                         </div>
                     </li>
                    
                     <li class="nav-item dropdown">
-                    <a class="nav-link" href="./leaderdisplay.php">Top Heroes </a>
+                    <a class="nav-link" href="../views/leaderdisplay.php">Top Heroes </a>
                     </li>
                     <?php
             
@@ -401,8 +401,8 @@ ul.nacc li p {
                         Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="./History.php">History</a>
-                        <a class="dropdown-item" href="./Profile v2.php">Settings</a>
+                        <a class="dropdown-item" href="../views/History.php">History</a>
+                        <a class="dropdown-item" href="../views/Profile v2.php">Settings</a>
                         
                         </div>
                     </li> 
