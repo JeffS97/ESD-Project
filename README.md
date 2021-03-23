@@ -1,6 +1,6 @@
-# Project Hero - Team H
+# CliniQ - Team A
 
-Project Hero is a project that aims to connect freelancers with people who require help with tasks. It serves as a hub of communication between task poster and freelancer, facilitating the transaction and event itself **during this covid period**
+<CliniQ Description Here>
 
 # File Organization
 
