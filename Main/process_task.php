@@ -19,7 +19,10 @@ session_start();
 <meta charset="utf-8">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 27d9820 (send)
 =======
 >>>>>>> parent of 27d9820 (send)
 =======
