@@ -62,7 +62,7 @@ Project Hero uses a number of APIs in order to function properly:
 * [ReCaptcha Api] - To validate logins and prevent malicious attacks
 * [Iconify Api] - To stylize the icons
 
-**Project Team: Lim Zhi Hao, Jeffvinder Singh, Benjamin Khon Farn Mun, Brayden Leo Chong Rui, Rohan Manoj Kuruvilla**
+**Project Team: Glenda Marco Conejero Satuito, Jeffvinder Singh, Lim Si Hui Amanda, Ling Li Yin, Rohan Manoj Kuruvilla**
 
    [Home]: <https://github.com/JeffS97/WAD-2-Project>
    [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
