@@ -16,9 +16,18 @@
 <!--Montserrat-->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
-
+<!-- Added for microservices to work -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+crossorigin="anonymous"></script>
 
+<script 
+src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+crossorigin="anonymous"></script>
 
 <head>
 <?php session_start();
@@ -248,6 +257,8 @@ if (isset($_SESSION['error'])) {
         
             <div class="left" style = 'text-align: center'>
             
+            <!-- <button type="submit" class="form-btn" style="margin-left: 20%;" id="p_submit">Sign Up</button> -->
+
                 <h2 class="bh" style = 'margin-top: 50px' ></b>Don't have an account?</b></h2>
                 <p class="bp" style = 'text-align: center'>Sign up today to be a Hero or get a Hero to help you!</p>
                 <button class="back-btn signup-but">Sign Up</button>
@@ -259,7 +270,15 @@ if (isset($_SESSION['error'])) {
             </div>
         </div>
         <div class="form-container">
-            <div class="sign-up">
+            <div class="sign-up" id="signUpDiv">
+                <div class="selectUser">
+                    <h2 class="form-header">Please select</h2>
+                    <button class="form-btn" id="selectPatient">Patient</button>
+                    <button class="form-btn" id="selectNurse">Nurse</button>
+                    <button class="form-btn" id="selectDoctor">Doctor</button>
+                </div>
+            </div>
+            <!-- <div class="sign-up">
                 <form method="post" action="../Main/process_register.php" >
                 <h2 class="form-header">Sign Up</h2>
 
@@ -287,22 +306,25 @@ if (isset($_SESSION['error'])) {
                 </form>
               
             </div>
-            </div>
+            </div> -->
            
     </div>
-        </div>
+    </div>
     </div>
     </div>
     </div>
     </div>
     <script>
+    
+    
 
-    function signUpValidate(){
+
+    function p_signUpValidate(){
         document.getElementById("errorSU").innerHTML = '';
-        var fullnameSU = document.getElementById("fullnameSU").value;
-        var usernameSU = document.getElementById("usernameSU").value;
-        var emailSU = document.getElementById("emailSU").value;
-        var passwordSU = document.getElementById("passwordSU").value;
+        var fullnameSU = document.getElementById("p_fullnameSU").value;
+        var usernameSU = document.getElementById("p_usernameSU").value;
+        var emailSU = document.getElementById("p_emailSU").value;
+        var passwordSU = document.getElementById("p_passwordSU").value;
         var errors = [];
 
             if (fullnameSU === "" || usernameSU === "" || emailSU === "" || passwordSU === ""){
@@ -320,6 +342,53 @@ if (isset($_SESSION['error'])) {
             }
         };
 
+        function d_signUpValidate(){
+        document.getElementById("errorSU").innerHTML = '';
+        var fullnameSU = document.getElementById("d_fullnameSU").value;
+        var usernameSU = document.getElementById("d_usernameSU").value;
+        var emailSU = document.getElementById("d_emailSU").value;
+        var passwordSU = document.getElementById("d_passwordSU").value;
+        var errors = [];
+
+            if (fullnameSU === "" || usernameSU === "" || emailSU === "" || passwordSU === ""){
+                event.preventDefault();
+                errors.push('Error: None of your fields can be empty');
+            };
+
+            if (!emailSU.includes('@') || !emailSU.includes('.com')){
+                event.preventDefault();
+                errors.push('Error: Please enter a valid email');
+            };
+
+            for (error of errors){
+                document.getElementById("errorSU").innerHTML += `<p style = 'margin: 2px; font-size: 10px; color:red;'>${error}</p>`;
+            }
+        };
+
+        function n_signUpValidate(){
+        document.getElementById("errorSU").innerHTML = '';
+        var fullnameSU = document.getElementById("n_fullnameSU").value;
+        var usernameSU = document.getElementById("n_usernameSU").value;
+        var emailSU = document.getElementById("n_emailSU").value;
+        var passwordSU = document.getElementById("n_passwordSU").value;
+        var errors = [];
+
+            if (fullnameSU === "" || usernameSU === "" || emailSU === "" || passwordSU === ""){
+                event.preventDefault();
+                errors.push('Error: None of your fields can be empty');
+            };
+
+            if (!emailSU.includes('@') || !emailSU.includes('.com')){
+                event.preventDefault();
+                errors.push('Error: Please enter a valid email');
+            };
+
+            for (error of errors){
+                document.getElementById("errorSU").innerHTML += `<p style = 'margin: 2px; font-size: 10px; color:red;'>${error}</p>`;
+            }
+        };
+
+
     function logInValidate(){
         var emailLI = document.getElementById("emailLI").value;
         var passwordLI = document.getElementByID("passwordLI").value;
@@ -331,46 +400,289 @@ if (isset($_SESSION['error'])) {
     };
 
 
-   
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
 
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+    $(document).ready(function() {
+        var signUp = $('.signup-but');
+        var logIn = $('.login-but');
 
 
+        signUp.on('click', function() {
+            $('.login').fadeOut('slow').css('display', 'none');
+            $('.sign-up').fadeIn('slow');
 
-
-
-
-
-        $(document).ready(function() {
-            var signUp = $('.signup-but');
-            var logIn = $('.login-but');
-
-
-            signUp.on('click', function() {
-                $('.login').fadeOut('slow').css('display', 'none');
-                $('.sign-up').fadeIn('slow');
-
-                $('.form-container').animate({
-                    left: '10px'
-                }, 'slow');
-            });
-
-            logIn.on('click', function() {
-                $('.login').fadeIn('slow');
-                $('.sign-up').fadeOut('slow').css('display', 'none');
-
-                $('.form-container').animate({
-                    left: '400px'
-                }, 'slow');
-            });
+            $('.form-container').animate({
+                left: '10px'
+            }, 'slow');
         });
+
+        logIn.on('click', function() {
+            $('.login').fadeIn('slow');
+            $('.sign-up').fadeOut('slow').css('display', 'none');
+
+            $('.form-container').animate({
+                left: '400px'
+            }, 'slow');
+        });
+    });
+
+
+    $(document).ready(function(){
+
+        // Select Patient
+        $(document.getElementById('selectPatient')).click(function(){
+            document.getElementById('signUpDiv').innerHTML = "";
+            document.getElementById('signUpDiv').innerHTML = `
+            <form method='post' action='../Main/process_register.php'>
+                <h2 class="form-header">Sign Up</h2>
+                <input type="text" name="fullname" id = 'p_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
+                <input type="text" name="email" id="p_emailSU" placeholder="Enter Email"></input>
+                <input type="text" name="age" id="p_ageSU" placeholder="Enter Age"></input>
+                <input type="text" name="address" id="p_addressSU" placeholder="Enter Address"></input>
+                <input type="text" name="allergy" id="p_allergySU" placeholder="Enter Allergies"></input>
+                <input type="password" name="password" id='p_passwordSU' placeholder="Password" onclick="p_signUpValidate()"><i class="fa fa-lock"></i></input>
+                <button type="submit" class="form-btn" style="margin-left: 20%;" id="p_submit">Sign Up</button>
+                <div id = "errorSU"></div>
+            </form>
+            `;
+        })
+
+        // $('#p_submit').click(async()=>{
+        //     var fullname = $('#p_fullnameSU').val();
+        //     // var username = $('#p_usernameSU').val();
+        //     var email = $('#p_emailSU').val();
+        //     var age = $('#p_ageSU').val();
+        //     var address = $('#p_addressSU').val();
+        //     var allergy = $('#p_allergySU').val();
+        //     var password = $('#p_passwordSU').val();
+        //     var chat_id = "xxx";
+        //     var payment = 0; // placeholder for now
+        //     console.log(address)
+        //     var serviceURL = 'http://localhost:5000/patient/add/'+email;
+
+        //     try{
+        //         var response = await fetch(
+        //         serviceURL, {
+        //             method: 'POST',
+        //             headers: {"Content-Type": "application/json"},
+        //             body: JSON.stringify({P_name: fullname, Email: email, Age: age, Address: address, Allergy: allergy, ChatId: chat_id, password: password}) // <key> : <value>
+        //             }
+        //         )
+                    
+        //         var result = await response.json();
+        //         console.log(result);
+
+        //         if(response.status === 201){
+        //             console.log("Success");
+        //         }
+        //         else if(response.status == 400){
+        //             console.log("400 Error");
+        //         }
+        //         else{
+        //             throw response.status;
+        //         }
+        //     }
+        //     catch (error){
+        //         console.log(error);
+        //     }
+        // })
+
+        // Select Doctor
+        $(document.getElementById('selectDoctor')).click(function(){
+            document.getElementById('signUpDiv').innerHTML = "";
+            document.getElementById('signUpDiv').innerHTML = `
+            <form method="post" action='../Main/process_register.php'>
+                <h2 class="form-header">Sign Up</h2>
+                <input type="text" name="email" id="d_emailSU" placeholder="Enter Email">
+                <input type="text" name="fullname" id='d_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
+                <input type="password" name="password" id='d_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input><br><br>
+                <select id="clinics" name="clinics" style="width: 79.5%"></select><i class="fas fa-clinic-medical"></i>
+                <input type="hidden" id="doctor" name="doctor" value="doctor">
+                <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "d_signUpValidate()" id="d_submit">Sign Up</button>
+                <div id = "errorSU"></div>
+            </form>
+            `;
+            // <input type="text" name="username" id = 'd_usernameSU' placeholder="Username"><i class="far fa-address-card"></i></input>
+            // <input type="text" name="email" id = 'd_emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+            
+            $(async () => {
+                // graphQL endpoint
+                var serviceURL = 'http://localhost:8080/v1/graphql';
+
+                // graphQL query
+                var query = `{
+                    clinics (
+                        order_by: {clinic_name: asc}
+                    ){
+                        clinic_name
+                        clinic_id
+                    }
+                }`
+                
+                try {
+                    const response =
+                        await fetch( 
+                            serviceURL, {
+                                method: 'POST',
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify({
+                                    query
+                                })
+                            });
+
+                    const result = await response.json(); // resolves promise of fetch and parses the response data as a JSON object (if the result was written in JSON format, if not it raises an error)
+                    // awaiting its promised response. On completion of fetch, the response is triggered and this part of the code waiting for it will be executed. 
+
+                    if (response.status === 200){
+                        // success case
+                        var clinics = result.data.clinics;
+                        // console.log(clinics)
+                        // for loop to setup all table rows with obtained clinic data
+                        var options = "";
+                        for (const clinic of clinics){
+                            options = options + `<option value="${clinic.clinic_id}">` + clinic.clinic_name + "</option>";
+                        }
+                        // add all the rows to the table
+                        // console.log(options);
+                        $('#clinics').html(options);
+                    } 
+                    else if (response.status == 404) {
+                        // No clinics
+                        showError(result.message);
+                    } 
+                    else {
+                        // unexpected outcome, throw the error
+                        throw response.status;
+                    }
+                } 
+                catch (error) {
+                    // Errors when calling the service; such as network error, 
+                    // service offline, etc
+                    showError('There is a problem retrieving clinic data, please try again later.<br />' + error);
+                } // error
+            });
+        })
+
+        // $('#d_submit').click(async()=>{
+        //     var fullname = $('#d_fullnameSU').val();
+        //     // var username = $('#p_usernameSU').val();
+        //     // var email = $('#d_emailSU').val();
+        //     var password = $('#d_passwordSU').val();
+        //     // var gid = $('#clinics').val();
+        //     var gid = 1;
+        //     var role = 'D';
+            
+        //     var serviceURL = 'http://localhost:5000/healthworker/add/1';
+
+        //     try{
+        //         var response = await fetch(
+        //         serviceURL, {
+        //             method: 'POST',
+        //             headers: {"Content-Type": "application/json"},
+        //             body: JSON.stringify({H_Name: fullname, H_Password: password, H_Role: role, Gid: gid}) // <key> : <value>
+        //             }
+        //         )
+                    
+        //         var result = await response.json();
+        //         console.log(result);
+
+        //         if(response.status === 201){
+        //             console.log("Success");
+        //         }
+        //         else if(response.status == 400){
+        //             console.log("400 Error");
+        //         }
+        //         else{
+        //             throw response.status;
+        //         }
+        //     }
+        //     catch (error){
+        //         console.log(error);
+        //     }
+        // })
+
+        // Select Patient
+        $(document.getElementById('selectNurse')).click(function(){
+            document.getElementById('signUpDiv').innerHTML = "";
+            document.getElementById('signUpDiv').innerHTML = `
+            <form method="post" action='../Main/process_register.php'>
+                <h2 class="form-header">Sign Up</h2>
+                <input type="text" name="fullname" id = 'n_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
+                <input type="text" name="email" id = 'n_emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                <input type="password" name="password" id='n_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input>
+                <select id="clinics" name="clinics" style="width: 79.5%"></select><i class="fas fa-clinic-medical"></i>
+                <input type="hidden" id="nurse" name="nurse" value="nurse">
+                <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "n_signUpValidate()" id="n_submit">Sign Up</button>
+                <div id = "errorSU"></div>
+            </form>
+            `;
+
+            $(async () => {
+                // graphQL endpoint
+                var serviceURL = 'http://localhost:8080/v1/graphql';
+
+                // graphQL query
+                var query = `{
+                    clinics (
+                        order_by: {clinic_name: asc}
+                    ){
+                        clinic_name
+                        clinic_id
+                    }
+                }`
+                
+                try {
+                    const response =
+                        await fetch( 
+                            serviceURL, {
+                                method: 'POST',
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify({
+                                    query
+                                })
+                            });
+
+                    const result = await response.json(); // resolves promise of fetch and parses the response data as a JSON object (if the result was written in JSON format, if not it raises an error)
+                    // awaiting its promised response. On completion of fetch, the response is triggered and this part of the code waiting for it will be executed. 
+
+                    if (response.status === 200){
+                        // success case
+                        var clinics = result.data.clinics;
+                        // console.log(clinics)
+                        // for loop to setup all table rows with obtained clinic data
+                        var options = "";
+                        for (const clinic of clinics){
+                            options = options + `<option value="${clinic.clinic_id}">` + clinic.clinic_name + "</option>";
+                        }
+                        // add all the rows to the table
+                        // console.log(options);
+                        $('#clinics').html(options);
+                    } 
+                    else if (response.status == 404) {
+                        // No clinics
+                        showError(result.message);
+                    } 
+                    else {
+                        // unexpected outcome, throw the error
+                        throw response.status;
+                    }
+                } 
+                catch (error) {
+                    // Errors when calling the service; such as network error, 
+                    // service offline, etc
+                    showError('There is a problem retrieving clinic data, please try again later.<br />' + error);
+                } // error
+            });
+        })
+    });
+
     </script>
 </body>
 

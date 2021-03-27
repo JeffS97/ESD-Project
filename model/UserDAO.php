@@ -2,17 +2,40 @@
     class UserDAO{
 
         # Add a new user to the database
-        public function add($email, $password,$fullname,$username){
+        public function add($email, $password, $fullname, $age, $allergy, $address){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
-            $sql = "insert into user (email, password,fullname,username) 
-                    values (:email, :password,:fullname,:username)";
+            $sql = "insert into Patient (Email, P_Name, Age, Allergy, Address, Password) 
+                    values (:email, :fullname, :age, :allergy, :address, :password)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":email",$email);
             $stmt->bindParam(":password",$password);
             $stmt->bindParam(":fullname",$fullname);
-            $stmt->bindParam(":username",$username);
+            $stmt->bindParam(":age",$age);
+            $stmt->bindParam(":allergy",$allergy);
+            $stmt->bindParam(":address",$address);
+
+            $status = $stmt->execute();
+            
+
+            $stmt = null;
+            $pdo = null;
+            return $status;
+        }
+
+        public function addHealthworker($email, $fullname, $password, $role, $gid){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "insert into Healthworker (Email, Name, Password, Role, Gid) 
+                    values (:email, :fullname, :password, :role, :gid)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email",$email);
+            $stmt->bindParam(":password",$password);
+            $stmt->bindParam(":fullname",$fullname);
+            $stmt->bindParam(":role",$role);
+            $stmt->bindParam(":gid",$gid);
 
             $status = $stmt->execute();
             
