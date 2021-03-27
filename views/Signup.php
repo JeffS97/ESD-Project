@@ -257,7 +257,7 @@ if (isset($_SESSION['error'])) {
         
             <div class="left" style = 'text-align: center'>
             
-            <button type="submit" class="form-btn" style="margin-left: 20%;" id="p_submit">Sign Up</button>
+            <button type="submit" class="form-btn" style="margin-left: 20%;" id="d_submit">Sign Up</button>
 
                 <h2 class="bh" style = 'margin-top: 50px' ></b>Don't have an account?</b></h2>
                 <p class="bp" style = 'text-align: center'>Sign up today to be a Hero or get a Hero to help you!</p>
@@ -443,7 +443,6 @@ if (isset($_SESSION['error'])) {
                 <h2 class="form-header">Sign Up</h2>
         
                 <input type="text" name="fullname" id = 'p_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="text" id="p_emailSU" placeholder="Enter Email"></input>
                 <input type="text" id="p_ageSU" placeholder="Enter Age"></input>
                 <input type="text" id="p_addressSU" placeholder="Enter Address"></input>
                 <input type="text" id="p_allergySU" placeholder="Enter Allergies"></input>
@@ -456,21 +455,20 @@ if (isset($_SESSION['error'])) {
         $('#p_submit').click(async()=>{
             var fullname = $('#p_fullnameSU').val();
             // var username = $('#p_usernameSU').val();
-            var email = $('#p_emailSU').val();
+            // var email = $('#p_emailSU').val();
             var age = $('#p_ageSU').val();
             var address = $('#p_addressSU').val();
             var allergy = $('#p_allergySU').val();
             var password = $('#p_passwordSU').val();
-            var chat_id = "xxx"; // placeholder for now
             console.log(address)
-            var serviceURL = 'http://localhost:5000/patient/add/2';
+            var serviceURL = 'http://localhost:5000/patient/add/6';
 
             try{
                 var response = await fetch(
                 serviceURL, {
                     method: 'POST',
                     headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({P_name: fullname, Email: email, Age: age, Address: address, Allergy: allergy, Chat_Id: chat_id, password: password}) // <key> : <value>
+                    body: JSON.stringify({P_name: fullname, Age: age, Address: address, Allergy: allergy, password: password}) // <key> : <value>
                     }
                 )
                     
