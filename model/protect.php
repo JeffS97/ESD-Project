@@ -1,5 +1,4 @@
 <?php
-/*
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
@@ -9,5 +8,4 @@
          header("Location: ../views/Signup.php"); 
          exit;
     }
-    */
 ?>

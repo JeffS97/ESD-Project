@@ -20,6 +20,7 @@ session_start();
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of 27d9820 (send)
@@ -27,6 +28,9 @@ session_start();
 >>>>>>> parent of 27d9820 (send)
 =======
 >>>>>>> parent of 27d9820 (send)
+=======
+<h1></h1>
+>>>>>>> parent of 7a5f7aa (remove protect.php)
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
