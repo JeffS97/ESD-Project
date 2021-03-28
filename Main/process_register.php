@@ -9,20 +9,24 @@
     # Start session
     session_start();
 
-   
     # Get parameters passed from register.php
     if($_POST["doctor"]){
         $email = $_POST["demail"];
         $password = $_POST["dpassword"];
         $fullname = $_POST["dfullname"];
-        $gid = ($_POST["dclinics"]);
+        $clinic = $_POST["dclinics"];
+        $clinic = explode('.', $clinic);
         $role = $_POST["doctor"];
+        $gid = $clinic[0];
+        $clinic_name = $clinic[1];
+        $address = $clinic[2];
 
         # Hash entered password
         $hashed = password_hash($password, PASSWORD_DEFAULT);
     
         # Add new user
         $dao = new UserDAO();
+        $dao->addClinic($gid, $clinic_name, $address);
         $status = $dao->addHealthworker($email, $fullname, $hashed, $role, $gid);
         echo $status;
         if($status){
@@ -45,14 +49,20 @@
         $email = $_POST["nemail"];
         $password = $_POST["npassword"];
         $fullname = $_POST["nfullname"];
-        $gid = ($_POST["nclinics"]);
-        $role = "nurse";
+        $clinic = $_POST["nclinics"];
+        $clinic = explode('.', $clinic);
+        $role = $_POST["nurse"];
+        $gid = $clinic[0];
+        $clinic_name = $clinic[1];
+        $address = $clinic[2];
+
 
         # Hash entered password
         $hashed = password_hash($password, PASSWORD_DEFAULT);
     
         # Add new user
         $dao = new UserDAO();
+        $dao->addClinic($gid, $clinic_name, $address);
         $status = $dao->addHealthworker($email, $fullname, $hashed, $role, $gid);
         echo $status;
         if($status){

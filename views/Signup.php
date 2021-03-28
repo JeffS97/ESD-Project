@@ -526,6 +526,7 @@ if (isset($_SESSION['error'])) {
                     ){
                         clinic_name
                         clinic_id
+                        postal_cd
                     }
                 }`
                 
@@ -550,7 +551,7 @@ if (isset($_SESSION['error'])) {
                         // for loop to setup all table rows with obtained clinic data
                         var options = "";
                         for (const clinic of clinics){
-                            options = options + `<option value="${clinic.clinic_id}">` + clinic.clinic_name + "</option>";
+                            options = options + `<option value="${clinic.clinic_id}.${clinic.clinic_name}.${clinic.postal_cd}">` + clinic.clinic_name + "</option>";
                         }
                         // add all the rows to the table
                         // console.log(options);
@@ -640,6 +641,7 @@ if (isset($_SESSION['error'])) {
                     ){
                         clinic_name
                         clinic_id
+                        postal_cd
                     }
                 }`
                 
@@ -664,7 +666,7 @@ if (isset($_SESSION['error'])) {
                         // for loop to setup all table rows with obtained clinic data
                         var options = "";
                         for (const clinic of clinics){
-                            options = options + `<option value="${clinic.clinic_id}">` + clinic.clinic_name + "</option>";
+                            options = options + `<option value="${clinic.clinic_id}.${clinic.clinic_name}.${clinic.postal_cd}">` + clinic.clinic_name + "</option>";
                         }
                         // add all the rows to the table
                         // console.log(options);

@@ -20,10 +20,11 @@
             
 
             $stmt = null;
-            $pdo = null;
+            $pdo = null;    
             return $status;
         }
 
+        # Add a new healthworker (doctor/nurse) to the Healthworker table
         public function addHealthworker($email, $fullname, $password, $role, $gid){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
@@ -36,6 +37,26 @@
             $stmt->bindParam(":fullname",$fullname);
             $stmt->bindParam(":role",$role);
             $stmt->bindParam(":gid",$gid);
+
+            $status = $stmt->execute();
+            
+
+            $stmt = null;
+            $pdo = null;
+            return $status;
+        }
+        
+        # Add a new clinic to the Clinic table
+        public function addClinic($gid, $clinic_name, $address){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "insert into Clinic (Gid, Clinic_Name, C_Address) 
+                    values (:gid, :clinic_name, :address)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":gid",$gid);
+            $stmt->bindParam(":clinic_name",$clinic_name);
+            $stmt->bindParam(":address",$address);
 
             $status = $stmt->execute();
             
