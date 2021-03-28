@@ -12,10 +12,10 @@
    
     # Get parameters passed from register.php
     if($_POST["doctor"]){
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $fullname = $_POST["fullname"];
-        $gid = intval($_POST["clinics"]);
+        $email = $_POST["demail"];
+        $password = $_POST["dpassword"];
+        $fullname = $_POST["dfullname"];
+        $gid = ($_POST["dclinics"]);
         $role = $_POST["doctor"];
 
         # Hash entered password
@@ -42,10 +42,10 @@
         } 
     }
     elseif($_POST["nurse"]){
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $fullname = $_POST["fullname"];
-        $gid = intval($_POST["clinics"]);
+        $email = $_POST["nemail"];
+        $password = $_POST["npassword"];
+        $fullname = $_POST["nfullname"];
+        $gid = ($_POST["nclinics"]);
         $role = "nurse";
 
         # Hash entered password

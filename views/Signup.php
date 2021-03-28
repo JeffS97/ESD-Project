@@ -453,6 +453,7 @@ if (isset($_SESSION['error'])) {
             </form>
             `;
         })
+        
 
         // $('#p_submit').click(async()=>{
         //     var fullname = $('#p_fullnameSU').val();
@@ -500,11 +501,13 @@ if (isset($_SESSION['error'])) {
             document.getElementById('signUpDiv').innerHTML = `
             <form method="post" action='../Main/process_register.php'>
                 <h2 class="form-header">Sign Up</h2>
-                <input type="text" name="email" id="d_emailSU" placeholder="Enter Email">
-                <input type="text" name="fullname" id='d_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="password" name="password" id='d_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input><br><br>
-                <select id="clinics" name="clinics" style="width: 79.5%"></select><i class="fas fa-clinic-medical"></i>
-                <input type="hidden" id="doctor" name="doctor" value="doctor">
+                <input type="text" name="demail" id="d_emailSU" placeholder="Enter Email">
+                <input type="hidden" name='doctor' value="doctor"/>
+                <input type="text" name="dfullname" id='d_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
+                <input type="password" name="dpassword" id='d_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input><br><br>
+                <select id="clinics"  name="dclinics" style="width: 79.5%">
+           </select><i class="fas fa-clinic-medical"></i>
+      
                 <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "d_signUpValidate()" id="d_submit">Sign Up</button>
                 <div id = "errorSU"></div>
             </form>
@@ -614,11 +617,13 @@ if (isset($_SESSION['error'])) {
             document.getElementById('signUpDiv').innerHTML = `
             <form method="post" action='../Main/process_register.php'>
                 <h2 class="form-header">Sign Up</h2>
-                <input type="text" name="fullname" id = 'n_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="text" name="email" id = 'n_emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
-                <input type="password" name="password" id='n_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input>
-                <select id="clinics" name="clinics" style="width: 79.5%"></select><i class="fas fa-clinic-medical"></i>
-                <input type="hidden" id="nurse" name="nurse" value="nurse">
+                <input type="hidden" name='nurse' value="nurse"/>
+                <input type="text" name="nfullname" id = 'n_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
+                <input type="text" name="nemail" id = 'n_emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                <input type="password" name="npassword" id='n_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input>
+                <select id="clinics" value='AA' name="nclinics" style="width: 79.5%">
+                </select><i class="fas fa-clinic-medical"></i>
+              
                 <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "n_signUpValidate()" id="n_submit">Sign Up</button>
                 <div id = "errorSU"></div>
             </form>
