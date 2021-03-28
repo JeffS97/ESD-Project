@@ -131,7 +131,7 @@ if (isset($_SESSION['error'])) {
         .form-container {
             position: absolute;
             width: 375px;
-            height: 400px;
+            height: 500px;
             background-color:white;
             top: -25px;
             left: 10px;
@@ -272,11 +272,26 @@ if (isset($_SESSION['error'])) {
         <div class="form-container">
             <div class="sign-up" id="signUpDiv">
                 <div class="selectUser">
-                    <h2 class="form-header">Please select</h2>
-                    <button class="form-btn" id="selectPatient">Patient</button>
-                    <button class="form-btn" id="selectNurse">Nurse</button>
-                    <button class="form-btn" id="selectDoctor">Doctor</button>
+                    <h2 class="form-header" style="margin-bottom: 50px;">Create an account!</h2>
+                    <button class="form-btn" id="selectPatient" style="margin: 30px auto">Patient</button>
+                    <button class="form-btn" id="selectNurse" style="margin: 30px auto">Nurse</button>
+                    <button class="form-btn" id="selectDoctor" style="margin: 30px auto">Doctor</button>
                 </div>
+            </div>
+            <div class="my-5">
+            <div class="login hide">
+                <form method="post" action="../Main/process_login.php" >
+                <h2 class="form-header">Log In</h2> 
+                <div style="margin: 10px 0px 0px 25px">
+                    <input type="text" name="email" id = 'emailLI' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                    <input type="password" name="password" id = 'passwordLI' placeholder="Password"><i class="fa fa-lock"></i></input>
+                </div> 
+                <div class="g-recaptcha" style="margin-top: 50px;" data-sitekey="6Lf2x-IZAAAAALMzDGQ3989jbM0-iRozvWHqGvb9"></div>
+                    <br/>
+                    <div id = 'errorLI'></div>
+                    <button type='submit' class="form-btn text-center" style="margin-left: 25%;" onclick='logInValidate()'>Log In</button>
+                </form>
+            </div>
             </div>
             <!-- <div class="sign-up">
                 <form method="post" action="../Main/process_register.php" >
@@ -290,23 +305,8 @@ if (isset($_SESSION['error'])) {
                 <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "signUpValidate()" >Sign Up</button>
                 <div id = "errorSU"></div>
             </form>
-            </div>
-            <div class="my-5">
-            <div class="login hide ">
-                <form method="post"  action="../Main/process_login.php" >
-                <h2 class="form-header">Log In</h2>  
-                <input type="text" name="email" id = 'emailLI' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
-                
-                <input type="password" name="password" id = 'passwordLI' placeholder="Password"><i class="fa fa-lock"></i></input>
-              
-                <div class="g-recaptcha" style="margin-top: 10px;" data-sitekey="6Lf2x-IZAAAAALMzDGQ3989jbM0-iRozvWHqGvb9"></div>
-                 <br/>
-                <div id = 'errorLI'></div>
-                <button type = 'submit' class="form-btn text-center" style="margin-left: 20%;" onclick='logInValidate()'>Log In</button>
-                </form>
-              
-            </div>
             </div> -->
+            
            
     </div>
     </div>
@@ -441,80 +441,48 @@ if (isset($_SESSION['error'])) {
             document.getElementById('signUpDiv').innerHTML = "";
             document.getElementById('signUpDiv').innerHTML = `
             <form method='post' action='../Main/process_register.php'>
-                <h2 class="form-header">Sign Up</h2>
-                <input type="text" name="fullname" id = 'p_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="text" name="email" id="p_emailSU" placeholder="Enter Email"></input>
-                <input type="text" name="age" id="p_ageSU" placeholder="Enter Age"></input>
-                <input type="text" name="address" id="p_addressSU" placeholder="Enter Address"></input>
-                <input type="text" name="allergy" id="p_allergySU" placeholder="Enter Allergies"></input>
-                <input type="password" name="password" id='p_passwordSU' placeholder="Password" onclick="p_signUpValidate()"><i class="fa fa-lock"></i></input>
-                <button type="submit" class="form-btn" style="margin-left: 20%;" id="p_submit">Sign Up</button>
-                <div id = "errorSU"></div>
+                <h2 class="form-header">Patient Sign Up</h2>
+                <div style="margin: 10px 0px 0px 25px">
+                    <input type="text" name="fullname" id = 'p_fullnameSU' placeholder="Full Name"><i class="fa fa-user"></i></input>
+                    <input type="text" name="email" id="p_emailSU" placeholder="Email"></input><i class="fa fa-envelope-o"></i></input>
+                    <input type="text" name="age" id="p_ageSU" placeholder="Age"></input><i class="fas fa-calculator"></i>
+                    <input type="text" name="address" id="p_addressSU" placeholder="Address"></input><i class="fas fa-map-marker-alt"></i>
+                    <input type="text" name="allergy" id="p_allergySU" placeholder="Allergies"></input><i class="fas fa-allergies"></i>
+                    <input type="password" name="password" id='p_passwordSU' placeholder="Password" onclick="p_signUpValidate()"><i class="fa fa-lock"></i></input>
+                    <button type="submit" class="form-btn" style="margin-left: 20%;" id="p_submit">Sign Up</button>
+                    <div id = "errorSU"></div>
+                </div>
+                
             </form>
             `;
         })
-        
-
-        // $('#p_submit').click(async()=>{
-        //     var fullname = $('#p_fullnameSU').val();
-        //     // var username = $('#p_usernameSU').val();
-        //     var email = $('#p_emailSU').val();
-        //     var age = $('#p_ageSU').val();
-        //     var address = $('#p_addressSU').val();
-        //     var allergy = $('#p_allergySU').val();
-        //     var password = $('#p_passwordSU').val();
-        //     var chat_id = "xxx";
-        //     var payment = 0; // placeholder for now
-        //     console.log(address)
-        //     var serviceURL = 'http://localhost:5000/patient/add/'+email;
-
-        //     try{
-        //         var response = await fetch(
-        //         serviceURL, {
-        //             method: 'POST',
-        //             headers: {"Content-Type": "application/json"},
-        //             body: JSON.stringify({P_name: fullname, Email: email, Age: age, Address: address, Allergy: allergy, ChatId: chat_id, password: password}) // <key> : <value>
-        //             }
-        //         )
-                    
-        //         var result = await response.json();
-        //         console.log(result);
-
-        //         if(response.status === 201){
-        //             console.log("Success");
-        //         }
-        //         else if(response.status == 400){
-        //             console.log("400 Error");
-        //         }
-        //         else{
-        //             throw response.status;
-        //         }
-        //     }
-        //     catch (error){
-        //         console.log(error);
-        //     }
-        // })
+    
 
         // Select Doctor
         $(document.getElementById('selectDoctor')).click(function(){
             document.getElementById('signUpDiv').innerHTML = "";
             document.getElementById('signUpDiv').innerHTML = `
             <form method="post" action='../Main/process_register.php'>
-                <h2 class="form-header">Sign Up</h2>
-                <input type="text" name="demail" id="d_emailSU" placeholder="Enter Email">
-                <input type="hidden" name='doctor' value="doctor"/>
-                <input type="text" name="dfullname" id='d_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="password" name="dpassword" id='d_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input><br><br>
-                <select id="clinics"  name="dclinics" style="width: 79.5%">
-           </select><i class="fas fa-clinic-medical"></i>
-      
-                <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "d_signUpValidate()" id="d_submit">Sign Up</button>
-                <div id = "errorSU"></div>
+                <h2 class="form-header">Doctor Sign Up</h2>
+                <div style="margin: 10px 0px 0px 25px">
+                    <input type="text" name="dfullname" id='d_fullnameSU' placeholder="Full Name"><i class="fa fa-user"></i></input>
+                    <input type="text" name="demail" id="d_emailSU" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                    <input type="hidden" name='doctor' value="doctor"/>
+                    <input type="password" name="dpassword" id='d_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input><br><br>
+                    <select id="clinics" name="dclinics" style="width: 79.5%; margin-top: 15px; margin-bottom: 20px;">
+                        <option>Select Clinic</option>
+                    </select><i class="fas fa-clinic-medical"></i>
+        
+                    <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "d_signUpValidate()" id="d_submit">Sign Up</button>
+                    <div id = "errorSU"></div>
+                </div>
             </form>
             `;
             // <input type="text" name="username" id = 'd_usernameSU' placeholder="Username"><i class="far fa-address-card"></i></input>
             // <input type="text" name="email" id = 'd_emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
             
+            
+
             $(async () => {
                 // graphQL endpoint
                 var serviceURL = 'http://localhost:8080/v1/graphql';
@@ -549,7 +517,7 @@ if (isset($_SESSION['error'])) {
                         var clinics = result.data.clinics;
                         // console.log(clinics)
                         // for loop to setup all table rows with obtained clinic data
-                        var options = "";
+                        var options = "<option>Select Clinic</option>";
                         for (const clinic of clinics){
                             options = options + `<option value="${clinic.clinic_id}.${clinic.clinic_name}.${clinic.postal_cd}">` + clinic.clinic_name + "</option>";
                         }
@@ -574,59 +542,25 @@ if (isset($_SESSION['error'])) {
             });
         })
 
-        // $('#d_submit').click(async()=>{
-        //     var fullname = $('#d_fullnameSU').val();
-        //     // var username = $('#p_usernameSU').val();
-        //     // var email = $('#d_emailSU').val();
-        //     var password = $('#d_passwordSU').val();
-        //     // var gid = $('#clinics').val();
-        //     var gid = 1;
-        //     var role = 'D';
-            
-        //     var serviceURL = 'http://localhost:5000/healthworker/add/1';
 
-        //     try{
-        //         var response = await fetch(
-        //         serviceURL, {
-        //             method: 'POST',
-        //             headers: {"Content-Type": "application/json"},
-        //             body: JSON.stringify({H_Name: fullname, H_Password: password, H_Role: role, Gid: gid}) // <key> : <value>
-        //             }
-        //         )
-                    
-        //         var result = await response.json();
-        //         console.log(result);
-
-        //         if(response.status === 201){
-        //             console.log("Success");
-        //         }
-        //         else if(response.status == 400){
-        //             console.log("400 Error");
-        //         }
-        //         else{
-        //             throw response.status;
-        //         }
-        //     }
-        //     catch (error){
-        //         console.log(error);
-        //     }
-        // })
-
-        // Select Patient
+        // Select Nurse
         $(document.getElementById('selectNurse')).click(function(){
             document.getElementById('signUpDiv').innerHTML = "";
             document.getElementById('signUpDiv').innerHTML = `
             <form method="post" action='../Main/process_register.php'>
-                <h2 class="form-header">Sign Up</h2>
-                <input type="hidden" name='nurse' value="nurse"/>
-                <input type="text" name="nfullname" id = 'n_fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="text" name="nemail" id = 'n_emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
-                <input type="password" name="npassword" id='n_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input>
-                <select id="clinics" value='AA' name="nclinics" style="width: 79.5%">
-                </select><i class="fas fa-clinic-medical"></i>
-              
-                <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "n_signUpValidate()" id="n_submit">Sign Up</button>
-                <div id = "errorSU"></div>
+                <h2 class="form-header">Nurse Sign Up</h2>
+                <div style="margin: 10px 0px 0px 25px">
+                    <input type="hidden" name='nurse' value="nurse"/>
+                    <input type="text" name="nfullname" id = 'n_fullnameSU' placeholder="Full Name"><i class="fa fa-user"></i></input>
+                    <input type="text" name="nemail" id = 'n_emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                    <input type="password" name="npassword" id='n_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input><br><br>
+                    <select id="clinics" value='AA' name="nclinics" style="width: 79.5%; margin-top: 15px; margin-bottom: 20px;">
+                        <option>Select Clinic</option>
+                    </select><i class="fas fa-clinic-medical"></i>
+                
+                    <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "n_signUpValidate()" id="n_submit">Sign Up</button>
+                    <div id = "errorSU"></div>
+                </div>
             </form>
             `;
 
@@ -664,7 +598,7 @@ if (isset($_SESSION['error'])) {
                         var clinics = result.data.clinics;
                         // console.log(clinics)
                         // for loop to setup all table rows with obtained clinic data
-                        var options = "";
+                        var options = "<option>Select Clinic</option>";
                         for (const clinic of clinics){
                             options = options + `<option value="${clinic.clinic_id}.${clinic.clinic_name}.${clinic.postal_cd}">` + clinic.clinic_name + "</option>";
                         }
