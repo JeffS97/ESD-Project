@@ -21,19 +21,19 @@
 
     # Check if user exists 
     $success = false;
-    if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
-    {
-          $secret = '6Lf2x-IZAAAAAKgiSKXLf0p4aHiSTjdxEQGJAQM8';
-          $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
-          $responseData = json_decode($verifyResponse);
+    // if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+    // {
+    //       $secret = '6Lf2x-IZAAAAAKgiSKXLf0p4aHiSTjdxEQGJAQM8';
+    //       $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+    //       $responseData = json_decode($verifyResponse);
 
-          if($responseData->success)
-          {
+        //   if($responseData->success)
+        //   {
             if($user != null){
                 # Get stored hashed password
                 $hashed = $user->getPassword();
-                $fullname = $user->getFullName();
-                $username = $user->getFullName();
+                $P_Name = $user->getP_Name();
+                $email = $user->getEmail();
                
                 # Check if entered password matches stored hashed password
                 $success = password_verify($password,$hashed); 
@@ -42,8 +42,7 @@
                 if($success){
                     # Create a session entry for successful login
                     $_SESSION["email"] = $email;
-                    $_SESSION["fullname"] = $fullname;
-                    $_SESSION["username"] = $username;
+                    $_SESSION["fullname"] = $P_Name;
                     # Redirect to welcome.php
                     header("Location: ../Homepage.php");
                     exit;
@@ -61,18 +60,18 @@
                $_SESSION["error"]="Wrong Credentials Entered";
                 exit; 
             }
-          }
-          else
-          {
-            header("Location: ../views/Signup.php");
-            exit; 
-          }
-     }
-     else{
-        header("Location: ../views/Signup.php");
-        $_SESSION["error"]="Must verify the reCaptcha";
-        exit; 
-     }
+        //   }
+        //   else
+        //   {
+        //     header("Location: ../views/Signup.php");
+        //     exit; 
+        //   }
+    //  }
+    //  else{
+    //     header("Location: ../views/Signup.php");
+    //     $_SESSION["error"]="Must verify the reCaptcha";
+    //     exit; 
+    //  }
     # Get parameters passed from login.php
    
    

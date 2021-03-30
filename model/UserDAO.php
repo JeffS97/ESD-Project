@@ -66,13 +66,13 @@
             return $status;
         }
 
-        # Retrieve a user with a given username
+        # Retrieve a patient with a given email
         # Return null if no such user exists
         public function retrieve($email){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
-            $sql = "select * from user where email=:email";
+            $sql = "select * from Patient where Email=:email";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":email",$email,PDO::PARAM_STR);
             $stmt->execute();
@@ -80,7 +80,29 @@
             $user = null;
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             if($row = $stmt->fetch()){
-                $user = new User($row["email"],$row["password"],$row["fullname"],$row["username"]);
+                $user = new User($row["Patient_Id"],$row["Email"],$row["P_Name"],$row["Age"],$row["Allergy"],$row["Address"],$row["Password"],$row["ChatId"],$row["Payment"]);
+            }
+            
+            $stmt = null;
+            $pdo = null;
+            return $user;
+        }
+
+        # Retrieve a healthworker with a given email
+        # Return null if no such user exists
+        public function retrieveHealth($email){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "select * from Healthworker where Email=:email";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email",$email,PDO::PARAM_STR);
+            $stmt->execute();
+            
+            $user = null;
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            if($row = $stmt->fetch()){
+                $user = new Healthworker($row["Healthworker_Id"],$row["Email"],$row["Name"],$row["Password"],$row["Role"],$row["Gid"]);
             }
             
             $stmt = null;
@@ -90,7 +112,6 @@
 
         # Update user email
         # Return null if update was unsuccessful 
-
         public function updateEmail($email, $newemail){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();

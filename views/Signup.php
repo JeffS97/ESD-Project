@@ -279,8 +279,8 @@ if (isset($_SESSION['error'])) {
                 </div>
             </div>
             <div class="my-5">
-            <div class="login hide">
-                <form method="post" action="../Main/process_login.php" >
+            <div class="login hide" id="login">
+                <!-- <form method="post" action="../Main/process_login.php" >
                 <h2 class="form-header">Log In</h2> 
                 <div style="margin: 10px 0px 0px 25px">
                     <input type="text" name="email" id = 'emailLI' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
@@ -290,7 +290,10 @@ if (isset($_SESSION['error'])) {
                     <br/>
                     <div id = 'errorLI'></div>
                     <button type='submit' class="form-btn text-center" style="margin-left: 25%;" onclick='logInValidate()'>Log In</button>
-                </form>
+                </form> -->
+                <h2 class="form-header" style="margin-bottom: 50px;">Select your role!</h2>
+                <button class="form-btn" id="patientLogin" style="margin: 30px auto">Patient</button>
+                <button class="form-btn" id="healthLogin" style="margin: 30px auto">Healthcare Staff</button>
             </div>
             </div>
             <!-- <div class="sign-up">
@@ -622,6 +625,37 @@ if (isset($_SESSION['error'])) {
                 } // error
             });
         })
+
+        $('#patientLogin').click(()=>{
+            $('#login').html(`
+                <form method="post" action="../Main/process_login.php">
+                    <h2 class="form-header">Log In</h2> 
+                    <div style="margin: 10px 0px 0px 25px">
+                        <input type="text" name="email" id = 'emailLI' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                        <input type="password" name="password" id = 'passwordLI' placeholder="Password"><i class="fa fa-lock"></i></input>
+                    </div> 
+                    <br/>
+                    <div id = 'errorLI'></div>
+                    <button type='submit' class="form-btn text-center" style="margin-left: 25%;" onclick='logInValidate()'>Log In</button>
+                </form>`
+            );
+        })    
+        
+        $('#healthLogin').click(()=>{
+            $('#login').html(`
+                <form method="post" action="../Main/health_process_login.php">
+                    <h2 class="form-header">Log In</h2> 
+                    <div style="margin: 10px 0px 0px 25px">
+                        <input type="text" name="email" id = 'emailLI' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
+                        <input type="password" name="password" id = 'passwordLI' placeholder="Password"><i class="fa fa-lock"></i></input>
+                    </div> 
+                    <br/>
+                    <div id = 'errorLI'></div>
+                    <button type='submit' class="form-btn text-center" style="margin-left: 25%;" onclick='logInValidate()'>Log In</button>
+                </form>`
+            );
+        })     
+    
     });
 
     </script>
