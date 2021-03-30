@@ -241,8 +241,8 @@ if (isset($_SESSION['error'])) {
 
     <div class="container" id = 'background'>
 
-  <!-- <img src="../resources/hero.png" id = 'background' style="z-index:-1;width:100%;height:100%; 
-  mix-blend-mode: soft-light;">;
+    <!-- <img src="../resources/hero.png" id = 'background' style="z-index:-1;width:100%;height:100%; 
+    mix-blend-mode: soft-light;">;
             -->
          
        <!-- <div class="col-lg-8 " style="float: right;"><span class = 'logo' style="padding: 10px; font-size: 40px; padding-bottom: 5px; float: center; margin-left: 25%; margin-top:20%;" ><img src = "https://www.flaticon.com/svg/static/icons/svg/1624/1624453.svg" height = 50px width = 50px> PROJECT HERO</span>
@@ -252,13 +252,9 @@ if (isset($_SESSION['error'])) {
     <div class="col-sm-12" style = 'float: left; margin-top: 9%'>
     <div class="wrapper" style = 'background-color: #de625b' >
     
-    
-        <div class="background">
-        
-            <div class="left" style = 'text-align: center'>
-            
-            <!-- <button type="submit" class="form-btn" style="margin-left: 20%;" id="p_submit">Sign Up</button> -->
 
+        <div class="background">
+            <div class="left" style = 'text-align: center'>
                 <h2 class="bh" style = 'margin-top: 50px' ></b>Don't have an account?</b></h2>
                 <p class="bp" style = 'text-align: center'>Sign up today to be a Hero or get a Hero to help you!</p>
                 <button class="back-btn signup-but">Sign Up</button>
@@ -270,6 +266,7 @@ if (isset($_SESSION['error'])) {
             </div>
         </div>
         <div class="form-container">
+            <!-- Select role for Sign Up -->
             <div class="sign-up" id="signUpDiv">
                 <div class="selectUser">
                     <h2 class="form-header" style="margin-bottom: 50px;">Create an account!</h2>
@@ -278,38 +275,14 @@ if (isset($_SESSION['error'])) {
                     <button class="form-btn" id="selectDoctor" style="margin: 30px auto">Doctor</button>
                 </div>
             </div>
+            <!-- Select role for Log In -->
             <div class="my-5">
             <div class="login hide" id="login">
-                <!-- <form method="post" action="../Main/process_login.php" >
-                <h2 class="form-header">Log In</h2> 
-                <div style="margin: 10px 0px 0px 25px">
-                    <input type="text" name="email" id = 'emailLI' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
-                    <input type="password" name="password" id = 'passwordLI' placeholder="Password"><i class="fa fa-lock"></i></input>
-                </div> 
-                <div class="g-recaptcha" style="margin-top: 50px;" data-sitekey="6Lf2x-IZAAAAALMzDGQ3989jbM0-iRozvWHqGvb9"></div>
-                    <br/>
-                    <div id = 'errorLI'></div>
-                    <button type='submit' class="form-btn text-center" style="margin-left: 25%;" onclick='logInValidate()'>Log In</button>
-                </form> -->
                 <h2 class="form-header" style="margin-bottom: 50px;">Select your role!</h2>
-                <button class="form-btn" id="patientLogin" style="margin: 30px auto">Patient</button>
-                <button class="form-btn" id="healthLogin" style="margin: 30px auto">Healthcare Staff</button>
+                <button class="form-btn" id="patientLogin" style="margin: 30px 70px">Patient</button>
+                <button class="form-btn" id="healthLogin" style="margin: 30px 70px">Healthcare Staff</button>
             </div>
             </div>
-            <!-- <div class="sign-up">
-                <form method="post" action="../Main/process_register.php" >
-                <h2 class="form-header">Sign Up</h2>
-
-             
-                <input type="text" name="fullname" id = 'fullnameSU' placeholder="Enter Full Name"><i class="fa fa-user"></i></input>
-                <input type="text" name="username" id = 'usernameSU' placeholder="Username"><i class="far fa-address-card"></i></input>
-                <input type="text" name="email" id = 'emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
-                <input type="password" name="password" id='passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input>
-                <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "signUpValidate()" >Sign Up</button>
-                <div id = "errorSU"></div>
-            </form>
-            </div> -->
-            
            
     </div>
     </div>
@@ -319,8 +292,6 @@ if (isset($_SESSION['error'])) {
     </div>
     <script>
     
-    
-
 
     function p_signUpValidate(){
         document.getElementById("errorSU").innerHTML = '';
@@ -481,10 +452,6 @@ if (isset($_SESSION['error'])) {
                 </div>
             </form>
             `;
-            // <input type="text" name="username" id = 'd_usernameSU' placeholder="Username"><i class="far fa-address-card"></i></input>
-            // <input type="text" name="email" id = 'd_emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
-            
-            
 
             $(async () => {
                 // graphQL endpoint
@@ -626,10 +593,11 @@ if (isset($_SESSION['error'])) {
             });
         })
 
+        // Bring up patient login page
         $('#patientLogin').click(()=>{
             $('#login').html(`
                 <form method="post" action="../Main/process_login.php">
-                    <h2 class="form-header">Log In</h2> 
+                    <h2 class="form-header">Patient Log In</h2> 
                     <div style="margin: 10px 0px 0px 25px">
                         <input type="text" name="email" id = 'emailLI' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
                         <input type="password" name="password" id = 'passwordLI' placeholder="Password"><i class="fa fa-lock"></i></input>
@@ -641,10 +609,11 @@ if (isset($_SESSION['error'])) {
             );
         })    
         
+        // Bring up Healthworker login page
         $('#healthLogin').click(()=>{
             $('#login').html(`
                 <form method="post" action="../Main/health_process_login.php">
-                    <h2 class="form-header">Log In</h2> 
+                    <h2 class="form-header">Healthcare Staff Log In</h2> 
                     <div style="margin: 10px 0px 0px 25px">
                         <input type="text" name="email" id = 'emailLI' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
                         <input type="password" name="password" id = 'passwordLI' placeholder="Password"><i class="fa fa-lock"></i></input>
