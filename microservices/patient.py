@@ -113,10 +113,10 @@ def add_patient(pid):
         }
     ), 201
 
-@app.route("/patient/update/<int:pid>", methods=['PUT'])
-def update_patient(pid):
+@app.route("/patient/update/<string:username>", methods=['PUT'])
+def update_patient(username):
     try:
-        patient = Patient.query.filter_by(Patient_Id=pid).first()
+        patient = Patient.query.filter_by(Username=username).first()
         if not patient:
             return jsonify(
                 {
@@ -131,13 +131,17 @@ def update_patient(pid):
         data = request.get_json()
         if data['Allergy']:
             patient.Allergy = data['Allergy']
-            db.session.commit()
-            return jsonify(
-                {
-                    "code": 200,
-                    "data": patient.json()
-                }
-            ), 200
+
+        if data['ChatId']:
+            patient.ChatId = data['ChatId']
+        
+        db.session.commit()
+        return jsonify(
+            {
+                "code": 200,
+                "data": patient.json()
+            }
+        ), 200
             
     except Exception as e:
         return jsonify(

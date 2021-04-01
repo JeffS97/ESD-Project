@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import join
 from os import environ
 import datetime
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/cliniq'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/esd6'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -30,22 +31,22 @@ class Prescription(db.Model):
     __tablename__ = 'prescription'
     # mapping table properties to db column
     Prescription_Id = db.Column(db.Integer, primary_key=True)
-    Patient_Id = db.Column(db.Integer, nullable=False)
-    Gid = db.Column(db.Integer, nullable=False)
-    ATime = db.Column(db.DateTime, nullable=False)
-    Prescription_time = db.Column(db.DateTime, nullable=False)
-    Description = db.Column(db.String, nullable=False)
+    Appointment_Id = db.Column(db.Integer, nullable = False)
+    PrevDate = db.Column(db.Date, nullable=False)
+    EndDate = db.Column(db.Date, nullable=False)
+    Interval_Days = db.Column(db.Integer, nullable=True)
+    Name = db.Column(db.String, nullable=False)
 
-    def init(self, Prescription_Id, Patient_Id, Gid, ATime, Prescription_time, Description):
-        self.Prescription_Id = Prescription_Id
-        self.Patient_Id = Patient_Id
-        self.Gid = Gid
-        self.ATime = ATime
-        self.Prescription_time = Prescription_time
-        self.Description = Description
+
+    def init(self, Appointment_Id, PrevDate, EndDate, Interval_Days, Name):
+        self.Appointment_Id = Appointment_Id
+        self.PrevDate = PrevDate
+        self.EndDate = EndDate
+        self.Interval_Days = Interval_Days
+        self.Name = Name
 
     def json(self):
-        return {"Prescription_Id": self.Prescription_Id, "Patient_Id": self.Patient_Id, "Gid": self.Gid, "ATime": self.ATime, "Prescription_time": self.Prescription_time, "Description": self.Description}
+        return {"Prescription_Id" : self.Prescription_Id, "Appointment_Id" : self.Appointment_Id, "PrevDate": self.PrevDate, "EndDate": self.EndDate, "Interval_Days": self.Interval_Days, "Name": self.Name}
 
 @app.route("/")
 def test():
@@ -78,28 +79,37 @@ def get_all():
     ), 404
 
 
-@app.route("/getByPatient", methods=['POST'])
-def find_by_patient():
-    # Get for a patient
-    # Perhaps we may need to set an additional condition to limit refills by date or number
-    
-    # Get post request json 
-    data = request.get_json()
-    pid = data['Patient_Id']
-    print(pid) 
+#view all prescriptions given the appointment Id
+@app.route("/prescription/getByAppointment/<int:Aid>")
+def getByAppointment(Aid):
+
+    # one_month = current_time - datetime.timedelta(days=)
+
+    current_date = datetime.date.today()
+    prescriptions = Prescription.query.filter_by(Appointment_Id = Aid).all()
+    output = []
+
+    for prescription in prescriptions:
+        PrevDate = prescription.PrevDate
+        Interval_Days = prescription.Interval_Days
+        print('--------------------------------------------------')
+        print(Interval_Days)
+        EndDate = prescription.EndDate
+
+        nextCollectionDate = PrevDate + datetime.timedelta(days = int(Interval_Days))
+        nextCollectionDateStr = str(nextCollectionDate).split(' ')[0]
+        nextDate = datetime.datetime.strptime('24052010', "%d%m%Y").date()
 
 
-    current_time = datetime.datetime.now()
-    one_month = current_time - datetime.timedelta(weeks=4)
-
-    prescriptions = Prescription.query.filter(Prescription.ATime > one_month).filter_by(Patient_Id = pid)
+        if nextDate <= current_date and Interval_Days != None and EndDate >= current_date:
+            output.append(prescription)
+        
     if prescriptions:
         return jsonify(
             {
                 "code": 200,
                 "data": {
-                    #Need to change in accordance to Appointment
-                    "prescriptions":  [Prescription.json() for Prescription in prescriptions]
+                    "prescriptions":  [Prescription.json() for Prescription in output]
                 }
             }
         )
@@ -109,6 +119,15 @@ def find_by_patient():
             "message": "No Prescriptions not found."
         }
     ), 404
+
+
+@app.route("/prescription/<int:Appointment_Id>", methods=['PUT'])
+def update_appointment(Appointment_Id):
+    appointment = Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
+    if appointment:
+        data = request.get_json()
+        if data['Symptom']:
+            appointment.Symptom = data['Symptom']
 
 
 @app.route("/getPrescription/<int:Prescription_Id>")
@@ -133,23 +152,6 @@ def find_by_Id(Prescription_Id):
 @app.route("/addPrescription", methods= ['POST'])
 def create_prescription():
 
-# @app.route("/addPrescription/<int:pid>/<int:Gid>/<string:ATime>", methods=['POST'])
-# def create_prescription(pid, Gid, ATime):
-
-    # value3 = Prescription.query.filter_by(Patient_Id=pid, Gid=Gid, ATime=ATime).first()
-    # print(value3)
-    # value2 = value.query.filter_by(Gid=Gid)
-    # value3 = value2.query.filter_by(ATime=ATime)
-
-    # if (Prescription.query.filter_by(Patient_Id=Patient_Id).filter_by(Gid=Gid).filter_by(ATime=ATime)):
-    # if value3:
-        # return jsonify(
-        #     {
-        #         "code": 400,
-        #         "message": "Prescription already exits."
-        #     }
-        # ), 400
-
     data = request.get_json()
     prescription = Prescription(**data)
 
@@ -173,4 +175,4 @@ def create_prescription():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5020, debug=True)

@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import and_, or_
 from flask_cors import CORS
 import json
 import datetime
@@ -7,7 +8,7 @@ import time
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/esd7'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/esd6'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # conn = psycopg2.connect(
@@ -26,78 +27,44 @@ class Appointment(db.Model):
     Patient_Id = db.Column(db.Integer,nullable=False)
     Gid= db.Column(db.Integer, nullable=False)
     Symptom = db.Column(db.String(255), nullable=False)
-    ATime= db.Column(db.Time,nullable=False)
-    ADate=db.Column(db.Date,nullable=False)
-    Approved=db.Column(db.String,nullable=False)
+    ApptTime= db.Column(db.Time,nullable=False)
+    ApptDate=db.Column(db.Date,nullable=False)
+    Completed=db.Column(db.String,nullable=False)
 
-    def __init__(self, Appointment_Id ,Patient_Id, Gid,Symptom, ATime,ADate,Approved):
+    def __init__(self, Patient_Id, Gid,Symptom, ApptTime, ApptDate,Completed):
         # self.Appointment_Id=Appointment_Id
         self.Patient_Id = Patient_Id
         self.Gid = Gid
         self.Symptom = Symptom
-        self.ATime = ATime
-        self.ADate=ADate
-        self.Approved=Approved
+        self.ApptTime = ApptTime
+        self.ApptDate = ApptDate
+        self.Completed=Completed
 
     def json(self):
-        return {"Patient_Id": self.Patient_Id, "Gid": self.Gid, "Symptom": self.Symptom, "ATime": self.ATime,"ADate":self.ADate, "Approved":self.Approved}
+        return {"Patient_Id": self.Patient_Id, "Gid": self.Gid, "Symptom": self.Symptom, "ApptTime": self.ApptTime,"ApptDate":self.ApptDate, "Completed":self.Completed}
 
-        
-@app.route("/appointment")
-def get_all():
-    applist = Appointment.query.all()
-    if len(applist):
-        return jsonify(
-            {
-                "code": 200,
-                "data": {
-                    "books": [app.json() for app in applist]
-                }
-            }
-        )
-    return jsonify(
-        {
-            "code": 404,
-            "message": "There are no Appointments"
-        }
-    ), 404
-
-    current_date = datetime.date.now()
-    # one_month = current_time - datetime.timedelta(weeks=4)
-
-    prescriptions = Prescription.query.filter(Appointment.ATime > current_time).filter_by(Gid = Gid)
-    if prescriptions:
-        return jsonify(
-            {
-                "code": 200,
-                "data": {
-                    "prescriptions":  [Prescription.json() for Prescription in prescriptions]
-                }
-            }
-        )
-@app.route("/appointment/currentAppointments", methods=['POST'])
+#Healthcareworker View       
+@app.route("/appointment/healthcareCurrentAppointments", methods=['POST'])
 def currentAppointments():
 
     data = request.get_json()
-    print('Hello')
-    Gid = data['Gid']
-    ADate = data['ADate']
-    
+    ApptDate = data['ApptDate']
+    Gid = data['Gid']    
 
-    applist = Appointment.query.filter_by(Gid=Gid, ADate=ADate)
+    applist = Appointment.query.filter_by(ApptDate=ApptDate, Gid=Gid)
     allAppointments = []
     for app in applist:
-        dateStr = str(app.ADate)
-        timeStr = str(app.ATime)
+        dateStr = str(app.ApptDate)
+        timeStr = str(app.ApptTime)
 
         output = {
             'Appointment_Id' : app.Appointment_Id,
             'Patient_Id' : app.Patient_Id,
             'Gid' : app.Gid,
             'Symptom' : app.Symptom,
-            'ATime' : timeStr,
-            'ADate' :  dateStr,
-            'Approved' : app.Approved
+            'ApptTime' : timeStr,
+            'ApptDate' :  dateStr,
+            'Completed' : app.Completed
         }
 
         allAppointments.append(output)
@@ -114,6 +81,7 @@ def currentAppointments():
     print(allAppointments)
 
     print('test')
+
     return jsonify(
         {
             "code": 404,
@@ -121,29 +89,55 @@ def currentAppointments():
         }
     ), 404
 
-@app.route("/appointment/approveHealthcareAppointment", methods=['POST'])
-def approve_appointment(Appointment_Id):
-    Appointment = Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
-    if Appointment:
-        data = request.get_json()
-        Appointment.Approved = True
-        db.session.commit()
-        return jsonify(
-            {
-                "code": 200,
-                "data": app.json()
+#Patient views appointment history or upcoming appointment
+@app.route("/appointment/patientViewsAppointment", methods=['POST'])
+def patientViewsAppointment():
+    data = request.get_json()
+    pid = data['Patient_Id']
+
+    # data = request.get_json()
+    # ApptDate = data['ApptDate']
+    
+    allAppointments = Appointment.query.filter_by(Patient_Id = pid)
+    returnAppointments = []
+
+    if allAppointments:
+        for app in allAppointments:
+            dateStr = str(app.ApptDate)
+            timeStr = str(app.ApptTime)
+
+            output = {
+                'Appointment_Id' : app.Appointment_Id,
+                'Patient_Id' : app.Patient_Id,
+                'Gid' : app.Gid,
+                'Symptom' : app.Symptom,
+                'ApptTime' : timeStr,
+                'ApptDate' :  dateStr,
+                'Completed' : app.Completed
             }
-        )
+
+            returnAppointments.append(output)
+
+            return jsonify(
+                {
+                    "code": 200,
+                    "data": {
+                        "appointments": returnAppointments
+                    }
+                }
+            )
     return jsonify(
-        {
-            "code": 404,
-            "message": "Appointment not found."
-        }
+            {
+                "code": 404,
+                "message": "No Prescriptions found."
+            }
     ), 404
 
 
-@app.route("/appointment/viewHealthcareAppointment", methods=['POST'])
-def viewHealthcareAppointments():
+
+#Patient Views Appointment History
+@app.route("/appointment/patientViewsAppointmentHistory", methods=['POST'])
+def patientViewsAppointmentHistory():
 
     current_date = datetime.date.today() 
     t = time.localtime()
@@ -151,48 +145,173 @@ def viewHealthcareAppointments():
 
 
     data = request.get_json()
-    Gid = data['Gid']
+    print('---------------------------------------------')
+    print(data)
+    Pid = data['Patient_Id']
 
-    app = Appointment.query.filter(current_time <= Appointment.ATime).filter(current_date <= Appointment.ADate).filter_by(Gid = Gid)
+    apps = Appointment.query.filter(current_date >= Appointment.ApptDate).filter(current_time >= Appointment.ApptTime).filter_by(Patient_Id = Pid).all()
 
+    if apps: 
+        output = []
+        for app in apps: 
+            dateStr = str(app.ApptDate)
+            timeStr = str(app.ApptTime)
+            appointment = {
+                'Appointment_Id' : app.Appointment_Id,
+                'Patient_Id' : app.Patient_Id,
+                'Gid' : app.Gid,
+                'Symptom' : app.Symptom,
+                'ApptTime' : timeStr,
+                'ApptDate' :  dateStr,
+                'Completed' : app.Completed
+            }
+
+            output.append(appointment)
+            return jsonify(
+                {
+                    "code": 200,
+                    "data": {
+                        "appointments": output
+                    }
+                }
+            )
+    return jsonify(
+            {
+                "code": 404,
+                "message": "No Prescriptions found."
+            }
+    ), 404
+        
+        
+
+#Patient Views Upcoming Appointment
+@app.route("/appointment/patientViewsUpcomingAppointment", methods=['POST'])
+def patientViewsUpcomingAppointment():
+
+    current_date = datetime.date.today() 
+    print(current_date)
+    print(type(current_date))
+
+    t = time.localtime()
+    current_time = time.strftime("%H:%M:%S", t)
+    print(current_time)
+    print(type(current_time))
+
+
+    data = request.get_json()
+    Pid = data['Patient_Id']
+
+    apps = Appointment.query.filter(or_(and_(Appointment.ApptDate == current_date,Appointment.ApptTime >= current_time), (Appointment.ApptDate > current_date))).filter_by(Patient_Id = Pid,Completed = False).all()
+
+    if apps: 
+        output = []
+        for app in apps: 
+            dateStr = str(app.ApptDate)
+            timeStr = str(app.ApptTime)
+            appointment = {
+                'Appointment_Id' : app.Appointment_Id,
+                'Patient_Id' : app.Patient_Id,
+                'Gid' : app.Gid,
+                'Symptom' : app.Symptom,
+                'ApptTime' : timeStr,
+                'ApptDate' :  dateStr,
+                'Completed' : app.Completed
+            }
+
+            output.append(appointment)
+            return jsonify(
+                {
+                    "code": 200,
+                    "data": {
+                        "appointments": output
+                    }
+                }
+            )
+    return jsonify(
+            {
+                "code": 404,
+                "message": "No Prescriptions found."
+            }
+    ), 404
+
+
+
+#Patient Views Lapsed Appointment
+@app.route("/appointment/patientViewsLapsedAppointment", methods=['POST'])
+def patientViewsLapsedAppointment():
+
+    current_date = datetime.date.today() 
+    print(current_date)
+    print(type(current_date))
+
+    t = time.localtime()
+    current_time = time.strftime("%H:%M:%S", t)
+    print(current_time)
+    print(type(current_time))
+
+
+    data = request.get_json()
+    Pid = data['Patient_Id']
+
+    apps = Appointment.query.filter(or_(and_(Appointment.ApptDate == current_date,Appointment.ApptTime <= current_time), (Appointment.ApptDate < current_date))).filter_by(Patient_Id = Pid,Completed = False).all()
+
+    if apps: 
+        output = []
+        for app in apps: 
+            dateStr = str(app.ApptDate)
+            timeStr = str(app.ApptTime)
+            appointment = {
+                'Appointment_Id' : app.Appointment_Id,
+                'Patient_Id' : app.Patient_Id,
+                'Gid' : app.Gid,
+                'Symptom' : app.Symptom,
+                'ApptTime' : timeStr,
+                'ApptDate' :  dateStr,
+                'Completed' : app.Completed
+            }
+
+            output.append(appointment)
+            return jsonify(
+                {
+                    "code": 200,
+                    "data": {
+                        "appointments": output
+                    }
+                }
+            )
+    return jsonify(
+            {
+                "code": 404,
+                "message": "No Prescriptions found."
+            }
+    ), 404
+
+
+#View a specific appointment
+@app.route("/appointment/viewAppointmentById", methods =['POST'])
+def find_by_appointment_id():
+    
+    data = request.get_json()
+    Appointment_Id = data['Appointment_Id']
+
+    app = Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
     if app:
-        print('---------ANSWER ---------------')
-        print(app)
-        dateStr = str(app.ADate)
-        timeStr = str(app.ATime)
-
-        return jsonify(
+            dateStr = str(app.ApptDate)
+            timeStr = str(app.ApptTime)
+            return jsonify(
             {
                 "code": 200,
                 "data": {
-                    'Appointment_Id' : app.Appointment_Id,
-                    'Patient_Id' : app.Patient_Id,
-                    'Gid' : app.Gid,
-                    'Symptom' : app.Symptom,
-                    'ATime' : timeStr,
-                    'ADate' :  dateStr,
-                    'Approved' : app.Approved
+                'Appointment_Id' : app.Appointment_Id,
+                'Patient_Id' : app.Patient_Id,
+                'Gid' : app.Gid,
+                'Symptom' : app.Symptom,
+                'ApptTime' : timeStr,
+                'ApptDate' :  dateStr,
+                'Completed' : app.Completed
                 }
             }
         )
-
-    return jsonify(
-        {
-            "code": 404,
-            "message": "Appointment not found."
-        }
-    ), 404
-
-@app.route("/appointment/<int:Appointment_Id>")
-def find_by_appointment_id(Appointment_Id):
-    app = Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
-    if app:
-        return jsonify(
-            {
-                "code": 200,
-                "data": app.json()
-            }
-        )
     return jsonify(
         {
             "code": 404,
@@ -201,14 +320,11 @@ def find_by_appointment_id(Appointment_Id):
     ), 404
 
 
-
-
+#create Appointment
 @app.route("/appointment/createAppointment", methods=['POST'])
 def create_appointment():
 
     data = request.get_json()
-    # Appointment_Id = None
-    # Prevent double selection should be in place
     app = Appointment(**data)
     try: 
         db.session.add(app)
@@ -227,30 +343,48 @@ def create_appointment():
     return jsonify(
         {
             "code": 201,
-            "data": app.json()
+            "data": {
+                'Appointment_Id' : app.Appointment_Id,
+                'Patient_Id' : app.Patient_Id,
+                'Gid' : app.Gid,
+                'Symptom' : app.Symptom,
+                'ApptTime' : timeStr,
+                'ApptDate' :  dateStr,
+                'Completed' : app.Completed
+            }
         }
     ), 201
 
-
+#update Appointment
 @app.route("/appointment/<int:Appointment_Id>", methods=['PUT'])
 def update_appointment(Appointment_Id):
-    book = Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
-    if book:
+    appointment = Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
+    if appointment:
         data = request.get_json()
         if data['Symptom']:
-            book.Sympton = data['Symptom']
-        if data['ATime']:
-            book.ATime = data['ATime']
-        if data['ADate']:
-            book.ADate = data['ADate']
+            appointment.Symptom = data['Symptom']
+        if data['ApptTime']:
+            appointment.ApptTime = data['ApptTime']
+        if data['ApptDate']:
+            appointment.ApptDate = data['ApptDate']
         
         db.session.commit()
+        dateStr = str(app.ApptDate)
+        timeStr = str(app.ApptTime)
         return jsonify(
             {
                 "code": 200,
-                "data": app.json()
+                "data":  {
+                'Appointment_Id' : app.Appointment_Id,
+                'Patient_Id' : app.Patient_Id,
+                'Gid' : app.Gid,
+                'Symptom' : app.Symptom,
+                'ApptTime' : timeStr,
+                'ApptDate' :  dateStr,
+                'Completed' : app.Completed
+                }
             }
-        )
+        ), 200
     return jsonify(
         {
             "code": 404,
@@ -259,7 +393,7 @@ def update_appointment(Appointment_Id):
         }
     ), 404
 
-
+#delete Appointment
 @app.route("/appointment/<int:Appointment_Id>", methods=['DELETE'])
 def delete_appointment(Appointment_Id):
     app= Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
@@ -285,5 +419,81 @@ def delete_appointment(Appointment_Id):
     ), 404
 
 
+# Not needed
+# @app.route("/appointment")
+# def get_all():
+#     applist = Appointment.query.all()
+#     if len(applist):
+#         return jsonify(
+#             {
+#                 "code": 200,
+#                 "data": {
+#                     "books": [app.json() for app in applist]
+#                 }
+#             }
+#         )
+#     return jsonify(
+#         {
+#             "code": 404,
+#             "message": "There are no Appointments"
+#         }
+#     ), 404
+
+#     current_date = datetime.date.now()
+#     # one_month = current_time - datetime.timedelta(weeks=4)
+
+#     appointments = Appointment.query.filter(Appointment.ATime > Appointment.current_time).filter_by(Gid = Gid)
+#     if appointments:
+#         return jsonify(
+#             {
+#                 "code": 200,
+#                 "data": {
+#                     "prescriptions":  [Appointment.json() for Pr in prescriptions]
+#                 }
+#             }
+#         )
+
+
+# @app.route("/appointment/viewAppointment", methods=['POST'])
+# def viewHealthcareAppointments():
+
+#     current_date = datetime.date.today() 
+#     t = time.localtime()
+#     current_time = time.strftime("%H:%M:%S", t)
+
+
+#     data = request.get_json()
+#     Gid = data['Gid']
+
+#     app = Appointment.query.filter(current_time <= Appointment.ApptTime).filter(current_date <= Appointment.ApptDate).filter(Gid = Gid)
+
+#     if app:
+#         print('---------ANSWER ---------------')
+#         print(app)
+#         dateStr = str(app.ApptDate)
+#         timeStr = str(app.ApptTime)
+
+#         return jsonify(
+#             {
+#                 "code": 200,
+#                 "data": {
+#                     'Appointment_Id' : app.Appointment_Id,
+#                     'Patient_Id' : app.Patient_Id,
+#                     'Gid' : app.Gid,
+#                     'Symptom' : app.Symptom,
+#                     'ApptTime' : timeStr,
+#                     'ApptDate' :  dateStr,
+#                     'Completed' : app.Completed
+#                 }
+#             }
+#         )
+
+#     return jsonify(
+#         {
+#             "code": 404,
+#             "message": "Appointment not found."
+#         }
+#     ), 404
+
 if __name__ == '__main__':
-    app.run(port=5003, debug=True)
+    app.run(port=5019, debug=True)
