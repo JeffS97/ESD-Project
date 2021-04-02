@@ -70,7 +70,7 @@ def make_refill():
 def processMakeRefill(details):
 
     print('\n-----Invoking Prescription microservice-----')
-    prescription = invoke_http(prescription_URL + "/update<int:pid>", json=details)
+    prescription = invoke_http(prescription_URL + "/update<int:pid>", method="POST", json=details)
     print('Prescriptions:', prescription)
 
     print('\n-----Invoking Appointment microservice-----')

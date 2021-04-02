@@ -83,7 +83,7 @@ def add_healthworker(hid):
  
     data = request.get_json()
     healthworker = Healthworker(hid, **data)
-    print(healthworker.json());
+    print(healthworker.json())
     try:
         db.session.add(healthworker)
         db.session.commit()
