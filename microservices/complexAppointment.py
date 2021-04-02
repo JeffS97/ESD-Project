@@ -8,12 +8,10 @@ app = Flask(__name__)
 CORS(app)
 
 patient_URL = "http://localhost:5000/patient"
-prescription_URL = "http://localhost:5001/prescription"
-refill_URL = "http://localhost:5002/refill"
-appointment_URL = "http://localhost:5028/appointment"
-clinic_URL = "http://localhost:5004/clinic"
-healthworker_URL = "http://localhost:5005/healthworker"
-notification_URL = "http://localhost:5030/notification"
+appointment_URL = "http://localhost:5001/appointment"
+prescription_URL = "http://localhost:5002/prescription"
+healthworker_URL = "http://localhost:5003/healthworker"
+notification_URL = "http://localhost:5004/notification"
 
 @app.route("/worker_views_all_appointments", methods=['POST'])
 def worker_views_all_appointments():
@@ -304,5 +302,5 @@ def processCreateAppointments(details):
 
 
 if __name__ == "__main__":
-    print("This is flask " + os.path.basename(__file__) + " for placing an refill microservice...")
-    app.run(host="0.0.0.0", port=5121, debug=True)
+    print("This is flask " + os.path.basename(__file__) + " for placing Appointment related Operations...")
+    app.run(host="0.0.0.0", port=5100, debug=True)

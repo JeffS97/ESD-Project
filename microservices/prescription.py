@@ -6,7 +6,8 @@ import datetime
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/esd6'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/ESD5'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:8889/ESD5'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -190,4 +191,4 @@ def create_prescription():
     ), 201
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5029, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=True)

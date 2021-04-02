@@ -8,12 +8,10 @@ app = Flask(__name__)
 CORS(app)
 
 patient_URL = "http://localhost:5000/patient"
-prescription_URL = "http://localhost:5001/prescription"
-refill_URL = "http://localhost:5002/refill"
-appointment_URL = "http://localhost:5028/appointment"
-clinic_URL = "http://localhost:5004/clinic"
-healthworker_URL = "http://localhost:5005/healthworker"
-notification_URL = "http://localhost:5030/notification"
+appointment_URL = "http://localhost:5001/appointment"
+prescription_URL = "http://localhost:5002/prescription"
+healthworker_URL = "http://localhost:5003/healthworker"
+notification_URL = "http://localhost:5004/notification"
 
 #view all prescriptions valid for a refill given the appointment Id based upon the current day
 @app.route("/display_possible_refills", methods=['POST'])
@@ -88,6 +86,10 @@ def processMakeRefill(details):
     )
     notification = invoke_http(notification_URL + '/refill', method='POST', json=toSend)
 
+
+if __name__ == "__main__":
+    print("This is flask " + os.path.basename(__file__) + " for Prescription related Operations...")
+    app.run(host="0.0.0.0", port=5101, debug=True)
 
 
 
