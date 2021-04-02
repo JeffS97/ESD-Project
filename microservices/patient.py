@@ -75,6 +75,24 @@ def find_by_pid(pid):
         }
     ), 404
 
+@app.route("/patient/findById", methods=['POST'])
+def find_by_pid():
+    data = request.get_json()
+    pid = data['Patient_Id']
+    patient = Patient.query.filter_by(Patient_Id=pid).first()
+    if patient:
+        return jsonify(
+            {
+                "code": 200,
+                "data": patient.json()
+            }
+        )
+    return jsonify(
+        {
+            "code": 404,
+            "message": "Patient not found."
+        }
+    ), 404
 
 @app.route("/patient/add/<int:pid>", methods=['POST'])
 def add_patient(pid):
@@ -112,6 +130,42 @@ def add_patient(pid):
             "data": patient.json()
         }
     ), 201
+# @app.route("/patient/update/<string:username>", methods=['PUT'])
+# def update_patient(username):
+#     try:
+#         patient = Patient.query.filter_by(Username=username).first()
+#         if not patient:
+#             return jsonify(
+#                 {
+#                     "code": 404,
+#                     "data": {
+#                         "Username": username
+#                     },
+#                     "message": "Patient not found."
+#                 }
+#             ), 404
+
+#         data = request.get_json()
+#         if data['ChatId']:
+#             patient.ChatId = data['ChatId']
+#             db.session.commit()
+#             return jsonify(
+#                 {
+#                     "code": 200,
+#                     "data": patient.json()
+#                 }
+#             ), 200
+            
+#     except Exception as e:
+#         return jsonify(
+#             {
+#                 "code": 500,
+#                 "data": {
+#                     "Username": username
+#                 },
+#                 "message": "An error occurred while updating the order. " + str(e)
+#             }
+#         ), 500
 
 @app.route("/patient/update/<string:username>", methods=['PUT'])
 def update_patient(username):
@@ -153,7 +207,9 @@ def update_patient(username):
                 "message": "An error occurred while updating the order. " + str(e)
             }
         ), 500
- 
+
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

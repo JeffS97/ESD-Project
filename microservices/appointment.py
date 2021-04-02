@@ -41,7 +41,7 @@ class Appointment(db.Model):
         self.Completed=Completed
 
     def json(self):
-        return {"Patient_Id": self.Patient_Id, "Gid": self.Gid, "Symptom": self.Symptom, "ApptTime": self.ApptTime,"ApptDate":self.ApptDate, "Completed":self.Completed}
+        return {"Appointment_Id": self.Appointment_Id, "Patient_Id": self.Patient_Id, "Gid": self.Gid, "Symptom": self.Symptom, "ApptTime": self.ApptTime,"ApptDate":self.ApptDate, "Completed":self.Completed}
 
 #Healthcareworker View       
 @app.route("/appointment/healthcareCurrentAppointments", methods=['POST'])
@@ -49,7 +49,7 @@ def currentAppointments():
 
     data = request.get_json()
     ApptDate = data['ApptDate']
-    Gid = data['Gid']    
+    Gid = data['Gid']
 
     applist = Appointment.query.filter_by(ApptDate=ApptDate, Gid=Gid)
     allAppointments = []
@@ -149,7 +149,7 @@ def patientViewsAppointmentHistory():
     print(data)
     Pid = data['Patient_Id']
 
-    apps = Appointment.query.filter(current_date >= Appointment.ApptDate).filter(current_time >= Appointment.ApptTime).filter_by(Patient_Id = Pid).all()
+    apps = Appointment.query.filter(or_(and_(Appointment.ApptDate == current_date,Appointment.ApptTime <= current_time), (Appointment.ApptDate < current_date))).filter_by(Patient_Id = Pid,Completed = True).all()
 
     if apps: 
         output = []
@@ -167,14 +167,14 @@ def patientViewsAppointmentHistory():
             }
 
             output.append(appointment)
-            return jsonify(
-                {
-                    "code": 200,
-                    "data": {
-                        "appointments": output
-                    }
+        return jsonify(
+            {
+                "code": 200,
+                "data": {
+                    "appointments": output
                 }
-            )
+            }
+        )
     return jsonify(
             {
                 "code": 404,
@@ -201,6 +201,9 @@ def patientViewsUpcomingAppointment():
     data = request.get_json()
     Pid = data['Patient_Id']
 
+    # apps = Appointment.query.filter(or_
+    # (and_(Appointment.ApptDate == current_date,Appointment.ApptTime >= current_time)), (Appointment.ApptDate > current_date)).filter_by(Patient_Id = Pid, Completed = 0).all()
+
     apps = Appointment.query.filter(or_(and_(Appointment.ApptDate == current_date,Appointment.ApptTime >= current_time), (Appointment.ApptDate > current_date))).filter_by(Patient_Id = Pid,Completed = False).all()
 
     if apps: 
@@ -219,14 +222,14 @@ def patientViewsUpcomingAppointment():
             }
 
             output.append(appointment)
-            return jsonify(
-                {
-                    "code": 200,
-                    "data": {
-                        "appointments": output
-                    }
+        return jsonify(
+            {
+                "code": 200,
+                "data": {
+                    "appointments": output
                 }
-            )
+            }
+        )
     return jsonify(
             {
                 "code": 404,
@@ -255,9 +258,18 @@ def patientViewsLapsedAppointment():
 
     apps = Appointment.query.filter(or_(and_(Appointment.ApptDate == current_date,Appointment.ApptTime <= current_time), (Appointment.ApptDate < current_date))).filter_by(Patient_Id = Pid,Completed = False).all()
 
+
+    # apps = Appointment.query.filter((Appointment.ApptDate == current_date & Appointment.ApptTime <= current_time) | (Appointment.ApptDate < current_date)).filter_by(Patient_Id = Pid,Completed = False).all()
+    # apps = Appointment.query.filter(or_(and_(Appointment.ApptDate == current_date,Appointment.ApptTime <= current_time)),(Appointment.ApptDate < current_date)).filter_by(Patient_Id = Pid,Completed = False).all()
+
+
+    #apps = Appointment.query.filter(Appointment.ApptDate < current_date).filter_by(Patient_Id = Pid,Completed = False).all()
+
     if apps: 
+        print('app condition runs')
         output = []
         for app in apps: 
+            print('loop')
             dateStr = str(app.ApptDate)
             timeStr = str(app.ApptTime)
             appointment = {
@@ -271,14 +283,14 @@ def patientViewsLapsedAppointment():
             }
 
             output.append(appointment)
-            return jsonify(
-                {
-                    "code": 200,
-                    "data": {
-                        "appointments": output
-                    }
+        return jsonify(
+            {
+                "code": 200,
+                "data": {
+                    "appointments": output
                 }
-            )
+            }
+        )
     return jsonify(
             {
                 "code": 404,
@@ -333,13 +345,12 @@ def create_appointment():
         return jsonify(
             {
                 "code": 500,
-                "data": {
-                    "Patient_id": data.Patient_id
-                },
                 "message": "An error occurred creating the appointment."
             }
         ), 500
 
+    dateStr = str(app.ApptDate)
+    timeStr = str(app.ApptTime)
     return jsonify(
         {
             "code": 201,
@@ -356,32 +367,34 @@ def create_appointment():
     ), 201
 
 #update Appointment
-@app.route("/appointment/<int:Appointment_Id>", methods=['PUT'])
-def update_appointment(Appointment_Id):
-    appointment = Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
-    if appointment:
-        data = request.get_json()
+#issues
+@app.route("/appointment/updateAppointment", methods=['PUT'])
+def update_appointment():
+    data = request.get_json()
+    Aid = data['Appointment_Id']
+    appointment = Appointment.query.filter_by(Appointment_Id=Aid).first()
+    if appointment: 
         if data['Symptom']:
             appointment.Symptom = data['Symptom']
         if data['ApptTime']:
             appointment.ApptTime = data['ApptTime']
         if data['ApptDate']:
             appointment.ApptDate = data['ApptDate']
-        
+    
         db.session.commit()
-        dateStr = str(app.ApptDate)
-        timeStr = str(app.ApptTime)
+        dateStr = str(appointment.ApptDate)
+        timeStr = str(appointment.ApptTime)
         return jsonify(
             {
                 "code": 200,
                 "data":  {
-                'Appointment_Id' : app.Appointment_Id,
-                'Patient_Id' : app.Patient_Id,
-                'Gid' : app.Gid,
-                'Symptom' : app.Symptom,
+                'Appointment_Id' : appointment.Appointment_Id,
+                'Patient_Id' : appointment.Patient_Id,
+                'Gid' : appointment.Gid,
+                'Symptom' : appointment.Symptom,
                 'ApptTime' : timeStr,
                 'ApptDate' :  dateStr,
-                'Completed' : app.Completed
+                'Completed' : appointment.Completed
                 }
             }
         ), 200
@@ -496,4 +509,4 @@ def delete_appointment(Appointment_Id):
 #     ), 404
 
 if __name__ == '__main__':
-    app.run(port=5019, debug=True)
+    app.run(port=5028, debug=True)

@@ -48,16 +48,16 @@ class Prescription(db.Model):
     def json(self):
         return {"Prescription_Id" : self.Prescription_Id, "Appointment_Id" : self.Appointment_Id, "PrevDate": self.PrevDate, "EndDate": self.EndDate, "Interval_Days": self.Interval_Days, "Name": self.Name}
 
-@app.route("/")
-def test():
+# @app.route("/")
+# def test():
 
-    print('hello')
-    return jsonify(
-        {
-            "code": 200,
-            "message": "Test."
-        }
-    ), 200
+#     print('hello')
+#     return jsonify(
+#         {
+#             "code": 200,
+#             "message": "Test."
+#         }
+#     ), 200
 
 @app.route("/getAll")
 def get_all():
@@ -79,11 +79,9 @@ def get_all():
     ), 404
 
 
-#view all prescriptions given the appointment Id
+#view all prescriptions valid for a refill given the appointment Id based upon the current day
 @app.route("/prescription/getByAppointment/<int:Aid>")
 def getByAppointment(Aid):
-
-    # one_month = current_time - datetime.timedelta(days=)
 
     current_date = datetime.date.today()
     prescriptions = Prescription.query.filter_by(Appointment_Id = Aid).all()
@@ -91,18 +89,22 @@ def getByAppointment(Aid):
 
     for prescription in prescriptions:
         PrevDate = prescription.PrevDate
+        print(PrevDate)
         Interval_Days = prescription.Interval_Days
-        print('--------------------------------------------------')
-        print(Interval_Days)
         EndDate = prescription.EndDate
 
-        nextCollectionDate = PrevDate + datetime.timedelta(days = int(Interval_Days))
-        nextCollectionDateStr = str(nextCollectionDate).split(' ')[0]
-        nextDate = datetime.datetime.strptime('24052010', "%d%m%Y").date()
+        if Interval_Days != None:
+            nextCollectionDate = PrevDate + datetime.timedelta(days = int(Interval_Days))
+
+            nextCollectionDateStr = str(nextCollectionDate).split(' ')[0]
+            nextDate = datetime.datetime.strptime('24052010', "%d%m%Y").date()
+            print(nextDate)
+            print(type(nextDate))
 
 
-        if nextDate <= current_date and Interval_Days != None and EndDate >= current_date:
-            output.append(prescription)
+            if nextDate <= current_date and Interval_Days != None and EndDate >= current_date:
+                output.append(prescription)
+                print(prescription)
         
     if prescriptions:
         return jsonify(
@@ -121,13 +123,27 @@ def getByAppointment(Aid):
     ), 404
 
 
-@app.route("/prescription/<int:Appointment_Id>", methods=['PUT'])
-def update_appointment(Appointment_Id):
-    appointment = Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
-    if appointment:
-        data = request.get_json()
-        if data['Symptom']:
-            appointment.Symptom = data['Symptom']
+@app.route("/prescription/update<int:pid>", methods=['PUT'])
+def update_prescription_date(pid):
+    prescription= Prescription.query.filter_by(Prescription_Id=pid).first()
+    if prescription:
+        current_date = datetime.date.today() 
+        prescription.PrevDate = current_date
+
+
+        return jsonify(
+            {
+                "code": 200,
+                "data": prescription.json()
+            }
+        )
+
+        return jsonify(
+            {
+                "code": 404,
+                "message": "No Prescriptions not found."
+            }
+        ), 404
 
 
 @app.route("/getPrescription/<int:Prescription_Id>")
@@ -173,6 +189,5 @@ def create_prescription():
         }
     ), 201
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5020, debug=True)
+    app.run(host='0.0.0.0', port=5029, debug=True)
