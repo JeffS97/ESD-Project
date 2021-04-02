@@ -39,7 +39,7 @@ def processDisplayPossibleRefills(details):
 
     #Obtain Appointments which matches Patient_Id 
     print('\n-----Invoking Prescription microservice-----')
-    prescriptions = invoke_http(appointment_URL + "/getByAppointment/<int:Aid>", json=details)
+    prescriptions = invoke_http(prescription_URL + "/getByAppointment/<int:Aid>", json=details)
     print('Prescriptions:', prescriptions)
 
     return prescriptions
