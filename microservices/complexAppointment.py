@@ -1,8 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 import os
 import requests
 from invokes import invoke_http
+import json
+import amqp_setup
+import pika
 
 app = Flask(__name__)
 CORS(app)
@@ -282,24 +285,24 @@ def processCreateAppointments(details):
     print('\n-----Invoking Patient microservice-----')
     patient = invoke_http(patient_URL + "/findById", method="POST", json=appointment['data'])
     
+    #print(appointment["data"]["ApptDate"])
+    dateStr = str(appointment["data"]["ApptDate"])
+    timeStr = str(appointment["data"]["ApptTime"])
+    p_name = str(patient['data']['P_name'])
+    chatId = str(patient['data']['ChatId'])
 
-    dateStr = str(appointment.ApptDate)
-    timeStr = str(appointment.ApptTime)
+    bingbong = {"P_name" : p_name,
+            "ChatId": chatId,
+            "ApptTime": timeStr, 
+            "ApptDate": dateStr}
 
+    toSend = json.dumps(bingbong)
+    amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="appointment.notification", 
+            body=toSend, properties=pika.BasicProperties(delivery_mode = 2)) 
 
-    toSend = jsonify(
-        {
-            'P_Name' : patient.P_Name,
-            'ChatId': patient.ChatId,
-            'ApptTime': timeStr, 
-            'ApptDate': dateStr
-        }
-    )
-    notification = invoke_http(notification_URL + '/appointment', method='POST', json=toSend)
+    #notification = invoke_http(notification_URL + '/message/' + chatId, method='POST', json=toSend)
 
-    return notification
-
-
+    #return notification
 
 if __name__ == "__main__":
     print("This is flask " + os.path.basename(__file__) + " for placing Appointment related Operations...")
