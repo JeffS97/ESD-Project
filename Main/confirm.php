@@ -97,7 +97,7 @@
         
         function redirect() {
             setTimeout(function () {
-                window.location.href = "createAppointment.php"; 
+                window.location.href = "../views/main.php"; 
             }, 5000);
         } 
         
