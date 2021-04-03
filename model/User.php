@@ -4,7 +4,8 @@
         private $password;
         private $fullname;
         private $username;
-        public function __construct($Patient_Id,$Email,$P_Name,$Age,$Allergy,$Address,$Password,$ChatId,$Payment){
+        public function __construct($username,$Patient_Id,$Email,$P_Name,$Age,$Allergy,$Address,$Password,$ChatId,$Payment){
+            $this->Username = $username;
             $this->Patient_Id = $Patient_Id;
             $this->Email = $Email;
             $this->P_Name = $P_Name;
@@ -14,9 +15,11 @@
             $this->Password = $Password;
             $this->ChatId = $ChatId;
             $this->Payment = $Payment;
-
         }
-        public function getPatient_Idl(){
+        public function getUsername(){
+            return $this->Username;
+        }
+        public function getPatient_Id(){
             return $this->Patient_Id;
         }
         public function getEmail(){

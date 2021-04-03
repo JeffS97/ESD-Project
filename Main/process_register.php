@@ -82,6 +82,7 @@
         } 
     }
     else{
+        $username = $_POST["username"];
         $email = $_POST["email"];
         $password = $_POST["password"];
         $fullname = $_POST["fullname"];
@@ -94,13 +95,21 @@
     
         # Add new user
         $dao = new UserDAO();
-        $status = $dao->add($email,$hashed,$fullname,$age,$allergy,$address);
-        echo $status;
+        $status = $dao->add($username,$email,$hashed,$fullname,$age,$allergy,$address);
+        // echo $status;
+        $user = $dao->retrieve($email);
+        $patient_id = $user->getPatient_Id();
+        // var_dump($user);
+        // echo $user->getPatient_Id();
+        // echo $patient_id;
+
         if($status){
             # Send success message in the session
             $_SESSION["success"] = "Registration Successful";
             $_SESSION["email"] = $email;
+            $_SESSION["username"] = $username;
             $_SESSION["fullname"] = $fullname;
+            $_SESSION["patient_id"] = $patient_id;
     
             # Redirect to login.php
             # Provide information of the newly registered user 

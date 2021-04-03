@@ -417,6 +417,7 @@ if (isset($_SESSION['error'])) {
             <form method='post' action='../Main/process_register.php'>
                 <h2 class="form-header">Patient Sign Up</h2>
                 <div style="margin: 10px 0px 0px 25px">
+                    <input type="text" name="username" id="p_usernameSU" placeholder="Username">
                     <input type="text" name="fullname" id = 'p_fullnameSU' placeholder="Full Name"><i class="fa fa-user"></i></input>
                     <input type="text" name="email" id="p_emailSU" placeholder="Email"></input><i class="fa fa-envelope-o"></i></input>
                     <input type="text" name="age" id="p_ageSU" placeholder="Age"></input><i class="fas fa-calculator"></i>
@@ -528,7 +529,7 @@ if (isset($_SESSION['error'])) {
                         <option>Select Clinic</option>
                     </select><i class="fas fa-clinic-medical"></i>
                 
-                    <button type="submit" class="form-btn " style="margin-left: 20%;" onclick = "n_signUpValidate()" id="n_submit">Sign Up</button>
+                    <button type="submit" class="form-btn" style="margin-left: 20%;" onclick = "n_signUpValidate()" id="n_submit">Sign Up</button>
                     <div id = "errorSU"></div>
                 </div>
             </form>

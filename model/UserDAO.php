@@ -2,13 +2,14 @@
     class UserDAO{
 
         # Add a new user to the database
-        public function add($email, $password, $fullname, $age, $allergy, $address){
+        public function add($username, $email, $password, $fullname, $age, $allergy, $address){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
-            $sql = "insert into Patient (Email, P_Name, Age, Allergy, Address, Password) 
-                    values (:email, :fullname, :age, :allergy, :address, :password)";
+            $sql = "insert into Patient (Username, Email, P_Name, Age, Allergy, Address, Password) 
+                    values (:username, :email, :fullname, :age, :allergy, :address, :password)";
             $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":username",$username);
             $stmt->bindParam(":email",$email);
             $stmt->bindParam(":password",$password);
             $stmt->bindParam(":fullname",$fullname);
@@ -80,7 +81,7 @@
             $user = null;
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             if($row = $stmt->fetch()){
-                $user = new User($row["Patient_Id"],$row["Email"],$row["P_Name"],$row["Age"],$row["Allergy"],$row["Address"],$row["Password"],$row["ChatId"],$row["Payment"]);
+                $user = new User($row["Username"], $row["Patient_Id"],$row["Email"],$row["P_Name"],$row["Age"],$row["Allergy"],$row["Address"],$row["Password"],$row["ChatId"],$row["Payment"]);
             }
             
             $stmt = null;
@@ -103,6 +104,28 @@
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             if($row = $stmt->fetch()){
                 $user = new Healthworker($row["Healthworker_Id"],$row["Email"],$row["Name"],$row["Password"],$row["Role"],$row["Gid"]);
+            }
+            
+            $stmt = null;
+            $pdo = null;
+            return $user;
+        }
+
+        # Retrieve Patient_Id of patient with a given email
+        # Return null if no such user exists
+        public function retrievePatientId($email){
+            $conn_manager = new ConnectionManager();
+            $pdo = $conn_manager->getConnection();
+            
+            $sql = "select Patient_Id from Patient where Email=:email";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email",$email,PDO::PARAM_STR);
+            $stmt->execute();
+            
+            $user = null;
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            if($row = $stmt->fetch()){
+                $user = new User($row["Username"],$row["Patient_Id"],$row["Email"],$row["P_Name"],$row["Age"],$row["Allergy"],$row["Address"],$row["Password"],$row["ChatId"],$row["Payment"]);
             }
             
             $stmt = null;
