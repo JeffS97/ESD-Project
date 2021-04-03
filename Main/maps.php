@@ -108,7 +108,7 @@ $(async () => {
             if (response.status === 200){
                 // success case
                 var clinics = result.data.clinics;
-                console.log(clinics)
+                // console.log(clinics)
 
                 initMap();
 
@@ -132,8 +132,9 @@ $(async () => {
                         `<p>Postal Code: ` + clinic.postal_cd + `</p>` + 
                         `<p>Unit: #` + clinic.floor_no + `-` + clinic.unit_no + `</p>` + 
                         `<p>Tel: ` + clinic.tel_no + `</p>` +
+                        `<p id="${clinic.gid}_distance" style="font-weight: bold"></p>` +
                         `<button style="margin-top: 5px" class="btn btn-danger btn-sm" value="` + clinic.gid + `" onclick='createAppointment(this.value)'>Make a booking</button>` + `
-                        <button style="margin-top: 5px" class="btn btn-danger btn-sm" onclick=getDistance(` + clinic.x + "," + clinic.y + `)>Calculate distance</button>`
+                        <button style="margin-top: 5px" class="btn btn-danger btn-sm" onclick=getDistance(` + clinic.x + "," + clinic.y + "," + clinic.gid + `)>Calculate distance</button>`
                     );
                     infowindow.open(map, marker);
                     }
@@ -161,7 +162,7 @@ function createAppointment(gid){
     window.location.href = 'createAppointment.php?gid=' + gid;
 }
 
-function getDistance(end_x, end_y){
+function getDistance(end_x, end_y, gid){
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer();
     
@@ -191,7 +192,8 @@ function getDistance(end_x, end_y){
             (response, status) => {
             if (status === "OK") {
                 var directionsData = response.routes[0].legs[0];
-                console.log(directionsData.distance.text);
+                // console.log(directionsData.distance.text);
+                document.getElementById(`${gid}_distance`).innerText = "Distance: " + directionsData.distance.text + " away";
                 // document.getElementById("durationData").innerHTML = 'The Hero is approximately:</br> <h1>' + directionsData.duration.text + "</h1></br> away from the booker!";
                 directionsRenderer.setDirections(response);
             } else {
