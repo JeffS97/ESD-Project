@@ -462,6 +462,7 @@
 
 
     $('#confirmBooking').click(async()=>{
+        var selectedTime = document.getElementsByClassName('active')[0].innerText;
         var time = document.getElementsByClassName('active')[0].innerText + ':00';
         var symptoms = document.getElementById('symptoms').value;
         var date = document.getElementById('date').value
@@ -470,7 +471,46 @@
         console.log("Time: " + time);
         console.log("gid: " + gid);
 
-        var serviceURL = 'http://localhost:5001/appointment/createAppointment';
+        var serviceURL = 'http://localhost:5100/create_appointment';
+
+        var serviceURL2 = 'http://localhost:5001/appointment/healthcareCurrentAppointments';
+
+        try{
+            var response = await fetch(
+            serviceURL2, {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    Gid : gid,
+                    ApptDate : date
+                })
+            })
+
+            var result = await response.json();
+            
+            if(response.status === 200){
+                var timings2 = [];
+                for (timing of result.data.appointments){
+                    timings2.push(timing.ApptTime.slice(0,-3));
+                }
+                console.log(timings2);
+                if (timings2.includes(selectedTime)){
+                    console.log("Duplicate"); // Send this to error microservice
+                    alert('Sorry! This timeslot has just been taken!');
+                    location.reload();
+                    return
+                }
+            }
+            else if(response.status == 400){
+                console.log("400");
+            }
+            else{
+                throw response.status;
+            }
+        }
+        catch (error){
+            console.log(error);
+        }
 
         try{
             var response = await fetch(
