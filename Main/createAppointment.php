@@ -77,9 +77,20 @@
         margin-bottom: 10px;
     }
 
+    .row {
+        justify-content: center;
+        display: flex;
+        /* background-color: red; */
+    }
+
     #clinic_info {
         text-align: left;
         margin-top: 50px;
+    }
+
+    #map {
+        border-radius: 6px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.3);
     }
 
 </style>
@@ -87,9 +98,10 @@
 
     <div class="container animate__animated animate__jackInTheBox box">
         <h2 class="header">Appointment Creation</h2>
-        <h3 class="header">Hey <span id="pname"></span>! <br> You're currently creating an appointment at:</h3>
+        <h3 class="header" style="margin-bottom: -20px;">Hey <span id="pname"></span>!</h3>
+        <h3>You're currently making an appointment at:</h3><br>
         
-        <div class="row">
+        <div class="row mx-auto">
             <div class="col-sm-6">
                 <div id="map" style="width: 100%; height: 300px;"></div>
             </div>
@@ -218,6 +230,7 @@
         var available_timings = [];
         var serviceURL = 'http://localhost:5001/appointment/healthcareCurrentAppointments';
         var date = document.getElementById('date').value;
+        document.getElementById('selected_timeslot').innerText = '';
 
         try{
             var response = await fetch(
@@ -233,49 +246,81 @@
             var result = await response.json();
             
             if(response.status === 200){
-                var timings = [];
-                for (timing of result.data.appointments){
-                    timings.push(timing.ApptTime.slice(0,-3));
-                }
-                console.log(timings);
-
-                for (timing of timeslots){
-                    if(!timings.includes(timing)){
-                        available_timings.push(timing);
+                if (result.data.appointments.length != timeslots.length){
+                    var timings = [];
+                    for (timing of result.data.appointments){
+                        timings.push(timing.ApptTime.slice(0,-3));
                     }
+                    console.log(timings);
+
+                    for (timing of timeslots){
+                        if(!timings.includes(timing)){
+                            available_timings.push(timing);
+                        }
+                    }
+                    console.log(available_timings);
+
+                    var timeSelection1 = `
+                        <div class="row">
+                            <div class="col-sm-3">`;
+                    var timeSelection2 = `
+                        <div class="row">
+                            <div class="col-sm-3">`;
+                    // var timeSelection3 = `
+                    //     <div class="row">
+                    //         <div class="col-sm-3">`;
+                    // var timeSelection4 = `
+                    //     <div class="row">
+                    //         <div class="col-sm-3">`;
+                    var middle = Math.floor(available_timings.length/2);
+                    var lower_middle = Math.floor(middle/2);
+                    var upper_middle = Math.floor((available_timings.length+middle)/2);
+                    // console.log(lower_middle);
+                    // console.log(upper_middle);
+                    // console.log(middle);
+
+                    for (timing of available_timings.slice(0,middle)){
+                        timeSelection1 += `
+                        <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
+                            <input type="radio" autocomplete="off">${timing}
+                        </label>`
+                    }
+
+                    // for (timing of available_timings.slice(lower_middle, middle)){
+                    //     timeSelection3 += `
+                    //     <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
+                    //         <input type="radio" autocomplete="off">${timing}
+                    //     </label>`
+                    // }
+
+                    for (timing of available_timings.slice(middle)){
+                        timeSelection2 += `
+                        <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
+                            <input type="radio" autocomplete="off">${timing}
+                        </label>`
+                    }
+
+                    // for (timing of available_timings.slice(upper_middle)){
+                    //     timeSelection4 += `
+                    //     <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
+                    //         <input type="radio" autocomplete="off">${timing}
+                    //     </label>`
+                    // }
+                    // console.log(timeSelection1);
+                    // console.log(timeSelection2);
+                    // var timeSelection1 = timeSelection1 + '</div></div>' + timeSelection3 + '</div></div>' + timeSelection2 + '</div></div>' + timeSelection4 + '</div></div>';
+                    var timeSelection1 = timeSelection1 + '</div></div>' + timeSelection2 + '</div></div>';
+                    console.log(timeSelection1);
+                    $('#timeSelection').html(
+                        timeSelection1
+                    );
+                    console.log("success");
                 }
-                console.log(available_timings);
-
-                var timeSelection1 = `
-                    <div class="row">
-                        <div class="col-sm-6">`;
-                var timeSelection2 = `
-                    <div class="row">
-                        <div class="col-sm-6">`;
-                var middle = Math.floor(available_timings.length/2);
-                console.log(middle);
-
-                for (timing of available_timings.slice(0,middle)){
-                    timeSelection1 += `
-                    <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
-                        <input type="radio" autocomplete="off">${timing}
-                    </label>`
+                else {
+                    $('#timeSelection').html(
+                        'There are no available timeslots! Try another day!'
+                    );
                 }
-
-                for (timing of available_timings.slice(middle)){
-                    timeSelection2 += `
-                    <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
-                        <input type="radio" autocomplete="off">${timing}
-                    </label>`
-                }
-                // console.log(timeSelection1);
-                // console.log(timeSelection2);
-                var timeSelection1 = timeSelection1 + '</div></div>' + timeSelection2 + '</div></div>';
-
-                $('#timeSelection').html(
-                    timeSelection1
-                );
-                console.log("success");
             }
             else if(response.status == 400){
                 console.log("400");
@@ -315,51 +360,60 @@
             })
 
             var result = await response.json();
+            console.log(result.data.appointments);
+            console.log(result.data.appointments.empty);
             
             if(response.status === 200){
-                var timings = [];
-                for (timing of result.data.appointments){
-                    timings.push(timing.ApptTime.slice(0,-3));
-                }
-                console.log(timings);
-
-                for (timing of timeslots){
-                    if(!timings.includes(timing)){
-                        available_timings.push(timing);
+                if (result.data.appointments.length != timeslots.length){
+                    var timings = [];
+                    for (timing of result.data.appointments){
+                        timings.push(timing.ApptTime.slice(0,-3));
                     }
+                    console.log(timings);
+
+                    for (timing of timeslots){
+                        if(!timings.includes(timing)){
+                            available_timings.push(timing);
+                        }
+                    }
+                    console.log(available_timings);
+
+                    var timeSelection1 = `
+                        <div class="row">
+                            <div class="col-sm-6">`;
+                    var timeSelection2 = `
+                        <div class="row">
+                            <div class="col-sm-6">`;
+                    var middle = Math.floor(available_timings.length/2);
+                    // console.log(middle);
+
+                    for (timing of available_timings.slice(0,middle)){
+                        timeSelection1 += `
+                        <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
+                            <input type="radio" autocomplete="off">${timing}
+                        </label>`
+                    }
+
+                    for (timing of available_timings.slice(middle)){
+                        timeSelection2 += `
+                        <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
+                            <input type="radio" autocomplete="off">${timing}
+                        </label>`
+                    }
+                    // console.log(timeSelection1);
+                    // console.log(timeSelection2);
+                    var timeSelection1 = timeSelection1 + '</div></div>' + timeSelection2 + '</div></div>';
+
+                    $('#timeSelection').html(
+                        timeSelection1
+                    );
+                    console.log("success");
                 }
-                console.log(available_timings);
-
-                var timeSelection1 = `
-                    <div class="row">
-                        <div class="col-sm-6">`;
-                var timeSelection2 = `
-                    <div class="row">
-                        <div class="col-sm-6">`;
-                var middle = Math.floor(available_timings.length/2);
-                // console.log(middle);
-
-                for (timing of available_timings.slice(0,middle)){
-                    timeSelection1 += `
-                    <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
-                        <input type="radio" autocomplete="off">${timing}
-                    </label>`
+                else {
+                    $('#timeSelection').html(
+                        'There are no available timeslots! Try another day!'
+                    );
                 }
-
-                for (timing of available_timings.slice(middle)){
-                    timeSelection2 += `
-                    <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
-                        <input type="radio" autocomplete="off">${timing}
-                    </label>`
-                }
-                // console.log(timeSelection1);
-                // console.log(timeSelection2);
-                var timeSelection1 = timeSelection1 + '</div></div>' + timeSelection2 + '</div></div>';
-
-                $('#timeSelection').html(
-                    timeSelection1
-                );
-                console.log("success");
             }
             else if(response.status == 400){
                 console.log("400");
@@ -432,7 +486,7 @@
                         });
 
                         var clinic_info = `
-                            <p>Clinic: ${clinic_name}</p>
+                            <p id="clinic_name">Clinic: ${clinic_name}</p>
                             <p>Address: ${address}</p>
                             <p>Postal Code: ${postal_cd}</p>
                             <p>Unit: ${unit}</p>
@@ -467,6 +521,7 @@
             return
         }
         else{
+            var clinic_name = document.getElementById('clinic_name').innerText;
             var selectedTime = document.getElementsByClassName('active')[0].innerText;
             var time = document.getElementsByClassName('active')[0].innerText + ':00';
             var symptoms = document.getElementById('symptoms').value;
@@ -535,8 +590,8 @@
                 var result = await response.json();
                 console.log(result);
 
-                if(response.status === 201){
-                    console.log("success");
+                if(response.status === 200){
+                    window.location.href = "confirm.php?name=" + clinic_name + "&time=" + time + "&date=" + date;
                 }
                 else if(response.status == 400){
                     console.log("400");
