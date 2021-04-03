@@ -32,6 +32,10 @@
   height: 100%;
 }
 
+p {
+    margin-bottom: 8px;
+}
+
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
@@ -123,8 +127,14 @@ $(async () => {
 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
-                    infowindow.setContent(clinic.clinic_name + "<button value=" + clinic.gid + " onclick='createAppointment(this.value)'>Click</button>" + `
-                    <button onclick=getDistance(` + clinic.x + "," + clinic.y + `)>Calculate Distance</button>`);
+                    infowindow.setContent(`<h6>` + clinic.clinic_name + `</h6>
+                        <p>Address: BLK ` + clinic.blk_hse_no + `, ` + clinic.street_name + `</p>` +
+                        `<p>Postal Code: ` + clinic.postal_cd + `</p>` + 
+                        `<p>Unit: #` + clinic.floor_no + `-` + clinic.unit_no + `</p>` + 
+                        `<p>Tel: ` + clinic.tel_no + `</p>` +
+                        `<button style="margin-top: 5px" class="btn btn-danger btn-sm" value="` + clinic.gid + `" onclick='createAppointment(this.value)'>Make a booking</button>` + `
+                        <button style="margin-top: 5px" class="btn btn-danger btn-sm" onclick=getDistance(` + clinic.x + "," + clinic.y + `)>Calculate distance</button>`
+                    );
                     infowindow.open(map, marker);
                     }
                     })(marker, i));
@@ -148,7 +158,6 @@ $(async () => {
     });
 
 function createAppointment(gid){
-    console.log(gid);
     window.location.href = 'createAppointment.php?gid=' + gid;
 }
 
@@ -203,16 +212,17 @@ function getDistance(end_x, end_y){
 }
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 15,
-    center: { lat: 1.43, lng: 103.83 },
-  });
-  infoWindow = new google.maps.InfoWindow();
-  const locationButton = document.createElement("button");
-  locationButton.textContent = "Pan to Current Location";
-  locationButton.classList.add("custom-map-control-button");
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  locationButton.addEventListener("click", () => {
+    map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: { lat: 1.3987769644458394, lng: 103.81887771864776},
+    })
+    infoWindow = new google.maps.InfoWindow();
+    const locationButton = document.createElement("button");
+    locationButton.textContent = "Pan to Current Location";
+    locationButton.classList.add("custom-map-control-button");
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);;
+    
+    locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
