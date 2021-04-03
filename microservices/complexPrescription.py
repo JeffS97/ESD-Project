@@ -39,7 +39,7 @@ def processDisplayPossibleRefills(details):
 
     #Obtain Appointments which matches Patient_Id 
     print('\n-----Invoking Prescription microservice-----')
-    prescriptions = invoke_http(prescription_URL + "/getByAppointment/<int:Aid>", json=details)
+    prescriptions = invoke_http(prescription_URL + "/getByAppointment/" + "1", json=details) #replace this with AID (SESSION)
     print('Prescriptions:', prescriptions)
 
     return prescriptions
@@ -68,7 +68,7 @@ def make_refill():
 def processMakeRefill(details):
 
     print('\n-----Invoking Prescription microservice-----')
-    prescription = invoke_http(prescription_URL + "/update<int:pid>", method="POST", json=details)
+    prescription = invoke_http(prescription_URL + "/update/" + "<int:pid>", method="POST", json=details) #change 
     print('Prescriptions:', prescription)
 
     print('\n-----Invoking Appointment microservice-----')
@@ -89,7 +89,7 @@ def processMakeRefill(details):
 
 if __name__ == "__main__":
     print("This is flask " + os.path.basename(__file__) + " for Prescription related Operations...")
-    app.run(host="0.0.0.0", port=5101, debug=True)
+    app.run(host="0.0.0.0", port=5105, debug=True)
 
 
 
