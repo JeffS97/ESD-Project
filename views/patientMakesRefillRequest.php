@@ -30,25 +30,75 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="navbar.css">
 </head>
-
+<style>
+    .fade{
+        animation-duration: 1.5s;
+    }
+    .box_bookings {
+        width: fit-content;
+        height:fit-content;
+        margin: 0px auto 60px;
+        background-color: black;
+        padding: 0 10px 0px;
+        border-radius: 6px;
+        box-shadow: 0 5px 7px rgba(0,0,0,0.5);
+    }
+</style>
 <body>
+    <!-- Navbar -->
+    <div class="header-middle pt-4 pb-3">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-1 logo">
+            <a href="" ><h2>CliniQ</h2></a>
+        </div>
+        <div class="fiverr-menu" style="margin-left: auto;">
+            <ul>
+            <li><a class="pro" href="">Home</a></li>
+            <li><a href="">Profile</a></li>
+            <li><a href=""><span>Logout</span></a></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Header Bottom Start Here -->
+    <div class="header-bottom pt-3">
+    <div class="container-fluid">
+        <div class="row bottom-menu justify-content-center">
+        <ul class="">
+            <li><a href="main.php#appointments">View Upcoming Appointments</a></li>
+            <li><a href="patientViewsAppointmentHistory.php">View Past Appointments</a></li>
+            <li><a href="patientMakesRefillRequest.php">Create Refill Request</a></li>
+        </ul>
+        </div>
+    </div>
+    </div>
+
     <div id="main-container" class="container">
-    <h1 class="display-4">View all prescriptions</h1>
-    <table id="prescriptionTable" class='table table-striped' border='1'>
-            <thead class='thead-dark'>
-            <tr>
-                <th>Select</th>
-                <th>Name of Medication</th>
-                <th>Prescription Id</th>
-                <th>Appointment Id</th>
-                <th>Last Refill Date</th>
-                <th>Prescription Expires On</th>
-                <th>Refill Interval</th>
-                <th>Price</th>
-            </tr>
-            </thead>
-        </table>
+        <div class="py-5 text-center animate__animated animate__fadeIn fade">
+            <h1 style="text-transform: uppercase; letter-spacing: .2rem;" >Prescription History</h1>
+        </div>
+        <div class="table-responsive-lg box_bookings animate__animated animate__bounceIn bounce1" style='width: fit-content;'>
+            <table id="prescriptionTable" class='table table-borderless'>
+                <thead class='thead-dark'>
+                    <tr>
+                        <th>Select</th>
+                        <th>Medication Name</th>
+                        <th>Prescription Id</th>
+                        <th>Appointment Id</th>
+                        <th>Last Refill Date</th>
+                        <th>Prescription Expires On</th>
+                        <th>Refill Interval</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
     <div id='totalAmount' class='d-inline col'>
         <button id='calcButton' type="button" class="btn btn-outline-info" onclick='processMeds()'>Calculate</button>

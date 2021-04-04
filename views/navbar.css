@@ -1,0 +1,138 @@
+/* Navbar Style */
+/*Header Top Style*/
+
+.notification{
+    display: block;
+    color: #fff;
+    background: black;
+  }
+  .notification h2{
+    display: inline-block;
+  }
+  .notification span{
+    display: inline-block;
+    font-size: 30px;
+  }
+  .notification p{
+    display: inline-block;
+    color: #19A463;
+  }
+  
+  /*Header Middle Style*/
+  .fiverr-search .btn{
+      position: absolute;
+      top: 0;
+      left: 270px;
+  }
+  input.btn.btn-success.btn-sm {
+      padding: 5px 14px;
+  }
+  
+  .header-middle.pt-4.pb-3 {
+      border-bottom: 1px solid #7777;
+  }
+  
+  .col-md-1.logo h2 {
+      color: #555555;
+      font-weight: 900;
+      font-size: 30px;
+  
+  }
+  
+  
+  .fiverr-search{
+    position: relative;
+    border: 1px solid #ddd;
+    height: 34px;
+  }
+  .search-form  ::after{
+    content: "\f002";
+    font-family: FontAwesome; 
+    color:#555555;
+    position: absolute;
+    top: 0;
+    left: 5px;
+  } 
+  input[type="search"] {
+      border: none;
+  }
+  
+  input[type="search"] {
+      border: none;
+      margin-right: 50px;
+      margin-left: 30px;
+  } 
+  
+  .fiverr-menu ul {
+      display: block;
+  }
+  
+  .fiverr-menu li {
+      display: inline-block;
+      padding-left: 20px;
+  }
+  
+  .fiverr-menu a {
+    color: #777;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .fiverr-menu a:hover{
+    color: #40CA89;
+  }
+  
+  .fiverr-menu span {
+      color: #40CA89;
+  }
+  .pro {
+      color: #1fd0b6 !important;
+  }
+  .fiverr-menu {
+      text-align: right;
+  }
+  
+  .profile-pic img {
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+  } 
+  
+  .profile-pic::after {
+      content: "";
+      top: 0;
+      left: 46px;
+      height: 8px;
+      width: 8px;
+      position: absolute;
+      border-radius: 50%;
+      background-color: #40CA89;
+  }
+  
+  .message::after {
+    content: "";
+      top: 0;
+      height: 5px;
+      width: 5px;
+      position: absolute;
+      border-radius: 50%;
+      background-color: #F21AA5;
+  }
+  
+  /*Header Bottom Style*/
+  
+  .bottom-menu ul {
+      display: block;
+  }
+  
+  .bottom-menu li {
+      display: inline-block;
+  }
+  
+  .bottom-menu a {
+      color: #62646a;
+      padding: 0px 14px;
+      font-size: 16px;
+      font-weight: 600;
+  }
+  .bottom-menu{
+    border-bottom: 1px solid #7777;}
