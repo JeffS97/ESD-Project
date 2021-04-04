@@ -1,3 +1,10 @@
+
+    var name=document.getElementById('name').value
+    var date=document.getElementById('date').value
+    var time=document.getElementById('time').value
+
+
+
 paypal.Buttons({
     style : {
         color: 'blue',
@@ -7,18 +14,18 @@ paypal.Buttons({
         return actions.order.create({
             purchase_units : [{
                 amount: {
-                    value: '0.1'
+                    value: '50'
                 }
             }]
         });
     },
     onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
-            console.log(details)
-              alert("Payment Sucessful")
+            alert('Payment Successful')
+            window.location.href = "../Main/confirm.php?name=" + clinic_name + "&time=" + time + "&date=" + date;
         })
     },
     onCancel: function (data) {
-       alert("Payment Cancelled")
+        alert('Payment Cancelled')
     }
 }).render('#paypal-payment-button');
