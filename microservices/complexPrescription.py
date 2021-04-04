@@ -9,7 +9,7 @@ CORS(app, support_credentials=True)
 
 patient_URL = "http://localhost:5000/patient"
 appointment_URL = "http://localhost:5001/appointment"
-prescription_URL = "http://localhost:5022/prescription"
+prescription_URL = "http://localhost:5002/prescription"
 healthworker_URL = "http://localhost:5003/healthworker"
 notification_URL = "http://localhost:5004/notification"
 
@@ -150,7 +150,7 @@ def processAddPrescription(details):
 
 if __name__ == "__main__":
     print("This is flask " + os.path.basename(__file__) + " for Prescription related Operations...")
-    app.run(host="0.0.0.0", port=5125, debug=True)
+    app.run(host="0.0.0.0", port=5101, debug=True)
 
 
 

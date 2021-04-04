@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, make_response
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import os
 import requests
 from invokes import invoke_http
@@ -8,7 +8,7 @@ import amqp_setup
 import pika
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, support_credentials=True)
 
 patient_URL = "http://localhost:5000/patient"
 appointment_URL = "http://localhost:5001/appointment"
@@ -77,7 +77,8 @@ def processPatientViewsAllAppointments(details):
 
     return appointments
 
-app.route("/patient_views_appointment_history", methods=['POST'])
+@app.route("/patient_views_appointment_history", methods=['POST'])
+@cross_origin(supports_credentials=True)
 def patient_views_appointment_history():
 
     if request.is_json:
