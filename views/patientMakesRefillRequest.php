@@ -41,15 +41,20 @@
         width: fit-content;
         height:fit-content;
         margin: 0px auto 60px;
-        background-color: black;
+        background-color: #2b3136;
         padding: 0 10px 0px;
         border-radius: 6px;
         box-shadow: 0 5px 7px rgba(0,0,0,0.5);
     }
+    body {
+        background-image: url("../Main/assets/white.jpg");
+        background-size: cover;
+        background-repeat: repeat;
+    }
 </style>
 <body>
     <!-- Navbar -->
-    <div class="header-middle pt-4 pb-3">
+    <div class="header-middle pt-4 pb-3" style="background-color: white;">
     <div class="container">
         <div class="row">
         <div class="col-md-1 logo">
@@ -67,7 +72,7 @@
     </div>
 
     <!-- Header Bottom Start Here -->
-    <div class="header-bottom pt-3">
+    <div class="header-bottom pt-3" style="background-color: white;">
     <div class="container-fluid">
         <div class="row bottom-menu justify-content-center">
         <ul class="">

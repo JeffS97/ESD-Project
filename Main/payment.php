@@ -5,17 +5,34 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Paypal Payment</title>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="style.css">
   
 </head>
+<style>
+    body {
+        background-image: url("assets/white.jpg");
+        background-size: cover;
+        background-repeat: repeat;
+    }
+
+    .box_bookings {
+        width: fit-content;
+        height:fit-content;
+        margin: 0px 50px 60px;
+        background-color: white;
+        padding: 0 10px 0px;
+        border-radius: 6px;
+        box-shadow: 0 5px 7px rgba(0,0,0,0.5);
+    }
+</style>
 
 <body>
     <main id="cart-main">
-        <div class="site-title text-center">
-            <h1 class="font-title">Appointment Booking</h1>
-        </div>
-        <div class="container">
+        <div class="container box_bookings animate__animated animate__jackInTheBox">
+            <div class="site-title text-center">
+                <h1 class="font-title" style="padding-top: 40px;">Appointment Payment</h1>
+            </div>
             <div class="grid">
                 <div class="col-1">
                     <div class="flex item justify-content-between">
@@ -47,16 +64,16 @@
                         <h3>Price Details</h3>
                         <ul>
                             <li class="flex justify-content-between">
-                                <label for="price"> Consultation: </label>
+                                <label for="price"> Consultation Fee: </label>
                                 <span>$50</span>
                             </li>
                             <li class="flex justify-content-between">
-                                <label for="price">Booking Charges : </label>
+                                <label for="price">Booking Charges: </label>
                                 <span>Free</span>
                             </li>
                             <hr>
                             <li class="flex justify-content-between">
-                                <label for="price">Amount Payble : </label>
+                                <label for="price">Amount Payable: </label>
                                 <span class="text-red font-title" id='amount'></span>
                             </li>
                         </ul>
@@ -65,10 +82,10 @@
                         
                     </div>
                     <br><br>
-                    <div>
-                            <input type='button' style="background-color:white;margin-left:35%" onclick='redirect()'value='Skip Payment'>
-                        </div>
                 </div>
+            </div>
+            <div style="text-align: center; padding-bottom: 40px;">
+                <input type='button' style='padding: 8px; border-radius: 5px; border: none; background-color: #fca05d;' onclick='redirect()'value='Skip Payment'>
             </div>
         </div>
     </main>

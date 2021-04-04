@@ -9,7 +9,7 @@
     <script 
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
     integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
@@ -20,287 +20,57 @@
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
     crossorigin="anonymous">
 
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!--Montserrat-->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="../resources/templates/css template.css">
-
-    <!--Open Sans Regular-->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
-    <!--Inter-->
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="navbar.css">
 
     <style>
-             img{
-	width: 100%;
-}
-
-/*Header Top Style*/
-
-.notification{
-	display: block;
-	color: #fff;
-  background: black;
-}
-.notification h2{
-	display: inline-block;
-}
-.notification span{
-	display: inline-block;
-	font-size: 30px;
-}
-.notification p{
-	display: inline-block;
-	color: #19A463;
-}
-
-/*Header Middle Style*/
-.fiverr-search .btn{
-    position: absolute;
-    top: 0;
-    left: 270px;
-}
-input.btn.btn-success.btn-sm {
-    padding: 5px 14px;
-}
-
-.header-middle.pt-4.pb-3 {
-    border-bottom: 1px solid #7777;
-}
-
-.logo h2{}
-
-.col-md-1.logo h2 {
-    color: #555555;
-    font-weight: 900;
-    font-size: 30px;
-
-}
-
-
-.fiverr-search{
-	position: relative;
-	border: 1px solid #ddd;
-	height: 34px;
-}
-.search-form  ::after{
-	content: "\f002";
-	font-family: FontAwesome; 
-	color:#555555;
-	position: absolute;
-	top: 0;
-	left: 5px;
-} 
-input[type="search"] {
-    border: none;
-}
-
-input[type="search"] {
-    border: none;
-    margin-right: 50px;
-    margin-left: 15px;
-} 
-
-.fiverr-menu ul {
-    display: block;
-}
-
-.fiverr-menu li {
-    display: inline-block;
-    padding-left: 20px;
-}
-
-.fiverr-menu a {
-	color: #777;
-	font-size: 16px;
-	font-weight: 600;
-}
-.fiverr-menu a:hover{
-	color: #40CA89;
-}
-
-.fiverr-menu span {
-    color: #40CA89;
-}
-.pro {
-    color: #1fd0b6 !important;
-}
-.col-md-7.fiverr-menu {
-    text-align: right;
-}
-
-.profile-pic img {
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-} 
-
-.profile-pic::after {
-    content: "";
-    top: 0;
-    left: 46px;
-    height: 8px;
-    width: 8px;
-    position: absolute;
-    border-radius: 50%;
-    background-color: #40CA89;
-}
-
-.message::after {
-	content: "";
-    top: 0;
-    height: 5px;
-    width: 5px;
-    position: absolute;
-    border-radius: 50%;
-    background-color: #F21AA5;
-}
-
-/*Header Bottom Style*/
-
-.bottom-menu ul {
-    display: block;
-}
-
-.bottom-menu li {
-    display: inline-block;
-}
-
-.bottom-menu a {
-    color: #62646a;
-    padding: 0px 14px;
-    font-size: 16px;
-    font-weight: 600;
-}
-.bottom-menu{
-	border-bottom: 1px solid #7777;}
-
-        body{
-            font-family:'Montserrat', sans-serif;
-            font-size: 23px;
+        .fade{
+            animation-duration: 1.5s;
         }
-        .nav-item{
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        @media screen and (max-width: 575px) {
-            .carousel{
-                width: 100%;
-                display: block;
-                margin-bottom: 20px;
-            }
-        }
-        .btn-info {
-          font-size: 20px;
-          color: white;
-          letter-spacing: 1px;
-          line-height: 15px;
-          border: 2px solid ;
-          border-radius: 30px;
-          padding: 15px;
-          margin-left:85%;
-          position:sticky;
-          width:150px;
-          
-        }
-        .container-fluid{
-          width: 100%;
-          height: 100%;
-          color: #909090;
-          
-        }
-        
-        .form-valid {
-            opacity: 0.5;
-        }
-        
-        .form-control-label abbr {
-            text-decoration: none;
-            font-weight: normal;
-        }
-        
-        #basic-addon1,
-        #submit-btn {
-            background-color: #5dbcd2;
+
+        .box_bookings {
+            width: fit-content;
+            height:fit-content;
+            margin: 0px auto 60px;
+            background-color: #2b3136;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 5px 7px rgba(0,0,0,0.5);
             color: white;
         }
 
-        .form-group{
-            text-align:left;
+        body {
+            background-image: url("../Main/assets/white.jpg");
+            background-size: cover;
+            background-repeat: repeat;
         }
     </style>
 
     <title>Create Prescription</title>
-  </head>
-  <body>
-  
-       
-  <div class="header-middle pt-4 pb-3">
- 	<div class="container-fluid">
- 		<div class="row">
- 			<div class="col-md-1 logo" >
-				<a href="#" ><h2>CliniQ</h2></a>
-                
- 			</div>
- 			<div class="col-md-3 fiverr-search" style="margin-left:5px">
-				<div class="search-form">
-				<div class="form ">
- 					<input type="search" placeholder="Find Services">
- 					<input class="btn btn-success btn-sm" type="submit" value="Search">
- 				</div>
-				</div>
+</head>
+<body>
+         
+    <!-- Navbar -->
+    <div class="header-middle pt-4 pb-3" style="background-color: white;">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-1 logo">
+            <a href="healthworker_main.php" ><h2>CliniQ</h2></a>      
+        </div>
+        <div class="fiverr-menu" style="margin-left: auto;">
+            <ul>
+            <li><a class="pro" href="healthworker_main.php">Home</a></li>
+            <li><a href="">Profile</a></li>
+            <li><a href=""><span>Logout</span></a></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    </div>
 
- 			</div>
- 			<div class="col-md-7 fiverr-menu">
- 				<ul>
- 					<li><a class="pro" href="">Home</a></li>
- 					<li><a href="">Profile</a></li>
- 					<li><a class="message" href="">History</a></li>
- 				
- 					<li><a href=""><span>Logout</span></a></li>
- 				</ul>
- 			</div>
- 			<!-- <div class="col-md-1 profile-pic">
- 				
- 			</div> -->
- 		</div>
- 	</div>
- </div>
-
- <!-- Header Bottom Start Here -->
-
- <div class="header-bottom pt-3">
- 	<div class="container-fluid">
- 		<div class="row bottom-menu justify-content-center">
- 			<ul class="">
- 				<li><a href="">View My Appointments</a></li>
- 				<li><a href="">View My Past Bookings</a></li>
- 				<li><a href="">Quick Booking</a></li>
-                 <!-- <?php
-                 if($_SESSION['role']=='doctor' || $_SESSION['role']=='nurse'){
-
-                echo '<li><a href="">Video & Animation</a></li>';
-                echo '<li><a href="">Manage Appointments</a></li>';
-                echo '<li><a href="">Manage Patients</a></li>';
-                echo  '<li><a href="">Approve Refill</a></li>';
-                 }
-                 ?> -->
- 				
- 				
- 			</ul>
- 		</div>
- 	</div>
- </div>
-                </div>
-
-
-    <div class="container my-5">
-
+    <!-- <div class="container my-5">
         <div class="modal" id="myModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -319,103 +89,77 @@ input[type="search"] {
                     </div>
                 </div>
             </div>
-        </div>
-      
-           
+        </div> -->
            
       
-        <div class="w-75 mx-auto">
-       
-            <h3 style="margin-left:60%"><b>Create a Prescription</b></h3>
-            <hr>
-        </div>
-        <h3 style="margin-right:60%"><b>Appointment ID: <?php echo $_GET['id'];?></b></h3>
-        <div class="float-left ml-5 mt-4">
-        <div class="card text-white bg-secondary  mb-3" style="max-width: 25rem;">
-  <div class="card-header">Appointment Details</div>
-  <div class="card-body">
-    
-    <p class="card-text text-left" id='appointment' >
-       
-               
-    </p>
-  </div>
-  
-</div>
-<div id='prescription'>
-    
-    
+        <div class="container">
+            <div id='booking' class="py-5 text-center animate__animated animate__fadeIn fade">
+            <h1 style="text-transform: uppercase; letter-spacing: .2rem;">Create a Prescription</h1>
+            <!-- <p class="lead">Select a clinic on the map below to make an appointment!</p> -->
+            </div> 
+        </div> 
 
+        <div class="container">
+            <div class="row">
+                <div class="box_bookings col-sm-4">
+                    <h5 style="border-bottom: 2px solid #17a2b8; padding-bottom: 10px;">Appointment Details</h5>
+                    <p class="text-left" id="appointment" style="padding-top: 8px;"></p>
+                    <div id='prescription'></div>
                 </div>
 
-        </div>
-                </div>
+                <div class="col-sm-1"></div>
 
-        <div class="w-50 float-right card img-fluid" >
-            <!-- <img class="card-img-top" src="plumb.jpg" alt="Card image" style="height:100%;">
-            <div class="card-img-overlay"> -->
-            <form class="card-body" style="margin-left:10%" novalidate="" method="POST"   id="bootstrapForm" enctype="multipart/form-data">
-
-            <div class="form-group">
-                    <label class="h4 form-control-label" for="input2">Name of Medication<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <textarea class="form-control" name="i2" id="input2" rows="2" placeholder="" required></textarea>
-                    <div class="invalid-feedback">Please enter a task description. This field is required</div>
-                </div>
-                <div class="form-group">
-                    <label class="h4 form-control-label" for="input22">Patient Id<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="text" class="form-control" name="i7" id="input22"  placeholder=" " required></textarea>
-                    <div class="invalid-feedback">Please enter a task title. This field is required</div>
-                </div>
-                <div class="form-group">
-                    <label class="h4 form-control-label" for="input7">Prescription Creation Date<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="date" class="form-control" name="i7" id="input7"  placeholder="House Cleaning" required></textarea>
-                    <div class="invalid-feedback">Please enter a task title. This field is required</div>
-                </div>
-                <div class="form-group">
-                    <label class="h4 form-control-label" for="input777">Prescription End Date<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <input type="date" class="form-control" name="i777" id="input777"  placeholder="" required></textarea>
-                    <div class="invalid-feedback">Please enter a task title. This field is required</div>
-                </div>
-                <div class="form-group">
-                    <label class="h4 form-control-label" for="input77">Prescription Interval<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <br>  <select id="input77">
-<?php
-    for ($i=1; $i<=100; $i++)
-    {
-        ?>
-        
-            <option value="<?php echo $i;?>"><?php echo $i;?></option>
-        <?php
-    }
-?>
-</select>
-                </div>
-
-              
-                
-
-                <div class="form-group">
-                    <label class="h4 form-control-label" for="input3">Cost of Medicine<abbr class="text-danger" title="This is required">*</abbr></label>
-                    <div class="input-group mb-3">
-                        
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">$</span>
+                <div class="box_bookings col-sm-7">
+                    <!-- <img class="card-img-top" src="plumb.jpg" alt="Card image" style="height:100%;">
+                    <div class="card-img-overlay"> -->
+                    <form novalidate="" method="POST" id="bootstrapForm" enctype="multipart/form-data">
+                    <h5 style="border-bottom: 2px solid #17a2b8; padding-bottom: 10px;">Prescription Details</h5>
+                        <div class="form-group" style="padding-top: 8px;">
+                            <label class="h6 form-control-label" for="input2">Name of Medication<abbr class="text-danger" title="This is required">*</abbr></label>
+                            <textarea class="form-control" name="i2" id="input2" rows="2" placeholder="" required></textarea>
+                            <div class="invalid-feedback">Please enter a task description. This field is required</div>
                         </div>
-                        <input type="text" placeholder="10.00" class="form-control" name="i3" id="input3" required>
-                        <div class="invalid-feedback">Please enter a valid price like 6.50. This field is required.</div>
-                    </div>
-
+                        <div class="form-group">
+                            <label class="h6 form-control-label" for="input22">Patient ID<abbr class="text-danger" title="This is required">*</abbr></label>
+                            <input type="text" class="form-control" name="i7" id="input22"  placeholder=" " required></textarea>
+                            <div class="invalid-feedback">Please enter a task title. This field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="h6 form-control-label" for="input7">Prescription Creation Date<abbr class="text-danger" title="This is required">*</abbr></label>
+                            <input type="date" class="form-control" name="i7" id="input7"  placeholder="House Cleaning" required></textarea>
+                            <div class="invalid-feedback">Please enter a task title. This field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="h6 form-control-label" for="input777">Prescription End Date<abbr class="text-danger" title="This is required">*</abbr></label>
+                            <input type="date" class="form-control" name="i777" id="input777"  placeholder="" required></textarea>
+                            <div class="invalid-feedback">Please enter a task title. This field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="h6 form-control-label" for="input77">Prescription Interval<abbr class="text-danger" title="This is required">*</abbr></label>
+                            <br>  
+                            <select id="input77">
+                                <?php for ($i=1; $i<=100; $i++){ ?> <option value="<?php echo $i;?>"><?php echo $i;?></option> <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="h6 form-control-label" for="input3">Cost of Medicine<abbr class="text-danger" title="This is required">*</abbr></label>
+                            <div class="input-group mb-3">
+                                
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">$</span>
+                                </div>
+                                <input type="text" placeholder="10.00" class="form-control" name="i3" id="input3" required>
+                                <div class="invalid-feedback">Please enter a valid price like 6.50. This field is required.</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="button" class="btn btn-danger" style="border-radius:30px; margin-top: 30px; margin-bottom: 20px;" onclick="getx()" id="submit-btn">Create Prescription</button>
+                        </div>
+                    </form>
                 </div>
-
-                
-
-                <div>
-                    <button type="button" class="btn" style="border-radius:30px;" onclick="getx()" id="submit-btn">Create</button>
-                </div>
-            </form>
-
+                <!-- /.card -->
+            </div>
         </div>
-        <!-- /.card -->
 
     </div>
 
@@ -512,10 +256,10 @@ input[type="search"] {
                         eachRow =
                                     "Appointment ID: " + appts.Appointment_Id + "<br>" +
                                     "Appointment Date: " + appts.ApptDate + "<br>" +
-                                    "Appointment Time: " + appts.ApptTime + "<br>" +
+                                    "Appointment Time: " + appts.ApptTime.slice(0,5) + "<br>" +
                                     "Completed: " + comp + "<br>" +
                                     "Patient ID: " + appts.Patient_Id+ "<br>" +
-                                    "Symptom: " + appts.Symptom + "<br>"
+                                    "Symptoms: " + appts.Symptom + "<br>"
                                     ;
                     
                         

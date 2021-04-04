@@ -452,7 +452,7 @@ if (isset($_SESSION['error'])) {
                     <div id = "errorSU"></div>
                 </div>
             </form>
-            `;
+            `; 
 
             $(async () => {
                 // graphQL endpoint
