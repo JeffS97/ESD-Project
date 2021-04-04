@@ -149,6 +149,7 @@ def patientViewsAppointmentHistory():
     print('---------------------------------------------')
     print(data)
     Pid = data['Patient_Id']
+    
 
     apps = Appointment.query.filter(or_(and_(Appointment.ApptDate == current_date,Appointment.ApptTime <= current_time), (Appointment.ApptDate < current_date))).filter_by(Patient_Id = Pid,Completed = True).all()
 

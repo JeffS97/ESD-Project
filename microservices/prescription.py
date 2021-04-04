@@ -37,17 +37,23 @@ class Prescription(db.Model):
     EndDate = db.Column(db.Date, nullable=False)
     Interval_Days = db.Column(db.Integer, nullable=True)
     Name = db.Column(db.String, nullable=False)
+    Collected = db.Column(db.String, nullable = True)
+    Price = db.Column(db.Float, nullable = True)
+    Patient_Id = db.Column(db.Integer, nullable= False)
 
 
-    def init(self, Appointment_Id, PrevDate, EndDate, Interval_Days, Name):
+    def init(self, Appointment_Id, PrevDate, EndDate, Interval_Days, Name, Collected, Price, Patient_Id):
         self.Appointment_Id = Appointment_Id
         self.PrevDate = PrevDate
         self.EndDate = EndDate
         self.Interval_Days = Interval_Days
         self.Name = Name
+        self.Collected = Collected
+        self.Price = Price
+        self.Patient_Id = Patient_Id
 
     def json(self):
-        return {"Prescription_Id" : self.Prescription_Id, "Appointment_Id" : self.Appointment_Id, "PrevDate": self.PrevDate, "EndDate": self.EndDate, "Interval_Days": self.Interval_Days, "Name": self.Name}
+        return {"Prescription_Id" : self.Prescription_Id, "Appointment_Id" : self.Appointment_Id, "PrevDate": self.PrevDate, "EndDate": self.EndDate, "Interval_Days": self.Interval_Days, "Name": self.Name, "Collected": self.Collected, "Price": self.Price, "Patient_Id" : self.Patient_Id}
 
 # @app.route("/")
 # def test():
@@ -81,9 +87,11 @@ def get_all():
 
 
 #view all prescriptions valid for a refill given the appointment Id based upon the current day
-@app.route("/prescription/getByAppointment/<int:Aid>")
-def getByAppointment(Aid):
+@app.route("/prescription/getByAppointment", methods = ["POST"])
+def getByAppointment():
 
+    data = request.get_json()
+    Aid = data['Appointment_Id']
     current_date = datetime.date.today()
     prescriptions = Prescription.query.filter_by(Appointment_Id = Aid).all()
     output = []
@@ -124,18 +132,27 @@ def getByAppointment(Aid):
     ), 404
 
 
-@app.route("/prescription/update<int:pid>", methods=['PUT'])
+@app.route("/prescription/update/<int:pid>", methods=['PUT'])
 def update_prescription_date(pid):
     prescription= Prescription.query.filter_by(Prescription_Id=pid).first()
     if prescription:
         current_date = datetime.date.today() 
         prescription.PrevDate = current_date
-
-
+        prescription.Collected = 'NC'
+        db.session.commit()
         return jsonify(
             {
                 "code": 200,
-                "data": prescription.json()
+                "data": {
+                    "Prescription_Id" : prescription.Prescription_Id,
+                    "Appointment_Id" : prescription.Appointment_Id,
+                    "PrevDate" : prescription.PrevDate,
+                    "EndDate" : prescription.EndDate,
+                    "Interval_Days" : prescription.Interval_Days,
+                    "Name" : prescription.Name,
+                    "Collected" : prescription.Collected,
+                    "Price" : prescription.Price,
+                    "Patient_Id" : prescription.Patient_Id                }
             }
         )
 
@@ -166,7 +183,7 @@ def find_by_Id(Prescription_Id):
 
 
 
-@app.route("/addPrescription", methods= ['POST'])
+@app.route("/prescription/addPrescription", methods= ['POST'])
 def create_prescription():
 
     data = request.get_json()
@@ -191,4 +208,4 @@ def create_prescription():
     ), 201
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5002, debug=True)
+    app.run(host='0.0.0.0', port=5022, debug=True)
