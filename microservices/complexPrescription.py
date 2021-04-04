@@ -148,9 +148,40 @@ def processAddPrescription(details):
     return prescriptions
 
 
+
+
+@app.route("/delete_prescription", methods=["DELETE"])
+def delete_pres():
+    if request.is_json:
+        try:
+            pres_details = request.get_json()
+            print("\nReceived appointment to make an update:", pres_details)
+
+            refill_info = processDeletePrescription(pres_details)
+            return jsonify(refill_info), 200
+
+        except Exception as e:
+            pass  # do nothing
+
+    # if reached here, not a JSON request.
+    return jsonify({
+        "code": 400,
+        "message": "Invalid JSON input: " + str(request.get_data())
+    }), 400
+
+
+def processDeletePrescription(details):
+
+    #Obtain Prescriptions which matches Patient_Id, after 1 month of issue, routed to 'prescription/getByPatient' 
+    print('\n-----Invoking appointment microservice-----')
+    appointment_id = invoke_http(prescription_URL+"/deleteprescription", method='DELETE', json=details)
+    print('Cancelled Prescription ID:', appointment_id)
+
+    return appointment_id
+
 if __name__ == "__main__":
     print("This is flask " + os.path.basename(__file__) + " for Prescription related Operations...")
-    app.run(host="0.0.0.0", port=5101, debug=True)
+    app.run(host="0.0.0.0", port=5105, debug=True)
 
 
 

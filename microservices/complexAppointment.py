@@ -4,7 +4,7 @@ import os
 import requests
 from invokes import invoke_http
 import json
-import amqp_setup
+
 import pika
 
 app = Flask(__name__)

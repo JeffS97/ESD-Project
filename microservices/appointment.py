@@ -8,7 +8,7 @@ import time
 
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/ESD5'
+#config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/ESD5'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:8889/ESD5'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -376,13 +376,7 @@ def update_appointment():
     Aid = data['Appointment_Id']
     appointment = Appointment.query.filter_by(Appointment_Id=Aid).first()
     if appointment: 
-        if data['Symptom']:
-            appointment.Symptom = data['Symptom']
-        if data['ApptTime']:
-            appointment.ApptTime = data['ApptTime']
-        if data['ApptDate']:
-            appointment.ApptDate = data['ApptDate']
-    
+        appointment.Completed = 1
         db.session.commit()
         dateStr = str(appointment.ApptDate)
         timeStr = str(appointment.ApptTime)

@@ -40,9 +40,10 @@ class Prescription(db.Model):
     Collected = db.Column(db.String, nullable = True)
     Price = db.Column(db.Float, nullable = True)
     Patient_Id = db.Column(db.Integer, nullable= False)
+    Gid = db.Column(db.Integer, nullable= False)
 
 
-    def init(self, Appointment_Id, PrevDate, EndDate, Interval_Days, Name, Collected, Price, Patient_Id):
+    def init(self, Appointment_Id, PrevDate, EndDate, Interval_Days, Name, Collected, Price, Patient_Id,Gid):
         self.Appointment_Id = Appointment_Id
         self.PrevDate = PrevDate
         self.EndDate = EndDate
@@ -51,9 +52,10 @@ class Prescription(db.Model):
         self.Collected = Collected
         self.Price = Price
         self.Patient_Id = Patient_Id
+        self.Gid = Gid
 
     def json(self):
-        return {"Prescription_Id" : self.Prescription_Id, "Appointment_Id" : self.Appointment_Id, "PrevDate": self.PrevDate, "EndDate": self.EndDate, "Interval_Days": self.Interval_Days, "Name": self.Name, "Collected": self.Collected, "Price": self.Price, "Patient_Id" : self.Patient_Id}
+        return {"Prescription_Id" : self.Prescription_Id, "Appointment_Id" : self.Appointment_Id, "PrevDate": self.PrevDate, "EndDate": self.EndDate, "Interval_Days": self.Interval_Days, "Name": self.Name, "Collected": self.Collected, "Price": self.Price, "Patient_Id" : self.Patient_Id,"Gid":self.Gid}
 
 # @app.route("/")
 # def test():
@@ -152,7 +154,9 @@ def update_prescription_date(pid):
                     "Name" : prescription.Name,
                     "Collected" : prescription.Collected,
                     "Price" : prescription.Price,
-                    "Patient_Id" : prescription.Patient_Id                }
+                    "Patient_Id" : prescription.Patient_Id ,
+                    "Gid" : prescription.Gid 
+                                   }
             }
         )
 
@@ -207,5 +211,31 @@ def create_prescription():
         }
     ), 201
 
+
+@app.route("/prescription/deleteprescription", methods=['DELETE'])
+def delete_prescription():
+    data = request.get_json()
+    pid = data['Prescription_Id']
+    app= Prescription.query.filter_by(Prescription_Id=pid).first()
+    if app:
+        db.session.delete(app)
+        db.session.commit()
+        return jsonify(
+            {
+                "code": 200,
+                "data": {
+                    "Prescription_Id": pid
+                }
+            }
+        )
+    return jsonify(
+        {
+            "code": 404,
+            "data": {
+                "Prescription_Id": pid
+            },
+            "message": "Appointment not found."
+        }
+    ), 404
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5022, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=True)
