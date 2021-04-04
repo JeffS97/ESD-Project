@@ -239,8 +239,8 @@ def delete_prescription():
         }
     ), 404
 
-    @app.route("/prescription/PatientGetUnCollectedPrescription/<int:pid>")
-def getUnCollectedPrescription(pid):
+@app.route("/prescription/PatientGetUnCollectedPrescription/<int:pid>")
+def patientGetUnCollectedPrescription(pid):
     prescription= Prescription.query.filter(Collected='NC').filter(Prescription_Id=pid).all()
     if prescription:
         return jsonify(
@@ -261,7 +261,7 @@ def getUnCollectedPrescription(pid):
 
 
 @app.route("/prescription/HealthworkerGetUnCollectedPrescription/<int:gid>")
-def getUnCollectedPrescription(pid):
+def healthworkerGetUnCollectedPrescription(pid):
     prescription= Prescription.query.filter(Collected='NC').filter(Gid=gid).all()
     if prescription:
         return jsonify(
