@@ -77,7 +77,7 @@ def find_by_pid(pid):
     ), 404
 
 @app.route("/patient/findById", methods=['POST'])
-def find_by_pid():
+def find_by_pid2():
     data = request.get_json()
     pid = data['Patient_Id']
     patient = Patient.query.filter_by(Patient_Id=pid).first()
