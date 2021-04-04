@@ -4,6 +4,7 @@ import os
 import requests
 from invokes import invoke_http
 import json
+import amqp_setup
 
 import pika
 
@@ -301,9 +302,22 @@ def processCreateAppointments(details):
     amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="appointment.notification", 
             body=toSend, properties=pika.BasicProperties(delivery_mode = 2)) 
 
-    #notification = invoke_http(notification_URL + '/message/' + chatId, method='POST', json=toSend)
+    return appointment
 
-    #return notification
+@app.route("/update_telegram/<string:username>", methods=['POST'])
+def update_telegram(username):
+    try:
+        print('\n-----Invoking Patient microservice-----')
+        teledata = invoke_http(patient_URL+"/getchat/" +username)
+        chatID = teledata['data']
+        updateDetails = json.dumps({"Username": username, "ChatId": chatID})
+        patientdata = invoke_http(patient_URL+ "/update/" + username, method = 'PUT', json=updateDetails)
+        print(patientdata)
+        return jsonify(patientdata), 200
+    except Exception as e:
+        pass
+    
+    
 
 if __name__ == "__main__":
     print("This is flask " + os.path.basename(__file__) + " for placing Appointment related Operations...")

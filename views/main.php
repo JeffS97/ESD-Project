@@ -189,12 +189,12 @@
 }
 button{
   padding: 8px 16px;
-  font-size: 25px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 200;
   border-radius: 4px;
   border: none;
   outline: none;
-  background: #e69100;
+  background: #0088CC;
   color: white;
   letter-spacing: 1px;
   cursor: pointer;
@@ -271,6 +271,10 @@ button{
     font-size: inherit;
     font-weight: bold;
 }
+#telegrambutton{
+  height:40px;
+  width:40px;
+}
 
 </style>
 <body>
@@ -300,6 +304,7 @@ button{
         </div> -->
         <div class="fiverr-menu" style="margin-left: auto;">
             <ul>
+            <button id="telegrambtn" type="button" data-toggle="modal" data-target="#boxModal" onclick="window.open('https://t.me/CliniQueue_Bot?start')">Get Telegram Notifications!</button>
             <li><a class="pro" href="">Home</a></li>
             <li><a href="">Profile</a></li>
             <!-- <li><a href="">History</a></li> -->
@@ -409,11 +414,31 @@ button{
             </div>
         </div>
     </div>
-    
+    <label style="visibility:hidden" id="testlabel"><?php echo $_SESSION["username"]; ?></label> 
+    <div class="modal fade" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Verify Telegram</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please click on the close button only once you have typed "/Start" on the telegram bot! 
+                    https://t.me/CliniQueue_Bot?start (If you accidentally closed it)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn1" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1iSJyi8nOzkGwMWsmrEDQstq6b22-XoI&libraries=&v=weekly" async></script>
 
 <script>
+  document.getElementById("btn1").addEventListener("click", updateTelegram, false);
     $(async() => {
         var patient_id = "<?php echo $_SESSION['patient_id'] ?>";
         var serviceURL = 'http://localhost:5100/patient_views_upcoming_appointment';
@@ -501,6 +526,21 @@ button{
             console.log(error);
         }
     })
+
+    function updateTelegram() {
+        var username = document.getElementById('testlabel').textContent;
+        console.log(username);
+        var serviceURL = `http://127.0.0.1:5100/update_telegram/${username}`;
+        console.log(serviceURL);
+
+            var response = fetch(
+            serviceURL, {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"}
+            });
+            var result = response.json();
+            console.log(result);
+        }
 
     $(document).on("click", '.open-deleteBooking', function () {
       var delete_id = this.value;

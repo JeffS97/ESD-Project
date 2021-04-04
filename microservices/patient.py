@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 from flask_cors import CORS
+import json
+import requests
 
 app = Flask(__name__)
 
@@ -16,6 +18,7 @@ class Patient(db.Model):
 
     Patient_Id = db.Column(db.Integer, primary_key=True)
     P_name = db.Column(db.String(150), nullable=False)
+    Username = db.Column(db.String(150), nullable=False)
     Email = db.Column(db.String(200), nullable=False)
     Age = db.Column(db.Integer, nullable=False)
     Address = db.Column(db.String(200), nullable=False)
@@ -24,9 +27,10 @@ class Patient(db.Model):
     Payment = db.Column(db.String(200), nullable=True)
     password = db.Column(db.String(250), nullable=False)
 
-    def __init__(self, Patient_Id, P_name, Email, Age, Address, Allergy, ChatId, Payment, password):
+    def __init__(self, Patient_Id, Username, P_name, Email, Age, Address, Allergy, ChatId, Payment, password):
         self.Patient_Id = Patient_Id
         self.P_name = P_name
+        self.Username = Username
         self.Email = Email
         self.Age = Age
         self.Address = Address
@@ -172,23 +176,24 @@ def add_patient(pid):
 def update_patient(username):
     try:
         patient = Patient.query.filter_by(Username=username).first()
+        #print(patient.P_name)
         if not patient:
             return jsonify(
                 {
                     "code": 404,
                     "data": {
-                        "Patient_Id": pid
+                        "Username": username
                     },
                     "message": "Patient not found."
                 }
             ), 404
 
         data = request.get_json()
-        if data['Allergy']:
-            patient.Allergy = data['Allergy']
+        data = json.loads(data)
 
         if data['ChatId']:
             patient.ChatId = data['ChatId']
+
         
         db.session.commit()
         return jsonify(
@@ -203,13 +208,34 @@ def update_patient(username):
             {
                 "code": 500,
                 "data": {
-                    "Patient_Id": pid
+                    "Username": username
                 },
                 "message": "An error occurred while updating the order. " + str(e)
             }
         ), 500
 
+@app.route("/patient/getchat/<string:username>")
+def getChatId(username):
+    bot_token = '1723827194:AAHYRWaFAz8YGP4-3JwN1CSj8SCVGozG8hQ'
+    get_updates = 'https://api.telegram.org/bot' + bot_token + '/getUpdates'
+    response = requests.get(get_updates)
+    final = json.loads(response.text)
+    #bot_message = "Your booking is confirmed!"
 
+    Dict = final['result']
+    chatID = str(Dict[len(Dict)-1]['message']['chat']['id'])
+    offset = str((Dict[len(Dict)-1]['update_id'])+1) # To clear the JSON
+
+    clear_queue = 'https://api.telegram.org/bot' + bot_token + '/getUpdates?offset='+ offset
+
+    response = requests.get(clear_queue)
+
+    return jsonify(
+        {
+            "code": 200,
+            "data": chatID
+        }
+    ), 200
 
 
 if __name__ == '__main__':
