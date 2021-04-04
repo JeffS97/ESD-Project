@@ -340,7 +340,7 @@ button{
         <div class="container">
         <div id='booking' class="py-5 text-center animate__animated animate__fadeIn fade">
         <h1 style="text-transform: uppercase; letter-spacing: .2rem;">Patient Dashboard</h1>
-        <!-- <p class="lead">These are your current medical appointments.</p> -->
+        <p class="lead">Select a clinic on the map below to make an appointment!</p>
         </div>
         
         <!-- Map View -->
