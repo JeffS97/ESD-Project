@@ -8,8 +8,8 @@ import time
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/ESD5'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:8889/ESD5'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/ESD5'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:8889/ESD5'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # conn = psycopg2.connect(
@@ -409,8 +409,10 @@ def update_appointment():
     ), 404
 
 #delete Appointment
-@app.route("/appointment/<int:Appointment_Id>", methods=['DELETE'])
-def delete_appointment(Appointment_Id):
+@app.route("/appointment/delete_appointment", methods=['DELETE'])
+def delete_appointment():
+    data = request.get_json()
+    Appointment_Id = data['Appointment_Id']
     app= Appointment.query.filter_by(Appointment_Id=Appointment_Id).first()
     if app:
         db.session.delete(app)

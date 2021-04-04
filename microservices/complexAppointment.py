@@ -249,7 +249,7 @@ def processDeleteAppointments(details):
 
     #Obtain Prescriptions which matches Patient_Id, after 1 month of issue, routed to 'prescription/getByPatient' 
     print('\n-----Invoking appointment microservice-----')
-    appointment_id = invoke_http(appointment_URL, method='DELETE', json=details)
+    appointment_id = invoke_http(appointment_URL + '/delete_appointment', method='DELETE', json=details)
     print('Deleted Appointment ID:', appointment_id)
 
     return appointment_id
