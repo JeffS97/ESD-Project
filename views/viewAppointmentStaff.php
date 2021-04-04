@@ -271,13 +271,13 @@ input[type="search"] {
                  <div class="container w-50" style="margin-right:50%">
                  <table>
                      <tr>
-                         <h1>Select Appointment Date:</h1>
+                         <h2>Select Appointment Date:</h1>
                          <input type='hidden' value=<?php echo 1;?> id='lol'/>
                          <td><input type="date" id='calender' class="form-control ml-5 mt-4" onchange="getme()" width="300px"> </td>
                      </tr>
                  </table>
                 </div>
-                <div class="container w-50" style="margin-left:35%">
+                <div class="container w-50" style="margin-left:25%">
                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
                 <table id="myTable">
   <tr class="header">
@@ -290,6 +290,7 @@ input[type="search"] {
      
             <th>Completed?</th>
             <th>View</th>
+            <th>Change Status</th>
   </tr>
   <tbody id='app'>
        
@@ -345,7 +346,12 @@ function getme(){
                     "<td>"+book.Symptom+"</td>"+
                     "<td>"+comp+"</td>"+
                     "<td>"+"<a href='./createPrescription.php?id="+book.Appointment_Id+"' class=' btn btn-primary'>View</a>"+"</td>"
-
+                    if(comp=='No'){
+                   eachRow+= "<td>"+`<a href='#' onclick='update(${book.Appointment_Id})' class=' btn btn-primary'>Completed</a></td>`
+                    }
+                    else{
+                      eachRow+= "<td>"+"<a href='./createPrescription.php?id="+book.Appointment_Id+"' class=' btn btn-primary' style='pointer-events:none;background-color:gray'>Completed</a>"+"</td>"
+                    }
 
                     rows += "<tr>" + eachRow + "</tr>";
                  }
@@ -365,6 +371,43 @@ function getme(){
              } // error
              });
 
+    }
+    function update(aid){
+      
+      $(async() => {           
+        // Change serviceURL to your own
+        var serviceURL5 = "http://127.0.0.1:5100/update_appointment"; 
+        try {
+              
+            const response =
+            await fetch(
+                serviceURL5, {
+                method: 'PUT',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ Appointment_Id : aid
+                })
+             });
+             const result = await response.json();
+         console.log(response.status)
+              if (response.status === 200) {
+                 // success case
+                 alert("Successfully updated");
+                 location.reload()
+            
+                 } else if (response.status == 404) {
+                     // No books
+                     showError(result.message);
+                 } else {
+                     // unexpected outcome, throw the error
+                     throw response.status;
+                 }
+             } catch (error) {
+                 // Errors when calling the service; such as network error, 
+                 // service offline, etc
+                 ('There is a problem retrieving books data, please try again later.<br />' + error);
+             } // error
+             });
+      
     }
     function myFunction() {
   // Declare variables

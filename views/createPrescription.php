@@ -570,7 +570,7 @@ input[type="search"] {
               
                 <div class="col-sm-7">
                     <div class="card-body">
-                        <h5 class="card-title text-left">`+prescription.Name+' <a href="#" class="btn btn-primary" style="margin-left:120%">Cancel Prescription</a>'+`</h5>
+                        <h5 class="card-title text-left">`+prescription.Name+` <a href="#" class="btn btn-primary" onclick= "deleteMe(${prescription.Prescription_Id})" style="margin-left:120%">Cancel Prescription</a>`+`</h5>
                         <p class="card-text text-left">`+prescription.PrevDate+"<br>"+ prescription.EndDate+"<br>"+  prescription.Interval_Days +`</p>
                        
                     </div>
@@ -599,7 +599,53 @@ input[type="search"] {
             
             
             });
+            // delete prescription
+            function deleteMe(id){
+                console.log("workingdude");
 
+                $(async() => {           
+                    // Change serviceURL to your own
+                    //var serviceURL = "http://127.0.0.1:5100/view_by_appointment";
+                    //var serviceURL1 = "http://127.0.0.1:5105/display_possible_refills";
+                    var serviceURL4 = "http://127.0.0.1:5105/delete_prescription";
+                    
+                
+                    try {
+                    
+                        
+                  
+                    const response =
+                    await fetch(
+                    serviceURL4, { method: 'DELETE',
+                    headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({Prescription_Id:id})
+        }
+                    );
+                  
+                    const result = await response.json();
+                    if (response.status === 200) {
+                        // success 
+                        alert('Prescription Cancelled');
+                        location.reload();
+                        console.log("WellDone"); // THIS DOESNT PRINT FXXXXXXK
+                       
+                    } else if (response.status == 404) {
+                        // No books
+                        showError(result.message);
+                    } else {
+                        // unexpected outcome, throw the error
+                        throw response.status;
+                    }
+                } catch (error) {
+                    // Errors when calling the service; such as network error, 
+                    // service offline, etc
+                    showError
+                    ('There is a problem retrieving books data, please try again later.<br />' + error);
+                    } // error
+                
+                
+                });
+            }
                     
                 
       
@@ -612,6 +658,7 @@ input[type="search"] {
                 var interval = document.getElementById("input77").value;
                 var patientid = document.getElementById("input22").value;
                 var cost = document.getElementById("input3").value;
+                var gid=1;
 
                 $(async() => {           
                     // Change serviceURL to your own
@@ -742,14 +789,17 @@ input[type="search"] {
                     await fetch(
                     serviceURL3, { method: 'POST',
                     headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({Patient_Id : patientid, Appointment_Id : ans, PrevDate : creationdate, EndDate : enddate, Interval_Days : interval, Name : medication, Price : cost })
+                        body: JSON.stringify({Patient_Id : patientid, Appointment_Id : ans, PrevDate : creationdate, EndDate : enddate, Interval_Days : interval, Name : medication, Price : cost ,Gid:gid})
         }
                     );
+                  
                     const result = await response.json();
-                    if (response.status === 201) {
+                    if (response.status === 200) {
                         // success 
+                        alert('Prescription Created');
+                        location.reload();
                         console.log("WellDone"); // THIS DOESNT PRINT FXXXXXXK
-                        alert("Prescription successfully created!!");
+                       
                     } else if (response.status == 404) {
                         // No books
                         showError(result.message);
