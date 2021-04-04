@@ -212,6 +212,7 @@ def create_prescription():
     ), 201
 
 
+
 @app.route("/prescription/deleteprescription", methods=['DELETE'])
 def delete_prescription():
     data = request.get_json()
@@ -237,5 +238,79 @@ def delete_prescription():
             "message": "Appointment not found."
         }
     ), 404
+
+    @app.route("/prescription/PatientGetUnCollectedPrescription/<int:pid>")
+def getUnCollectedPrescription(pid):
+    prescription= Prescription.query.filter(Collected='NC').filter(Prescription_Id=pid).all()
+    if prescription:
+        return jsonify(
+            {
+            "code": 200,
+            "data": {
+                "prescriptions":  [Prescription.json() for Prescription in prescription]
+                }
+            }
+        )
+
+        return jsonify(
+            {
+                "code": 404,
+                "message": "No Uncollected Prescriptions found."
+            }
+        ), 404
+
+
+@app.route("/prescription/HealthworkerGetUnCollectedPrescription/<int:gid>")
+def getUnCollectedPrescription(pid):
+    prescription= Prescription.query.filter(Collected='NC').filter(Gid=gid).all()
+    if prescription:
+        return jsonify(
+            {
+            "code": 200,
+            "data": {
+                "prescriptions":  [Prescription.json() for Prescription in prescription]
+                }
+            }
+        )
+
+        return jsonify(
+            {
+                "code": 404,
+                "message": "No Uncollected Prescriptions found."
+            }
+        ), 404
+
+@app.route("/prescription/updateCollected/<int:pid>", methods=['PUT'])
+def update_prescription_collected_date(pid):
+    prescription= Prescription.query.filter_by(Prescription_Id=pid).first()
+    if prescription:
+        current_date = datetime.date.today() 
+        prescription.PrevDate = current_date
+        prescription.Collected = 'C'
+        db.session.commit()
+        return jsonify(
+            {
+                "code": 200,
+                "data": {
+                    "Prescription_Id" : prescription.Prescription_Id,
+                    "Appointment_Id" : prescription.Appointment_Id,
+                    "PrevDate" : prescription.PrevDate,
+                    "EndDate" : prescription.EndDate,
+                    "Interval_Days" : prescription.Interval_Days,
+                    "Name" : prescription.Name,
+                    "Collected" : prescription.Collected,
+                    "Price" : prescription.Price,
+                    "Patient_Id" : prescription.Patient_Id                }
+            }
+        )
+
+        return jsonify(
+            {
+                "code": 404,
+                "message": "No Prescriptions not found."
+            }
+        ), 404
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5002, debug=True)

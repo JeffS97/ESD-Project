@@ -48,11 +48,10 @@ def processDisplayPossibleRefills(details):
 #takes a refill ID to update criteria for next refill as well as send a notification via tele
 @app.route("/refill/<int:pid>", methods=['PUT'])
 def make_refill(pid):
-    if request.is_json:
-        try:
-            details = request.get_json()
-            print("\nRecived a collection request for Prescription_Id:", pid)
-            toReturn = processRefill(pid, details)
+    try:
+        details = request.get_json()
+        print("\nRecived a collection request for Prescription_Id:", pid)
+        toReturn = processRefill(pid, details)
 
             # return jsonify(result), 200
             # toSend = {
@@ -67,7 +66,7 @@ def make_refill(pid):
             #     "Patient_Id" : str(prescription['data']['Patient_Id'])  
             # }
             # toReturn = json.dumps(toSend)
-            return toReturn
+        return toReturn
 
         except Exception as e:
             pass  # do nothing
@@ -146,6 +145,91 @@ def processAddPrescription(details):
     print('Prescriptions:', prescriptions)
 
     return prescriptions
+
+@app.route("/healthworker_Get_Uncollected_Prescriptions/<int:Gid>")
+def healthworker_Get_Uncollected_Prescriptions(Gid):
+
+    try:
+        print("\nReceived Clinic ID, Gid:", Gid)
+
+        prescriptions = processHealthworkerGetUncollectedPrescriptions(Gid)
+        return jsonify(prescriptions), 200
+
+    except Exception as e:
+        pass  # do nothing
+
+    # if reached here, not a JSON request.
+    return jsonify({
+        "code": 400,
+        "message": "Invalid JSON input: " + str(request.get_data())
+    }), 400
+
+
+def processHealthworkerGetUncollectedPrescriptions(Gid):
+
+    #Obtain Appointments which matches Patient_Id 
+    print('\n-----Invoking Prescription microservice-----')
+    prescriptions = invoke_http(prescription_URL + "/addPrescription" + str(Gid))
+    return prescriptions
+
+@app.route("/patient_get_Uncollected_Prescriptions/<int:Pid>")
+def patient_get_Uncollected_Prescriptions(Pid):
+
+    try:
+        print("\nReceived Clinic ID, Pid:", Pid)
+
+        prescriptions = processPatientGetUncollectedPrescriptions(Pid)
+        return jsonify(prescriptions), 200
+
+    except Exception as e:
+        pass  # do nothing
+
+    # if reached here, not a JSON request.
+    return jsonify({
+        "code": 400,
+        "message": "Invalid JSON input: " + str(request.get_data())
+    }), 400
+
+
+def processPatientGetUncollectedPrescriptions(Pid):
+
+    #Obtain Appointments which matches Patient_Id 
+    print('\n-----Invoking Prescription microservice-----')
+    prescriptions = invoke_http(prescription_URL + "/addPrescription" + str(Pid))
+    print('Prescriptions:', prescriptions)
+
+    return prescriptions
+
+@app.route("/refillcollected/<int:pid>", methods=['PUT'])
+def update_refill(pid):
+    try:
+        details = request.get_json()
+        print("\nRecived a collection request for Prescription_Id:", pid)
+        toReturn = processRefillCollected(pid, details)
+
+        return toReturn
+
+    except Exception as e:
+        pass  # do nothing
+
+    return jsonify({
+        "code": 400,
+        "message": "Invalid JSON input: " + str(request.get_data())
+    }), 400
+
+
+def processRefillCollected(pid, details):
+
+    print('\n-----Invoking Prescription microservice-----')
+    toReturn = invoke_http(prescription_URL + "/updateCollected/" + str(pid), method="PUT", json=details) #change 
+    print('Prescriptions:', toReturn)
+
+    return toReturn
+
+
+
+
+
 
 
 
