@@ -224,6 +224,28 @@ def processUpdateAppointments(details):
     appointments = invoke_http(appointment_URL + '/updateAppointment', method='PUT', json=details)
     print('Appointments:', appointments)
 
+    print('\n-----Invoking getFirstInLine microservice-----')    
+    firstInLine = invoke_http(appointment_URL + '/getFirstInLine', method='POST', json=appointments['data'])
+    print('firstInLine:', firstInLine)
+    
+    print('\n-----Invoking Patient microservice-----')    
+    chatid = invoke_http(patient_URL + '/findById', method='POST', json=firstInLine['appointment'])
+    print('chatid:', chatid)
+
+    dateStr = str(appointments["data"]["ApptDate"])
+    timeStr = str(appointments["data"]["ApptTime"])
+    p_name = str(chatid['data']['P_name'])
+    chatId = str(chatid['data']['ChatId'])
+
+    bingbong = {"P_name" : p_name,
+            "ChatId": chatId,
+            "ApptTime": timeStr, 
+            "ApptDate": dateStr}
+
+    toSend = json.dumps(bingbong)
+    amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="appointment.notification", 
+            body=toSend, properties=pika.BasicProperties(delivery_mode = 2)) 
+
     return appointments
 
 @app.route("/delete_appointment", methods=["DELETE"])

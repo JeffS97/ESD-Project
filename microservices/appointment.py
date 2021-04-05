@@ -430,81 +430,49 @@ def delete_appointment():
     ), 404
 
 
-# Not needed
-# @app.route("/appointment")
-# def get_all():
-#     applist = Appointment.query.all()
-#     if len(applist):
-#         return jsonify(
-#             {
-#                 "code": 200,
-#                 "data": {
-#                     "books": [app.json() for app in applist]
-#                 }
-#             }
-#         )
-#     return jsonify(
-#         {
-#             "code": 404,
-#             "message": "There are no Appointments"
-#         }
-#     ), 404
+@app.route("/appointment/getFirstInLine", methods=['POST'])
+def getFirstInLine():
 
-#     current_date = datetime.date.now()
-#     # one_month = current_time - datetime.timedelta(weeks=4)
+    current_date = datetime.date.today() 
+    print(current_date)
+    print(type(current_date))
 
-#     appointments = Appointment.query.filter(Appointment.ATime > Appointment.current_time).filter_by(Gid = Gid)
-#     if appointments:
-#         return jsonify(
-#             {
-#                 "code": 200,
-#                 "data": {
-#                     "prescriptions":  [Appointment.json() for Pr in prescriptions]
-#                 }
-#             }
-#         )
+    t = time.localtime()
+    current_time = time.strftime("%H:%M:%S", t)
+    print(current_time)
+    print(type(current_time))
 
+    data = request.get_json()
+    Gid = data["Gid"]
 
-# @app.route("/appointment/viewAppointment", methods=['POST'])
-# def viewHealthcareAppointments():
+    # apps = Appointment.query.filter(or_
+    # (and_(Appointment.ApptDate == current_date,Appointment.ApptTime >= current_time)), (Appointment.ApptDate > current_date)).filter_by(Patient_Id = Pid, Completed = 0).all()
 
-#     current_date = datetime.date.today() 
-#     t = time.localtime()
-#     current_time = time.strftime("%H:%M:%S", t)
+    app = Appointment.query.filter(Appointment.ApptTime >= current_time).filter(Appointment.ApptDate == current_date).filter(Appointment.Gid == Gid).filter(Appointment.Completed == False).order_by(Appointment.ApptDate, Appointment.ApptTime).first()
+    # print(app)
+    dateStr = str(app.ApptDate)
+    timeStr = str(app.ApptTime)
+    # print(app)
 
+    return jsonify({
+            "appointment": {
+                'Appointment_Id' : app.Appointment_Id,
+                'Patient_Id' : app.Patient_Id,
+                'Gid' : app.Gid,
+                'Symptom' : app.Symptom,
+                'ApptTime' : timeStr,
+                'ApptDate' :  dateStr,
+                'Completed' : app.Completed
+            }
+    }
+    )
 
-#     data = request.get_json()
-#     Gid = data['Gid']
-
-#     app = Appointment.query.filter(current_time <= Appointment.ApptTime).filter(current_date <= Appointment.ApptDate).filter(Gid = Gid)
-
-#     if app:
-#         print('---------ANSWER ---------------')
-#         print(app)
-#         dateStr = str(app.ApptDate)
-#         timeStr = str(app.ApptTime)
-
-#         return jsonify(
-#             {
-#                 "code": 200,
-#                 "data": {
-#                     'Appointment_Id' : app.Appointment_Id,
-#                     'Patient_Id' : app.Patient_Id,
-#                     'Gid' : app.Gid,
-#                     'Symptom' : app.Symptom,
-#                     'ApptTime' : timeStr,
-#                     'ApptDate' :  dateStr,
-#                     'Completed' : app.Completed
-#                 }
-#             }
-#         )
-
-#     return jsonify(
-#         {
-#             "code": 404,
-#             "message": "Appointment not found."
-#         }
-#     ), 404
+    return jsonify(
+            {
+                "code": 404,
+                "message": "No Prescriptions found."
+            }
+    ), 404
 
 if __name__ == '__main__':
     app.run(port=5001, debug=True)
