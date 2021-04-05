@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="navbar.css">
  
     <!-- Latest compiled and minified JavaScript -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery necessary for Bootstrap's JavaScript plugins) -->
     <script 
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
@@ -293,7 +293,7 @@ body {
     <div class="container">
         <div class="row">
         <div class="col-md-1 logo">
-            <a href="main.php" ><h2>CliniQ</h2></a>
+            <a href="main.php"><h2>CliniQ</h2></a>
                     
         </div>
         <!-- <div class="col-md-3 fiverr-search" style="margin-left:5px">
@@ -362,19 +362,20 @@ body {
             </div>
             
 
-        <div id='upNext' class="col-sm-6" style='width:fit-content; justify-content:center;'>
-            <div id='upNext1'class=" box_bookings animate__animated animate__bounceIn bounce3" style="color: white; padding: 20px 30px;">
+        <div class="col-sm-6" style='width:fit-content; justify-content:center;'>
+            <div class=" box_bookings animate__animated animate__bounceIn bounce3" style="color: white; padding: 20px 30px;">
             <p style="text-align: center; font-weight: bold;">Refill Requests</p>
-            <div id="noBookings">
-                <p id="nextBookingDate1"></p>
-                <p id="nextBooking1">
-
-                </p>
-                <p id="nextBookingDate2"></p>
-                <p id="nextBooking2">
-                
-                </p>
-            </div>
+            <table id='refills' class='table table-borderless' style="margin-top: 10px; color: white;">
+                <thead>
+                <tr style="border-bottom: 2px solid #17a2b8;">
+                    <th scope="col">Medication</th>
+                    <th scope="col">Collection Date</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Clinic</th>
+                </tr>
+                </thead>
+            </table>
+            <p id="zeroRefills" style="text-align: center; color: white; margin-bottom: 12px; font-weight: bold;"></p>
             </div>
         
             <!-- Recommendations -->
@@ -414,7 +415,85 @@ body {
     $(async() => {
         var patient_id = "<?php echo $_SESSION['patient_id'] ?>";
         var serviceURL = 'http://localhost:5100/patient_views_upcoming_appointment';
+        var serviceURL2 = 'http://localhost:5105/patient_get_Uncollected_Prescriptions/1';
 
+        // Upcoming Refill Requests
+        try{
+            var response = await fetch(
+            serviceURL2, {
+                method: 'GET',
+                headers: {"Content-Type": "application/json"}
+            })
+
+            var result4 = await response.json();
+
+            if(response.status === 200){
+                console.log(result4);
+                var rows2 = "";
+                for (const prescription of result4.data.prescriptions){
+                    var gid = prescription.Gid;
+                    var serviceURL3 = 'http://localhost:8080/v1/graphql';
+                    var query = `
+                    query clinics {
+                        clinics{
+                            clinic_name
+                            gid
+                        }
+                    }`;
+                    try {
+                        const response =
+                            await fetch( 
+                                serviceURL3, {
+                                    method: 'POST',
+                                    headers: {"Content-Type": "application/json",
+                                        'Accept': 'application/json'},
+                                    body: JSON.stringify({
+                                        query
+                                    })
+                                });
+
+                        const result3 = await response.json(); 
+
+                        if (response.status === 200){
+                            // var clinics = result.data.appointments;
+                            // console.log(result3)
+                            for (clinic of result3.data.clinics){
+                                if (clinic.gid == gid){
+                                    var eachRow2 = "<td>" + prescription.Name + "</td>" +
+                                    "<td>" + prescription.PrevDate.slice(0,16) + "</td>" +
+                                    "<td>" + prescription.Price + "</td>" +
+                                    "<td>" + clinic.clinic_name + "</td>"
+                                    console.log(eachRow2);
+                                    rows2 += "<tbody><tr class='animate__animated animate__fadeIn fade'>" + eachRow2 + "</tr></tbody>";
+                                }
+                            }   
+                            // rows2 += "<tbody><tr class='animate__animated animate__fadeIn fade'>" + eachRow2 + "</tr></tbody>";
+                        } 
+                        else if (response.status == 404) {
+                            console.log(response.status);
+                        } 
+                        else {
+                            throw response.status;
+                        }
+                    } 
+                    catch (error) {
+                        console.log(error);
+                    }
+                }   
+                $('#refills').append(rows2);
+            }
+            else if(response.status == 400){
+                console.log("400");
+            }
+            else{
+                throw response.status;
+            }
+        }
+        catch (error){
+            console.log(error);
+        }
+
+        // Upcoming Appointments
         try{
             var response = await fetch(
             serviceURL, {
@@ -427,16 +506,15 @@ body {
 
             var result = await response.json();
             // console.log(result.data.appointments);
-            console.log(result);
+            // console.log(result);
             
             if(response.status === 200 && result.code != 404){
                 var rows = "";
                 for (const appt of result.data.appointments){
                     var gid = appt.Gid;
-                    var serviceURL = 'http://localhost:8080/v1/graphql';
-                    // console.log(gid);
+                    var serviceURL3 = 'http://localhost:8080/v1/graphql';
                     var query = `
-                    query clinics {
+                    query clinics{
                         clinics{
                             clinic_name
                             gid
@@ -445,7 +523,7 @@ body {
                     try {
                         const response =
                             await fetch( 
-                                serviceURL, {
+                                serviceURL3, {
                                     method: 'POST',
                                     headers: {"Content-Type": "application/json",
                                         'Accept': 'application/json'},
@@ -454,15 +532,16 @@ body {
                                     })
                                 });
 
-                        const result = await response.json(); 
+                        const result2 = await response.json();
+                        // console.log(result2);
 
                         if (response.status === 200){
                             // var clinics = result.data.appointments;
-                            console.log(result)
-                            for (clinic of result.data.clinics){
+                            // console.log(result)
+                            for (clinic of result2.data.clinics){
                                 if (clinic.gid == gid){
                                     // console.log(clinic.gid);
-                                    eachRow = "<td>" + clinic.clinic_name + "</td>" +
+                                    var eachRow = "<td>" + clinic.clinic_name + "</td>" +
                                     "<td>" + appt.ApptDate + "</td>" +
                                     "<td>" + appt.ApptTime.slice(0,5) + "</td>" +
                                     `<td><button value="${appt.Appointment_Id}" class="open-deleteBooking btn btn-sm" 
@@ -471,7 +550,7 @@ body {
                                 }
                             }   
                             rows += "<tbody><tr class='animate__animated animate__fadeIn fade'>" + eachRow + "</tr></tbody>";
-                            } 
+                        } 
                         else if (response.status == 404) {
                             console.log(response.status);
                         } 
@@ -497,6 +576,7 @@ body {
         catch (error){
             console.log(error);
         }
+
     })
 
     $(document).on("click", '.open-deleteBooking', function () {
