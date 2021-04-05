@@ -2,6 +2,11 @@
 
 <?php
     $_SESSION['Patient_Id'] = 1;
+    if( !isset($_GET["aid"]) ){
+        header("location:patientViewsAppointmentHistory.php");
+        exit();
+    }
+    
 ?>
 
 <html>
@@ -41,18 +46,14 @@
         width: fit-content;
         height:fit-content;
         margin: 0px auto 60px;
-        background-color: #2b3136;
+        background-color: #2b3136       ;
         padding: 0 10px 0px;
         border-radius: 6px;
         box-shadow: 0 5px 7px rgba(0,0,0,0.5);
     }
-    body {
-        background-image: url("../Main/assets/white.jpg");
-        background-size: cover;
-        background-repeat: repeat;
-    }
 </style>
 <body>
+    
     <!-- Navbar -->
     <div class="header-middle pt-4 pb-3" style="background-color: white;">
     <div class="container">
@@ -72,13 +73,13 @@
     </div>
 
     <!-- Header Bottom Start Here -->
-    <div class="header-bottom pt-3" style="background-color: white;">
+    <div class="header-bottom pt-3"> <div class="header-bottom pt-3" style="background-color: white;">z
     <div class="container-fluid">
-        <div class="row bottom-menu justify-content-center">
+        <div class <div class="header-bottom pt-3" style="background-color: white;">
         <ul class="">
             <li><a href="main.php#appointments">View Upcoming Appointments</a></li>
             <li><a href="patientViewsAppointmentHistory.php">View Past Appointments</a></li>
-            <li><a href="patientMakesRefillRequest.php">Create Refill Request</a></li>
+            <li><a href="patientMakesRefillRequest.php">Request Prescription Refill</a></li>
         </ul>
         </div>
     </div>
@@ -86,7 +87,7 @@
 
     <div id="main-container" class="container">
         <div class="py-5 text-center animate__animated animate__fadeIn fade">
-            <h1 style="text-transform: uppercase; letter-spacing: .2rem;" >Prescription History</h1>
+            <h1 style="text-transform: uppercase; letter-spacing: .2rem;" >List of Prescription</h1>
         </div>
         <div class="table-responsive-lg box_bookings animate__animated animate__bounceIn bounce1" style='width: fit-content;'>
             <table id="prescriptionTable" class='table table-borderless'>
@@ -102,11 +103,13 @@
                         <th>Price</th>
                     </tr>
                 </thead>
+                <tbody id='result'>
+</tbody>
             </table>
         </div>
     </div>
-    <div id='totalAmount' class='d-inline col'>
-        <button id='calcButton' type="button" class="btn btn-outline-info" onclick='processMeds()'>Calculate</button>
+    <div id='totalAmount' style = "margin-left:105px; margin-top:1%;" class='d-inline col'>
+        <button id='calcButton' type="button" class="btn btn-outline-info" style = "height:50px; width:150px;" onclick='processMeds()'>Refill</button>
         <div id='meds'></div>
      </div>
     <script>
@@ -145,26 +148,27 @@
         totalAmount.innerText = 'The total bill is $' + totalPrice;
 
 
-        for (pid in prescriptionIds) {
+        for (var pid of prescriptionIds) {
             $(async () => {
-        var serviceURL = "http://localhost:5125/display_possible_refills";
+        var serviceURL = "http://localhost:5105/refill/" + pid
 
         try {
             const response =
                 await fetch(
                     serviceURL, {
-                        method: 'POST',
+                        method: 'PUT',
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            "Prescription_Id" : pid
+                            Prescription_Id : pid
                         })
                     }
                 );
             const result = await response.json();
             if (response.status === 200) {
                 console.log(result)
+                location.reload()
             } else if (response.status == 404) {
                 showError(result.message);
             } else {
@@ -182,7 +186,7 @@
 
 
     $(async () => {
-        var serviceURL = "http://localhost:5125/display_possible_refills";
+        var serviceURL = "http://localhost:5105/display_possible_refills";
 
         try {
             const response =
@@ -216,10 +220,12 @@
                             "<td>" + prescription.Interval_Days + "</td>" + 
                             "<td>" + "$" + prescription.Price + "</td>";
 
-                   rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
+                   rows += "<tr style='color:white;'>" + eachRow + "</tr>";
+                   console.log(typeof prescription.PrevDate);
                 }
+                
                 // add all the rows to the table
-                $('#prescriptionTable').append(rows);
+                $('#result').append(rows);
             } else if (response.status == 404) {
                 // No Appointment
                 showError(result.message);

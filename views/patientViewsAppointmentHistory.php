@@ -4,7 +4,6 @@
     session_start();
     $_SESSION['Patient_Id'] = 1;
     $_SESSION['Gid'] = 1;
-
 // if(isset($_SESSION['Patient_Id'] && isset($_SESSION['Gid'])) {
 //     }
 ?>
@@ -59,6 +58,10 @@
 </style>
 
 <body>
+<script>
+    const patientId = "<?php echo $_SESSION['Patient_Id'] ?>";
+    const Gid = "<?php echo $_SESSION['Gid'] ?>";
+</script>
     <!-- Navbar -->
     <div class="header-middle pt-4 pb-3" style="background-color: white;">
     <div class="container">
@@ -84,7 +87,7 @@
         <ul class="">
             <li><a href="main.php#appointments">View Upcoming Appointments</a></li>
             <li><a href="patientViewsAppointmentHistory.php">View Past Appointments</a></li>
-            <li><a href="patientMakesRefillRequest.php">Create Refill Request</a></li>
+            <li><a href="patientMakesRefillRequest.php" >Request Prescription Refill</a></li>
         </ul>
         </div>
     </div>
@@ -103,7 +106,7 @@
                     <th>Symptoms</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Book Now?</th>
+                    <th>View Prescription</th>
                 </tr>
             </thead>
         </table>
@@ -112,9 +115,7 @@
         <a id="addBookBtn" class="btn btn-primary" href="refill.php">Add a book</a> -->
     </div>
     <script>
-    const patientId = "<?php echo $_SESSION['Patient_Id'] ?>";
-    const Gid = "<?php echo $_SESSION['Gid'] ?>";
-
+    
     // Place holder in case of revert
 
     // currently hardcoded appointment
@@ -169,7 +170,7 @@
                             "<td>" + appointment.Symptom + "</td>" +
                             "<td>" + appointment.ApptDate + "</td>" +
                             "<td>" + appointment.ApptTime.slice(0,5) + "</td>" +
-                            "<td>"+"<a href='./viewPrescription2.php?aid="+appointment.Appointment_Id+"' class=' btn btn-primary'>View</a>"+"</td>"
+                            "<td>"+"<a href='./patientMakesRefillRequest.php?aid="+appointment.Appointment_Id+"' class=' btn btn-primary'>View</a>"+"</td>"
 
                     rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                 }
