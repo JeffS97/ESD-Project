@@ -476,5 +476,52 @@ def getFirstInLine():
             }
     ), 404
 
+@app.route("/appointment/getQueueNumber", methods=['POST'])
+def getQueueNumber():
+
+    current_date = datetime.date.today() 
+    print(current_date)
+    print(type(current_date))
+
+    t = time.localtime()
+    current_time = time.strftime("%H:%M:%S", t)
+    print(current_time)
+    print(type(current_time))
+
+
+    data = request.get_json()
+    aid = data['Appointment_Id']
+    Gid = data["Gid"]
+
+    # apps = Appointment.query.filter(or_
+    # (and_(Appointment.ApptDate == current_date,Appointment.ApptTime >= current_time)), (Appointment.ApptDate > current_date)).filter_by(Patient_Id = Pid, Completed = 0).all()
+
+    apps = Appointment.query.filter(Appointment.ApptTime >= current_time).filter( Appointment.ApptDate == current_date).filter(Gid == Gid). filter(Appointment.Completed == False).order_by(Appointment.ApptDate, Appointment.ApptTime).all()
+
+    counter = 0
+    found = False
+    if apps: 
+        for app in apps: 
+            if str(app.Appointment_Id) == str(aid):
+                found = True
+                break
+            counter += 1
+        if found:
+            return jsonify(
+                {
+                    "code": 200,
+                    "data": {
+                        "count": counter
+                    }
+                }
+            )
+        
+    return jsonify(
+            {
+                "code": 404,
+                "message": "No Prescriptions found."
+            }
+    ), 404
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)

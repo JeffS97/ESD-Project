@@ -238,7 +238,9 @@ def processUpdateAppointments(details):
     p_name = str(chatid['data']['P_name'])
     chatId = str(chatid['data']['ChatId'])
 
-    bingbong = {"P_name" : p_name,
+    bingbong = {
+            "Type": "Reminder",
+            "P_name" : p_name,
             "ChatId": chatId,
             "ApptTime": timeStr, 
             "ApptDate": dateStr}
@@ -348,6 +350,29 @@ def update_telegram(username):
     except Exception as e:
         pass
     
+@app.route("/get_Number_Of_People_Ahead", methods=["POST"])
+def getNumberOfPeopleAhead():
+    if request.is_json:
+        try:
+            number = request.get_json()
+
+            number = processGetNumberOfPeopleAhead(number)
+            return jsonify(number), 200
+
+        except Exception as e:
+            pass  # do nothing
+
+    # if reached here, not a JSON request.
+    return jsonify({
+        "code": 400,
+        "message": "Invalid JSON input: " + str(request.get_data())
+    }), 400
+
+
+def processGetNumberOfPeopleAhead(details):
+    number = invoke_http(appointment_URL + '/getQueueNumber', method='POST', json=details)
+
+    return number['data']
     
 
 if __name__ == "__main__":

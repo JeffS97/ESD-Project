@@ -129,13 +129,34 @@ body {
                   <tbody id='app'></tbody>
               </table>
             </div>
+
+            <div id='bookings2' class="mt-5 table-responsive-lg box_bookings animate__animated animate__bounceIn bounce1">
+              <span><p style="float: left; font-weight: bold; color: white; padding-top:20px; padding-left: 10px; width:">Current Prescriptions</p></span>
+              <!-- <span><input type="text" id="myInput2" onkeyup="myFunction()" placeholder="Search" style="float: right; margin-top: 20px; border: none; border-radius: 8px; margin-right: 10px;"></span>     -->
+              <table class='table table-borderless' style="margin-top: 10px; color: white;">
+                <thead>
+                  <tr style="border-bottom: 2px solid #17a2b8;">
+                    <th>Prescription ID</th>
+                    <th>Medication</th>
+                    <th>Collection Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id='result'>
+                </tbody>
+              </table>
+            </div>
+            </div>
+          </div>
           </div>
         </div>
 
-        
-    </div>
+	      <!-- <div class="row"> -->
+          
+    <!-- </div> -->
         
 <script>
+    getpres()
     var gid = <?php echo $_SESSION['gid'] ?>;
 
     $(async() => {      
@@ -189,12 +210,12 @@ body {
                    
                     "<td>"+book.Symptom+"</td>"+
                     "<td>"+comp+"</td>"+
-                    "<td>"+"<a href='./createPrescription.php?id="+book.Appointment_Id+"' class=' btn btn-primary'>View</a>"+"</td>"
+                    "<td>"+"<a href='./createPrescription.php?id="+book.Appointment_Id+"' class=' btn btn-primary btn-sm'>View</a>"+"</td>"
                     if(comp=='No'){
-                   eachRow+= "<td>"+`<a href='#' onclick='update(${book.Appointment_Id})' class=' btn btn-primary'>Completed</a></td>`
+                   eachRow+= "<td>"+`<a href='#' onclick='update(${book.Appointment_Id})' class=' btn btn-primary btn-sm'>Completed</a></td>`
                     }
                     else{
-                      eachRow+= "<td>"+"<a href='./createPrescription.php?id="+book.Appointment_Id+"' class=' btn btn-primary' style='pointer-events:none;background-color:gray'>Completed</a>"+"</td>"
+                      eachRow+= "<td>"+"<a href='./createPrescription.php?id="+book.Appointment_Id+"' class=' btn btn-primary btn-sm' style='pointer-events:none;background-color:gray'>Completed</a>"+"</td>"
                     }
 
                     rows += "<tr>" + eachRow + "</tr>";
@@ -252,6 +273,98 @@ body {
              } // error
              });  
     }
+
+    function getpres(){
+
+  $(async() => {           
+        // Change serviceURL to your own
+        var serviceURL9 = "http://127.0.0.1:5105/healthworker_Get_Uncollected_Prescriptions/0"; 
+        try {
+            var gid=1
+            
+            const response =
+            await fetch(
+                serviceURL9, {
+                method: 'GET'
+                // headers: { "Content-Type": "application/json" },
+                // body: JSON.stringify({ "Gid" : gid
+                // })
+             });
+             const result = await response.json();
+         console.log(response.status)
+              if (response.status === 200) {
+                 // success case
+                 console.log("zzz")
+                console.log(result.data.prescriptions)
+                var prescription=result.data.prescriptions; 
+                rows=""
+                count=0
+               
+                for (let pres of prescription){
+                 
+                  count++
+                 
+                  each=`
+                    <td>${pres.Prescription_Id}</td>
+                    <td>${pres.Name}</td>
+                    <td>${pres.PrevDate.slice(0,16)}</td>
+                    <td><input type='button' onclick='updateCollected(${pres.Prescription_Id})' class='btn-secondary btn btn-sm' value='Collected'></td>          
+                  `
+                  rows+="<tr>"+each+"</tr>"
+                  console.log(rows)
+                }
+                $('#result').append(rows);
+               
+                 } else if (response.status == 404) {
+                     // No books
+                     showError(result.message);
+                 } else {
+                     // unexpected outcome, throw the error
+                     throw response.status;
+                 }
+             } catch (error) {
+                 // Errors when calling the service; such as network error, 
+                 // service offline, etc
+                 ('There is a problem retrieving books data, please try again later.<br />' + error);
+             } // error
+             });  
+    
+}
+function updateCollected(pid){
+  $(async() => {           
+        // Change serviceURL to your own
+        var serviceURL5 = "http://127.0.0.1:5105/refillcollected"; 
+        try {
+              
+            const response =
+            await fetch(
+                serviceURL5, {
+                method: 'PUT',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ Prescription_Id : pid
+                })
+             });
+             const result = await response.json();
+         console.log(response.status)
+              if (response.status === 200) {
+                 // success case
+                 alert("Successfully updated");
+                 location.reload()
+            
+                 } else if (response.status == 404) {
+                     // No books
+                     showError(result.message);
+                 } else {
+                     // unexpected outcome, throw the error
+                     throw response.status;
+                 }
+             } catch (error) {
+                 // Errors when calling the service; such as network error, 
+                 // service offline, etc
+                 ('There is a problem retrieving books data, please try again later.<br />' + error);
+             } // error
+             });  
+}
 
     function myFunction() {
       // Declare variables
