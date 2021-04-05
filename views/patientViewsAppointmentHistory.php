@@ -36,6 +36,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="navbar.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <style>
     .fade{
@@ -68,7 +70,7 @@
     <div class="container">
         <div class="row">
         <div class="col-md-1 logo">
-            <a href="" ><h2>CliniQ</h2></a>
+            <a href="main.php" ><h2>CliniQ</h2></a>
         </div>
         <div class="fiverr-menu" style="margin-left: auto;">
             <ul>
@@ -96,7 +98,7 @@
 
     <div id="main-container" class="container">
         <div class="py-5 text-center animate__animated animate__fadeIn fade">
-            <h1 style="text-transform: uppercase; letter-spacing: .2rem;" >Appointment History</h1>
+            <h1 style="text-transform: uppercase; letter-spacing: .2rem; font-weight: bold;" >Appointment History</h1>
         </div>
         <div class="table-responsive-lg box_bookings animate__animated animate__bounceIn bounce1" style='width: fit-content;'>
         <table id="appointmentTable" class='table table-borderless' style="color:white;">
