@@ -20,6 +20,8 @@
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
     crossorigin="anonymous">
     <link rel="stylesheet" href="navbar.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
  
     <!-- Latest compiled and minified JavaScript -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -54,6 +56,7 @@ body {
     background-image: url("../Main/assets/white.jpg");
     background-size: cover;
     background-repeat: repeat;
+    font-family: 'Raleway', sans-serif;
 }
 
 </style>
@@ -92,7 +95,7 @@ body {
     <div class="main_page">
       <div class="container">
         <div id='booking' class="py-5 text-center animate__animated animate__fadeIn fade">
-          <h1 style="text-transform: uppercase; letter-spacing: .2rem;">Staff Dashboard</h1>
+          <h1 style="text-transform: uppercase; letter-spacing: .2rem; font-weight: bold;">Staff Dashboard</h1>
           <!-- <p class="lead">Select a clinic on the map below to make an appointment!</p> -->
         </div> 
       </div> 

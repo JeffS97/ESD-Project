@@ -2,11 +2,6 @@
 
 <?php
     $_SESSION['Patient_Id'] = 1;
-    if( !isset($_GET["aid"]) ){
-        header("location:patientViewsAppointmentHistory.php");
-        exit();
-    }
-    
 ?>
 
 <html>
@@ -37,6 +32,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="navbar.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <style>
     .fade{
@@ -46,20 +44,25 @@
         width: fit-content;
         height:fit-content;
         margin: 0px auto 60px;
-        background-color: #2b3136       ;
+        background-color: #2b3136;
         padding: 0 10px 0px;
         border-radius: 6px;
         box-shadow: 0 5px 7px rgba(0,0,0,0.5);
     }
+    body {
+        background-image: url("../Main/assets/white.jpg");
+        background-size: cover;
+        background-repeat: repeat;
+        font-family: 'Raleway', sans-serif;
+    }
 </style>
 <body>
-    
     <!-- Navbar -->
     <div class="header-middle pt-4 pb-3" style="background-color: white;">
     <div class="container">
         <div class="row">
         <div class="col-md-1 logo">
-            <a href="" ><h2>CliniQ</h2></a>
+            <a href="main.php"><h2>CliniQ</h2></a>
         </div>
         <div class="fiverr-menu" style="margin-left: auto;">
             <ul>
@@ -73,13 +76,13 @@
     </div>
 
     <!-- Header Bottom Start Here -->
-    <div class="header-bottom pt-3"> <div class="header-bottom pt-3" style="background-color: white;">z
+    <div class="header-bottom pt-3" style="background-color: white;">
     <div class="container-fluid">
-        <div class <div class="header-bottom pt-3" style="background-color: white;">
+        <div class="row bottom-menu justify-content-center">
         <ul class="">
             <li><a href="main.php#appointments">View Upcoming Appointments</a></li>
             <li><a href="patientViewsAppointmentHistory.php">View Past Appointments</a></li>
-            <li><a href="patientMakesRefillRequest.php">Request Prescription Refill</a></li>
+            <li><a href="patientMakesRefillRequest.php">Create Refill Request</a></li>
         </ul>
         </div>
     </div>
@@ -87,7 +90,7 @@
 
     <div id="main-container" class="container">
         <div class="py-5 text-center animate__animated animate__fadeIn fade">
-            <h1 style="text-transform: uppercase; letter-spacing: .2rem;" >List of Prescription</h1>
+            <h1 style="text-transform: uppercase; letter-spacing: .2rem; font-weight: bold;" >Prescription History</h1>
         </div>
         <div class="table-responsive-lg box_bookings animate__animated animate__bounceIn bounce1" style='width: fit-content;'>
             <table id="prescriptionTable" class='table table-borderless'>
@@ -103,13 +106,11 @@
                         <th>Price</th>
                     </tr>
                 </thead>
-                <tbody id='result'>
-</tbody>
             </table>
         </div>
     </div>
-    <div id='totalAmount' style = "margin-left:105px; margin-top:1%;" class='d-inline col'>
-        <button id='calcButton' type="button" class="btn btn-outline-info" style = "height:50px; width:150px;" onclick='processMeds()'>Refill</button>
+    <div id='totalAmount' class='d-inline col'>
+        <button id='calcButton' type="button" class="btn btn-outline-info" onclick='processMeds()'>Calculate</button>
         <div id='meds'></div>
      </div>
     <script>
@@ -148,27 +149,26 @@
         totalAmount.innerText = 'The total bill is $' + totalPrice;
 
 
-        for (var pid of prescriptionIds) {
+        for (pid in prescriptionIds) {
             $(async () => {
-        var serviceURL = "http://localhost:5105/refill/" + pid
+        var serviceURL = "http://localhost:5125/display_possible_refills";
 
         try {
             const response =
                 await fetch(
                     serviceURL, {
-                        method: 'PUT',
+                        method: 'POST',
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            Prescription_Id : pid
+                            "Prescription_Id" : pid
                         })
                     }
                 );
             const result = await response.json();
             if (response.status === 200) {
                 console.log(result)
-                location.reload()
             } else if (response.status == 404) {
                 showError(result.message);
             } else {
@@ -186,7 +186,7 @@
 
 
     $(async () => {
-        var serviceURL = "http://localhost:5105/display_possible_refills";
+        var serviceURL = "http://localhost:5125/display_possible_refills";
 
         try {
             const response =
@@ -220,12 +220,10 @@
                             "<td>" + prescription.Interval_Days + "</td>" + 
                             "<td>" + "$" + prescription.Price + "</td>";
 
-                   rows += "<tr style='color:white;'>" + eachRow + "</tr>";
-                   console.log(typeof prescription.PrevDate);
+                   rows += "<tbody><tr>" + eachRow + "</tr></tbody>";
                 }
-                
                 // add all the rows to the table
-                $('#result').append(rows);
+                $('#prescriptionTable').append(rows);
             } else if (response.status == 404) {
                 // No Appointment
                 showError(result.message);

@@ -7,6 +7,9 @@
     <title>Paypal Payment</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
   
 </head>
 <style>
@@ -14,6 +17,7 @@
         background-image: url("assets/white.jpg");
         background-size: cover;
         background-repeat: repeat;
+        font-family: 'Raleway', sans-serif;
     }
 
     .box_bookings {

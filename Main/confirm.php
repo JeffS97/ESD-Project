@@ -17,6 +17,9 @@
 
 <title>Appointment Confirmation</title>
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+
 <style>
     
     container-fluid {
@@ -33,6 +36,7 @@
         background-image: url("assets/white.jpg");
         background-repeat: repeat;
         background-size: cover;
+        font-family: 'Raleway', sans-serif;
     }
 
     .box {

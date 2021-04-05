@@ -35,9 +35,11 @@
     src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
     crossorigin="anonymous"></script>
-    <title>cliniQ</title>
+    <title>CliniQ</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <!-- <link rel="stylesheet" href="search.css"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <style>
     #map {
@@ -272,6 +274,10 @@ button{
     font-weight: bold;
 }
 
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
 </style>
 <body>
   <div class="alert hide" style="margin-top: 80px;">
@@ -318,19 +324,10 @@ button{
     <div class="header-bottom pt-3">
     <div class="container-fluid">
         <div class="row bottom-menu justify-content-center">
-        <ul class="">
+        <ul>
             <li><a href="#appointments">View Upcoming Appointments</a></li>
             <li><a href="patientViewsAppointmentHistory.php">View Past Appointments</a></li>
             <li><a href="patientMakesRefillRequest.php">Create Refill Request</a></li>
-                    <!-- <?php
-                    if($_SESSION['role']=='doctor' || $_SESSION['role']=='nurse'){
-
-                    echo '<li><a href="">Video & Animation</a></li>';
-                    echo '<li><a href="">Manage Appointments</a></li>';
-                    echo '<li><a href="">Manage Patients</a></li>';
-                    echo  '<li><a href="">Approve Refill</a></li>';
-                    }
-                    ?> -->
         </ul>
         </div>
     </div>
@@ -339,17 +336,17 @@ button{
     <div class="main_page">
         <div class="container">
         <div id='booking' class="py-5 text-center animate__animated animate__fadeIn fade">
-        <h1 style="text-transform: uppercase; letter-spacing: .2rem;">Patient Dashboard</h1>
-        <p class="lead">Select a clinic on the map below to make an appointment!</p>
+        <h1 style="text-transform: uppercase; letter-spacing: .2rem; font-weight: bold;">Patient Dashboard</h1>
+        <p>Select a clinic on the map below to make an appointment!</p>
         </div>
         
         <!-- Map View -->
         <div class="row">
-            <div id="map" style="width: 100%; height: 450px;" class="box_bookings"></div>
+            <div id="map" style="width: 100%; height: 450px;" class="box_bookings animate__animated animate__bounceIn bounce1"></div>
         </div>
 
         <div class="row">
-            <div id='bookings' class=" col-sm-6 table-responsive-lg box_bookings animate__animated animate__bounceIn bounce1" style='width: fit-content;'>
+            <div id='bookings' class=" col-sm-6 table-responsive-lg box_bookings animate__animated animate__bounceIn bounce2" style='width: fit-content;'>
             <p style="text-align: center; font-weight: bold; color: white; padding-top:20px;">Upcoming Appointments</p>
             <table id='appointments' class = 'table table-borderless' style="margin-top: 10px; color: white;">
                 <thead>
@@ -366,7 +363,7 @@ button{
             
 
         <div id='upNext' class="col-sm-6" style='width:fit-content; justify-content:center;'>
-            <div id='upNext1'class=" box_bookings animate__animated animate__bounceIn bounce2" style="color: white; padding: 20px 30px;">
+            <div id='upNext1'class=" box_bookings animate__animated animate__bounceIn bounce3" style="color: white; padding: 20px 30px;">
             <p style="text-align: center; font-weight: bold;">Refill Requests</p>
             <div id="noBookings">
                 <p id="nextBookingDate1"></p>

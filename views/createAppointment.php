@@ -26,13 +26,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="navbar.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <style>
-    .main_page {
-            background-image: url("../Main/assets/appt_bg.jpg");
-            background-repeat: repeat;
-            background-size: cover;
-            padding-top: 100px;
+    body {
+        background-image: url("../Main/assets/purple.jpg");
+        background-repeat: repeat;
+        background-size: cover;
     }
         
     .form-group {
@@ -94,10 +95,14 @@
         border-radius: 6px;
         box-shadow: 0 3px 6px rgba(0,0,0,0.3);
     }
+
+    body {
+        font-family: 'Raleway', sans-serif;
+    }
 </style>
 <body>
     <!-- Navbar -->
-    <div class="header-middle pt-4 pb-3">
+    <div class="header-middle pt-4 pb-3" style="background-color: white;">
         <div class="container">
             <div class="row">
                 <div class="col-md-1 logo">
@@ -114,9 +119,9 @@
         </div>
     </div>
 
-    <div class="main_page">
+    <div class="main_page" style="padding-top: 100px;">
     <div class="container animate__animated animate__jackInTheBox box">
-        <h2 class="header">Appointment Creation</h2>
+        <h2 class="header" style="font-weight: bold;">Appointment Creation</h2>
         <h3 class="header" style="margin-bottom: -20px;">Hey <span id="pname"></span>!</h3>
         <h3>You're currently making an appointment at:</h3><br>
         
@@ -132,7 +137,7 @@
         <form class="needs-validation" novalidate style="margin-top: 30px;" action="server/helper/addUser.php" method="POST" class="form" enctype="multipart/form-data">
 
             <div class="form-group">
-                <label for="symptoms">Symptoms</label>
+                <label for="symptoms" style="font-weight: bold;">Symptoms</label>
                 <input type="text" id="symptoms" name="symptoms" class="form-control" placeholder='What are your symptoms?' required>
                 <div class="invalid-feedback">
                   Symptoms are required.
@@ -140,7 +145,7 @@
             </div>
 
             <div>
-                Timeslots
+                <label style="font-weight: bold; margin-bottom: 0px;">Timeslots</label> 
                 <div class="container timings">
 
                     <!-- Calendar -->
@@ -219,7 +224,7 @@
             <div id="selected_timeslot"></div>
 
             <div class="text-center">
-                <button class="btn btn-dark animate__animated animate__fadeInDown" id="confirmBooking" style="margin-top:20px;" type="button">Confirm Booking</button>
+                <button class="btn btn-primary animate__animated animate__fadeInDown" id="confirmBooking" style="margin-top:20px;" type="button">Confirm Booking</button>
             </div>
         
         </form>
@@ -506,11 +511,11 @@
                         });
 
                         var clinic_info = `
-                            <p id="clinic_name">Clinic: ${clinic_name}</p>
-                            <p>Address: ${address}</p>
-                            <p>Postal Code: ${postal_cd}</p>
-                            <p>Unit: ${unit}</p>
-                            <p>Tel: ${tel}</p>
+                            <p id="clinic_name">Clinic: <b>${clinic_name}</b></p>
+                            <p>Address: <b>${address}</b></p>
+                            <p>Postal Code: <b>${postal_cd}</b></p>
+                            <p>Unit: <b>${unit}</b></p>
+                            <p>Tel: <b>${tel}</b></p>
                         `;
 
                         $('#clinic_info').html(clinic_info);

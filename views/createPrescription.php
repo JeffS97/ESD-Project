@@ -25,6 +25,9 @@
 
     <link rel="stylesheet" href="navbar.css">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+
     <style>
         .fade{
             animation-duration: 1.5s;
@@ -45,6 +48,14 @@
             background-image: url("../Main/assets/white.jpg");
             background-size: cover;
             background-repeat: repeat;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .bounce1 {
+            animation-delay: 0.2s;
+        }
+        .bounce2{
+            animation-delay: 0.4s;
         }
     </style>
 
@@ -94,14 +105,14 @@
       
         <div class="container">
             <div id='booking' class="py-5 text-center animate__animated animate__fadeIn fade">
-            <h1 style="text-transform: uppercase; letter-spacing: .2rem;">Create a Prescription</h1>
+            <h1 style="text-transform: uppercase; letter-spacing: .2rem; font-weight: bold;">Create a Prescription</h1>
             <!-- <p class="lead">Select a clinic on the map below to make an appointment!</p> -->
             </div> 
         </div> 
 
         <div class="container">
             <div class="row">
-                <div class="box_bookings col-sm-4">
+                <div class="box_bookings col-sm-4 animate__animated animate__bounceIn bounce1">
                     <h5 style="border-bottom: 2px solid #17a2b8; padding-bottom: 10px;">Appointment Details</h5>
                     <p class="text-left" id="appointment" style="padding-top: 8px;"></p>
                     <div id='prescription'></div>
@@ -109,7 +120,7 @@
 
                 <div class="col-sm-1"></div>
 
-                <div class="box_bookings col-sm-7">
+                <div class="box_bookings col-sm-7 animate__animated animate__bounceIn bounce2">
                     <!-- <img class="card-img-top" src="plumb.jpg" alt="Card image" style="height:100%;">
                     <div class="card-img-overlay"> -->
                     <form novalidate="" method="POST" id="bootstrapForm" enctype="multipart/form-data">
