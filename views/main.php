@@ -346,7 +346,7 @@ session_start();
             <div class="row bottom-menu justify-content-center">
                 <ul>
                     <li><a href="#appointments">View Upcoming Appointments</a></li>
-                    <li><a href="./patientMakesRefillRequest.php">Request Prescription Request</a></li>
+                    <li><a href="./patientMakesRefillRequest.php">Request Prescription Refill</a></li>
                 </ul>
             </div>
         </div>
@@ -923,8 +923,8 @@ session_start();
                                     "Content-Type": "application/json"
                                 },
                                 body: JSON.stringify({
-                                    "Appointment_Id": "3",
-                                    "Gid": "1"
+                                    "Appointment_Id": appt_id,
+                                    "Gid": gid
                                 })
                             }
                         );

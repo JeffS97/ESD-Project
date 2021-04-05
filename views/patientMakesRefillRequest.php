@@ -61,6 +61,13 @@
         background-repeat: repeat;
         font-family: 'Raleway', sans-serif;
     }
+    #error_msg {
+        color: white;
+        font-weight: bold;
+        padding: 20px;
+        padding-bottom: 30px;
+        text-align: center;
+    }
 </style>
 <body>
     
@@ -113,20 +120,17 @@
                     </tr>
                 </thead>
                 <tbody id='result'>
-</tbody>
+                </tbody>
             </table>
+            <p id="error_msg"></p>
+            <div id="totalAmount" style="text-align: center; color: white; font-weight: bold;">
+                <p type='hidden' id='price'></p>
+                <button id='calcButton' type="button" class="btn btn-info" style = "height:40px; width:80px; margin-bottom: 20px;" onclick='processMeds()'>Refill</button>
+                <div id='meds'></div>
+            </div>
         </div>
     </div>
-    <div id='totalAmount' style = "margin-left:105px; margin-top:1%;" class='d-inline col'>
-    <input type='hidden' id='price'>
-        <button id='calcButton' type="button" class="btn btn-outline-info" style = "height:50px; width:150px;" onclick='processMeds()'>Refill</button>
-        <div id='meds'></div>
-       
-                        
-     </div>
-          
-    <script>
-      
+<script>      
     
     const patientId = <?php echo $_SESSION['Patient_Id']?>;
     var aid = <?php echo $_GET['aid']?>;
@@ -161,15 +165,14 @@
         console.log(prescriptionIds);
         console.log(totalPrice);
         
-        totalAmount.innerText = 'The total bill is $' + totalPrice;
-        totalAmount.innerHTML += `<a href='./refillpayment.php?price=${totalPrice}' id='payment type = 'button' class='btn btn-outline-info' style = 'height:50px; width:150px; margin-left:40%;'>Payment</button>`;
+        totalAmount.innerHTML = `<a href='./refillpayment.php?price=${totalPrice}' id='payment type = 'button' class='btn btn-info' style = 'height:40px; width:150px; margin-bottom: 20px;'>Payment: $${totalPrice}</button>`;
         
         
 
 
       
             $(async () => {
-        var serviceURL = "http://localhost:5125/refill"
+        var serviceURL = "http://localhost:5105/refill"
         
 
         try {
@@ -197,7 +200,9 @@
         } catch (error) {
             // Errors when calling the service; such as network error, 
             // service offline, etc
-            showError('There is a problem retrieving making your refillrequest, please try again later.<br/>' + error);
+            // showError('There is a problem retrieving making your refill request, please try again later.<br/>' + error);
+            document.getElementById('error_msg').innerText = "There doesn't seem to be any prescriptions linked to this appointment!";
+            $('#calcButton').hide();
         } // error
             });
         }
@@ -206,7 +211,7 @@
 
 
     $(async () => {
-        var serviceURL = "http://localhost:5125/display_possible_refills";
+        var serviceURL = "http://localhost:5105/display_possible_refills";
 
         try {
             const response =
@@ -256,7 +261,9 @@
         } catch (error) {
             // Errors when calling the service; such as network error, 
             // service offline, etc
-            showError('There is a problem retrieving prescription data, please try again later.<br/>' + error);
+            // showError('There is a problem retrieving prescription data, please try again later.<br/>' + error);
+            document.getElementById('error_msg').innerText = "There doesn't seem to be any prescriptions linked to this appointment!";
+            $('#calcButton').hide();
         } // error
     });
 
