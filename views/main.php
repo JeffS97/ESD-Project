@@ -69,7 +69,7 @@
     text-transform: uppercase;
     letter-spacing: .1rem;
   }
-  .main_page {
+  body {
     background-image: url("../Main/assets/white.jpg");
     background-size: cover;
     background-repeat: repeat;
@@ -289,7 +289,7 @@ body {
   </div>
 
     <!-- Navbar -->
-    <div class="header-middle pt-4 pb-3">
+    <div class="header-middle pt-4 pb-3" style="background-color: white;">
     <div class="container">
         <div class="row">
         <div class="col-md-1 logo">
@@ -306,7 +306,7 @@ body {
         </div> -->
         <div class="fiverr-menu" style="margin-left: auto;">
             <ul>
-            <button id="telegrambtn" type="button" data-toggle="modal" data-target="#boxModal" onclick="window.open('https://t.me/CliniQueue_Bot?start=<?php echo $_SESSION["username"]?>')">Get Telegram Notifications!</button>
+            <button id="telegrambtn" type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#boxModal" onclick="window.open('https://t.me/CliniQueue_Bot?start=<?php echo $_SESSION["username"]?>')">Get Telegram Notifications!</button>
             <li><a class="pro" href="">Home</a></li>
             <li><a href="">Profile</a></li>
             <!-- <li><a href="">History</a></li> -->
@@ -322,7 +322,7 @@ body {
     </div>
 
     <!-- Header Bottom Start Here -->
-    <div class="header-bottom pt-3">
+    <div class="header-bottom pt-3" style="background-color: white;">
     <div class="container-fluid">
         <div class="row bottom-menu justify-content-center">
         <ul>
@@ -407,8 +407,8 @@ body {
             </div>
         </div>
         </div>
-        <label style="visibility:hidden" id="testlabel"><?php echo $_SESSION["username"]; ?></label> 
     </div>
+    <label style="visibility:hidden" id="testlabel"><?php echo $_SESSION["username"]; ?></label> 
     <div class="modal fade" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
