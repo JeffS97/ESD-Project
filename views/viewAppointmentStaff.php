@@ -27,8 +27,7 @@
   
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <style>
-    <style>
-        img{
+img{
   width: 100%;
 }
 
@@ -311,7 +310,7 @@ function getme(){
     
     $(async() => {           
         // Change serviceURL to your own
-        var serviceURL = "http://127.0.0.1:5100/worker_views_all_appointments";
+        var serviceURL = "http://localhost:8000/api/v1/complexappointment/worker_views_all_appointments";
         
        console.log(gid);
        console.log(apptDate); 
@@ -376,7 +375,7 @@ function getme(){
       
       $(async() => {           
         // Change serviceURL to your own
-        var serviceURL5 = "http://127.0.0.1:5100/update_appointment"; 
+        var serviceURL5 = "http://localhost:8000/api/v1/complexappointment/update_appointment"; 
         try {
               
             const response =

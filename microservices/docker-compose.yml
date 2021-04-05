@@ -155,19 +155,6 @@ services:
       PYTHONUNBUFFERED: 1
     ports:
       - "5002:5002"
-  refill:
-    build:
-      context: ./
-      dockerfile: refill.dockerfile
-    image: jeffvindersingh/refill:1.0
-    restart: always
-    networks:
-      - kong-net
-    environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
-      PYTHONUNBUFFERED: 1
-    ports:
-      - "5004:5004"
   notification:
     build:
       context: ./
@@ -211,35 +198,6 @@ services:
       appointment_URL: http://appointment:5001/appointment
       patient_URL: http://patient:5000/patient
       PYTHONUNBUFFERED: 1
-    ports:
-      - "5100:5100"
-  complexhealthcare:
-    build:
-      context: ./
-      dockerfile: complexhealthcare.dockerfile
-    image: jeffvindersingh/complexhealthcare:1.0
-    restart: always
-    networks:
-      - kong-net
-    depends_on:
-      - patient
-      - prescription
-      - refill
-      - appointment
-      - healthworker
-      - rabbitmq
-    environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
-      rabbit_host: rabbitmq
-      rabbit_port: 5672
-      appointment_URL: http://appointment:5001/appointment
-      patient_URL: http://patient:5000/patient
-      prescription_URL: http://prescription:5002/prescription
-      refill_URL: http://refill:5004/refill
-      healthworker_URL: http://healthworker:5003/healthworker
-      PYTHONUNBUFFERED: 1
-    ports:
-      - "5102:5102"
   complexprescription:
     build:
       context: ./
@@ -251,7 +209,6 @@ services:
     depends_on:
       - patient
       - prescription
-      - refill
       - appointment
       - healthworker
       - rabbitmq
@@ -265,35 +222,8 @@ services:
       refill_URL: http://refill:5004/refill
       healthworker_URL: http://healthworker:5003/healthworker
       PYTHONUNBUFFERED: 1
-    ports:
-      - "5105:5105"
-  complexrefill:
-    build:
-      context: ./
-      dockerfile: complexrefill.dockerfile
-    image: jeffvindersingh/complexrefill:1.0
-    restart: always
-    networks:
-      - kong-net
-    depends_on:
-      - patient
-      - prescription
-      - refill
-      - rabbitmq
-    environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
-      rabbit_host: rabbitmq
-      rabbit_port: 5672
-      patient_URL: http://patient:5000/patient
-      prescription_URL: http://prescription:5002/prescription
-      refill_URL: http://refill:5004/refill
-      PYTHONUNBUFFERED: 1
-    ports:
-      - "5107:5107"
 volumes:
   db_data:
   rabbitmq_data:  
   pgdata: 
   kongadata:
-
-

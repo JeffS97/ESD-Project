@@ -131,7 +131,7 @@ body {
             </div>
 
             <div id='bookings2' class="mt-5 table-responsive-lg box_bookings animate__animated animate__bounceIn bounce1">
-              <span><p style="float: left; font-weight: bold; color: white; padding-top:20px; padding-left: 10px; width:">Current Prescriptions</p></span>
+              <span><p style="float: left; font-weight: bold; color: white; padding-top:20px; padding-left: 10px;">Current Prescriptions</p></span>
               <!-- <span><input type="text" id="myInput2" onkeyup="myFunction()" placeholder="Search" style="float: right; margin-top: 20px; border: none; border-radius: 8px; margin-right: 10px;"></span>     -->
               <table class='table table-borderless' style="margin-top: 10px; color: white;">
                 <thead>
@@ -176,7 +176,7 @@ body {
     
     $(async() => {           
         // Change serviceURL to your own
-        var serviceURL = "http://127.0.0.1:5100/worker_views_all_appointments";
+        var serviceURL = "http://localhost:8000/api/v1/complexappointment/worker_views_all_appointments";
         
        console.log(gid);
        console.log(apptDate); 
@@ -240,7 +240,7 @@ body {
     function update(aid){
       $(async() => {           
         // Change serviceURL to your own
-        var serviceURL5 = "http://127.0.0.1:5100/update_appointment"; 
+        var serviceURL5 = "http://localhost:8000/api/v1/complexappointment/update_appointment"; 
 
         try {
               
@@ -278,7 +278,7 @@ body {
 
   $(async() => {           
         // Change serviceURL to your own
-        var serviceURL9 = "http://127.0.0.1:5105/healthworker_Get_Uncollected_Prescriptions/0"; 
+        var serviceURL9 = "http://localhost:8000/api/v1/complexprescription/healthworker_Get_Uncollected_Prescriptions/0"; 
         try {
             var gid=1
             
@@ -333,7 +333,7 @@ body {
 function updateCollected(pid){
   $(async() => {           
         // Change serviceURL to your own
-        var serviceURL5 = "http://127.0.0.1:5105/refillcollected"; 
+        var serviceURL5 = "http://localhost:8000/api/v1/complexprescription/refillcollected"; 
         try {
               
             const response =

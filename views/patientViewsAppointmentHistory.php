@@ -2,7 +2,7 @@
 
 <?php
     session_start();
-    $_SESSION['Patient_Id'] = 1;
+    $_SESSION['Patient_Id'] = 4;
     $_SESSION['Gid'] = 1;
 // if(isset($_SESSION['Patient_Id'] && isset($_SESSION['Gid'])) {
 //     }
@@ -142,7 +142,7 @@
     // - using await requires the function that calls it to be async
 
     $(async () => {
-        var serviceURL = "http://localhost:5100/patient_views_appointment_history";
+        var serviceURL = "http://localhost:8000/api/v1/complexappointment/patient_views_appointment_history";
 
         try {
             const response =

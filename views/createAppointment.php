@@ -35,7 +35,7 @@
         background-repeat: repeat;
         background-size: cover;
     }
-        
+    
     .form-group {
         margin-bottom: 30px;
         width: 80%;
@@ -556,7 +556,7 @@
             console.log("Time: " + time);
             console.log("gid: " + gid);
 
-            var serviceURL = 'http://localhost:5100/create_appointment';
+            var serviceURL = 'http://localhost:8000/api/v1/complexappointment/create_appointment';
 
             var serviceURL2 = 'http://localhost:5001/appointment/healthcareCurrentAppointments';
 

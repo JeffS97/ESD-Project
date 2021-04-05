@@ -473,8 +473,8 @@ session_start();
         document.getElementById("btn1").addEventListener("click", updateTelegram, false);
         $(async () => {
             var patient_id = "<?php echo $_SESSION['patient_id'] ?>";
-            var serviceURL = 'http://localhost:5100/patient_views_upcoming_appointment';
-            var serviceURL2 = 'http://localhost:5105/patient_get_Uncollected_Prescriptions/1';
+            var serviceURL = 'http://localhost:8000/api/v1/complexappointment/patient_views_upcoming_appointment';
+            var serviceURL2 = 'http://localhost:8000/api/v1/complexprescription/patient_get_Uncollected_Prescriptions/1';
 
             // Upcoming Refill Requests
             try {
@@ -643,7 +643,7 @@ session_start();
         function updateTelegram() {
             var username = document.getElementById('testlabel').textContent;
             console.log(username);
-            var serviceURL = `http://127.0.0.1:5100/update_telegram/${username}`;
+            var serviceURL = `http://localhost:8000/api/v1/complexappointment/update_telegram/${username}`;
             console.log(serviceURL);
 
             var response = fetch(
@@ -668,7 +668,7 @@ session_start();
             var appt_id = $('#confirmDelete').val();
             console.log(appt_id);
 
-            var serviceURL = 'http://localhost:5100/delete_appointment';
+            var serviceURL = 'http://localhost:8000/api/v1/complexappointment/delete_appointment';
 
             try {
                 var response = await fetch(
@@ -913,7 +913,7 @@ session_start();
 
         function getQueue(appt_id, gid) {
             $(async () => {
-                var serviceURL = "http://localhost:5100/get_Number_Of_People_Ahead";
+                var serviceURL = "http://localhost:8000/api/v1/complexappointment/get_Number_Of_People_Ahead";
                 try {
                     const response =
                         await fetch(

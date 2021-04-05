@@ -172,7 +172,7 @@
 
       
             $(async () => {
-        var serviceURL = "http://localhost:5105/refill"
+        var serviceURL = "http://localhost:8000/api/v1/complexprescription/refill"
         
 
         try {
@@ -211,7 +211,7 @@
 
 
     $(async () => {
-        var serviceURL = "http://localhost:5105/display_possible_refills";
+        var serviceURL = "http://localhost:8000/api/v1/complexprescription/display_possible_refills";
 
         try {
             const response =

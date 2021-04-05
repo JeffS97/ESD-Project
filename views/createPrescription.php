@@ -237,8 +237,8 @@
             
                 $(async() => {           
                 // Change serviceURL to your own
-                var serviceURL = "http://127.0.0.1:5100/view_by_appointment";
-                var serviceURL1 = "http://127.0.0.1:5105/display_possible_refills";
+                var serviceURL = "http://localhost:8000/api/v1/complexappointment/view_by_appointment";
+                var serviceURL1 = "http://localhost:8000/api/v1/complexprescription/display_possible_refills";
 
                 
                 try {
@@ -362,7 +362,7 @@
                     // Change serviceURL to your own
                     //var serviceURL = "http://127.0.0.1:5100/view_by_appointment";
                     //var serviceURL1 = "http://127.0.0.1:5105/display_possible_refills";
-                    var serviceURL4 = "http://127.0.0.1:5105/delete_prescription";
+                    var serviceURL4 = "http://localhost:8000/api/v1/complexprescription/delete_prescription";
                     
                 
                     try {
@@ -419,7 +419,7 @@
                     // Change serviceURL to your own
                     //var serviceURL = "http://127.0.0.1:5100/view_by_appointment";
                     //var serviceURL1 = "http://127.0.0.1:5105/display_possible_refills";
-                    var serviceURL3 = "http://127.0.0.1:5105/add_Prescription";
+                    var serviceURL3 = "http://localhost:8000/api/v1/complexprescription/add_Prescription";
                     console.log(medication);
                     console.log(cost);
                     console.log(creationdate);

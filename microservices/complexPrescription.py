@@ -201,12 +201,12 @@ def processPatientGetUncollectedPrescriptions(Pid):
 
     return prescriptions
 
-@app.route("/refillcollected/<int:pid>", methods=['PUT'])
-def update_refill(pid):
+@app.route("/refillcollected", methods=['PUT'])
+def update_refill():
     try:
         details = request.get_json()
-        print("\nRecived a collection request for Prescription_Id:", pid)
-        toReturn = processRefillCollected(pid, details)
+        #print("\nRecived a collection request for Prescription_Id:", pid)
+        toReturn = processRefillCollected(details)
 
         return toReturn
 
@@ -219,10 +219,10 @@ def update_refill(pid):
     }), 400
 
 
-def processRefillCollected(pid, details):
+def processRefillCollected(details):
 
     print('\n-----Invoking Prescription microservice-----')
-    toReturn = invoke_http(prescription_URL + "/updateCollected/" + str(pid), method="PUT", json=details) #change 
+    toReturn = invoke_http(prescription_URL + "/updateCollected", method="PUT", json=details) #change 
     print('Prescriptions:', toReturn)
 
     return toReturn

@@ -280,8 +280,10 @@ def healthworkerGetUnCollectedPrescription(gid):
             }
         ), 404
 
-@app.route("/prescription/updateCollected/<int:pid>", methods=['PUT'])
-def update_prescription_collected_date(pid):
+@app.route("/prescription/updateCollected", methods=['PUT'])
+def update_prescription_collected_date():
+    data = request.get_json()
+    pid = data['Prescription_Id']
     prescription= Prescription.query.filter_by(Prescription_Id=pid).first()
     if prescription:
         current_date = datetime.date.today() 
