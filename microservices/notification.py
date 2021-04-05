@@ -8,12 +8,13 @@ import uuid
 import threading
 import amqp_setup
 import os
+from os import environ
 
 
 app = Flask(__name__)
 queue = {}
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/ESD5'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/ESD5'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:8889/ESD5'
 
 monitorBindingKey='*.notification'
@@ -27,7 +28,12 @@ def receive_notification():
 
 def callback(channel, method, properties, body):
     print("\nReceived a notification by " + __file__)
-    processNotification(body)
+    print(body)
+    body2 = json.loads(body)
+    if(body2['Type'] == 'Appointment'):
+        processNotification(body)
+    elif(body2['Type'] == 'Reminder'):
+        processReminder(body)
     print() # print a new line feed
 
 def processNotification(notification):
@@ -36,9 +42,28 @@ def processNotification(notification):
         notification = json.loads(notification)
         ApptTime = notification['ApptTime']
         ApptDate = notification['ApptDate']
+        Clinic_Name = notification['Clinic_Name']
         name = notification['P_name']
         chid = notification['ChatId']
-        bot_message = 'Dear ' + name + ' Your appointment for: ' + ApptDate + " At " + ApptTime + ' Has been confirmed'
+        bot_message = 'Dear ' + name.capitalize() + ' Your appointment at: '+ Clinic_Name +" On: "+ ApptDate + " At: " + ApptTime + ' has been confirmed!'
+        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + chid + '&parse_mode=Markdown&text=' + bot_message
+        response = requests.get(send_text)
+        print("--JSON:", notification)
+    except Exception as e:
+        print("--NOT JSON:", e)
+        print("--DATA:", notification)
+    print()
+
+def processReminder(notification):
+    print("Printing the notification:")
+    try: 
+        notification = json.loads(notification)
+        ApptTime = notification['ApptTime']
+        ApptDate = notification['ApptDate']
+        name = notification['P_name']
+        chid = notification['ChatId']
+        Clinic_Name = notification['Clinic_Name']
+        bot_message = 'Dear ' + name + ' Your appointment at: ' + Clinic_Name + ' is up next!'
         send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + chid + '&parse_mode=Markdown&text=' + bot_message
         response = requests.get(send_text)
         print("--JSON:", notification)

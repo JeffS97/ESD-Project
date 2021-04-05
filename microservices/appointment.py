@@ -5,11 +5,12 @@ from flask_cors import CORS
 import json
 import datetime
 import time
+from os import environ
 
 
 app = Flask(__name__)
-#config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/ESD5'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:8889/ESD5'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL') or 'mysql+mysqlconnector://root@localhost:3306/ESD5'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:8889/ESD5'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # conn = psycopg2.connect(
@@ -339,6 +340,7 @@ def find_by_appointment_id():
 def create_appointment():
 
     data = request.get_json()
+    del data['Clinic_Name']
     app = Appointment(**data)
     try: 
         db.session.add(app)
@@ -475,4 +477,4 @@ def getFirstInLine():
     ), 404
 
 if __name__ == '__main__':
-    app.run(port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)

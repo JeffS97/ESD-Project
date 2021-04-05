@@ -5,17 +5,18 @@ import requests
 from invokes import invoke_http
 import json
 import amqp_setup
+from os import environ
 
 import pika
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
-patient_URL = "http://localhost:5000/patient"
-appointment_URL = "http://localhost:5001/appointment"
-prescription_URL = "http://localhost:5002/prescription"
-healthworker_URL = "http://localhost:5003/healthworker"
-notification_URL = "http://localhost:5004/notification"
+patient_URL = environ.get('patient_URL') or "http://localhost:5000/patient"
+appointment_URL = environ.get('appointment_URL') or "http://localhost:5001/appointment"
+prescription_URL = environ.get('prescription_URL') or "http://localhost:5002/prescription"
+healthworker_URL = environ.get('healthworker_URL') or "http://localhost:5003/healthworker"
+notification_URL = environ.get('notification_URL') or "http://localhost:5004/notification"
 
 @app.route("/worker_views_all_appointments", methods=['POST'])
 def worker_views_all_appointments():
@@ -312,13 +313,21 @@ def processCreateAppointments(details):
     #print(appointment["data"]["ApptDate"])
     dateStr = str(appointment["data"]["ApptDate"])
     timeStr = str(appointment["data"]["ApptTime"])
+    timeStr = timeStr[0:5]
     p_name = str(patient['data']['P_name'])
     chatId = str(patient['data']['ChatId'])
+    clinic_name = str(details['Clinic_Name'])
+    print(clinic_name)
+    
 
-    bingbong = {"P_name" : p_name,
+    bingbong = {
+            "Type": "Appointment",
+            "P_name" : p_name,
             "ChatId": chatId,
             "ApptTime": timeStr, 
-            "ApptDate": dateStr}
+            "ApptDate": dateStr,
+            "Clinic_Name": clinic_name
+            }
 
     toSend = json.dumps(bingbong)
     amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="appointment.notification", 

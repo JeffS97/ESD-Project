@@ -2,16 +2,17 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import os
 import requests
+from os import environ
 from invokes import invoke_http
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
-patient_URL = "http://localhost:5000/patient"
-appointment_URL = "http://localhost:5001/appointment"
-prescription_URL = "http://localhost:5002/prescription"
-healthworker_URL = "http://localhost:5003/healthworker"
-notification_URL = "http://localhost:5004/notification"
+patient_URL = environ.get('patient_URL') or "http://localhost:5000/patient"
+appointment_URL = environ.get('appointment_URL') or "http://localhost:5001/appointment"
+prescription_URL = environ.get('prescription_URL') or "http://localhost:5002/prescription"
+healthworker_URL = environ.get('healthworker_URL') or "http://localhost:5003/healthworker"
+notification_URL = environ.get('notification_URL') or "http://localhost:5004/notification"
 
 #view all prescriptions valid for a refill given the appointment Id based upon the current day
 @app.route("/display_possible_refills", methods=['POST'])

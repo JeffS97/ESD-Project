@@ -605,6 +605,7 @@
                     body: JSON.stringify({
                         Patient_Id : patient_id,
                         Gid : gid,
+                        Clinic_Name: clinic_name,
                         Symptom : symptoms,
                         ApptTime : time,
                         ApptDate : date,

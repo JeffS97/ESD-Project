@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-
+from os import environ
 import os
 
 import requests
@@ -9,9 +9,9 @@ from invokes import invoke_http
 app = Flask(__name__)
 CORS(app)
 
-patient_URL = "http://localhost:5000/patient"
-prescription_URL = "http://localhost:5001/prescription2"
-refill_URL = "http://localhost:5002/refill2"
+patient_URL = environ.get('patient_URL') or "http://localhost:5000/patient"
+prescription_URL = environ.get('prescription_URL') or "http://localhost:5001/prescription2"
+refill_URL = environ.get('refill_URL') or "http://localhost:5002/refill2"
 
 #When the user wants to view valid prescriptions to refill
 @app.route("/view_prescription", methods=['POST'])
@@ -94,5 +94,5 @@ def processPlaceRefill(refill_details):
 
 if __name__ == "__main__":
     print("This is flask " + os.path.basename(__file__) + " for placing an refill microservice...")
-    app.run(host="0.0.0.0", port=5100, debug=True)
+    app.run(host="0.0.0.0", port=5107, debug=True)
 

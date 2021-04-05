@@ -1,5 +1,85 @@
 version: '3.6'
+networks:
+  kong-net:
+    driver: bridge
 services:
+   #######################################
+  # Postgres: The database used by Kong
+  #######################################
+  kong-database:
+    image: postgres:9.6
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      POSTGRES_DB: kong
+      POSTGRES_USER: kong
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "kong"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  #######################################
+  # Kong database migration
+  #######################################
+  kong-migration:
+    image: kong:2.0.4
+    command: "kong migrations bootstrap"
+    restart: on-failure
+    networks:
+      - kong-net
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: password
+    depends_on:
+      - kong-database
+  #######################################
+  # Kong: The API Gateway
+  #######################################
+  kong:
+    image: kong:2.0.4
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: password
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+    depends_on:
+      - kong-migration
+    ports:
+      - "8000:8000"
+  
+  #######################################
+  # Konga: Kong GUI
+  #######################################
+  konga:
+    image: pantsel/konga
+    restart: always
+    networks:
+        - kong-net
+    environment:
+      DB_ADAPTER: postgres
+      DB_HOST: kong-database
+      DB_USER: kong
+      DB_PASSWORD: password
+      DB_DATABASE: konga_db
+    depends_on:
+      - kong
+    ports:
+      - "1337:1337"
+    volumes:
+      - kongadata:/app/kongadata
   postgres:
     image: postgres:12
     restart: always
@@ -15,7 +95,7 @@ services:
     - "postgres"
     restart: always
     environment:
-      HASURA_GRAPHQL_DATABASE_URL: postgresql://olazhezdcrwfbj:d65c76a12708f26fa0d150eb490c01c9a73bd5f669319ec21ffb2e0463458a66@ec2-18-204-101-137.compute-1.amazonaws.com/d9saj19rvfm7ki
+      HASURA_GRAPHQL_DATABASE_URL: postgres://mkwlwfypvmpcax:fb2190e16bc336844260dc01e50794df2c6dfd6c5a04d405045ed5dba54f8c70@ec2-34-233-0-64.compute-1.amazonaws.com:5432/da96it67uo8v74
       ## enable the console served by server
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
       ## enable debugging mode. It is recommended to disable this in production
@@ -23,6 +103,197 @@ services:
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       ## uncomment next line to set an admin secret
       # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+  appointment:
+    build:
+      context: ./
+      dockerfile: appointment.dockerfile
+    image: jeffvindersingh/appointment:1.0
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5001:5001"
+  patient:
+    build:
+      context: ./
+      dockerfile: patient.dockerfile
+    image: jeffvindersingh/patient:1.0
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5000:5000"
+  healthworker:
+    build:
+      context: ./
+      dockerfile: healthworker.dockerfile
+    image: jeffvindersingh/healthworker:1.0
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5003:5003"
+  prescription:
+    build:
+      context: ./
+      dockerfile: prescription.dockerfile
+    image: jeffvindersingh/prescription:1.0
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5002:5002"
+  refill:
+    build:
+      context: ./
+      dockerfile: refill.dockerfile
+    image: jeffvindersingh/refill:1.0
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5004:5004"
+  notification:
+    build:
+      context: ./
+      dockerfile: notification.dockerfile
+    image: jeffvindersingh/notification:1.0
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      PYTHONUNBUFFERED: 1
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: esd-rabbit
+    restart: always
+    networks:
+      - kong-net
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes: 
+      - rabbitmq_data:/var/lib/rabbitmq
+  complexappointment:
+    build:
+      context: ./
+      dockerfile: complexappointment.dockerfile
+    image: jeffvindersingh/complexappointment:1.0
+    restart: always
+    networks:
+      - kong-net
+    depends_on:
+      - appointment
+      - notification
+      - patient
+      - rabbitmq
+    environment:
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      appointment_URL: http://appointment:5001/appointment
+      patient_URL: http://patient:5000/patient
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5100:5100"
+  complexhealthcare:
+    build:
+      context: ./
+      dockerfile: complexhealthcare.dockerfile
+    image: jeffvindersingh/complexhealthcare:1.0
+    restart: always
+    networks:
+      - kong-net
+    depends_on:
+      - patient
+      - prescription
+      - refill
+      - appointment
+      - healthworker
+      - rabbitmq
+    environment:
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      appointment_URL: http://appointment:5001/appointment
+      patient_URL: http://patient:5000/patient
+      prescription_URL: http://prescription:5002/prescription
+      refill_URL: http://refill:5004/refill
+      healthworker_URL: http://healthworker:5003/healthworker
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5102:5102"
+  complexprescription:
+    build:
+      context: ./
+      dockerfile: complexprescription.dockerfile
+    image: jeffvindersingh/complexprescription:1.0
+    restart: always
+    networks:
+      - kong-net
+    depends_on:
+      - patient
+      - prescription
+      - refill
+      - appointment
+      - healthworker
+      - rabbitmq
+    environment:
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      appointment_URL: http://appointment:5001/appointment
+      patient_URL: http://patient:5000/patient
+      prescription_URL: http://prescription:5002/prescription
+      refill_URL: http://refill:5004/refill
+      healthworker_URL: http://healthworker:5003/healthworker
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5105:5105"
+  complexrefill:
+    build:
+      context: ./
+      dockerfile: complexrefill.dockerfile
+    image: jeffvindersingh/complexrefill:1.0
+    restart: always
+    networks:
+      - kong-net
+    depends_on:
+      - patient
+      - prescription
+      - refill
+      - rabbitmq
+    environment:
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      patient_URL: http://patient:5000/patient
+      prescription_URL: http://prescription:5002/prescription
+      refill_URL: http://refill:5004/refill
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5107:5107"
 volumes:
   db_data:
+  rabbitmq_data:  
+  pgdata: 
+  kongadata:
+
 
