@@ -485,7 +485,7 @@ body {
                                     "<td>" + prescription.PrevDate.slice(0,16) + "</td>" +
                                     "<td>" + prescription.Price + "</td>" +
                                     "<td>" + clinic.clinic_name + "</td>"
-                                    console.log(eachRow2);
+                                    // console.log(eachRow2);
                                     rows2 += "<tbody><tr class='animate__animated animate__fadeIn fade'>" + eachRow2 + "</tr></tbody>";
                                 }
                             }   
@@ -502,9 +502,15 @@ body {
                         console.log(error);
                     }
                 }   
-                $('#refills').append(rows2);
+                // console.log(rows2);
+                if (rows2 === ""){
+                    $('#zeroRefills').text('No upcoming refill requests!').css("padding","20");
+                }
+                else {
+                    $('#refills').append(rows2);
+                }
             }
-            else if(response.status == 400){
+            else if(response.status == 400 || result.code == 404){
                 console.log("400");
             }
             else{
