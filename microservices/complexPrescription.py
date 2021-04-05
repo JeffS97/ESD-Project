@@ -50,7 +50,7 @@ def processDisplayPossibleRefills(details):
 def make_refill(pid):
     try:
         details = request.get_json()
-        print("\nRecived a collection request for Prescription_Id:", pid)
+        print("\n Recived a collection request for Prescription_Id:", pid)
         toReturn = processRefill(pid, details)
 
             # return jsonify(result), 200
@@ -68,8 +68,8 @@ def make_refill(pid):
             # toReturn = json.dumps(toSend)
         return toReturn
 
-        except Exception as e:
-            pass  # do nothing
+    except Exception as e:
+        pass  # do nothing
 
     return jsonify({
         "code": 400,
@@ -169,7 +169,7 @@ def processHealthworkerGetUncollectedPrescriptions(Gid):
 
     #Obtain Appointments which matches Patient_Id 
     print('\n-----Invoking Prescription microservice-----')
-    prescriptions = invoke_http(prescription_URL + "/addPrescription" + str(Gid))
+    prescriptions = invoke_http(prescription_URL + "/HealthworkerGetUnCollectedPrescription/" + str(Gid))
     return prescriptions
 
 @app.route("/patient_get_Uncollected_Prescriptions/<int:Pid>")
@@ -195,7 +195,7 @@ def processPatientGetUncollectedPrescriptions(Pid):
 
     #Obtain Appointments which matches Patient_Id 
     print('\n-----Invoking Prescription microservice-----')
-    prescriptions = invoke_http(prescription_URL + "/addPrescription" + str(Pid))
+    prescriptions = invoke_http(prescription_URL + "/PatientGetUnCollectedPrescription/" + str(Pid))
     print('Prescriptions:', prescriptions)
 
     return prescriptions

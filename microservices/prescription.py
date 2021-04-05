@@ -6,8 +6,8 @@ import datetime
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/ESD5'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:8889/ESD5'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/ESD5'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:8889/ESD5'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -156,7 +156,7 @@ def update_prescription_date(pid):
                     "Price" : prescription.Price,
                     "Patient_Id" : prescription.Patient_Id ,
                     "Gid" : prescription.Gid 
-                                   }
+                    }
             }
         )
 
@@ -241,13 +241,13 @@ def delete_prescription():
 
 @app.route("/prescription/PatientGetUnCollectedPrescription/<int:pid>")
 def patientGetUnCollectedPrescription(pid):
-    prescription= Prescription.query.filter(Collected='NC').filter(Prescription_Id=pid).all()
+    prescription= Prescription.query.filter_by(Collected='NC').filter_by(Patient_Id=pid).all()
     if prescription:
         return jsonify(
             {
             "code": 200,
             "data": {
-                "prescriptions":  [Prescription.json() for Prescription in prescription]
+                "prescriptions":  [p.json() for p in prescription]
                 }
             }
         )
@@ -261,14 +261,14 @@ def patientGetUnCollectedPrescription(pid):
 
 
 @app.route("/prescription/HealthworkerGetUnCollectedPrescription/<int:gid>")
-def healthworkerGetUnCollectedPrescription(pid):
-    prescription= Prescription.query.filter(Collected='NC').filter(Gid=gid).all()
+def healthworkerGetUnCollectedPrescription(gid):
+    prescription= Prescription.query.filter_by(Collected='NC').filter_by(Gid=gid).all()
     if prescription:
         return jsonify(
             {
             "code": 200,
             "data": {
-                "prescriptions":  [Prescription.json() for Prescription in prescription]
+                "prescriptions":  [p.json() for p in prescription]
                 }
             }
         )
