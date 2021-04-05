@@ -407,8 +407,8 @@ body {
             </div>
         </div>
         </div>
+        <label style="visibility:hidden" id="testlabel"><?php echo $_SESSION["username"]; ?></label> 
     </div>
-    <label style="visibility:hidden" id="testlabel"><?php echo $_SESSION["username"]; ?></label> 
     <div class="modal fade" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
