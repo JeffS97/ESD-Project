@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['gid'] = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,6 +136,8 @@ body {
     </div>
         
 <script>
+    var gid = <?php echo $_SESSION['gid'] ?>;
+
     $(async() => {      
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
@@ -217,6 +220,7 @@ body {
       $(async() => {           
         // Change serviceURL to your own
         var serviceURL5 = "http://127.0.0.1:5100/update_appointment"; 
+
         try {
               
             const response =
@@ -224,7 +228,7 @@ body {
                 serviceURL5, {
                 method: 'PUT',
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ Appointment_Id : aid
+                body: JSON.stringify({ Appointment_Id : aid, Gid: gid
                 })
              });
              const result = await response.json();

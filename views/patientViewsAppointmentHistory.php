@@ -89,7 +89,6 @@
         <div class="row bottom-menu justify-content-center">
         <ul class="">
             <li><a href="main.php#appointments">View Upcoming Appointments</a></li>
-            <li><a href="patientViewsAppointmentHistory.php">View Past Appointments</a></li>
             <li><a href="patientMakesRefillRequest.php" >Request Prescription Refill</a></li>
         </ul>
         </div>
