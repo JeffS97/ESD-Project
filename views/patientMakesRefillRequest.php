@@ -201,7 +201,7 @@
             // Errors when calling the service; such as network error, 
             // service offline, etc
             // showError('There is a problem retrieving making your refill request, please try again later.<br/>' + error);
-            document.getElementById('error_msg').innerText = "There doesn't seem to be any prescriptions linked to this appointment!";
+           // document.getElementById('error_msg').innerText = "There doesn't seem to be any prescriptions linked to this appointment!";
             $('#calcButton').hide();
         } // error
             });
@@ -262,7 +262,7 @@
             // Errors when calling the service; such as network error, 
             // service offline, etc
             // showError('There is a problem retrieving prescription data, please try again later.<br/>' + error);
-            document.getElementById('error_msg').innerText = "There doesn't seem to be any prescriptions linked to this appointment!";
+            //document.getElementById('error_msg').innerText = "There doesn't seem to be any prescriptions linked to this appointment!";
             $('#calcButton').hide();
         } // error
     });

@@ -62,8 +62,7 @@ def processReminder(notification):
         ApptDate = notification['ApptDate']
         name = notification['P_name']
         chid = notification['ChatId']
-        Clinic_Name = notification['Clinic_Name']
-        bot_message = 'Dear ' + name + ' Your appointment at: ' + Clinic_Name + ' is up next!'
+        bot_message = 'Dear ' + name + ' Your appointment is up next!'
         send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + chid + '&parse_mode=Markdown&text=' + bot_message
         response = requests.get(send_text)
         print("--JSON:", notification)

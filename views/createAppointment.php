@@ -1,5 +1,8 @@
 <?php
     session_start();
+    $_SESSION["patient_id"] = 1;
+    $_SESSION["fullname"] = "Zhi Hao";
+    $_SESSION["email"] = "Zhihao@gmail.com";
 ?>
 <!DOCTYPE html>
 <html lang="en">

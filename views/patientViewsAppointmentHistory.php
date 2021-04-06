@@ -2,7 +2,7 @@
 
 <?php
     session_start();
-    $_SESSION['Patient_Id'] = 4;
+    $_SESSION['Patient_Id'] = 1;
     $_SESSION['Gid'] = 1;
 // if(isset($_SESSION['Patient_Id'] && isset($_SESSION['Gid'])) {
 //     }
