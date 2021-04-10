@@ -8,7 +8,7 @@
     session_start();
 if(isset($_SESSION["email"])){
     unset($_SESSION["email"]);
-    header("Location: ../Homepage.php");
+    header("Location: ../views/Signup.php");
 }
 
     ?>

@@ -1,8 +1,5 @@
 <?php
     session_start();
-    $_SESSION["patient_id"] = 1;
-    $_SESSION["fullname"] = "Zhi Hao";
-    $_SESSION["email"] = "Zhihao@gmail.com";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -115,7 +112,7 @@
                     <ul>
                     <li><a class="pro" href="">Home</a></li>
                     <li><a href="">Profile</a></li>
-                    <li><a href=""><span>Logout</span></a></li>
+                    <li><a href="../Main/process_logout.php"><span>Logout</span></a></li>
                     </ul>
                 </div>
             </div>

@@ -1,6 +1,10 @@
 <?php
     session_start();
-    $_SESSION['gid'] = 1;
+    // echo $_SESSION["username"];
+    // echo $_SESSION["role"];
+    // echo $_SESSION["email"];
+    // echo $_SESSION["fullname"];
+    // echo $_SESSION["gid"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +77,7 @@ body {
             <ul>
             <li><a class="pro" href="healthworker_main.php">Home</a></li>
             <li><a href="">Profile</a></li>
-            <li><a href=""><span>Logout</span></a></li>
+            <li><a href="../Main/process_logout.php"><span>Logout</span></a></li>
             </ul>
         </div>
         </div>
@@ -105,7 +109,7 @@ body {
 
         <div class="row">
           <div class="col-sm-3">
-              <input type='hidden' value="<?php echo 1;?>" id='lol'/>
+              <!-- <input type='hidden' value="<?php echo 1;?>" id='lol'/> -->
               <label for="calendar" class="mt-2 ml-1">Select a date to proceed</label>
               <input type="date" id='calendar' class="form-control" onchange="getme()" style="width: 80%;">            
           </div>
@@ -171,7 +175,7 @@ body {
 
     function getme(){
     document.getElementById('app').innerHTML="";
-    var gid =document.getElementById('lol').value;
+    // var gid =document.getElementById('lol').value;
     var apptDate=document.getElementById('calendar').value;
     
     $(async() => {           
@@ -280,7 +284,7 @@ body {
         // Change serviceURL to your own
         var serviceURL9 = "http://localhost:8000/api/v1/complexprescription/healthworker_Get_Uncollected_Prescriptions/0"; 
         try {
-            var gid=1
+            
             
             const response =
             await fetch(

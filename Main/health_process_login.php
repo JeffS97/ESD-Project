@@ -47,8 +47,9 @@
                     $_SESSION["fullname"] = $Name;
                     $_SESSION["role"] = $role;
                     $_SESSION["gid"] = $gid;
+                    $_SESSION["username"] = $username;
                     # Redirect to welcome.php
-                    header("Location: ../Homepage.php");
+                    header("Location: ../views/healthworker_main.php");
                     exit;
                 }
             };

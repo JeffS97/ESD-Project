@@ -15,7 +15,7 @@
 </head>
 <style>
     body {
-        background-image: url("assets/white.jpg");
+        background-image: url("../Main/assets/white.jpg");
         background-size: cover;
         background-repeat: repeat;
         font-family: 'Raleway', sans-serif;
@@ -24,7 +24,8 @@
     .box_bookings {
         width: fit-content;
         height:fit-content;
-        margin: 0px 50px 60px;
+        /* margin: 0px 50px 60px; */
+        margin: 65px auto 60px;
         background-color: white;
         padding: 0 10px 0px;
         border-radius: 6px;
@@ -33,10 +34,10 @@
 </style>
 
 <body>
-    <main id="cart-main" style="margin-left:35%">
-        <div class="container box_bookings animate__animated animate__jackInTheBox ">
+    <main id="cart-main">
+        <div class="container box_bookings animate__animated animate__jackInTheBox">
             <div class="site-title text-center">
-                <h1 class="font-title" style="padding-top: 40px;">Refill Payment</h1>
+                <h1 class="font-title" style="padding-top: 40px; text-align: center; font-weight: bold;">Refill Payment</h1>
             </div>
             <div class="grid">
                 <div class="col-1">

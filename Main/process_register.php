@@ -14,6 +14,7 @@
         $email = $_POST["demail"];
         $password = $_POST["dpassword"];
         $fullname = $_POST["dfullname"];
+        $username = $_POST["dusername"];
         $clinic = $_POST["dclinics"];
         $clinic = explode('.', $clinic);
         $role = $_POST["doctor"];
@@ -26,29 +27,40 @@
     
         # Add new user
         $dao = new UserDAO();
-        $dao->addClinic($gid, $clinic_name, $address);
-        $status = $dao->addHealthworker($email, $fullname, $hashed, $role, $gid);
+        // $dao->addClinic($gid, $clinic_name, $address);
+        $status = $dao->addHealthworker($email, $username, $fullname, $hashed, $role, $gid);
         echo $status;
         if($status){
             # Send success message in the session
             $_SESSION["success"] = "Registration Successful";
             $_SESSION["email"] = $email;
             $_SESSION["fullname"] = $fullname;
+            $_SESSION["gid"] = $gid;
+            $_SESSION["role"] = $role;
+            $_SESSION["username"] = $username;
     
             # Redirect to login.php
             # Provide information of the newly registered user 
             # at the back of the URL
-            header("location: ../Homepage.php");
+            header("location: ../views/healthworker_main.php");
             exit;
         }
         else{
             echo "Failed to register doctor.";
+            // echo $email; 
+            // echo $username;
+            // echo $fullname;
+            // echo $hashed;
+            // echo $role;
+            // echo $gid;
+            // echo $clinic;
         } 
     }
     elseif($_POST["nurse"]){
         $email = $_POST["nemail"];
         $password = $_POST["npassword"];
         $fullname = $_POST["nfullname"];
+        $username = $_POST["nusername"];
         $clinic = $_POST["nclinics"];
         $clinic = explode('.', $clinic);
         $role = $_POST["nurse"];
@@ -62,8 +74,8 @@
     
         # Add new user
         $dao = new UserDAO();
-        $dao->addClinic($gid, $clinic_name, $address);
-        $status = $dao->addHealthworker($email, $fullname, $hashed, $role, $gid);
+        // $dao->addClinic($gid, $clinic_name, $address);
+        $status = $dao->addHealthworker($email, $username, $fullname, $hashed, $role, $gid);
         echo $status;
         if($status){
             # Send success message in the session
@@ -74,7 +86,7 @@
             # Redirect to login.php
             # Provide information of the newly registered user 
             # at the back of the URL
-            header("location: ../Homepage.php");
+            header("location: ../views/healthworker_main.php");
             exit;
         }
         else{
@@ -114,7 +126,7 @@
             # Redirect to login.php
             # Provide information of the newly registered user 
             # at the back of the URL
-            header("location: ../Homepage.php");
+            header("location: ../views/main.php");
             exit;
         }
         else{

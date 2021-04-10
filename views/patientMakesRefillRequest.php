@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-    $_SESSION['Patient_Id'] = 1;
+    // $_SESSION['Patient_Id'] = 1;
+    session_start();
     if( !isset($_GET["aid"]) ){
         echo '<script>alert("Welcome to Geeks for Geeks")</script>';
         header("location:patientViewsAppointmentHistory.php");
@@ -82,7 +83,7 @@
             <ul>
             <li><a class="pro" href="">Home</a></li>
             <li><a href="">Profile</a></li>
-            <li><a href=""><span>Logout</span></a></li>
+            <li><a href="../Main/process_logout.php"><span>Logout</span></a></li>
             </ul>
         </div>
         </div>
@@ -132,7 +133,8 @@
     </div>
 <script>      
     
-    const patientId = <?php echo $_SESSION['Patient_Id']?>;
+    const patientId = <?php echo $_SESSION['patient_id']?>;
+    console.log(patientId);
     var aid = <?php echo $_GET['aid']?>;
 
     function showError(message) {

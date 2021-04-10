@@ -26,16 +26,17 @@
         }
 
         # Add a new healthworker (doctor/nurse) to the Healthworker table
-        public function addHealthworker($email, $fullname, $password, $role, $gid){
+        public function addHealthworker($email, $username, $fullname, $password, $role, $gid){
             $conn_manager = new ConnectionManager();
             $pdo = $conn_manager->getConnection();
             
-            $sql = "insert into Healthworker (Email, Name, Password, Role, Gid) 
-                    values (:email, :fullname, :password, :role, :gid)";
+            $sql = "insert into Healthworker (Email, Username, Name, Password, Role, Gid) 
+                    values (:email, :username, :fullname, :password, :role, :gid)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":email",$email);
             $stmt->bindParam(":password",$password);
             $stmt->bindParam(":fullname",$fullname);
+            $stmt->bindParam(":username",$username);
             $stmt->bindParam(":role",$role);
             $stmt->bindParam(":gid",$gid);
 
@@ -103,7 +104,7 @@
             $user = null;
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             if($row = $stmt->fetch()){
-                $user = new Healthworker($row["Healthworker_Id"],$row["Email"],$row["Name"],$row["Password"],$row["Role"],$row["Gid"]);
+                $user = new Healthworker($row["Healthworker_Id"],$row["Email"], $row["Username"], $row["Name"],$row["Password"],$row["Role"],$row["Gid"]);
             }
             
             $stmt = null;

@@ -2,8 +2,8 @@
 
 <?php
     session_start();
-    $_SESSION['Patient_Id'] = 1;
-    $_SESSION['Gid'] = 1;
+    // $_SESSION['Patient_Id'] = 1;
+    // $_SESSION['Gid'] = 1;
 // if(isset($_SESSION['Patient_Id'] && isset($_SESSION['Gid'])) {
 //     }
 ?>
@@ -62,8 +62,10 @@
 
 <body>
 <script>
-    const patientId = "<?php echo $_SESSION['Patient_Id'] ?>";
-    const Gid = "<?php echo $_SESSION['Gid'] ?>";
+    const patientId = "<?php echo $_SESSION['patient_id'] ?>";
+    const Gid = "<?php echo $_SESSION['gid'] ?>";
+    console.log(patientId);
+    console.log(Gid);
 </script>
     <!-- Navbar -->
     <div class="header-middle pt-4 pb-3" style="background-color: white;">
@@ -76,7 +78,7 @@
             <ul>
             <li><a class="pro" href="">Home</a></li>
             <li><a href="">Profile</a></li>
-            <li><a href=""><span>Logout</span></a></li>
+            <li><a href="../Main/process_logout.php"><span>Logout</span></a></li>
             </ul>
         </div>
         </div>

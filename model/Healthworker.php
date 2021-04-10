@@ -4,9 +4,10 @@
         private $password;
         private $fullname;
         private $username;
-        public function __construct($Healthworker_Id,$Email,$Name,$Password,$Role,$Gid){
+        public function __construct($Healthworker_Id,$Email,$Username,$Name,$Password,$Role,$Gid){
             $this->Healthworker_Id = $Healthworker_Id;
             $this->Email = $Email;
+            $this->Username = $Username;
             $this->Name = $Name;
             $this->Password = $Password;
             $this->Role = $Role;
@@ -17,6 +18,9 @@
         }
         public function getEmail(){
             return $this->Email;
+        }
+        public function getUsername(){
+            return $this->Username;
         }
         public function getName(){
             return $this->Name;

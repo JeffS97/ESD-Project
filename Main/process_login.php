@@ -18,6 +18,7 @@
     # Get user information
     $dao = new UserDAO();
     $user = $dao->retrieve($email);
+    // $health = $dao->retrieveHealth($email);
 
     # Check if user exists 
     $success = false;
@@ -34,6 +35,7 @@
                 $hashed = $user->getPassword();
                 $P_Name = $user->getP_Name();
                 $email = $user->getEmail();
+                $patient_id = $user->getPatient_Id();
                
                 # Check if entered password matches stored hashed password
                 $success = password_verify($password,$hashed); 
@@ -43,12 +45,12 @@
                     # Create a session entry for successful login
                     $_SESSION["email"] = $email;
                     $_SESSION["fullname"] = $P_Name;
+                    $_SESSION["patient_id"] = $patient_id;
                     # Redirect to welcome.php
-                    header("Location: ../Homepage.php");
+                    header("Location: ../views/main.php");
                     exit;
                 }
-            };
-
+            }
         
             # Failed login
             if (!$success){

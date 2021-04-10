@@ -1,7 +1,11 @@
 <?php
 session_start();
-$_SESSION['patient_id'] = 1;
-$username = $_SESSION["patient_id"];
+// $_SESSION['patient_id'] = 1;
+$username = $_SESSION["username"];
+// echo $_SESSION["username"];
+// echo $_SESSION["patient_id"];
+// echo $_SESSION["email"];
+// echo $_SESSION["fullname"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -331,7 +335,7 @@ $username = $_SESSION["patient_id"];
                         <li><a href="">Profile</a></li>
                         <!-- <li><a href="">History</a></li> -->
 
-                        <li><a href=""><span>Logout</span></a></li>
+                        <li><a href="../Main/process_logout.php"><span>Logout</span></a></li>
                     </ul>
                 </div>
                 <!-- <div class="col-md-1 profile-pic">

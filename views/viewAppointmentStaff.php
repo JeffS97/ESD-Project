@@ -232,7 +232,7 @@ input[type="search"] {
            <li><a href="">Profile</a></li>
            <li><a class="message" href="">History</a></li>
          
-           <li><a href=""><span>Logout</span></a></li>
+           <li><a href="../Main/process_logout.php"><span>Logout</span></a></li>
          </ul>
        </div>
        <!-- <div class="col-md-1 profile-pic">

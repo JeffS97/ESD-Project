@@ -108,8 +108,9 @@ if (isset($_SESSION['error'])) {
             font-family: 'PT Sans';
             letter-spacing: 1px;
             font-size: 20px;
-            line-height: 30px;
-            margin-right: 60px;
+            margin-top: 30px;
+            /* line-height: 30px; */
+            /* margin-right: 60px; */
         }
         
         .background button {
@@ -131,7 +132,8 @@ if (isset($_SESSION['error'])) {
         .form-container {
             position: absolute;
             width: 375px;
-            height: 500px;
+            /* height: 550px; */
+            height: fit-content;
             background-color:white;
             top: -25px;
             left: 10px;
@@ -229,9 +231,8 @@ if (isset($_SESSION['error'])) {
         }
 
         body{
-            background-image: url("../resources/images/hero.png"); 
+            background-image: url("../resources/doctor.jpg"); 
             background-size: cover; 
-        
         }
         
     </style>
@@ -255,13 +256,13 @@ if (isset($_SESSION['error'])) {
 
         <div class="background">
             <div class="left" style = 'text-align: center'>
-                <h2 class="bh" style = 'margin-top: 50px' ></b>Don't have an account?</b></h2>
-                <p class="bp" style = 'text-align: center'>Sign up today to be a Hero or get a Hero to help you!</p>
+                <h2 class="bh" style = 'margin-top: 50px; text-align: center' ></b>Don't have an account?</b></h2>
+                <p class="bp" style = 'text-align: center'>Sign up today and let CliniQ help you skip the Q!</p>
                 <button class="back-btn signup-but">Sign Up</button>
             </div>
             <div class="right">
-                <h2 class="bh" style = 'margin-top: 50px'>Do you already have an account?</h2>
-                <p class="bp">Let's get you logged in!</p>
+                <h2 class="bh" style = 'margin-top: 50px'>CliniQ, skip the Q!</h2>
+                <p class="bp">Already have an account?</p>
                 <button class="back-btn login-but">Log In</button>
             </div>
         </div>
@@ -272,7 +273,7 @@ if (isset($_SESSION['error'])) {
                     <h2 class="form-header" style="margin-bottom: 50px;">Create an account!</h2>
                     <button class="form-btn" id="selectPatient" style="margin: 30px auto">Patient</button>
                     <button class="form-btn" id="selectNurse" style="margin: 30px auto">Nurse</button>
-                    <button class="form-btn" id="selectDoctor" style="margin: 30px auto">Doctor</button>
+                    <button class="form-btn" id="selectDoctor" style="margin: 30px auto 80px">Doctor</button>
                 </div>
             </div>
             <!-- Select role for Log In -->
@@ -280,7 +281,7 @@ if (isset($_SESSION['error'])) {
             <div class="login hide" id="login">
                 <h2 class="form-header" style="margin-bottom: 50px;">Select your role!</h2>
                 <button class="form-btn" id="patientLogin" style="margin: 30px 70px">Patient</button>
-                <button class="form-btn" id="healthLogin" style="margin: 30px 70px">Healthcare Staff</button>
+                <button class="form-btn" id="healthLogin" style="margin: 30px 70px 50px;">Healthcare Staff</button>
             </div>
             </div>
            
@@ -417,8 +418,8 @@ if (isset($_SESSION['error'])) {
             <form method='post' action='../Main/process_register.php'>
                 <h2 class="form-header">Patient Sign Up</h2>
                 <div style="margin: 10px 0px 0px 25px">
-                    <input type="text" name="username" id="p_usernameSU" placeholder="Username">
                     <input type="text" name="fullname" id = 'p_fullnameSU' placeholder="Full Name"><i class="fa fa-user"></i></input>
+                    <input type="text" name="username" id="p_usernameSU" placeholder="Username"><i class="fas fa-signature"></i>
                     <input type="text" name="email" id="p_emailSU" placeholder="Email"></input><i class="fa fa-envelope-o"></i></input>
                     <input type="text" name="age" id="p_ageSU" placeholder="Age"></input><i class="fas fa-calculator"></i>
                     <input type="text" name="address" id="p_addressSU" placeholder="Address"></input><i class="fas fa-map-marker-alt"></i>
@@ -441,6 +442,7 @@ if (isset($_SESSION['error'])) {
                 <h2 class="form-header">Doctor Sign Up</h2>
                 <div style="margin: 10px 0px 0px 25px">
                     <input type="text" name="dfullname" id='d_fullnameSU' placeholder="Full Name"><i class="fa fa-user"></i></input>
+                    <input type="text" name="dusername" id='d_usernameSU' placeholder="Username"><i class="fas fa-signature"></i>
                     <input type="text" name="demail" id="d_emailSU" placeholder="Email"><i class="fa fa-envelope-o"></i></input>
                     <input type="hidden" name='doctor' value="doctor"/>
                     <input type="password" name="dpassword" id='d_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input><br><br>
@@ -464,7 +466,7 @@ if (isset($_SESSION['error'])) {
                         order_by: {clinic_name: asc}
                     ){
                         clinic_name
-                        clinic_id
+                        gid
                         postal_cd
                     }
                 }`
@@ -490,7 +492,7 @@ if (isset($_SESSION['error'])) {
                         // for loop to setup all table rows with obtained clinic data
                         var options = "<option>Select Clinic</option>";
                         for (const clinic of clinics){
-                            options = options + `<option value="${clinic.clinic_id}.${clinic.clinic_name}.${clinic.postal_cd}">` + clinic.clinic_name + "</option>";
+                            options = options + `<option value="${clinic.gid}.${clinic.clinic_name}.${clinic.postal_cd}">` + clinic.clinic_name + "</option>";
                         }
                         // add all the rows to the table
                         // console.log(options);
@@ -498,7 +500,8 @@ if (isset($_SESSION['error'])) {
                     } 
                     else if (response.status == 404) {
                         // No clinics
-                        showError(result.message);
+                        // showError(result.message);
+                        console.log(response);
                     } 
                     else {
                         // unexpected outcome, throw the error
@@ -508,7 +511,8 @@ if (isset($_SESSION['error'])) {
                 catch (error) {
                     // Errors when calling the service; such as network error, 
                     // service offline, etc
-                    showError('There is a problem retrieving clinic data, please try again later.<br />' + error);
+                    // showError('There is a problem retrieving clinic data, please try again later.<br />' + error);
+                    console.log(error);
                 } // error
             });
         })
@@ -523,6 +527,7 @@ if (isset($_SESSION['error'])) {
                 <div style="margin: 10px 0px 0px 25px">
                     <input type="hidden" name='nurse' value="nurse"/>
                     <input type="text" name="nfullname" id = 'n_fullnameSU' placeholder="Full Name"><i class="fa fa-user"></i></input>
+                    <input type="text" name="nusername" id='n_usernameSU' placeholder="Username"><i class="fas fa-signature"></i>
                     <input type="text" name="nemail" id = 'n_emailSU' placeholder="Email"><i class="fa fa-envelope-o"></i></input>
                     <input type="password" name="npassword" id='n_passwordSU' placeholder="Password"><i class="fa fa-lock"></i></input><br><br>
                     <select id="clinics" value='AA' name="nclinics" style="width: 79.5%; margin-top: 15px; margin-bottom: 20px;">
@@ -545,7 +550,7 @@ if (isset($_SESSION['error'])) {
                         order_by: {clinic_name: asc}
                     ){
                         clinic_name
-                        clinic_id
+                        gid
                         postal_cd
                     }
                 }`
@@ -571,7 +576,7 @@ if (isset($_SESSION['error'])) {
                         // for loop to setup all table rows with obtained clinic data
                         var options = "<option>Select Clinic</option>";
                         for (const clinic of clinics){
-                            options = options + `<option value="${clinic.clinic_id}.${clinic.clinic_name}.${clinic.postal_cd}">` + clinic.clinic_name + "</option>";
+                            options = options + `<option value="${clinic.gid}.${clinic.clinic_name}.${clinic.postal_cd}">` + clinic.clinic_name + "</option>";
                         }
                         // add all the rows to the table
                         // console.log(options);
@@ -579,7 +584,8 @@ if (isset($_SESSION['error'])) {
                     } 
                     else if (response.status == 404) {
                         // No clinics
-                        showError(result.message);
+                        // showError(result.message);
+                        console.log(response);
                     } 
                     else {
                         // unexpected outcome, throw the error
@@ -589,7 +595,8 @@ if (isset($_SESSION['error'])) {
                 catch (error) {
                     // Errors when calling the service; such as network error, 
                     // service offline, etc
-                    showError('There is a problem retrieving clinic data, please try again later.<br />' + error);
+                    // showError('There is a problem retrieving clinic data, please try again later.<br />' + error);
+                    console.log(error);
                 } // error
             });
         })

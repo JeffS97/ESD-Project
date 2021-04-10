@@ -74,7 +74,7 @@
             <ul>
             <li><a class="pro" href="healthworker_main.php">Home</a></li>
             <li><a href="">Profile</a></li>
-            <li><a href=""><span>Logout</span></a></li>
+            <li><a href="../Main/process_logout.php"><span>Logout</span></a></li>
             </ul>
         </div>
         </div>
@@ -413,7 +413,7 @@
                 var interval = document.getElementById("input77").value;
                 var patientid = document.getElementById("input22").value;
                 var cost = document.getElementById("input3").value;
-                var gid=1;
+                var gid= <?php echo $_SESSION['gid'] ?>;
 
                 $(async() => {           
                     // Change serviceURL to your own
