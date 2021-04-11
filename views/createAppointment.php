@@ -559,7 +559,7 @@
 
             var serviceURL = 'http://localhost:8000/api/v1/complexappointment/create_appointment';
 
-            var serviceURL2 = 'http://localhost:5001/appointment/healthcareCurrentAppointments';
+            var serviceURL2 = 'hhttp://localhost:8000/api/v1/complexappointment/worker_views_all_appointments';
 
             try{
                 var response = await fetch(
