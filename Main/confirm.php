@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // session_start();
+    require_once "../model/protect.php";
 ?>
 <!doctype html>
 <html lang="en">

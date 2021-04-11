@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // session_start();
+    require_once "../model/protect.php";
     // echo $_SESSION["username"];
     // echo $_SESSION["role"];
     // echo $_SESSION["email"];

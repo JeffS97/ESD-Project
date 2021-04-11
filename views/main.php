@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "../model/protect.php";
 // $_SESSION['patient_id'] = 1;
 $username = $_SESSION["username"];
 // echo $_SESSION["username"];

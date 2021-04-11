@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-    session_start();
+    // session_start();
+    require_once "../model/protect.php";
     // $_SESSION['Patient_Id'] = 1;
     // $_SESSION['Gid'] = 1;
 // if(isset($_SESSION['Patient_Id'] && isset($_SESSION['Gid'])) {

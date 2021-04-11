@@ -2,7 +2,8 @@
 
 <?php
     // $_SESSION['Patient_Id'] = 1;
-    session_start();
+    // session_start();
+    require_once "../model/protect.php";
     if( !isset($_GET["aid"]) ){
         echo '<script>alert("Welcome to Geeks for Geeks")</script>';
         header("location:patientViewsAppointmentHistory.php");
