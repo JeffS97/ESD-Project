@@ -1,8 +1,8 @@
 <?php
-session_start();
+// session_start();
 require_once "../model/protect.php";
 // $_SESSION['patient_id'] = 1;
-$username = $_SESSION["username"];
+// $username = $_SESSION["username"];
 // echo $_SESSION["username"];
 // echo $_SESSION["patient_id"];
 // echo $_SESSION["email"];
@@ -331,7 +331,7 @@ $username = $_SESSION["username"];
         </div> -->
                 <div class="fiverr-menu" style="margin-left: auto;">
                     <ul>
-                        <!-- <button id="telegrambtn" type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#boxModal" onclick="window.open('https://t.me/CliniQueue_Bot?start=<?php echo $_SESSION["username"] ?>')">Get Telegram Notifications!</button> -->
+                        <button id="telegrambtn" type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#boxModal" onclick="window.open('https://t.me/CliniQueue_Bot?start=<?php echo $_SESSION["username"] ?>')">Get Telegram Notifications!</button>
                         <li><a class="pro" href="">Home</a></li>
                         <li><a href="">Profile</a></li>
                         <!-- <li><a href="">History</a></li> -->
