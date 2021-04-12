@@ -36,6 +36,7 @@
                 $P_Name = $user->getP_Name();
                 $email = $user->getEmail();
                 $patient_id = $user->getPatient_Id();
+                $username = $user->getUsername();
                
                 # Check if entered password matches stored hashed password
                 $success = password_verify($password,$hashed); 
@@ -46,6 +47,7 @@
                     $_SESSION["email"] = $email;
                     $_SESSION["fullname"] = $P_Name;
                     $_SESSION["patient_id"] = $patient_id;
+                    $_SESSION["username"] = $username;
                     # Redirect to welcome.php
                     header("Location: ../views/main.php");
                     exit;
