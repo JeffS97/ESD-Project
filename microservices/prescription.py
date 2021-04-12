@@ -241,7 +241,7 @@ def delete_prescription():
 
 @app.route("/prescription/PatientGetUnCollectedPrescription/<int:pid>")
 def patientGetUnCollectedPrescription(pid):
-    prescription= Prescription.query.filter_by(Collected='NC').filter_by(Patient_Id=pid).all()
+    prescription= Prescription.query.filter(Prescription.Collected=='NC').filter(Prescription.Patient_Id==pid).all()
     if prescription:
         return jsonify(
             {

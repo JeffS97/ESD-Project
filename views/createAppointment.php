@@ -252,9 +252,9 @@
 
     // Create Timeslots when user selects specific date from calendar
     $('#date').change(async() => {
-        var timeslots = ["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30"];
-        var available_timings = [];
-        var serviceURL = 'http://localhost:5001/appointment/healthcareCurrentAppointments';
+        // var timeslots = ["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30"];
+        // var available_timings = [];
+        var serviceURL = 'http://localhost:8000/api/v1/complexappointment/availableTimeslots';
         var date = document.getElementById('date').value;
         document.getElementById('selected_timeslot').innerText = '';
 
@@ -270,21 +270,26 @@
             })
 
             var result = await response.json();
-            
+            // console.log(result);
             if(response.status === 200){
-                if (result.data.appointments.length != timeslots.length){
-                    var timings = [];
-                    for (timing of result.data.appointments){
-                        timings.push(timing.ApptTime.slice(0,-3));
-                    }
-                    console.log(timings);
+                // console.log(result.data.timeslots);
+                if (result.data.timeslots.length !== 0){
+                    // var timings = [];
+                    // for (timing of result.data.appointments){
+                    //     timings.push(timing.ApptTime.slice(0,-3));
+                    // }
+                    // console.log(timings);
 
-                    for (timing of timeslots){
-                        if(!timings.includes(timing)){
-                            available_timings.push(timing);
-                        }
-                    }
-                    console.log(available_timings);
+                    // for (timing of timeslots){
+                    //     if(!timings.includes(timing)){
+                    //         available_timings.push(timing);
+                    //     }
+                    // }
+                    // console.log(available_timings);
+                    // console.log(result.data.timeslots);
+                    // available_timings.push(result.data.timeslots);
+                    var available_timings = result.data.timeslots;
+                    // console.log(available_timings);
 
                     var timeSelection1 = `
                         <div class="row">
@@ -298,6 +303,7 @@
                     // var timeSelection4 = `
                     //     <div class="row">
                     //         <div class="col-sm-3">`;
+                    // console.log(available_timings.length);
                     var middle = Math.floor(available_timings.length/2);
                     var lower_middle = Math.floor(middle/2);
                     var upper_middle = Math.floor((available_timings.length+middle)/2);
@@ -305,6 +311,7 @@
                     // console.log(upper_middle);
                     // console.log(middle);
 
+                    // console.log(available_timings.slice(0,middle))
                     for (timing of available_timings.slice(0,middle)){
                         timeSelection1 += `
                         <label class="btn btn-outline-primary timeslot" onclick="select_time('${timing}')">
@@ -336,7 +343,7 @@
                     // console.log(timeSelection2);
                     // var timeSelection1 = timeSelection1 + '</div></div>' + timeSelection3 + '</div></div>' + timeSelection2 + '</div></div>' + timeSelection4 + '</div></div>';
                     var timeSelection1 = timeSelection1 + '</div></div>' + timeSelection2 + '</div></div>';
-                    console.log(timeSelection1);
+                    // console.log(timeSelection1);
                     $('#timeSelection').html(
                         timeSelection1
                     );
@@ -362,8 +369,8 @@
 
     // Create Timeslots on initial page load
     $(async() => {
-        var timeslots = ["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30"];
-        var available_timings = [];
+        // var timeslots = ["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30"];
+        // var available_timings = [];
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -372,7 +379,7 @@
         document.getElementById('date').value = today;
         console.log(today);
 
-        var serviceURL = 'http://localhost:5001/appointment/healthcareCurrentAppointments';
+        var serviceURL = 'http://localhost:8000/api/v1/complexappointment/availableTimeslots';
 
         try{
             var response = await fetch(
@@ -386,23 +393,23 @@
             })
 
             var result = await response.json();
-            console.log(result.data.appointments);
-            console.log(result.data.appointments.empty);
+            // console.log(result.data.appointments);
+            // console.log(result.data.appointments.empty);
             
             if(response.status === 200){
-                if (result.data.appointments.length != timeslots.length){
-                    var timings = [];
-                    for (timing of result.data.appointments){
-                        timings.push(timing.ApptTime.slice(0,-3));
-                    }
-                    console.log(timings);
-
-                    for (timing of timeslots){
-                        if(!timings.includes(timing)){
-                            available_timings.push(timing);
-                        }
-                    }
-                    console.log(available_timings);
+                if (result.data.timeslots.length !== 0){
+                    // var timings = [];
+                    // for (timing of result.data.appointments){
+                    //     timings.push(timing.ApptTime.slice(0,-3));
+                    // }
+                    // console.log(timings);
+                    var available_timings = result.data.timeslots;
+                    // for (timing of timeslots){
+                    //     if(!timings.includes(timing)){
+                    //         available_timings.push(timing);
+                    //     }
+                    // }
+                    // console.log(available_timings);
 
                     var timeSelection1 = `
                         <div class="row">
@@ -559,7 +566,7 @@
 
             var serviceURL = 'http://localhost:8000/api/v1/complexappointment/create_appointment';
 
-            var serviceURL2 = 'hhttp://localhost:8000/api/v1/complexappointment/worker_views_all_appointments';
+            var serviceURL2 = 'http://localhost:8000/api/v1/complexappointment/worker_views_all_appointments';
 
             try{
                 var response = await fetch(
@@ -636,5 +643,3 @@
 
         
 </script>
-
-

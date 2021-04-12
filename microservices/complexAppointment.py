@@ -18,6 +18,36 @@ prescription_URL = environ.get('prescription_URL') or "http://localhost:5002/pre
 healthworker_URL = environ.get('healthworker_URL') or "http://localhost:5003/healthworker"
 notification_URL = environ.get('notification_URL') or "http://localhost:5004/notification"
 
+@app.route("/availableTimeslots", methods=['POST'])
+def availableTimings():
+
+    if request.is_json:
+        try:
+            details = request.get_json()
+            print("\nReceived details in JSON:", details)
+
+            appointments = processAvailableTimings(details)
+            return jsonify(appointments), 200
+
+        except Exception as e:
+            pass  # do nothing
+
+    # if reached here, not a JSON request.
+    return jsonify({
+        "code": 400,
+        "message": "Invalid JSON input: " + str(request.get_data())
+    }), 400
+
+
+def processAvailableTimings(details):
+
+    #Obtain Appointments which matches Patient_Id 
+    print('\n-----Invoking Appointment microservice-----')
+    appointments = invoke_http(appointment_URL + "/availableTimeslots", method='POST', json=details)
+    print('Appointments:', appointments)
+
+    return appointments
+
 @app.route("/worker_views_all_appointments", methods=['POST'])
 def worker_views_all_appointments():
 

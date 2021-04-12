@@ -480,7 +480,7 @@ require_once "../model/protect.php";
         $(async () => {
             var patient_id = "<?php echo $_SESSION['patient_id'] ?>";
             var serviceURL = 'http://localhost:8000/api/v1/complexappointment/patient_views_upcoming_appointment';
-            var serviceURL2 = 'http://localhost:8000/api/v1/complexprescription/patient_get_Uncollected_Prescriptions/1';
+            var serviceURL2 = 'http://localhost:8000/api/v1/complexprescription/patient_get_Uncollected_Prescriptions/' + patient_id;
 
             // Upcoming Refill Requests
             try {

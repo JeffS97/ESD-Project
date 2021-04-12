@@ -45,6 +45,58 @@ class Appointment(db.Model):
     def json(self):
         return {"Appointment_Id": self.Appointment_Id, "Patient_Id": self.Patient_Id, "Gid": self.Gid, "Symptom": self.Symptom, "ApptTime": self.ApptTime,"ApptDate":self.ApptDate, "Completed":self.Completed}
 
+#Retrieve only available time slots       
+@app.route("/appointment/availableTimeslots", methods=['POST'])
+def availableTimeslots():
+
+    timeslots = ["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30"];
+
+    data = request.get_json()
+    ApptDate = data['ApptDate']
+    Gid = data['Gid']
+
+    applist = Appointment.query.filter_by(ApptDate=ApptDate, Gid=Gid)
+    # allAppointments = []
+    
+    for app in applist:
+        print(str(app.ApptTime)[:5])
+        if (str(app.ApptTime)[:5]) in timeslots:
+            timeslots.remove(str(app.ApptTime)[:5])
+        # dateStr = str(app.ApptDate)
+        # timeStr = str(app.ApptTime)
+
+        # output = {
+        #     'Appointment_Id' : app.Appointment_Id,
+        #     'Patient_Id' : app.Patient_Id,
+        #     'Gid' : app.Gid,
+        #     'Symptom' : app.Symptom,
+        #     'ApptTime' : timeStr,
+        #     'ApptDate' :  dateStr,
+        #     'Completed' : app.Completed
+        # }
+
+        # allAppointments.append(output)
+        
+    if applist:
+        return jsonify(
+            {
+                "code": 200,
+                "data": {
+                    "timeslots": timeslots
+                }
+            }
+        )
+    print(timeslots)
+
+    print('test')
+
+    return jsonify(
+        {
+            "code": 404,
+            "message": "Appointments not found."
+        }
+    ), 404
+
 #Healthcareworker View       
 @app.route("/appointment/healthcareCurrentAppointments", methods=['POST'])
 def currentAppointments():
