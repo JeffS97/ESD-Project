@@ -35,7 +35,7 @@ CliniQ uses a number of open source projects in order to function properly:
 
 * [Animate.css] - To animate our pages and make them look beautiful
 * [JQuery] - To manipulate and handle events
-* [MySQL] - To store the data of users, gigs and the chat
+* [MySQL] - To store the data of Patients, Healthworkers, Appointments and Prescriptions
 * [Twitter Bootstrap] - To make our page responsive on different viewports
 
 # APIs Used
