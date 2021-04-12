@@ -1,6 +1,7 @@
 <?php
     // session_start();
     require_once "../model/protect.php";
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -617,7 +618,8 @@
                         Symptom : symptoms,
                         ApptTime : time,
                         ApptDate : date,
-                        Completed : 0
+                        Completed : 0,
+                        Email: email
                     })
                 })
 

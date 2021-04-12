@@ -349,6 +349,7 @@ def processCreateAppointments(details):
     p_name = str(patient['data']['P_name'])
     chatId = str(patient['data']['ChatId'])
     clinic_name = str(details['Clinic_Name'])
+    email = str(details['Email'])
     print(clinic_name)
     
 
@@ -358,7 +359,8 @@ def processCreateAppointments(details):
             "ChatId": chatId,
             "ApptTime": timeStr, 
             "ApptDate": dateStr,
-            "Clinic_Name": clinic_name
+            "Clinic_Name": clinic_name,
+            "Email" :email
             }
 
     toSend = json.dumps(bingbong)

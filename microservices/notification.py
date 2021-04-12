@@ -7,6 +7,9 @@ import pika
 import uuid
 import threading
 import amqp_setup
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 import os
 from os import environ
 
@@ -45,9 +48,40 @@ def processNotification(notification):
         Clinic_Name = notification['Clinic_Name']
         name = notification['P_name']
         chid = notification['ChatId']
+        receiver_email = notification['Email']
         bot_message = 'Dear ' + name.capitalize() + ' Your appointment at: '+ Clinic_Name +" On: "+ ApptDate + " At: " + ApptTime + ' has been confirmed!'
         send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + chid + '&parse_mode=Markdown&text=' + bot_message
         response = requests.get(send_text)
+
+        sender_email = 'cliniqservices@gmail.com'
+        #receiver_email = "jeffvinder@hotmail.com"
+        password = 'esdproject'
+
+        name = 'Jeff'
+        ApptTime = '12:04PM'
+        ApptDate = '12/02/2021'
+        Clinic_Name = 'Penis Health'
+
+        test = 'Dear ' +  name + ' Your appointment at: '+ Clinic_Name +" On: "+ ApptDate + " At: " + ApptTime + ' has been confirmed!'
+
+        message = MIMEMultipart("alternative")
+        message["Subject"] = "Appointment Confirmed!"
+        message["From"] = sender_email
+        message["To"] = receiver_email
+
+        text = test
+        part1 = MIMEText(text, "plain")
+
+        message.attach(part1)
+
+        # Create secure connection with server and send email
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(
+                sender_email, receiver_email, message.as_string()
+            )
+
         print("--JSON:", notification)
     except Exception as e:
         print("--NOT JSON:", e)

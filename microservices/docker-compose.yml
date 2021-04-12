@@ -112,7 +112,7 @@ services:
     networks:
       - kong-net
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
       PYTHONUNBUFFERED: 1
     ports:
       - "5001:5001"
@@ -125,7 +125,7 @@ services:
     networks:
       - kong-net
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
       PYTHONUNBUFFERED: 1
     ports:
       - "5000:5000"
@@ -138,7 +138,7 @@ services:
     networks:
       - kong-net
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
       PYTHONUNBUFFERED: 1
     ports:
       - "5003:5003"
@@ -151,7 +151,7 @@ services:
     networks:
       - kong-net
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
       PYTHONUNBUFFERED: 1
     ports:
       - "5002:5002"
@@ -192,7 +192,7 @@ services:
       - patient
       - rabbitmq
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
       rabbit_host: rabbitmq
       rabbit_port: 5672
       appointment_URL: http://appointment:5001/appointment
@@ -213,7 +213,7 @@ services:
       - healthworker
       - rabbitmq
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
       rabbit_host: rabbitmq
       rabbit_port: 5672
       appointment_URL: http://appointment:5001/appointment

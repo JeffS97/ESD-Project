@@ -392,7 +392,11 @@ def find_by_appointment_id():
 def create_appointment():
 
     data = request.get_json()
-    del data['Clinic_Name']
+    keys_to_remove = ["Clinic_Name", "Email"]
+    for key in keys_to_remove:
+        del data[key]
+        
+    print(data)
     app = Appointment(**data)
     try: 
         db.session.add(app)
