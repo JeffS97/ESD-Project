@@ -57,11 +57,6 @@ def processNotification(notification):
         #receiver_email = "jeffvinder@hotmail.com"
         password = 'esdproject'
 
-        name = 'Jeff'
-        ApptTime = '12:04PM'
-        ApptDate = '12/02/2021'
-        Clinic_Name = 'Penis Health'
-
         test = 'Dear ' +  name + ' Your appointment at: '+ Clinic_Name +" On: "+ ApptDate + " At: " + ApptTime + ' has been confirmed!'
 
         message = MIMEMultipart("alternative")
