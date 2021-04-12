@@ -9,7 +9,6 @@
         
         exit();
     }
-    
 ?>
 
 <html>
@@ -167,13 +166,10 @@
         console.log(prescriptionIds);
         console.log(totalPrice);
         
-        totalAmount.innerHTML = `<a href='./refillpayment.php?price=${totalPrice}' id='payment type = 'button' class='btn btn-info' style = 'height:40px; width:150px; margin-bottom: 20px;'>Payment: $${totalPrice}</button>`;
+        totalAmount.innerHTML = `<a href='./refillpayment.php?price=${totalPrice}' id='payment' type = 'button' class='btn btn-info' style = 'height:40px; width:150px; margin-bottom: 20px;'>Payment: $${totalPrice}</button>`;
         
         
-
-
-      
-            $(async () => {
+        $(async () => {
         var serviceURL = "http://localhost:8000/api/v1/complexprescription/refill"
         
 

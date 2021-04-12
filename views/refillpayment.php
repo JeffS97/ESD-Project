@@ -11,7 +11,12 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
-  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 </head>
 <style>
     body {
@@ -67,8 +72,9 @@
                             <hr>
                             <li class="flex justify-content-between">
                                 <label for="price">Amount Payable: </label>
-                                <span class="text-red font-title" id='amount'>$<?php echo $_GET['price'] ?></span>
-                                <input type='hidden' value=<?php echo $_GET['price'] ?> id='pay'>
+                                <span class="text-red font-title" id='amount'></span>
+                                <input type='hidden' id='pay'>
+                                <input type="hidden" id="patientid">
                             </li>
                         </ul>
                         <div id="paypal-payment-button">
@@ -83,18 +89,58 @@
             </div>
         </div>
     </main>
-
+    <script>$('#patientid').val(<?php echo $_SESSION['patient_id']?>);</script>
     <script src="https://www.paypal.com/sdk/js?client-id=AXX0I0u6xpgH4HP2P95TV7I55zhG0AThgtQGLfibCiI6YIa1fqFZrMj9mKjoFQAMHkIATjy53Io4n6pp&disable-funding=credit,card"></script>
     <script src="refillindex.js"></script>
 </body>
 <script>
-    
-
     function redirect(){
         window.location.href = "./main.php";
     }
 
- 
+    $(async () => {
+        var serviceURL = "http://localhost:8000/api/v1/complexprescription/getPrice";
+        // let num = <?php echo $_SESSION['patient_id']?>;
+        // var Patient_Id = num.toString();
+        try {
+            const response =
+                await fetch(
+                    serviceURL, {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            Patient_Id : patientId
+                        })
+                    }
+                );
+            const result = await response.json();
+            if (response.status === 200) {
+                // success case
+                console.log(result)
+                var price = result.data.payment; //the array is in books within data of 
+                // the returned result
+                // for loop to setup all table rows with obtained book data
+               
+                // add all the rows to the table
+                document.getElementById('pay').value=price.Price
+                document.getElementById('amount').innerHTML="$"+price.Price
+            } else if (response.status == 404) {
+                // No Appointment
+                // showError(result.message);
+                console.log(response);
+            } else {
+                // unexpected outcome, throw the error
+                throw response.status;
+            }
+        } catch (error) {
+            // Errors when calling the service; such as network error, 
+            // service offline, etc
+            // showError('There is a problem retrieving price data, please try again later.<br/>' + error);
+            console.log(error);
+        } // error
+    });
 
 </script>
 </html>

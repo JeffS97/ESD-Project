@@ -482,7 +482,7 @@ require_once "../model/protect.php";
             var patient_id = "<?php echo $_SESSION['patient_id'] ?>";
             var serviceURL = 'http://localhost:8000/api/v1/complexappointment/patient_views_upcoming_appointment';
             var serviceURL2 = 'http://localhost:8000/api/v1/complexprescription/patient_get_Uncollected_Prescriptions/' + patient_id;
-
+            console.log(patient_id);
             // Upcoming Refill Requests
             try {
                 var response = await fetch(
@@ -496,7 +496,7 @@ require_once "../model/protect.php";
                 var result4 = await response.json();
 
                 if (response.status === 200) {
-                    console.log(result4);
+                    // console.log(result4);
                     var rows2 = "";
                     for (const prescription of result4.data.prescriptions) {
                         var gid = prescription.Gid;
@@ -547,19 +547,21 @@ require_once "../model/protect.php";
                             console.log(error);
                         }
                     }
-                    // console.log(rows2);
-                    if (rows2 === "") {
-                        $('#zeroRefills').text('No upcoming refill requests!').css("padding", "20");
-                    } else {
+                    console.log(rows2);
+                    // if (rows2 === "") {
+                        // $('#zeroRefills').text('No upcoming refill requests!').css("padding", "20");
+                    // } else {
                         $('#refills').append(rows2);
-                    }
+                    // }
                 } else if (response.status == 400 || result.code == 404) {
                     console.log("400");
                 } else {
                     throw response.status;
                 }
             } catch (error) {
-                console.log(error);
+                $('#zeroRefills').text('No upcoming refill requests!').css("padding", "20");
+                // console.log(error);
+                console.log("No upcoming refill requests!");
             }
 
             // Upcoming Appointments

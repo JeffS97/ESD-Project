@@ -95,7 +95,7 @@ def getByAppointment():
     data = request.get_json()
     Aid = data['Appointment_Id']
     current_date = datetime.date.today()
-    prescriptions = Prescription.query.filter_by(Appointment_Id = Aid).all()
+    prescriptions = Prescription.query.filter_by(Appointment_Id=Aid).all()
     output = []
 
     for prescription in prescriptions:
@@ -251,18 +251,18 @@ def patientGetUnCollectedPrescription(pid):
                 }
             }
         )
-
-        return jsonify(
-            {
-                "code": 404,
-                "message": "No Uncollected Prescriptions found."
-            }
-        ), 404
+    
+    return jsonify(
+        {
+            "code": 404,
+            "message": "No Uncollected Prescriptions found."
+        }
+    ), 404
 
 
 @app.route("/prescription/HealthworkerGetUnCollectedPrescription/<int:gid>")
 def healthworkerGetUnCollectedPrescription(gid):
-    prescription= Prescription.query.filter_by(Collected='NC').filter_by(Gid=gid).all()
+    prescription= Prescription.query.filter(Prescription.Collected=='NC').filter(Prescription.Gid==gid).all()
     if prescription:
         return jsonify(
             {
@@ -273,12 +273,12 @@ def healthworkerGetUnCollectedPrescription(gid):
             }
         )
 
-        return jsonify(
-            {
-                "code": 404,
-                "message": "No Uncollected Prescriptions found."
-            }
-        ), 404
+    return jsonify(
+        {
+            "code": 404,
+            "message": "No Uncollected Prescriptions found."
+        }
+    ), 404
 
 @app.route("/prescription/updateCollected", methods=['PUT'])
 def update_prescription_collected_date():
@@ -306,12 +306,12 @@ def update_prescription_collected_date():
             }
         )
 
-        return jsonify(
-            {
-                "code": 404,
-                "message": "No Prescriptions not found."
-            }
-        ), 404
+    return jsonify(
+        {
+            "code": 404,
+            "message": "No Prescriptions not found."
+        }
+    ), 404
 
 
 if __name__ == '__main__':

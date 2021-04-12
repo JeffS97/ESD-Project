@@ -13,7 +13,7 @@ appointment_URL = environ.get('appointment_URL') or "http://localhost:5001/appoi
 prescription_URL = environ.get('prescription_URL') or "http://localhost:5002/prescription"
 healthworker_URL = environ.get('healthworker_URL') or "http://localhost:5003/healthworker"
 notification_URL = environ.get('notification_URL') or "http://localhost:5004/notification"
-
+payment_URL = environ.get('payment_URL') or "http://localhost:5005/payment"
 #view all prescriptions valid for a refill given the appointment Id based upon the current day
 @app.route("/display_possible_refills", methods=['POST'])
 @cross_origin(supports_credentials=True)
@@ -47,12 +47,17 @@ def processDisplayPossibleRefills(details):
     return prescriptions
 
 #takes a refill ID to update criteria for next refill as well as send a notification via tele
-@app.route("/refill/<int:pid>", methods=['PUT'])
-def make_refill(pid):
+@app.route("/refill", methods=['PUT'])
+def make_refill():
     try:
+        check = "fail"
         details = request.get_json()
-        print("\n Recived a collection request for Prescription_Id:", pid)
-        toReturn = processRefill(pid, details)
+        print("\n Recived a collection request for Prescription_Id:")
+        for pid in details['Prescription_Id']:
+            toReturn = processRefill(pid)
+            check = "success"
+        print(details)
+        print(details['Prescription_Id'])
 
             # return jsonify(result), 200
             # toSend = {
@@ -67,7 +72,7 @@ def make_refill(pid):
             #     "Patient_Id" : str(prescription['data']['Patient_Id'])  
             # }
             # toReturn = json.dumps(toSend)
-        return toReturn
+        return check
 
     except Exception as e:
         pass  # do nothing
@@ -78,10 +83,10 @@ def make_refill(pid):
     }), 400
 
 
-def processRefill(pid, details):
+def processRefill(pid):
 
     print('\n-----Invoking Prescription microservice-----')
-    toReturn = invoke_http(prescription_URL + "/update/" + str(pid), method="PUT", json=details) #change 
+    toReturn = invoke_http(prescription_URL + "/update/" + str(pid), method="PUT") #change 
     print('Prescriptions:', toReturn)
 
     # print('\n-----Invoking Appointment microservice-----')
@@ -263,6 +268,55 @@ def processDeletePrescription(details):
     print('Cancelled Prescription ID:', appointment_id)
 
     return appointment_id
+
+
+@app.route("/addPayment", methods=["POST"])
+def AddPayment():
+    if request.is_json:
+        try:
+            number = request.get_json()
+
+            number = processAddPayment(number)
+            return jsonify(number), 200
+
+        except Exception as e:
+            pass  # do nothing
+
+    # if reached here, not a JSON request.
+    return jsonify({
+        "code": 400,
+        "message": "Invalid JSON input: " + str(request.get_data())
+    }), 400
+
+
+def processAddPayment(details):
+    number = invoke_http(payment_URL + '/addPayment', method='POST', json=details)
+
+    return number['data']
+
+@app.route("/getPrice", methods=["POST"])
+def getPayment():
+    if request.is_json:
+        try:
+            number = request.get_json()
+
+            number = processGetPayment(number)
+            return jsonify(number), 200
+
+        except Exception as e:
+            pass  # do nothing
+
+    # if reached here, not a JSON request.
+    return jsonify({
+        "code": 400,
+        "message": "Invalid JSON input: " + str(request.get_data())
+    }), 400
+
+
+def processGetPayment(details):
+    number = invoke_http(payment_URL + '/getPayment', json=details)
+
+    return number['data']
 
 if __name__ == "__main__":
     print("This is flask " + os.path.basename(__file__) + " for Prescription related Operations...")
