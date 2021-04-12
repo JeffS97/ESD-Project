@@ -224,6 +224,7 @@ def getChatId(username):
     #bot_message = "Your booking is confirmed!"
 
     Dict = final['result']
+    # print(Dict)
     chatID = str(Dict[len(Dict)-1]['message']['chat']['id'])
     offset = str((Dict[len(Dict)-1]['update_id'])+1) # To clear the JSON
 

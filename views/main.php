@@ -331,7 +331,7 @@ require_once "../model/protect.php";
         </div> -->
                 <div class="fiverr-menu" style="margin-left: auto;">
                     <ul>
-                        <button id="telegrambtn" type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#boxModal" onclick="window.open('https://t.me/CliniQueue_Bot?start=<?php echo $_SESSION["username"] ?>')">Get Telegram Notifications!</button>
+                        <button id="telegrambtn" type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#boxModal" onclick="window.open(`https://t.me/CliniQueue_Bot?start=<?php echo $_SESSION['username'] ?>`)">Get Telegram Notifications!</button>
                         <li><a class="pro" href="">Home</a></li>
                         <li><a href="">Profile</a></li>
                         <!-- <li><a href="">History</a></li> -->
@@ -476,6 +476,7 @@ require_once "../model/protect.php";
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1iSJyi8nOzkGwMWsmrEDQstq6b22-XoI&libraries=&v=weekly" async></script>
 
     <script>
+
         document.getElementById("btn1").addEventListener("click", updateTelegram, false);
         $(async () => {
             var patient_id = "<?php echo $_SESSION['patient_id'] ?>";
@@ -941,7 +942,8 @@ require_once "../model/protect.php";
                             $('#queue_status').text("Your current position in queue is: " + result.count);
                         }
 
-                        else {  
+                        else { 
+                            $('#queue_status').text("It is your turn!")
                         }
                         //   var num = response.data.count
                     } else if (response.status == 404) {
