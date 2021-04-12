@@ -9,9 +9,11 @@
 3. Navigate to the directory containing "docker-compose.yml" using your preferred CLI
 (docker-compose.yml can be found inside "/G5TA/microservices")
 
+3a. Edit the database configuration in 'docker-compose.yml' if you are using a different port for your phpMyAdmin (Change 3306 to 8889 for MAC users)
+
 4. Run "docker-compose build" to build the containers required
 
-5. Run "docker-compose up" to start the containers just built
+5. Run "docker-compose up" to start the containers just built (Give it about 2 minutes to fully load the containers)
 
 6. Once all containers are running, proceed to "localhost:1337" using your preferred 
 web browser to login and access KONGA
