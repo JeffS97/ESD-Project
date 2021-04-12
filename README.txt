@@ -16,9 +16,13 @@
 6. Once all containers are running, proceed to "localhost:1337" using your preferred 
 web browser to login and access KONGA
 
-7. Once inside your KONGA dashboard, select on "Services" in the left navigation bar
+7. Once inside your KONGA dashboard, select "Snapshots" in the left menu
 
-8. Select "Add New Service" and proceed to add the TWO following services:
+8. Select "Import From File" and choose the G6TA-Snapshot.json in the "database_scripts" folder
+
+9. Verify that the Services and Routes have been added correctly as below: 
+
+	SERVICES
 
 	a. Complex Appointment Microservice
 	   
@@ -33,11 +37,9 @@ web browser to login and access KONGA
 	   Protocol: http 
 	   Host: microservices_complexprescription_1
 	   Port: 5105
-
-9. Return to the "Services" page and click on the names of the newly created services
-
-10. Select "Add Route" and proceed to add the following for their respective services:
-
+	   
+	ROUTES
+	
 	a. Complex Appointment Microservice
 	
 	   Paths: /api/v1/complexappointment
@@ -48,8 +50,22 @@ web browser to login and access KONGA
 	   Paths: /api/v1/complexprescription
 	   Methods: GET, POST, PUT, OPTIONS, DELETE
 
-11. If everything was set up correctly, CliniQ is now ready for usage!
-	   
+10. If everything was set up correctly, CliniQ is now ready for usage!
+
+------------------------------------------------
+             Telegram Notification Setup
+------------------------------------------------
+*After creating account as a patient
+
+1. Click the 'Get Telegram Notifications' button on main.php
+
+2. Open Telegram chat as prompted
+
+3. Click 'Start' button or type '/start' in the chat
+
+4. Go back to main.php and close the Modal Window by clicking on the 'Close' button.
+
+5. Feel free to make an appointment at any clinic and receive confirmation via Telegram!
 	   
 	   
 
