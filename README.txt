@@ -15,8 +15,7 @@
 
 5. Run "docker-compose up" to start the containers just built (Give it about 2 minutes to fully load the containers)
 
-6. Once all containers are running, proceed to "localhost:1337" using your preferred 
-web browser to login and access KONGA
+6. Once all containers are running, proceed to "localhost:1337" using your preferred web browser to login and access KONGA
 
 7. Once inside your KONGA dashboard, select "Snapshots" in the left menu
 
