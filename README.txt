@@ -67,6 +67,20 @@
 4. Go back to main.php and close the Modal Window by clicking on the 'Close' button.
 
 5. Feel free to make an appointment at any clinic and receive confirmation via Telegram!
+
+------------------------------------------------
+             Paypal payment login credentials
+------------------------------------------------
+Username-sb-gafcc5846609@personal.example.com
+Password-QAx1-qi0
+
+------------------------------------------------
+             Things to note
+------------------------------------------------
+
+On the first try might face error which requires refresh to the page ,as kong takes time.
+After building wait some time for kong to initialise.
 	   
+
 	   
 
