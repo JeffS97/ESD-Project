@@ -112,7 +112,7 @@ services:
     networks:
       - kong-net
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
       PYTHONUNBUFFERED: 1
     ports:
       - "5001:5001"
@@ -125,7 +125,7 @@ services:
     networks:
       - kong-net
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
       PYTHONUNBUFFERED: 1
     ports:
       - "5000:5000"
@@ -138,7 +138,7 @@ services:
     networks:
       - kong-net
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
       PYTHONUNBUFFERED: 1
     ports:
       - "5003:5003"
@@ -151,10 +151,22 @@ services:
     networks:
       - kong-net
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
       PYTHONUNBUFFERED: 1
     ports:
       - "5002:5002"
+  payment:
+    build:
+      context: ./
+      dockerfile: payment.dockerfile
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      dbURL: "mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5"
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5005:5005"
   notification:
     build:
       context: ./
@@ -192,7 +204,7 @@ services:
       - patient
       - rabbitmq
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
       rabbit_host: rabbitmq
       rabbit_port: 5672
       appointment_URL: http://appointment:5001/appointment
@@ -202,7 +214,7 @@ services:
     build:
       context: ./
       dockerfile: complexprescription.dockerfile
-    image: jeffvindersingh/complexprescription:1.0
+    # image: jeffvindersingh/complexprescription:1.0
     restart: always
     networks:
       - kong-net
@@ -212,8 +224,9 @@ services:
       - appointment
       - healthworker
       - rabbitmq
+      - payment
     environment:
-      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:3306/ESD5'
+      dbURL: 'mysql+mysqlconnector://is213@host.docker.internal:8889/ESD5'
       rabbit_host: rabbitmq
       rabbit_port: 5672
       appointment_URL: http://appointment:5001/appointment
@@ -221,6 +234,7 @@ services:
       prescription_URL: http://prescription:5002/prescription
       refill_URL: http://refill:5004/refill
       healthworker_URL: http://healthworker:5003/healthworker
+      payment_URL: http://payment:5005/payment
       PYTHONUNBUFFERED: 1
 volumes:
   db_data:

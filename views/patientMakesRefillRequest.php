@@ -203,6 +203,43 @@
             $('#calcButton').hide();
         } // error
             });
+
+
+
+
+ $(async () => {
+                var serviceURL = "http://localhost:8000/api/v1/complexprescription/addPayment"
+                
+        
+               
+        var today = new Date();
+       date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                    const response =
+                        await fetch(
+                            serviceURL, {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    "Price" : totalPrice,
+                                    'Date': date,
+                                    "Patient_Id":patientId
+        
+                                })
+                            }
+                        );
+                    const result = await response.json();
+                    if (response.status === 200) {
+                        console.log(result)
+                       
+                    } else if (response.status == 404) {
+                        showError(result.message);
+                    } else {
+                        throw response.status;
+                    }
+             // error
+                    });
         }
 
     
@@ -264,7 +301,7 @@
             $('#calcButton').hide();
         } // error
     });
-
+ 
 
     </script>
  <script src="refillindex.js"></script>
