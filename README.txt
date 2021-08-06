@@ -1,6 +1,11 @@
 ------------------------------------------
              IS213 G5TA Setup
 ------------------------------------------
+0. Open project in Visual Studio Code --> Search for "<Insert Key Here>" & Replace this with your own Google Maps API Key on the following files:
+	- createAppointment.php
+	- maps.php
+	- createAppointment.php
+	- main.php
 
 1. Start WAMP/MAMP Server
 
@@ -19,7 +24,7 @@
 
 7. Once inside your KONGA dashboard, select "Snapshots" in the left menu
 
-8. Select "Import From File" and choose the G6TA-Snapshot.json in the "database_scripts" folder
+8. Select "Import From File" and choose the G5TA-Snapshot.json in the "database_scripts" folder
 
 9. Verify that the Services and Routes have been added correctly as below: 
 
