@@ -65,7 +65,7 @@ body {
     <div id="map"></div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1iSJyi8nOzkGwMWsmrEDQstq6b22-XoI&libraries=&v=weekly" async></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<Insert Key Here>&libraries=&v=weekly" async></script>
   </body>
 </html>
 <script>
