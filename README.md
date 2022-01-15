@@ -1,5 +1,5 @@
 # CliniQ - Team A
-CliniQ allows you to skip the Queue! Book appointments for your preferred Clinics beforehand to avoid unneccesary wait. Simply choose your preferred timing and show up on the dot for your consultation!
+CliniQ allows you to skip the Queue! Book appointments for your preferred Clinics beforehand to avoid unneccesary wait. Simply choose your preferred timing and show up on the dot for your consultation! - Maps Function currently Unavailable due to GraphQL & Heroku site not being hosted anymore
 
 # File Organization
 
